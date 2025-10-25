@@ -14,7 +14,7 @@ content:
     type: collection
     path: content/articles  # Matches your project's articles folder
     format: yaml-frontmatter
-    filename: "{slug}.md" # Note: This might generate predictable names based on 'title' unless CMS handles randomness differently for this format
+    filename: {slug}.md # Note: This might generate predictable names based on 'title' unless CMS handles randomness differently for this format
     fields:
       - name: title
         type: string
