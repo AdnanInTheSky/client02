@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home - Your NGO Name</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
     <style>
+        :root {
+            --primary: #14b8a6;       /* teal */
+            --primary-dark: #0d9488;
+            --accent: #f97316;        /* coral */
+            --light-bg: #f8fafc;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --radius: 16px;
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,9 +27,10 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            color: #1a1a1a;
-            line-height: 1.6;
+            background-color: #fff;
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
         /* Header */
@@ -24,175 +38,189 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
         }
 
         nav {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 2.5rem;
+            gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
         }
 
         nav a {
-            color: #333;
+            color: var(--text);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
+            font-weight: 600;
+            font-size: 1rem;
             position: relative;
-            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary);
         }
 
         nav a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 0;
-            height: 2px;
-            background: #2563eb;
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #2563eb;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: var(--transition);
         }
 
         nav a:hover::after {
             width: 100%;
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
             margin-top: 70px;
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
+            background: linear-gradient(120deg, #e0f2fe 0%, #f0fdfa 100%);
             padding: 6rem 2rem;
-            text-align: center;
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.3;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0.08;
+            z-index: 0;
         }
 
         .hero-content {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
+            color: var(--text);
             line-height: 1.2;
         }
 
         .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.95;
-            max-width: 700px;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 1rem 2.5rem;
-            background: white;
-            color: #2563eb;
+            padding: 1rem 2.25rem;
+            background: var(--primary);
+            color: white;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 50px;
             font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            font-size: 1.05rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
             border: none;
             cursor: pointer;
         }
 
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(20, 184, 166, 0.3);
         }
 
-        /* Section Styling */
+        /* Section */
         .section {
             padding: 5rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .section:nth-child(odd) {
-            background-color: #f9fafb;
+        .section:nth-child(even) {
+            background-color: var(--light-bg);
         }
 
-        .section h2 {
+        .section-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             font-weight: 700;
-            color: #1a1a1a;
+            color: var(--text);
+            margin-bottom: 1rem;
         }
 
-        .section h2::after {
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .section-header::after {
             content: '';
             display: block;
             width: 60px;
             height: 4px;
-            background: #2563eb;
-            margin: 1rem auto 0;
+            background: var(--accent);
+            margin: 1.25rem auto 0;
             border-radius: 2px;
         }
 
-        .articles-preview, .team-preview {
+        /* Cards */
+        .articles-preview,
+        .team-preview {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.25rem;
         }
 
-        /* Card Design */
         .card {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            border: 1px solid #e5e7eb;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
 
         .card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
         }
 
         .card img {
             width: 100%;
-            height: 240px;
+            height: 220px;
             object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .card:hover img {
-            transform: scale(1.05);
+            display: block;
         }
 
         .card-content {
@@ -200,169 +228,156 @@
         }
 
         .card-content h3 {
-            font-size: 1.35rem;
+            font-size: 1.4rem;
             margin-bottom: 0.75rem;
-            color: #1a1a1a;
-            font-weight: 600;
-            line-height: 1.4;
+            font-weight: 700;
+            color: var(--text);
         }
 
         .card-content p {
-            color: #6b7280;
-            line-height: 1.7;
+            color: var(--text-light);
             margin-bottom: 1.25rem;
-            font-size: 0.95rem;
+            font-size: 0.98rem;
         }
 
         .card-content p strong {
-            color: #2563eb;
+            color: var(--primary);
             font-weight: 600;
         }
 
         .card button {
-            background: #2563eb;
+            width: 100%;
+            padding: 0.85rem;
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
+            border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            width: 100%;
+            transition: var(--transition);
+            font-family: inherit;
+            font-size: 1rem;
         }
 
         .card button:hover {
-            background: #1e40af;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            background: var(--primary-dark);
+            transform: translateY(-2px);
         }
 
-        /* View All Button */
+        /* View All */
         .view-all-container {
             text-align: center;
-            margin-top: 3rem;
+            margin-top: 2.5rem;
         }
 
         .view-all-btn {
-            display: inline-block;
-            padding: 0.875rem 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 2rem;
             background: transparent;
-            color: #2563eb;
+            color: var(--primary);
             text-decoration: none;
-            border-radius: 6px;
             font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid #2563eb;
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            transition: var(--transition);
         }
 
         .view-all-btn:hover {
-            background: #2563eb;
+            background: var(--primary);
             color: white;
         }
 
-        /* Stats Section */
+        /* Stats */
         .stats-section {
-            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+            background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
             color: white;
-            padding: 4rem 2rem;
+            padding: 4.5rem 2rem;
             text-align: center;
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
+            gap: 2.5rem;
             max-width: 1000px;
             margin: 0 auto;
         }
 
         .stat-item h3 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
         .stat-item p {
             font-size: 1.1rem;
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
         /* Footer */
         footer {
-            background: #1a1a1a;
-            color: #9ca3af;
+            background: var(--text);
+            color: #cbd5e1;
             text-align: center;
             padding: 2.5rem 2rem;
+            font-size: 0.95rem;
         }
 
-        footer p {
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            nav {
-                flex-wrap: wrap;
-                gap: 1rem;
-                justify-content: center;
-            }
-
-            .hero {
-                padding: 4rem 1.5rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .section {
-                padding: 3rem 1.5rem;
-            }
-
-            .section h2 {
-                font-size: 2rem;
-            }
-
-            .articles-preview, .team-preview {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .stat-item h3 {
-                font-size: 2.5rem;
-            }
-        }
-
-        /* Loading Animation */
+        /* Loading */
         .loading {
             text-align: center;
-            padding: 3rem 2rem;
-            color: #6b7280;
+            padding: 3rem;
+            color: var(--text-light);
         }
 
         .spinner {
-            border: 3px solid #e5e7eb;
-            border-top: 3px solid #2563eb;
-            border-radius: 50%;
             width: 40px;
             height: 40px;
-            animation: spin 0.8s linear infinite;
+            border: 3px solid rgba(20, 184, 166, 0.2);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
             margin: 0 auto 1rem;
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 4rem 1.5rem;
+            }
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            .hero p {
+                font-size: 1.05rem;
+            }
+            .section {
+                padding: 3.5rem 1.5rem;
+            }
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            .articles-preview,
+            .team-preview {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .stat-item h3 {
+                font-size: 2.3rem;
+            }
+            nav {
+                gap: 1.25rem;
+                flex-wrap: wrap;
+            }
         }
     </style>
 </head>
@@ -386,7 +401,10 @@
     </div>
 
     <section class="section">
-        <h2>Latest Articles</h2>
+        <div class="section-header">
+            <h2>Latest Articles</h2>
+            <p>Insights, stories, and updates from our global initiatives.</p>
+        </div>
         <div id="articles-container" class="articles-preview">
             <div class="loading">
                 <div class="spinner"></div>
@@ -420,7 +438,10 @@
     </div>
 
     <section class="section">
-        <h2>Meet Our Team</h2>
+        <div class="section-header">
+            <h2>Meet Our Team</h2>
+            <p>Dedicated individuals driving change worldwide.</p>
+        </div>
         <div id="team-container" class="team-preview">
             <div class="loading">
                 <div class="spinner"></div>
@@ -433,7 +454,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2024 Your NGO Name. All rights reserved.</p>
+        <p>&copy; 2025 Your NGO Name. All rights reserved.</p>
     </footer>
 
     <script>
@@ -496,7 +517,7 @@
                         const excerpt = simpleMarkdownToHTML(body.substring(0, 120)) + '...';
                         articleCards.push(`
                             <div class="card">
-                                <img src="${meta.image}" alt="${meta.title}" loading="lazy">
+                                <img src="${meta.image || 'https://via.placeholder.com/600x400/e2e8f0/64748b?text=No+Image'}" alt="${meta.title}" loading="lazy">
                                 <div class="card-content">
                                     <h3>${meta.title}</h3>
                                     <p>${excerpt}</p>
@@ -506,7 +527,7 @@
                         `);
                     }
                 }
-                document.getElementById('articles-container').innerHTML = articleCards.join('');
+                document.getElementById('articles-container').innerHTML = articleCards.length ? articleCards.join('') : '<p style="text-align:center;color:#94a3b8;">No articles available.</p>';
 
                 // Load team
                 const teamFiles = indexData.teams.slice(0, 3);
@@ -524,10 +545,10 @@
                         const excerpt = simpleMarkdownToHTML(body.substring(0, 100)) + '...';
                         teamCards.push(`
                             <div class="card">
-                                <img src="${meta.image}" alt="${meta.title}" loading="lazy">
+                                <img src="${meta.image || 'https://via.placeholder.com/600x400/e2e8f0/64748b?text=Team+Member'}" alt="${meta.title}" loading="lazy">
                                 <div class="card-content">
                                     <h3>${meta.title}</h3>
-                                    <p><strong>${meta.role}</strong></p>
+                                    <p><strong>${meta.role || 'Team Member'}</strong></p>
                                     <p>${excerpt}</p>
                                     <button onclick="openDetail('${teamFiles[i]}', 'team')">View Profile</button>
                                 </div>
@@ -535,12 +556,12 @@
                         `);
                     }
                 }
-                document.getElementById('team-container').innerHTML = teamCards.join('');
+                document.getElementById('team-container').innerHTML = teamCards.length ? teamCards.join('') : '<p style="text-align:center;color:#94a3b8;">No team members available.</p>';
 
             } catch (error) {
                 console.error('Error loading index content:', error);
-                document.getElementById('articles-container').innerHTML = '<p>Error loading articles. Please try again later.</p>';
-                document.getElementById('team-container').innerHTML = '<p>Error loading team members. Please try again later.</p>';
+                document.getElementById('articles-container').innerHTML = '<p style="text-align:center;color:#ef4444;">Failed to load articles.</p>';
+                document.getElementById('team-container').innerHTML = '<p style="text-align:center;color:#ef4444;">Failed to load team members.</p>';
             }
         }
 
