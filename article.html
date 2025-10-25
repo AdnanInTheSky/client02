@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title> <!-- Will be updated by JS -->
+    <style>
+        body {
+            font-family: 'Inter', 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .article-detail {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .article-detail img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .article-body {
+            line-height: 1.6;
+        }
+        .article-body p {
+            margin-bottom: 1rem;
+        }
+        .article-body ul {
+            margin-bottom: 1rem;
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+        /* Basic Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .article-detail {
+                margin: 1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="articles.html">Articles</a>
+            <a href="team.html">Team</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="article-detail">
+        <img id="article-image" src="" alt="" loading="lazy">
+        <h1 id="article-title">Loading...</h1>
+        <div class="article-meta">
+            <span id="article-author"></span> | <span id="article-date"></span>
+        </div>
+        <div id="article-body" class="article-body">
+            <!-- Article content will be loaded here -->
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Your NGO Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // --- Helper Functions (same as index.html) ---
+        function parseYAML(yamlStr) {
+            const result = {};
+            const lines = yamlStr.trim().split('\n');
+            for (const line of lines) {
+                const [key, ...valueParts] = line.split(':');
+                const trimmedKey = key.trim();
+                let value = valueParts.join(':').trim();
+                if (value.startsWith('"') && value.endsWith('"')) {
+                    value = value.slice(1, -1);
+                } else if (value.startsWith("'") && value.endsWith("'")) {
+                    value = value.slice(1, -1);
+                } else if (value.startsWith('[') && value.endsWith(']')) {
+                    value = value.slice(1, -1).split(',').map(v => v.trim().replace(/"/g, '').replace(/'/g, ''));
+                }
+                result[trimmedKey] = value;
+            }
+            return result;
+        }
+
+        function simpleMarkdownToHTML(md) {
+            let html = md;
+            html = html.replace(/^(\s*)## (.+)$/gm, '$1<h2>$2</h2>');
+            html = html.replace(/^(\s*)# (.+)$/gm, '$1<h1>$2</h1>');
+            html = html.replace(/^(\s*)### (.+)$/gm, '$1<h3>$2</h3>');
+            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+            html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.+<\/li>)+/g, '<ul>$&</ul>');
+            html = html.replace(/\n/g, '<br>');
+            const paragraphs = html.split('<br><br>');
+            html = paragraphs.map(p => `<p>${p}</p>`).join('');
+            html = html.replace(/<br><br>/g, '<br>');
+            return html;
+        }
+
+        // --- Article Detail Loading Logic ---
+        async function loadArticle() {
+            const id = sessionStorage.getItem('selectedFile');
+
+            if (!id || !id.startsWith('articles/')) {
+                document.getElementById('article-body').innerHTML = '<p>Error: Article not found.</p>';
+                document.title = 'Article Not Found';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/content/${id}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const text = await response.text();
+                const parts = text.split('---');
+                if (parts.length < 3) {
+                    throw new Error('Invalid Markdown format');
+                }
+
+                const frontmatter = parts[1];
+                const body = parts.slice(2).join('---');
+                const meta = parseYAML(frontmatter);
+                const htmlBody = simpleMarkdownToHTML(body);
+
+                document.getElementById('article-image').src = meta.image;
+                document.getElementById('article-image').alt = meta.title;
+                document.getElementById('article-title').textContent = meta.title;
+                document.getElementById('article-author').textContent = `By ${meta.author || 'Unknown'}`;
+                // Format date if needed, assuming it's in a standard format
+                document.getElementById('article-date').textContent = new Date(meta.date).toLocaleDateString();
+                document.getElementById('article-body').innerHTML = htmlBody;
+                document.title = meta.title;
+
+            } catch (error) {
+                console.error('Error loading article:', error);
+                document.getElementById('article-body').innerHTML = '<p>Error loading article content.</p>';
+                document.title = 'Error Loading Article';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadArticle);
+    </script>
+</body>
+</html>

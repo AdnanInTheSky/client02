@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team - Your NGO Name</title>
+    <style>
+        body {
+            font-family: 'Inter', 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .section {
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #007bff;
+        }
+        .filters {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .filters button {
+            margin: 0.25rem 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .filters button.active {
+            background-color: #007bff;
+            color: white;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+        }
+        .card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Makes the image circular */
+            object-fit: cover;
+            margin: 1rem auto 0; /* Center the image */
+        }
+        .card-content {
+            padding: 1rem;
+        }
+        .card-content h3 {
+            margin-top: 0.5rem;
+        }
+        .card-content p.role {
+            color: #007bff;
+            font-weight: bold;
+            margin: 0.25rem 0;
+        }
+        .pagination {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .pagination button {
+            padding: 0.75rem 1.5rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+        /* Basic Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="articles.html">Articles</a>
+            <a href="team.html">Team</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="section">
+        <h2>Our Team</h2>
+        <div class="filters" id="team-tags-container">
+            <!-- Tags will be loaded here -->
+        </div>
+        <div id="team-container" class="team-grid">
+            <!-- Team members will be loaded here -->
+        </div>
+        <div class="pagination" id="team-pagination-container" style="display:none;">
+            <button id="team-load-more-btn">Load More</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Your NGO Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // --- Helper Functions (same as index.html) ---
+        function parseYAML(yamlStr) {
+            const result = {};
+            const lines = yamlStr.trim().split('\n');
+            for (const line of lines) {
+                const [key, ...valueParts] = line.split(':');
+                const trimmedKey = key.trim();
+                let value = valueParts.join(':').trim();
+                if (value.startsWith('"') && value.endsWith('"')) {
+                    value = value.slice(1, -1);
+                } else if (value.startsWith("'") && value.endsWith("'")) {
+                    value = value.slice(1, -1);
+                } else if (value.startsWith('[') && value.endsWith(']')) {
+                    value = value.slice(1, -1).split(',').map(v => v.trim().replace(/"/g, '').replace(/'/g, ''));
+                }
+                result[trimmedKey] = value;
+            }
+            return result;
+        }
+
+        function simpleMarkdownToHTML(md) {
+            let html = md;
+            html = html.replace(/^(\s*)## (.+)$/gm, '$1<h2>$2</h2>');
+            html = html.replace(/^(\s*)# (.+)$/gm, '$1<h1>$2</h1>');
+            html = html.replace(/^(\s*)### (.+)$/gm, '$1<h3>$2</h3>');
+            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+            html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.+<\/li>)+/g, '<ul>$&</ul>');
+            html = html.replace(/\n/g, '<br>');
+            const paragraphs = html.split('<br><br>');
+            html = paragraphs.map(p => `<p>${p}</p>`).join('');
+            html = html.replace(/<br><br>/g, '<br>');
+            return html;
+        }
+
+        // --- Team Loading Logic ---
+        let allTeamMembers = [];
+        let currentTeamMembers = [];
+        let teamCurrentPage = 1;
+        const teamItemsPerPage = 6;
+        let teamCurrentFilter = 'all';
+
+        async function loadAllTeamMembers() {
+            try {
+                const indexResponse = await fetch('/content/index.json');
+                const indexData = await indexResponse.json();
+                const teamFiles = indexData.teams;
+
+                const teamPromises = teamFiles.map(file => fetch(`/content/${file}`).then(r => r.text()));
+                const teamTexts = await Promise.all(teamPromises);
+
+                allTeamMembers = [];
+                const allTags = new Set();
+                for (let i = 0; i < teamTexts.length; i++) {
+                    const text = teamTexts[i];
+                    const parts = text.split('---');
+                    if (parts.length >= 3) {
+                        const frontmatter = parts[1];
+                        const body = parts.slice(2).join('---');
+                        const meta = parseYAML(frontmatter);
+                        const htmlBody = simpleMarkdownToHTML(body);
+                        allTeamMembers.push({ id: teamFiles[i], meta, htmlBody });
+                        if (meta.tags && Array.isArray(meta.tags)) {
+                            meta.tags.forEach(tag => allTags.add(tag));
+                        }
+                    }
+                }
+
+                renderTeamTags(Array.from(allTags));
+                renderTeamMembers(allTeamMembers);
+            } catch (error) {
+                console.error('Error loading team members:', error);
+                document.getElementById('team-container').innerHTML = '<p>Error loading team members.</p>';
+            }
+        }
+
+        function renderTeamTags(tags) {
+            const container = document.getElementById('team-tags-container');
+            const allButton = `<button class="active" onclick="filterTeamMembers('all')">All</button>`;
+            const tagButtons = tags.map(tag => `<button onclick="filterTeamMembers('${tag}')">${tag}</button>`).join('');
+            container.innerHTML = allButton + tagButtons;
+        }
+
+        function filterTeamMembers(tag) {
+            teamCurrentFilter = tag;
+            document.querySelectorAll('#team-tags-container button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            let filtered = allTeamMembers;
+            if (tag !== 'all') {
+                filtered = allTeamMembers.filter(member => member.meta.tags && member.meta.tags.includes(tag));
+            }
+            currentTeamMembers = filtered;
+            teamCurrentPage = 1;
+            renderTeamMembers(currentTeamMembers);
+        }
+
+        function renderTeamMembers(members) {
+            const start = (teamCurrentPage - 1) * teamItemsPerPage;
+            const end = start + teamItemsPerPage;
+            const pageMembers = members.slice(0, end);
+
+            const memberCards = pageMembers.map(member => {
+                const excerpt = member.htmlBody.substring(0, 80) + '...';
+                return `
+                    <div class="card">
+                        <img src="${member.meta.image}" alt="${member.meta.title}" loading="lazy">
+                        <div class="card-content">
+                            <h3>${member.meta.title}</h3>
+                            <p class="role">${member.meta.role}</p>
+                            <p>${excerpt}</p>
+                            <button onclick="openTeamDetail('${member.id}')">View Profile</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('team-container').innerHTML = memberCards;
+
+            const paginationContainer = document.getElementById('team-pagination-container');
+            if (members.length > end) {
+                paginationContainer.style.display = 'block';
+            } else {
+                paginationContainer.style.display = 'none';
+            }
+        }
+
+        function loadMoreTeam() {
+            teamCurrentPage++;
+            renderTeamMembers(currentTeamMembers);
+        }
+
+        function openTeamDetail(id) {
+            sessionStorage.setItem('selectedFile', id);
+            window.location.href = 'team_detail.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAllTeamMembers();
+            document.getElementById('team-load-more-btn').addEventListener('click', loadMoreTeam);
+        });
+    </script>
+</body>
+</html>

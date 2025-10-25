@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Your NGO Name</title>
+    <style>
+        body {
+            font-family: 'Inter', 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .section {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #007bff;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .service-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain; /* Ensure icon fits nicely */
+            margin: 0 auto 1rem; /* Center icon */
+            display: block;
+        }
+        .service-card h3 {
+            color: #007bff;
+            margin-top: 0;
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+        /* Basic Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="articles.html">Articles</a>
+            <a href="team.html">Team</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="section">
+        <h2>Our Services</h2>
+        <div id="services-container" class="services-grid">
+            <!-- Services will be loaded here -->
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Your NGO Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // --- Helper Functions (same as index.html) ---
+        function parseYAML(yamlStr) {
+            const result = {};
+            const lines = yamlStr.trim().split('\n');
+            for (const line of lines) {
+                const [key, ...valueParts] = line.split(':');
+                const trimmedKey = key.trim();
+                let value = valueParts.join(':').trim();
+                if (value.startsWith('"') && value.endsWith('"')) {
+                    value = value.slice(1, -1);
+                } else if (value.startsWith("'") && value.endsWith("'")) {
+                    value = value.slice(1, -1);
+                } else if (value.startsWith('[') && value.endsWith(']')) {
+                    value = value.slice(1, -1).split(',').map(v => v.trim().replace(/"/g, '').replace(/'/g, ''));
+                }
+                result[trimmedKey] = value;
+            }
+            return result;
+        }
+
+        function simpleMarkdownToHTML(md) {
+            let html = md;
+            html = html.replace(/^(\s*)## (.+)$/gm, '$1<h2>$2</h2>');
+            html = html.replace(/^(\s*)# (.+)$/gm, '$1<h1>$2</h1>');
+            html = html.replace(/^(\s*)### (.+)$/gm, '$1<h3>$2</h3>');
+            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+            html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.+<\/li>)+/g, '<ul>$&</ul>');
+            html = html.replace(/\n/g, '<br>');
+            const paragraphs = html.split('<br><br>');
+            html = paragraphs.map(p => `<p>${p}</p>`).join('');
+            html = html.replace(/<br><br>/g, '<br>');
+            return html;
+        }
+
+        // --- Services Loading Logic ---
+        async function loadServices() {
+            try {
+                const indexResponse = await fetch('/content/index.json');
+                const indexData = await indexResponse.json();
+                const serviceFiles = indexData.services;
+
+                const servicePromises = serviceFiles.map(file => fetch(`/content/${file}`).then(r => r.text()));
+                const serviceTexts = await Promise.all(servicePromises);
+
+                const serviceCards = [];
+                for (let i = 0; i < serviceTexts.length; i++) {
+                    const text = serviceTexts[i];
+                    const parts = text.split('---');
+                    if (parts.length >= 3) {
+                        const frontmatter = parts[1];
+                        const body = parts.slice(2).join('---');
+                        const meta = parseYAML(frontmatter);
+                        const htmlBody = simpleMarkdownToHTML(body);
+
+                        serviceCards.push(`
+                            <div class="service-card">
+                                <img src="${meta.image}" alt="${meta.title}" loading="lazy">
+                                <h3>${meta.title}</h3>
+                                <div>${htmlBody}</div>
+                            </div>
+                        `);
+                    }
+                }
+                document.getElementById('services-container').innerHTML = serviceCards.join('');
+
+            } catch (error) {
+                console.error('Error loading services:', error);
+                document.getElementById('services-container').innerHTML = '<p>Error loading services.</p>';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadServices);
+    </script>
+</body>
+</html>

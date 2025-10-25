@@ -1,0 +1,11 @@
+{
+  "articles": [
+    "articles/dummy_article.md"
+  ],
+  "teams": [
+    "teams/dummy_member.md"
+  ],
+  "services": [
+    "services/dummy_service.md"
+  ]
+}

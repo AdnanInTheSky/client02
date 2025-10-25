@@ -1,0 +1,12 @@
+{
+  "name": "ngo-website",
+  "version": "1.0.0",
+  "description": "A static NGO website managed by Pages CMS",
+  "main": "index.html",
+  "scripts": {
+    "build": "node generateIndex.js"
+  },
+  "keywords": ["static", "cms", "ngo", "vercel"],
+  "author": "Your Name",
+  "license": "MIT"
+}
