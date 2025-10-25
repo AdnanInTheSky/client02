@@ -1,43 +1,61 @@
 collections:
-  - name: "articles"
-    label: "Articles"
-    folder: "content/articles"
-    format: "frontmatter"
-    create: true
-    slug: ""  # allows CMS to generate random file names
+  - name: articles
+    label: Articles
+    path: content/articles
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Image", name: "image", widget: "image" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Tags", name: "tags", widget: "list" }
-      - { label: "Author", name: "author", widget: "string" }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - name: title
+        label: Title
+        type: string
+      - name: image
+        label: Image
+        type: image
+      - name: date
+        label: Date
+        type: datetime
+      - name: tags
+        label: Tags
+        type: list
+      - name: author
+        label: Author
+        type: string
+      - name: body
+        label: Body
+        type: rich-text
 
-  - name: "teams"
-    label: "Team Members"
-    folder: "content/teams"
-    format: "frontmatter"
-    create: true
-    slug: ""  # random filename
+  - name: teams
+    label: Team Members
+    path: content/teams
     fields:
-      - { label: "Name", name: "title", widget: "string" }
-      - { label: "Photo", name: "image", widget: "image" }
-      - { label: "Role", name: "role", widget: "string" }
-      - { label: "Tags", name: "tags", widget: "list" }
-      - { label: "Bio", name: "body", widget: "markdown" }
+      - name: title
+        label: Name
+        type: string
+      - name: image
+        label: Photo
+        type: image
+      - name: role
+        label: Role
+        type: string
+      - name: tags
+        label: Tags
+        type: list
+      - name: body
+        label: Bio
+        type: rich-text
 
-  - name: "services"
-    label: "Services"
-    folder: "content/services"
-    format: "frontmatter"
-    create: true
-    slug: ""  # random filename
+  - name: services
+    label: Services
+    path: content/services
     fields:
-      - { label: "Service Name", name: "title", widget: "string" }
-      - { label: "Icon", name: "image", widget: "image" }
-      - { label: "Description", name: "body", widget: "markdown" }
+      - name: title
+        label: Service Name
+        type: string
+      - name: image
+        label: Icon
+        type: image
+      - name: body
+        label: Description
+        type: rich-text
 
-media_folder: "content/images"
-public_folder: "/content/images"
-# Optional: Exclude the generated index file from CMS management
-# exclude: ["content/index.json"]
+media:
+  output: content/images
+  public: /content/images
