@@ -425,8 +425,10 @@
             const end = start + teamItemsPerPage;
             const pageMembers = members.slice(0, end);
 
+            // Create an array of card HTML strings
             const memberCards = pageMembers.map(member => {
-                const excerpt = simpleMarkdownToHTML(member.htmlBody.substring(0, 100)) + '...'; // Match index.html excerpt length
+                // Use simpleMarkdownToHTML for the excerpt to handle markdown formatting
+                const excerpt = simpleMarkdownToHTML(member.htmlBody.substring(0, 100)) + '...';
                 return `
                     <div class="card">
                         <img src="${member.meta.image}" alt="${member.meta.title}" loading="lazy">
@@ -438,9 +440,10 @@
                         </div>
                     </div>
                 `;
-            }).join('');
+            }); // memberCards is now an array of strings
 
-            document.getElementById('team-container').innerHTML = memberCards.join('');
+            // Join the array of strings into a single string and set innerHTML
+            document.getElementById('team-container').innerHTML = memberCards.join(''); // CORRECTED: join the array once
 
             const paginationContainer = document.getElementById('team-pagination-container');
             if (members.length > end) {
