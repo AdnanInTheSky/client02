@@ -1,70 +1,85 @@
-# .pages.yaml - Configuration for Pages CMS
-media:
-  output: content/images
-  public: /content/images
+# .pages.yml - Configuration for Pages CMS (https://app.pagescms.org/)
+# Uses the syntax structure: media:, content: - name:, type:, path:, fields:
 
-collections:
+# Define the media folder settings
+media:
+  input: content/images  # Matches your project's image folder
+  output: /content/images # Matches your project's image folder
+  extensions: [jpg, jpeg, png, webp, gif]
+
+content:
+  # Articles Collection
   - name: articles
     label: Articles
-    path: content/articles
+    type: collection
+    path: content/articles  # Matches your project's articles folder
+    format: yaml-frontmatter
+    filename: "{slug}.md" # Note: This might generate predictable names based on 'title' unless CMS handles randomness differently for this format
     fields:
       - name: title
-        label: Title
         type: string
         required: true
+      - name: slug
+        type: string
+        hint: "Used in filename. Lowercase, hyphenated (e.g., my-first-post)"
       - name: date
-        label: Date
-        type: datetime
+        type: date
         required: true
       - name: author
-        label: Author
         type: string
-      - name: image
-        label: Featured Image
+      - name: image # Changed from 'cover_image' to match your HTML/JS expectation
         type: image
+        required: false
+        hint: "Featured image for the article"
       - name: tags
-        label: Tags
         type: list
+        field:
+          type: string
       - name: body
-        label: Body
-        type: rich-text
+        type: markdown # Changed from 'rich-text' to 'markdown' to align with your JS parser
         required: true
 
-  - name: teams
+  # Team Members Collection
+  - name: team
     label: Team Members
-    path: content/teams
+    type: collection
+    path: content/teams  # Matches your project's teams folder
+    format: yaml-frontmatter
+    filename: "{slug}.md" # Changed from '.yaml' to '.md' for consistency
     fields:
-      - name: title
-        label: Name
+      - name: title # Changed from 'name' to 'title' to match your HTML/JS expectation
         type: string
         required: true
       - name: role
-        label: Role
         type: string
         required: true
-      - name: image
-        label: Photo
+      - name: image # Changed from 'photo' to 'image' to match your HTML/JS expectation
         type: image
+        required: false
+        hint: "Photo of the team member"
       - name: tags
-        label: Tags
         type: list
-      - name: body
-        label: Bio
-        type: rich-text
+        field:
+          type: string
+      - name: body # Changed from 'bio' to 'body' to match your HTML/JS expectation for markdown content
+        type: markdown # Changed from 'text' to 'markdown' to align with your JS parser
         required: true
 
+  # Services Collection
   - name: services
     label: Services
-    path: content/services
+    type: collection
+    path: content/services  # Matches your project's services folder
+    format: yaml-frontmatter
+    filename: "{slug}.md" # Changed from '.yaml' to '.md' for consistency
     fields:
       - name: title
-        label: Service Name
         type: string
         required: true
-      - name: image
-        label: Icon
+      - name: image # Changed from 'icon_image' to 'image' to match your HTML/JS expectation
         type: image
-      - name: body
-        label: Description
-        type: rich-text
+        required: false
+        hint: "Icon or image representing the service"
+      - name: body # Changed from 'description' to 'body' to match your HTML/JS expectation for markdown content
+        type: markdown # Changed from 'text' to 'markdown' to align with your JS parser
         required: true
