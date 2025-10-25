@@ -1,36 +1,49 @@
+# .pages.yml - Configuration for Pages CMS (https://app.pagescms.org/)
+
+# Define collections for Articles, Teams, Services
 collections:
-  - name: articles
-    label: Articles
-    path: content/articles
-    extension: md
+  - name: "articles"
+    label: "Articles"
+    folder: "content/articles"
+    format: "frontmatter"
+    create: true
+    # Omitting 'slug' field definition allows Pages CMS to potentially generate random filenames,
+    # or you might need to check the specific CMS behavior if it defaults to title-based.
+    # The frontend JS will use the *actual* filename (random or not) as the ID.
     fields:
-      - name: title
-        label: Title
-        type: string
-      - name: body
-        label: Body
-        type: rich-text
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Author", name: "author", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
 
-  - name: teams
-    label: Team Members
-    path: content/teams
-    extension: md
+  - name: "teams"
+    label: "Team Members"
+    folder: "content/teams"
+    format: "frontmatter"
+    create: true
+    # Omitting 'slug' field definition
     fields:
-      - name: title
-        label: Name
-        type: string
-      - name: body
-        label: Bio
-        type: rich-text
+      - { label: "Name", name: "title", widget: "string" }
+      - { label: "Photo", name: "image", widget: "image" }
+      - { label: "Role", name: "role", widget: "string" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Bio", name: "body", widget: "markdown" }
 
-  - name: services
-    label: Services
-    path: content/services
-    extension: md
+  - name: "services"
+    label: "Services"
+    folder: "content/services"
+    format: "frontmatter"
+    create: true
+    # Omitting 'slug' field definition
     fields:
-      - name: title
-        label: Service Name
-        type: string
-      - name: body
-        label: Description
-        type: rich-text
+      - { label: "Service Name", name: "title", widget: "string" }
+      - { label: "Icon", name: "image", widget: "image" }
+      - { label: "Description", name: "body", widget: "markdown" }
+
+# Define media folder settings
+media_folder: "content/images"
+public_folder: "/content/images"
+# Optional: Exclude the generated index file from CMS management
+# exclude: ["content/index.json"]
