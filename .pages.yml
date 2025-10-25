@@ -2,21 +2,10 @@ collections:
   - name: articles
     label: Articles
     path: content/articles
+    extension: md
     fields:
       - name: title
         label: Title
-        type: string
-      - name: image
-        label: Image
-        type: image
-      - name: date
-        label: Date
-        type: datetime
-      - name: tags
-        label: Tags
-        type: list
-      - name: author
-        label: Author
         type: string
       - name: body
         label: Body
@@ -25,19 +14,11 @@ collections:
   - name: teams
     label: Team Members
     path: content/teams
+    extension: md
     fields:
       - name: title
         label: Name
         type: string
-      - name: image
-        label: Photo
-        type: image
-      - name: role
-        label: Role
-        type: string
-      - name: tags
-        label: Tags
-        type: list
       - name: body
         label: Bio
         type: rich-text
@@ -45,17 +26,11 @@ collections:
   - name: services
     label: Services
     path: content/services
+    extension: md
     fields:
       - name: title
         label: Service Name
         type: string
-      - name: image
-        label: Icon
-        type: image
       - name: body
         label: Description
         type: rich-text
-
-media:
-  output: content/images
-  public: /content/images
