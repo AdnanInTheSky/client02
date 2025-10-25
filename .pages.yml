@@ -1,49 +1,42 @@
-# .pages.yml - Configuration for Pages CMS (https://app.pagescms.org/)
+# pages.config.yml (or potentially .pages.yml with this structure)
+media:
+  input: public/images
+  output: /images
+  extensions: [jpg, jpeg, png, webp, gif]
 
-# Define collections for Articles, Teams, Services
-collections:
-  - name: "articles"
-    label: "Articles"
-    folder: "content/articles"
-    format: "frontmatter"
-    create: true
-    # Omitting 'slug' field definition allows Pages CMS to potentially generate random filenames,
-    # or you might need to check the specific CMS behavior if it defaults to title-based.
-    # The frontend JS will use the *actual* filename (random or not) as the ID.
+content:
+  # Articles (Blog Posts)
+  - name: articles
+    label: Articles
+    type: collection
+    path: src/content/articles # Note: path might differ for your structure
+    format: yaml-frontmatter
+    filename: "{slug}.md"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Image", name: "image", widget: "image" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Tags", name: "tags", widget: "list" }
-      - { label: "Author", name: "author", widget: "string" }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - name: title
+        type: string
+        required: true
+      - name: slug
+        type: string
+        hint: "Used in URL. Lowercase, hyphenated (e.g., my-new-post)"
+      - name: date
+        type: date
+        required: true
+      - name: excerpt
+        type: text
+        hint: "Short summary for listing pages"
+      - name: author
+        type: string
+      - name: cover_image
+        type: image
+        required: false
+        hint: "Featured image for the article"
+      - name: tags
+        type: list
+        field:
+          type: string
+      - name: body
+        type: rich-text # or markdown
+        required: true
 
-  - name: "teams"
-    label: "Team Members"
-    folder: "content/teams"
-    format: "frontmatter"
-    create: true
-    # Omitting 'slug' field definition
-    fields:
-      - { label: "Name", name: "title", widget: "string" }
-      - { label: "Photo", name: "image", widget: "image" }
-      - { label: "Role", name: "role", widget: "string" }
-      - { label: "Tags", name: "tags", widget: "list" }
-      - { label: "Bio", name: "body", widget: "markdown" }
-
-  - name: "services"
-    label: "Services"
-    folder: "content/services"
-    format: "frontmatter"
-    create: true
-    # Omitting 'slug' field definition
-    fields:
-      - { label: "Service Name", name: "title", widget: "string" }
-      - { label: "Icon", name: "image", widget: "image" }
-      - { label: "Description", name: "body", widget: "markdown" }
-
-# Define media folder settings
-media_folder: "content/images"
-public_folder: "/content/images"
-# Optional: Exclude the generated index file from CMS management
-# exclude: ["content/index.json"]
+  # ... other collections like team, services
