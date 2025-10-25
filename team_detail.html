@@ -4,82 +4,190 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading...</title> <!-- Will be updated by JS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', 'Open Sans', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
+            box-sizing: border-box;
         }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* Header */
         header {
-            background-color: #007bff;
-            color: white;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #ffffff;
+            z-index: 1000;
             padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
         }
+
         nav {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            align-items: center;
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
+
         nav a {
-            color: white;
+            color: #333;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
         }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Team Detail Section */
         .team-detail {
             max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
+            margin: 100px auto 4rem; /* Top margin for fixed header, bottom for footer */
+            padding: 3rem 2rem;
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .team-detail img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%; /* Makes the image circular */
-            object-fit: cover;
-            display: block;
-            margin: 0 auto 1rem; /* Center the image */
-        }
-        .team-meta {
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e5e7eb;
             text-align: center;
-            color: #6c757d;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
         }
+
+        .team-detail img {
+            width: 220px; /* Fixed width for circular image */
+            height: 220px; /* Fixed height for circular image */
+            border-radius: 50%; /* Make image circular */
+            object-fit: cover;
+            margin: 0 auto 1.5rem; /* Center image and add margin */
+            display: block; /* Ensure block display for centering */
+            border: 4px solid #e5e7eb; /* Optional border for image */
+        }
+
+        .team-meta h1 {
+            font-size: 2.25rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+        .team-meta p.role {
+            color: #2563eb; /* Blue color for role */
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
         .team-bio {
-            line-height: 1.6;
+            line-height: 1.8;
+            color: #374151;
+            text-align: left; /* Align bio text to the left */
+        }
+        .team-bio h1, .team-bio h2, .team-bio h3 {
+            color: #1a1a1a;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: left; /* Ensure headings inside bio are left-aligned */
+        }
+        .team-bio h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .team-bio h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+        }
+        .team-bio h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
         }
         .team-bio p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
+            text-align: left; /* Ensure paragraphs inside bio are left-aligned */
         }
-        .team-bio ul {
-            margin-bottom: 1rem;
+        .team-bio a {
+            color: #2563eb;
+            text-decoration: underline;
         }
+        .team-bio a:hover {
+            color: #1e40af;
+        }
+        .team-bio ul, .team-bio ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.25rem;
+            text-align: left; /* Ensure lists inside bio are left-aligned */
+        }
+        .team-bio li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
         footer {
-            background-color: #343a40;
-            color: white;
+            background: #1a1a1a;
+            color: #9ca3af;
             text-align: center;
-            padding: 1rem 0;
-            margin-top: 3rem;
+            padding: 2.5rem 2rem;
         }
-        /* Basic Responsive */
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             nav {
-                flex-direction: column;
-                gap: 0.5rem;
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
             }
+
             .team-detail {
-                margin: 1rem;
-                padding: 1rem;
+                margin: 90px 1rem 2rem; /* Adjusted for mobile */
+                padding: 2rem 1.5rem;
+            }
+
+            .team-detail img {
+                width: 180px; /* Smaller image on mobile */
+                height: 180px;
+            }
+
+            .team-meta h1 {
+                font-size: 1.8rem;
+            }
+
+            .team-meta p.role {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <nav>
             <a href="index.html">Home</a>
             <a href="articles.html">Articles</a>
@@ -91,9 +199,9 @@
 
     <div class="team-detail">
         <img id="team-image" src="" alt="" loading="lazy">
-        <h1 id="team-name">Loading...</h1>
         <div class="team-meta">
-            <span id="team-role"></span>
+            <h1 id="team-name">Loading...</h1>
+            <p class="role" id="team-role"></p>
         </div>
         <div id="team-bio" class="team-bio">
             <!-- Team bio content will be loaded here -->
