@@ -1,0 +1,43 @@
+collections:
+  - name: "articles"
+    label: "Articles"
+    folder: "content/articles"
+    format: "frontmatter"
+    create: true
+    slug: ""  # allows CMS to generate random file names
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Author", name: "author", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "teams"
+    label: "Team Members"
+    folder: "content/teams"
+    format: "frontmatter"
+    create: true
+    slug: ""  # random filename
+    fields:
+      - { label: "Name", name: "title", widget: "string" }
+      - { label: "Photo", name: "image", widget: "image" }
+      - { label: "Role", name: "role", widget: "string" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Bio", name: "body", widget: "markdown" }
+
+  - name: "services"
+    label: "Services"
+    folder: "content/services"
+    format: "frontmatter"
+    create: true
+    slug: ""  # random filename
+    fields:
+      - { label: "Service Name", name: "title", widget: "string" }
+      - { label: "Icon", name: "image", widget: "image" }
+      - { label: "Description", name: "body", widget: "markdown" }
+
+media_folder: "content/images"
+public_folder: "/content/images"
+# Optional: Exclude the generated index file from CMS management
+# exclude: ["content/index.json"]
