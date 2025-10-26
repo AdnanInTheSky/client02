@@ -199,7 +199,62 @@
             border-radius: 2px;
         }
 
-        .articles-preview,
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .about-text p:last-of-type {
+            margin-bottom: 2rem;
+        }
+
+        .learn-more-btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .learn-more-btn:hover {
+            background: #ea580c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.3);
+        }
+
+        .about-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .articles-preview {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
         .team-preview {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -281,6 +336,48 @@
             background: var(--primary-dark);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+        }
+
+        .article-card {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 0;
+            height: auto;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .article-card img {
+            width: 100%;
+            height: 100%;
+            min-height: 280px;
+            object-fit: cover;
+        }
+
+        .article-card .card-content {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .article-card .card-content h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-card .card-content p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+
+        .article-card button {
+            width: auto;
+            align-self: flex-start;
+            padding: 0.9rem 2.5rem;
         }
 
         .view-all-container {
@@ -379,6 +476,15 @@
             .hero p {
                 font-size: 1.1rem;
             }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .about-image {
+                order: -1;
+            }
             
             .section {
                 padding: 4rem 1.5rem;
@@ -395,10 +501,17 @@
             .section-header p {
                 font-size: 1.05rem;
             }
+
+            .article-card {
+                grid-template-columns: 1fr;
+            }
+
+            .article-card img {
+                min-height: 240px;
+            }
             
             .articles-preview,
             .team-preview {
-                grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
             
@@ -438,6 +551,14 @@
             .cta-button {
                 padding: 1rem 2rem;
                 font-size: 1rem;
+            }
+
+            .article-card .card-content {
+                padding: 1.75rem;
+            }
+
+            .article-card button {
+                width: 100%;
             }
         }
     </style>
@@ -585,7 +706,7 @@
                 const indexResponse = await fetch('/content/index.json');
                 const indexData = await indexResponse.json();
 
-                const articleFiles = articleData.slice(0, 3);
+                const articleFiles = indexData.articles.slice(0, 3);
                 const articlePromises = articleFiles.map(file => fetch(`/content/${file}`).then(r => r.text()));
                 const articleTexts = await Promise.all(articlePromises);
 
@@ -597,13 +718,15 @@
                         const frontmatter = parts[1];
                         const body = parts.slice(2).join('---');
                         const meta = parseYAML(frontmatter);
-                        const excerpt = simpleMarkdownToHTML(body.substring(0, 120)) + '...';
+                        const excerpt = simpleMarkdownToHTML(body.substring(0, 150)) + '...';
                         articleCards.push(`
-                            <div class="card">
+                            <div class="card article-card">
                                 <img src="${meta.image || 'https://via.placeholder.com/600x400/e2e8f0/64748b?text=No+Image'}" alt="${meta.title}" loading="lazy">
                                 <div class="card-content">
-                                    <h3>${meta.title}</h3>
-                                    <p>${excerpt}</p>
+                                    <div>
+                                        <h3>${meta.title}</h3>
+                                        <p>${excerpt}</p>
+                                    </div>
                                     <button onclick="openDetail('${articleFiles[i]}', 'article')">Read More</button>
                                 </div>
                             </div>
