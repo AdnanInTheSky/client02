@@ -11,15 +11,10 @@ content:
     type: collection
     path: content/articles
     format: yaml-frontmatter
-    filename: {slug}.md
     fields:
       - name: title
         type: string
         required: true
-      - name: slug
-        type: string
-        required: true
-        hint: "Used in filename. Lowercase, hyphenated (e.g., my-first-post)"
       - name: date
         type: date
         required: true
@@ -28,13 +23,12 @@ content:
       - name: image
         type: image
         required: false
-        hint: "Featured image for the article"
+        description: "Featured image for the article"
       - name: tags
-        type: list
-        field:
-          type: string
+        type: string
+        list: true
       - name: body
-        type: markdown
+        type: rich-text
         required: true
 
   # Team Members Collection
@@ -43,28 +37,22 @@ content:
     type: collection
     path: content/teams
     format: yaml-frontmatter
-    filename: {slug}.md
     fields:
       - name: title
         type: string
         required: true
-      - name: slug
-        type: string
-        required: true
-        hint: "Used in filename. Lowercase, hyphenated (e.g., john-doe)"
       - name: role
         type: string
         required: true
       - name: image
         type: image
         required: false
-        hint: "Photo of the team member"
+        description: "Photo of the team member"
       - name: tags
-        type: list
-        field:
-          type: string
+        type: string
+        list: true
       - name: body
-        type: markdown
+        type: rich-text
         required: true
 
   # Services Collection
@@ -73,19 +61,14 @@ content:
     type: collection
     path: content/services
     format: yaml-frontmatter
-    filename: {slug}.md
     fields:
       - name: title
         type: string
         required: true
-      - name: slug
-        type: string
-        required: true
-        hint: "Used in filename. Lowercase, hyphenated (e.g., web-development)"
       - name: image
         type: image
         required: false
-        hint: "Icon or image representing the service"
+        description: "Icon or image representing the service"
       - name: body
-        type: markdown
+        type: rich-text
         required: true
