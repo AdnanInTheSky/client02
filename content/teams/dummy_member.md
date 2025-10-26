@@ -1,6 +1,6 @@
 ---
 title: "Jane Doe"
-image: "/content/images/default-profile.jpg" # Use a placeholder or a real default image
+image: "/content/images/Screenshot 2025-08-01 215323.png" # Use a placeholder or a real default image
 role: "Founder"
 tags: ["leadership"]
 ---

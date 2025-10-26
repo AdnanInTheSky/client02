@@ -1,6 +1,6 @@
 ---
 title: "Welcome to Our Blog"
-image: "/content/images/default-article.jpg" # Use a placeholder or a real default image
+image: "/content/images/Screenshot 2025-08-01 215323.png" # Use a placeholder or a real default image
 date: 2024-01-01
 tags: ["welcome", "info"]
 author: "Admin"
