@@ -248,13 +248,88 @@
             display: block;
         }
 
+        /* === Article Cards (Homepage Preview) - Match Reference === */
         .articles-preview {
             display: flex;
             flex-direction: column;
-            gap: 1.75rem;
+            gap: 2rem;
             margin-bottom: 3rem;
         }
 
+        .article-card {
+            display: flex;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-image {
+            flex: 0 0 280px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .article-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            flex: 1;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .card-content p {
+            color: var(--text-light);
+            margin-bottom: 1.25rem;
+            font-size: 0.98rem;
+            flex-grow: 1;
+        }
+
+        .read-more-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: fit-content;
+            align-self: flex-start;
+        }
+
+        .read-more-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Team Cards (slightly refined) */
         .team-preview {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -285,34 +360,28 @@
             display: block;
         }
 
-        .card-content {
+        .card-content-team {
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
 
-        .card-content h3 {
+        .card-content-team h3 {
             font-size: 1.4rem;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.5rem;
             font-weight: 700;
             color: var(--text);
-            line-height: 1.3;
         }
 
-        .card-content p {
+        .card-content-team p {
             color: var(--text-light);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
-        .card-content p:last-of-type {
-            margin-bottom: 1.25rem;
-            flex-grow: 1;
-        }
-
-        .card-content p strong {
+        .card-content-team p strong {
             color: var(--primary);
             font-weight: 600;
         }
@@ -336,59 +405,6 @@
             background: var(--primary-dark);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
-        }
-
-        /* === Updated Article Card Styles === */
-        .article-card {
-            display: flex;
-            flex-direction: row;
-            align-items: stretch;
-            height: auto;
-            max-height: 180px;
-            min-height: 140px;
-        }
-
-        .article-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .article-card img {
-            width: 180px;
-            min-width: 180px;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .article-card .card-content {
-            padding: 1.25rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            flex-grow: 1;
-            gap: 0.75rem;
-        }
-
-        .article-card .card-content h3 {
-            font-size: 1.35rem;
-            margin-bottom: 0.5rem;
-            line-height: 1.3;
-        }
-
-        .article-card .card-content p {
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: var(--text-light);
-            flex-grow: 1;
-            margin: 0;
-        }
-
-        .article-card button {
-            width: auto;
-            padding: 0.65rem 1.25rem;
-            align-self: flex-start;
-            margin-left: auto;
-            border-radius: 8px;
-            font-size: 0.9rem;
         }
 
         .view-all-container {
@@ -474,7 +490,7 @@
             to { transform: rotate(360deg); }
         }
 
-        /* === Responsive Adjustments === */
+        /* Responsive */
         @media (max-width: 768px) {
             .hero {
                 padding: 5rem 1.5rem;
@@ -517,26 +533,18 @@
             /* Article card mobile */
             .article-card {
                 flex-direction: column;
-                max-height: none;
-                min-height: auto;
             }
 
-            .article-card img {
+            .card-image {
+                flex: none;
+                height: 220px;
                 width: 100%;
-                min-width: auto;
-                height: 180px;
             }
 
-            .article-card .card-content {
-                padding: 1.25rem;
+            .card-content {
+                padding: 1.5rem;
             }
 
-            .article-card button {
-                margin-left: 0;
-                align-self: flex-start;
-                width: auto;
-            }
-            
             .articles-preview,
             .team-preview {
                 gap: 1.5rem;
@@ -578,15 +586,6 @@
             .cta-button {
                 padding: 1rem 2rem;
                 font-size: 1rem;
-            }
-
-            .card-content {
-                padding: 1.25rem;
-            }
-
-            .card button {
-                padding: 0.75rem;
-                font-size: 0.9rem;
             }
         }
     </style>
@@ -734,6 +733,7 @@
                 const indexResponse = await fetch('/content/index.json');
                 const indexData = await indexResponse.json();
 
+                // Load latest 3 articles
                 const articleFiles = indexData.articles.slice(0, 3);
                 const articlePromises = articleFiles.map(file => fetch(`/content/${file}`).then(r => r.text()));
                 const articleTexts = await Promise.all(articlePromises);
@@ -746,16 +746,18 @@
                         const frontmatter = parts[1];
                         const body = parts.slice(2).join('---');
                         const meta = parseYAML(frontmatter);
-                        const excerpt = simpleMarkdownToHTML(body.substring(0, 150)) + '...';
+                        const plainText = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 150) + '...';
                         articleCards.push(`
-                            <div class="card article-card">
-                                <img src="${meta.image || 'https://via.placeholder.com/180x140/e2e8f0/64748b?text=No+Image'}" alt="${meta.title}" loading="lazy">
+                            <div class="article-card">
+                                <div class="card-image">
+                                    <img src="${meta.image || 'https://via.placeholder.com/280x200/e2e8f0/64748b?text=No+Image'}" alt="${meta.title}" loading="lazy">
+                                </div>
                                 <div class="card-content">
                                     <div>
                                         <h3>${meta.title}</h3>
-                                        <p>${excerpt}</p>
+                                        <p>${plainText}</p>
                                     </div>
-                                    <button onclick="openDetail('${articleFiles[i]}', 'article')">Read More</button>
+                                    <button class="read-more-btn" onclick="openDetail('${articleFiles[i]}', 'article')">Read More</button>
                                 </div>
                             </div>
                         `);
@@ -763,6 +765,7 @@
                 }
                 document.getElementById('articles-container').innerHTML = articleCards.length ? articleCards.join('') : '<p style="text-align:center;color:#94a3b8;">No articles available.</p>';
 
+                // Load team
                 const teamFiles = indexData.teams.slice(0, 3);
                 const teamPromises = teamFiles.map(file => fetch(`/content/${file}`).then(r => r.text()));
                 const teamTexts = await Promise.all(teamPromises);
@@ -779,7 +782,7 @@
                         teamCards.push(`
                             <div class="card">
                                 <img src="${meta.image || 'https://via.placeholder.com/600x400/e2e8f0/64748b?text=Team+Member'}" alt="${meta.title}" loading="lazy">
-                                <div class="card-content">
+                                <div class="card-content-team">
                                     <h3>${meta.title}</h3>
                                     <p><strong>${meta.role || 'Team Member'}</strong></p>
                                     <p>${excerpt}</p>
