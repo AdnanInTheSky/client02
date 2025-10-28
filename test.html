@@ -154,7 +154,7 @@
         }
 
         .section {
-            padding: 6rem 2rem;
+            padding: 5rem 2rem; /* Reduced from 6rem */
         }
 
         .section-wrapper {
@@ -168,7 +168,7 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3.5rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
@@ -248,7 +248,7 @@
             display: block;
         }
 
-        /* === Article Cards (Homepage Preview) - Match Reference === */
+        /* === Article Cards (Homepage) - Match articles.html === */
         .articles-preview {
             display: flex;
             flex-direction: column;
@@ -329,15 +329,16 @@
             transform: translateY(-2px);
         }
 
-        /* Team Cards (slightly refined) */
+        /* === Optimized Team Cards === */
         .team-preview {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.75rem;
             margin-bottom: 3rem;
+            justify-items: center;
         }
 
-        .card {
+        .card.team-card {
             background: var(--card-bg);
             border-radius: var(--radius);
             overflow: hidden;
@@ -345,71 +346,74 @@
             transition: var(--transition);
             display: flex;
             flex-direction: column;
-            height: 100%;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .card img {
+            height: auto;
+            max-width: 320px;
             width: 100%;
-            height: 200px;
+        }
+
+        .card.team-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .card.team-card img {
+            width: 100%;
+            height: 180px;
             object-fit: cover;
             display: block;
         }
 
         .card-content-team {
-            padding: 1.5rem;
+            padding: 1.25rem;
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
+            gap: 0.5rem;
         }
 
         .card-content-team h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            margin: 0;
             font-weight: 700;
             color: var(--text);
+            line-height: 1.3;
         }
 
         .card-content-team p {
-            color: var(--text-light);
-            margin-bottom: 0.75rem;
-            font-size: 0.95rem;
+            margin: 0;
+            font-size: 0.92rem;
             line-height: 1.5;
+            color: var(--text-light);
         }
 
         .card-content-team p strong {
             color: var(--primary);
             font-weight: 600;
+            font-size: 0.95rem;
         }
 
-        .card button {
+        .card.team-card button {
             width: 100%;
-            padding: 0.8rem;
+            padding: 0.65rem;
             background: var(--primary);
             color: white;
             border: none;
             border-radius: 8px;
             font-weight: 600;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: var(--transition);
-            font-family: inherit;
-            font-size: 0.95rem;
-            margin-top: auto;
+            margin-top: 0.5rem;
         }
 
-        .card button:hover {
+        .card.team-card button:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+            box-shadow: 0 4px 10px rgba(20, 184, 166, 0.25);
         }
 
         .view-all-container {
             text-align: center;
-            margin-top: 3rem;
+            margin-top: 2.5rem;
         }
 
         .view-all-btn {
@@ -519,7 +523,7 @@
             }
             
             .section-header {
-                margin-bottom: 3rem;
+                margin-bottom: 2.5rem;
             }
             
             .section-header h2 {
@@ -586,6 +590,10 @@
             .cta-button {
                 padding: 1rem 2rem;
                 font-size: 1rem;
+            }
+
+            .team-preview {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -778,10 +786,10 @@
                         const frontmatter = parts[1];
                         const body = parts.slice(2).join('---');
                         const meta = parseYAML(frontmatter);
-                        const excerpt = simpleMarkdownToHTML(body.substring(0, 100)) + '...';
+                        const excerpt = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 100) + '...';
                         teamCards.push(`
-                            <div class="card">
-                                <img src="${meta.image || 'https://via.placeholder.com/600x400/e2e8f0/64748b?text=Team+Member'}" alt="${meta.title}" loading="lazy">
+                            <div class="card team-card">
+                                <img src="${meta.image || 'https://via.placeholder.com/300x180/e2e8f0/64748b?text=Team'}" alt="${meta.title}" loading="lazy">
                                 <div class="card-content-team">
                                     <h3>${meta.title}</h3>
                                     <p><strong>${meta.role || 'Team Member'}</strong></p>
