@@ -154,7 +154,7 @@
         }
 
         .section {
-            padding: 6rem 2rem;
+            padding: 5rem 2rem; /* Reduced from 6rem */
         }
 
         .section-wrapper {
@@ -168,7 +168,7 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3.5rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
@@ -248,6 +248,7 @@
             display: block;
         }
 
+        /* === Article Cards (Homepage) - Match articles.html === */
         .articles-preview {
             display: flex;
             flex-direction: column;
@@ -255,45 +256,47 @@
             margin-bottom: 3rem;
         }
 
-        .team-preview {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .card {
+        .article-card {
+            display: flex;
             background: var(--card-bg);
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
         }
 
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
-        .card img {
+        .card-image {
+            flex: 0 0 280px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-image img {
             width: 100%;
-            height: 240px;
+            height: 100%;
             object-fit: cover;
-            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .article-card:hover .card-image img {
+            transform: scale(1.05);
         }
 
         .card-content {
-            padding: 2rem;
+            flex: 1;
+            padding: 1.75rem;
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
+            justify-content: space-between;
         }
 
         .card-content h3 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 0.75rem;
             font-weight: 700;
             color: var(--text);
@@ -302,87 +305,115 @@
 
         .card-content p {
             color: var(--text-light);
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .card-content p:last-of-type {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
+            font-size: 0.98rem;
             flex-grow: 1;
         }
 
-        .card-content p strong {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .card button {
-            width: 100%;
-            padding: 0.9rem;
+        .read-more-btn {
             background: var(--primary);
             color: white;
             border: none;
-            border-radius: 10px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
             font-weight: 600;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: var(--transition);
-            font-family: inherit;
-            font-size: 1rem;
-            margin-top: auto;
+            width: fit-content;
+            align-self: flex-start;
         }
 
-        .card button:hover {
+        .read-more-btn:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
         }
 
-        .article-card {
+        /* === Optimized Team Cards === */
+        .team-preview {
             display: grid;
-            grid-template-columns: 400px 1fr;
-            gap: 0;
-            height: auto;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.75rem;
+            margin-bottom: 3rem;
+            justify-items: center;
         }
 
-        .article-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .article-card img {
-            width: 100%;
-            height: 100%;
-            min-height: 280px;
-            object-fit: cover;
-        }
-
-        .article-card .card-content {
-            padding: 2.5rem;
+        .card.team-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            height: auto;
+            max-width: 320px;
+            width: 100%;
         }
 
-        .article-card .card-content h3 {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
+        .card.team-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
         }
 
-        .article-card .card-content p {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            flex-grow: 1;
+        .card.team-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
         }
 
-        .article-card button {
-            width: auto;
-            align-self: flex-start;
-            padding: 0.9rem 2.5rem;
+        .card-content-team {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .card-content-team h3 {
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .card-content-team p {
+            margin: 0;
+            font-size: 0.92rem;
+            line-height: 1.5;
+            color: var(--text-light);
+        }
+
+        .card-content-team p strong {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .card.team-card button {
+            width: 100%;
+            padding: 0.65rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 0.5rem;
+        }
+
+        .card.team-card button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(20, 184, 166, 0.25);
         }
 
         .view-all-container {
             text-align: center;
-            margin-top: 3rem;
+            margin-top: 2.5rem;
         }
 
         .view-all-btn {
@@ -463,6 +494,7 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
             .hero {
                 padding: 5rem 1.5rem;
@@ -491,7 +523,7 @@
             }
             
             .section-header {
-                margin-bottom: 3rem;
+                margin-bottom: 2.5rem;
             }
             
             .section-header h2 {
@@ -502,14 +534,21 @@
                 font-size: 1.05rem;
             }
 
+            /* Article card mobile */
             .article-card {
-                grid-template-columns: 1fr;
+                flex-direction: column;
             }
 
-            .article-card img {
-                min-height: 240px;
+            .card-image {
+                flex: none;
+                height: 220px;
+                width: 100%;
             }
-            
+
+            .card-content {
+                padding: 1.5rem;
+            }
+
             .articles-preview,
             .team-preview {
                 gap: 1.5rem;
@@ -553,12 +592,8 @@
                 font-size: 1rem;
             }
 
-            .article-card .card-content {
-                padding: 1.75rem;
-            }
-
-            .article-card button {
-                width: 100%;
+            .team-preview {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -706,6 +741,7 @@
                 const indexResponse = await fetch('/content/index.json');
                 const indexData = await indexResponse.json();
 
+                // Load latest 3 articles
                 const articleFiles = indexData.articles.slice(0, 3);
                 const articlePromises = articleFiles.map(file => fetch(`/content/${file}`).then(r => r.text()));
                 const articleTexts = await Promise.all(articlePromises);
@@ -718,16 +754,18 @@
                         const frontmatter = parts[1];
                         const body = parts.slice(2).join('---');
                         const meta = parseYAML(frontmatter);
-                        const excerpt = simpleMarkdownToHTML(body.substring(0, 150)) + '...';
+                        const plainText = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 150) + '...';
                         articleCards.push(`
-                            <div class="card article-card">
-                                <img src="${meta.image || 'https://via.placeholder.com/600x400/e2e8f0/64748b?text=No+Image'}" alt="${meta.title}" loading="lazy">
+                            <div class="article-card">
+                                <div class="card-image">
+                                    <img src="${meta.image || 'https://via.placeholder.com/280x200/e2e8f0/64748b?text=No+Image'}" alt="${meta.title}" loading="lazy">
+                                </div>
                                 <div class="card-content">
                                     <div>
                                         <h3>${meta.title}</h3>
-                                        <p>${excerpt}</p>
+                                        <p>${plainText}</p>
                                     </div>
-                                    <button onclick="openDetail('${articleFiles[i]}', 'article')">Read More</button>
+                                    <button class="read-more-btn" onclick="openDetail('${articleFiles[i]}', 'article')">Read More</button>
                                 </div>
                             </div>
                         `);
@@ -735,6 +773,7 @@
                 }
                 document.getElementById('articles-container').innerHTML = articleCards.length ? articleCards.join('') : '<p style="text-align:center;color:#94a3b8;">No articles available.</p>';
 
+                // Load team
                 const teamFiles = indexData.teams.slice(0, 3);
                 const teamPromises = teamFiles.map(file => fetch(`/content/${file}`).then(r => r.text()));
                 const teamTexts = await Promise.all(teamPromises);
@@ -747,11 +786,11 @@
                         const frontmatter = parts[1];
                         const body = parts.slice(2).join('---');
                         const meta = parseYAML(frontmatter);
-                        const excerpt = simpleMarkdownToHTML(body.substring(0, 100)) + '...';
+                        const excerpt = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 100) + '...';
                         teamCards.push(`
-                            <div class="card">
-                                <img src="${meta.image || 'https://via.placeholder.com/600x400/e2e8f0/64748b?text=Team+Member'}" alt="${meta.title}" loading="lazy">
-                                <div class="card-content">
+                            <div class="card team-card">
+                                <img src="${meta.image || 'https://via.placeholder.com/300x180/e2e8f0/64748b?text=Team'}" alt="${meta.title}" loading="lazy">
+                                <div class="card-content-team">
                                     <h3>${meta.title}</h3>
                                     <p><strong>${meta.role || 'Team Member'}</strong></p>
                                     <p>${excerpt}</p>
