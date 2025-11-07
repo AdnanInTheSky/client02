@@ -1,33 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- SEO & Metadata -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BioNova | Building Hope, Changing Lives</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="BioNova – Pioneering sustainable community development with evidence-based solutions for global resilience and impact." />
+    <meta name="keywords" content="sustainable development, NGO, community empowerment, global impact, BioNova, nonprofit" />
+    <meta name="author" content="BioNova International" />
+    <meta name="theme-color" content="#0d9488" />
+    <meta property="og:title" content="BioNova | Pioneering Sustainable Futures" />
+    <meta property="og:description" content="Join us in empowering communities through innovation, partnerships, and lasting change." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bionova.org" />
+    <meta property="og:image" content="/content/images/og-hero.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <title>BioNova | Pioneering Sustainable Futures</title>
+
+    <!-- Preload Critical Assets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
     <style>
+        /* ====================================
+           DESIGN SYSTEM & TOKENS (Inspired by 2025 Trends: Minimalism, Immersive Storytelling, Micro-Animations)
+        ==================================== */
         :root {
-            --primary: #0d9668;
-            --primary-dark: #0a7c55;
-            --primary-light: #10b981;
-            --secondary: #f59e0b;
-            --secondary-dark: #d97706;
-            --warm: #fb923c;
-            --purple: #a855f7;
-            --blue: #3b82f6;
-            --dark: #1f2937;
-            --dark-2: #374151;
-            --light: #f9fafb;
-            --light-2: #f3f4f6;
-            --text: #111827;
-            --text-light: #6b7280;
-            --card-bg: #ffffff;
-            --border-radius: 12px;
-            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* Colors: Sustainable Earth Tones with High Contrast for Accessibility */
+            --color-primary: #0d9488; /* Teal: Growth & Trust */
+            --color-primary-dark: #0a6c64;
+            --color-secondary: #f97316; /* Orange: Urgency & Action */
+            --color-secondary-dark: #ea580c;
+            --color-text: #1e293b;
+            --color-text-light: #64748b;
+            --color-text-inverse: #f8fafc;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f8fafc;
+            --color-surface: #f1f5f9;
+            --color-border: #e2e8f0;
+            --color-muted: #94a3b8;
+            --color-highlight: #fef3c7; /* Warm accent for impact */
+
+            /* Typography: Elegant Serif for Impact, Sans for Readability */
+            --font-base: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-size-xs: clamp(0.75rem, 0.6rem + 0.5vw, 0.875rem);
+            --font-size-sm: clamp(0.875rem, 0.75rem + 0.4vw, 1rem);
+            --font-size-base: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
+            --font-size-lg: clamp(1.125rem, 1rem + 0.4vw, 1.25rem);
+            --font-size-xl: clamp(1.25rem, 1.125rem + 0.4vw, 1.5rem);
+            --font-size-2xl: clamp(1.5rem, 1.25rem + 0.8vw, 1.875rem);
+            --font-size-3xl: clamp(1.875rem, 1.5rem + 1.2vw, 2.25rem);
+            --font-size-4xl: clamp(2.25rem, 1.875rem + 1.2vw, 2.75rem);
+            --font-size-5xl: clamp(3rem, 2.5rem + 1.5vw, 3.75rem);
+            --font-size-6xl: clamp(3.75rem, 3rem + 2.25vw, 4.5rem);
+
+            /* Spacing: Generous, Breathing Room for Emotional Depth */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            --space-24: 6rem;
+
+            /* Radius & Shadows: Soft, Elevated for Modern Depth */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-full: 9999px;
+
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+            --shadow-glow: 0 0 0 1px rgba(13, 148, 136, 0.1);
+
+            /* Transitions: Smooth, Intentional Micro-Motions */
+            --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+            /* Layout */
+            --container-max: 1280px;
+            --header-height: 80px;
+            --z-index-modal: 2000;
         }
 
-        * {
+        /* Dark Mode (Trend: Inclusive, Energy-Efficient) */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-bg: #0f172a;
+                --color-bg-alt: #1e293b;
+                --color-surface: #334155;
+                --color-text: #f1f5f9;
+                --color-text-light: #cbd5e1;
+                --color-border: #475569;
+            }
+        }
+
+        /* ====================================
+           GLOBAL RESET & BASE (WCAG 2.2 AA Compliant)
+        ==================================== */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -35,118 +122,525 @@
 
         html {
             scroll-behavior: smooth;
+            font-size: 100%;
+            -webkit-text-size-adjust: 100%;
+            scroll-padding-top: var(--header-height);
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #fff;
-            color: var(--text);
-            line-height: 1.7;
+            font-family: var(--font-base);
+            font-size: var(--font-size-base);
+            line-height: 1.75;
+            color: var(--color-text);
+            background-color: var(--color-bg);
             overflow-x: hidden;
-            font-size: 16px;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        header {
+        img, picture, video, canvas, svg {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition-base);
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+            transition: var(--transition-base);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+            margin-bottom: var(--space-4);
+        }
+
+        p {
+            margin-bottom: var(--space-5);
+            color: var(--color-text-light);
+        }
+
+        /* Enhanced Focus for Accessibility */
+        *:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+            border-radius: var(--radius-sm);
+        }
+
+        /* ====================================
+           UTILITIES (Modular, Reusable)
+        ==================================== */
+        .container {
+            width: min(100%, var(--container-max));
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+
+        .grid {
+            display: grid;
+            gap: var(--space-8);
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+
+        /* ====================================
+           HEADER (Minimal, Glassmorphic – Inspired by WWF/TNC)
+        ==================================== */
+        .header {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(12px);
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--color-border);
             z-index: 1000;
-            padding: 1rem 0;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
+            transition: var(--transition-base);
         }
 
-        nav {
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header__inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1280px;
+            height: 100%;
+            max-width: var(--container-max);
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 var(--space-6);
         }
 
         .logo {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.5rem;
+            font-family: var(--font-display);
+            font-size: var(--font-size-2xl);
             font-weight: 800;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: 8px;
+        .nav {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 800;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
+            gap: var(--space-8);
             align-items: center;
         }
 
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
+        .nav__link {
             position: relative;
-            transition: color 0.3s ease;
-            padding: 0.5rem 0;
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            color: var(--color-text);
+            padding: var(--space-3) 0;
+            transition: var(--transition-base);
         }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a::after {
+        .nav__link::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
+            left: 50%;
             width: 0;
             height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            transition: var(--transition-base);
+            transform: translateX(-50%);
         }
 
-        .nav-links a:hover::after {
+        .nav__link:hover::after,
+        .nav__link:focus::after {
             width: 100%;
         }
 
-        /* Enhanced Hero Section */
-        .hero {
-            margin-top: 65px;
+        .nav__link:hover,
+        .nav__link:focus {
+            color: var(--color-primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-4) var(--space-8);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            border-radius: var(--radius-full);
+            transition: var(--transition-base);
             position: relative;
             overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn--primary {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: var(--color-text-inverse);
+        }
+
+        .btn--primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn--secondary {
+            background: transparent;
+            color: var(--color-secondary);
+            border: 2px solid var(--color-secondary);
+        }
+
+        .btn--secondary:hover {
+            background: var(--color-secondary);
+            color: var(--color-text-inverse);
+            transform: translateY(-2px);
+        }
+
+        /* ====================================
+           HERO (Immersive Full-Screen – Inspired by Charity:Water/St. Jude)
+        ==================================== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/content/images/hero-global-impact.jpg') center/cover no-repeat fixed;
+            color: var(--color-text-inverse);
             text-align: center;
-            color: white;
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--blue) 100%);
-            border-radius: 0 0 40px 40px;
+            overflow: hidden;
         }
 
-        .hero-content {
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(13, 148, 136, 0.2), transparent 50%);
+            z-index: 1;
+        }
+
+        .hero__content {
+            max-width: 900px;
+            padding: 0 var(--space-6);
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp var(--transition-slow) ease-out;
+        }
+
+        .hero__title {
+            font-size: var(--font-size-6xl);
+            font-weight: 800;
+            margin-bottom: var(--space-4);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+        }
+
+        .hero__subtitle {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--space-8);
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero__cta {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp var(--transition-slow) ease-out 0.3s both;
+        }
+
+        /* ====================================
+           SECTION BASE (Modular with Parallax Hints)
+        ==================================== */
+        .section {
+            padding: var(--space-20) 0;
+            position: relative;
+        }
+
+        .section--alt {
+            background: linear-gradient(to bottom, var(--color-bg-alt), var(--color-bg));
+        }
+
+        .section__header {
+            text-align: center;
             max-width: 800px;
-            margin: 0 auto;
-            animation: fadeInUp 0.8s ease-out;
+            margin: 0 auto var(--space-12);
         }
 
+        .section__title {
+            font-size: var(--font-size-5xl);
+            color: var(--color-text);
+            margin-bottom: var(--space-3);
+        }
+
+        .section__subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section__divider {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            margin: var(--space-6) auto 0;
+            border-radius: 2px;
+        }
+
+        /* Parallax Effect */
+        .parallax {
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* ====================================
+           ABOUT (Asymmetric Grid – Inspired by Malala Fund)
+        ==================================== */
+        .about {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--space-12);
+            align-items: center;
+        }
+
+        .about__text p {
+            font-size: var(--font-size-lg);
+            line-height: 1.8;
+            margin-bottom: var(--space-6);
+        }
+
+        .about__image {
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            transition: var(--transition-slow);
+            position: relative;
+        }
+
+        .about__image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, rgba(13, 148, 136, 0.1), transparent);
+            opacity: 0;
+            transition: var(--transition-base);
+        }
+
+        .about__image:hover::before {
+            opacity: 1;
+        }
+
+        .about__image:hover {
+            transform: scale(1.02);
+        }
+
+        .about__image img {
+            width: 100%;
+            height: auto;
+            transition: transform var(--transition-slow);
+        }
+
+        /* ====================================
+           STORIES GRID (Immersive Cards – Inspired by Humane Society/Thorn)
+        ==================================== */
+        .story-card {
+            background: var(--color-bg);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-base);
+            border: 1px solid var(--color-border);
+            position: relative;
+        }
+
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            transform: scaleX(0);
+            transition: var(--transition-base);
+        }
+
+        .story-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .story-card:hover {
+            transform: translateY(-8px) rotate(0.5deg);
+            box-shadow: var(--shadow-xl);
+            border-color: transparent;
+        }
+
+        .story-card__image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .story-card__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+
+        .story-card:hover .story-card__image img {
+            transform: scale(1.1);
+        }
+
+        .story-card__content {
+            padding: var(--space-6);
+        }
+
+        .story-card__title {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--space-3);
+            color: var(--color-text);
+            font-weight: 700;
+        }
+
+        .story-card__excerpt {
+            color: var(--color-text-light);
+            margin-bottom: var(--space-5);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .story-card__meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: var(--font-size-sm);
+            color: var(--color-muted);
+        }
+
+        /* ====================================
+           STATS (Animated Counters – Inspired by Rockefeller Foundation)
+        ==================================== */
+        .stats {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: var(--color-text-inverse);
+            padding: var(--space-24) 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.05) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .stats__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-12);
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition-base);
+        }
+
+        .stat.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat__number {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: var(--space-3);
+            background: linear-gradient(135deg, var(--color-text-inverse), rgba(255,255,255,0.8));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat__label {
+            font-size: var(--font-size-lg);
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        /* ====================================
+           FOOTER (Credibility-Focused)
+        ==================================== */
+        .footer {
+            background: var(--color-text);
+            color: #cbd5e1;
+            text-align: center;
+            padding: var(--space-12) 0;
+            font-size: var(--font-size-sm);
+        }
+
+        .footer a {
+            color: var(--color-primary);
+            transition: var(--transition-base);
+        }
+
+        .footer a:hover {
+            color: var(--color-secondary);
+        }
+
+        /* ====================================
+           ANIMATIONS (Micro-Interactions for Engagement)
+        ==================================== */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
@@ -154,919 +648,394 @@
             }
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1.25rem;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 100px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
-        .hero h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(2.25rem, 6vw, 3.5rem);
-            font-weight: 800;
-            margin-bottom: 1.25rem;
-            color: white;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
-
-        .hero p {
-            font-size: clamp(1.1rem, 4vw, 1.25rem);
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 2.5rem;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-            font-weight: 500;
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1.1rem 2.5rem;
-            background: white;
-            color: var(--primary);
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-        }
-
-        .cta-button.secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .cta-button.secondary:hover {
-            background: white;
-            color: var(--primary);
-        }
-
-        .section {
-            padding: 6rem 2rem;
-        }
-
-        .section-wrapper {
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
-        .section.light-bg {
-            background: var(--light);
-        }
-
-        .section.gradient-bg {
-            background: linear-gradient(135deg, #fef3c7 0%, #fce7f3 30%, #ddd6fe 100%);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .section-tag {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            border-radius: 100px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .section-header h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(2.25rem, 5vw, 3.25rem);
-            font-weight: 800;
-            color: var(--text);
-            margin-bottom: 1rem;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-        }
-
-        .section-header p {
-            color: var(--text-light);
-            font-size: 1.15rem;
-            line-height: 1.7;
-        }
-
-        /* Enhanced Impact Stats Banner */
-        .impact-banner {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--blue) 100%);
-            color: white;
-            padding: 3.5rem 2rem;
-            border-radius: var(--border-radius);
-            margin: -4rem auto 4rem;
-            max-width: 1100px;
-            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.3);
-            position: relative;
-            z-index: 1;
-        }
-
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .impact-item {
-            text-align: center;
-        }
-
-        .impact-item h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.75rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .impact-item p {
-            font-size: 1rem;
-            opacity: 0.95;
-            font-weight: 500;
-        }
-
-        /* Enhanced About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 5rem;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 1.25rem;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            color: var(--text-light);
-            font-size: 1.05rem;
-            line-height: 1.8;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.25rem;
-            margin-top: 2rem;
-        }
-
-        .value-item {
-            padding: 1.5rem;
-            background: var(--light);
-            border-radius: var(--border-radius);
-            border-left: 4px solid var(--primary);
-            transition: var(--transition);
-        }
-
-        .value-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        }
-
-        .value-item h4 {
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .value-item p {
-            font-size: 0.95rem;
-            color: var(--text-light);
-            margin: 0;
-        }
-
-        .about-image {
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            transition: var(--transition);
-        }
-
-        .about-image:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Enhanced Article Cards */
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .article-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: var(--transition);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .article-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .article-image {
-            width: 100%;
-            height: 200px;
-            background: var(--light-2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-        }
-
-        .article-content {
-            padding: 1.75rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .article-content h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.35rem;
-            margin-bottom: 0.75rem;
-            font-weight: 700;
-            color: var(--text);
-            line-height: 1.3;
-        }
-
-        .article-content p {
-            color: var(--text-light);
-            margin-bottom: 1.25rem;
-            font-size: 0.98rem;
-            line-height: 1.7;
-            flex-grow: 1;
-        }
-
-        .read-more-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition);
-            width: fit-content;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .read-more-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
-        }
-
-        /* Enhanced Team Cards */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .team-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: var(--transition);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .team-image {
-            width: 100%;
-            height: 220px;
-            background: var(--light-2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-        }
-
-        .team-info {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .team-info h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-            color: var(--text);
-        }
-
-        .team-role {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            background: var(--light-2);
-            color: var(--primary);
-            border-radius: 100px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .team-info p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
-
-        .team-card button {
-            width: 100%;
-            padding: 0.75rem;
-            background: var(--light-2);
-            color: var(--primary);
-            border: 2px solid transparent;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .team-card button:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .view-all-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 2.25rem;
-            background: transparent;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 700;
-            border: 2px solid var(--primary);
-            border-radius: 12px;
-            transition: var(--transition);
-            font-size: 1rem;
-        }
-
-        .view-all-btn:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
-        }
-
-        .view-all-container {
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        /* Enhanced Footer */
-        footer {
-            background: var(--dark);
-            color: #9ca3af;
-            text-align: center;
-            padding: 4rem 2rem 3rem;
-            font-size: 0.95rem;
-        }
-
-        footer p {
-            margin-bottom: 1.5rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            color: #9ca3af;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: #9ca3af;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-light);
-        }
-
-        .loading {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: var(--text-light);
-        }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(16, 185, 129, 0.2);
-            border-top: 3px solid var(--primary);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin: 0 auto 1rem;
-        }
+        .float { animation: float 3s ease-in-out infinite; }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
-        /* Responsive */
-        @media (max-width: 968px) {
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
+        /* ====================================
+           LOADING & MODAL (Seamless UX)
+        ==================================== */
+        .loading {
+            text-align: center;
+            padding: var(--space-12);
+            color: var(--color-muted);
+        }
 
-            .about-image {
-                order: -1;
-            }
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(13, 148, 136, 0.2);
+            border-top: 3px solid var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto var(--space-4);
+        }
 
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: var(--z-index-modal);
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background: var(--color-bg);
+            padding: var(--space-8);
+            border-radius: var(--radius-xl);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+            transform: scale(0.9);
+            transition: var(--transition-base);
+        }
+
+        .modal.active .modal-content {
+            display: block;
+            transform: scale(1);
+        }
+
+        /* ====================================
+           RESPONSIVE (Mobile-First, Fluid)
+        ==================================== */
+        @media (max-width: 1024px) {
+            .about { grid-template-columns: 1fr; text-align: center; gap: var(--space-8); }
+            .hero__cta { flex-direction: column; align-items: center; }
+            .nav { gap: var(--space-4); }
         }
 
         @media (max-width: 768px) {
-            .hero {
-                padding: 4rem 1.5rem;
-                border-radius: 0 0 30px 30px;
-            }
-
-            .nav-links {
-                gap: 1.5rem;
-            }
-
-            .section {
-                padding: 4rem 1.5rem;
-            }
-
-            .section-header {
-                margin-bottom: 3rem;
-            }
-
-            .articles-grid,
-            .team-grid {
-                grid-template-columns: 1fr;
-                gap: 1.75rem;
-            }
-
-            .impact-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-
-            .cta-group {
-                flex-direction: column;
-            }
-
-            .cta-button {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
+            .header__inner { flex-direction: column; gap: var(--space-4); padding: var(--space-4) 0; height: auto; }
+            .nav { order: 2; flex-wrap: wrap; justify-content: center; }
+            .hero { height: 90vh; background-attachment: scroll; }
+            .hero__title { font-size: var(--font-size-4xl); }
+            .section { padding: var(--space-12) 0; }
+            .stats__grid { grid-template-columns: repeat(2, 1fr); }
+            .grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 480px) {
-            .logo {
-                font-size: 1.25rem;
-            }
-
-            .nav-links {
-                gap: 1rem;
-            }
-
-            .nav-links a {
-                font-size: 0.85rem;
-            }
-
-            .hero h1 {
-                font-size: clamp(1.8rem, 8vw, 2.5rem);
-            }
-            
-            .impact-banner {
-                padding: 2.5rem 1.5rem;
-            }
+            .stats__grid { grid-template-columns: 1fr; }
+            .hero__title { font-size: var(--font-size-3xl); }
+            .btn { padding: var(--space-3) var(--space-6); font-size: var(--font-size-base); }
         }
     </style>
 </head>
 <body>
-    <header id="header">
-        <nav>
-            <a href="index.html" class="logo">
-                <div class="logo-icon">B</div>
-                BioNova
-            </a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="articles.html">Stories</a>
-                <a href="team.html">Team</a>
-                <a href="contact.html">Join Us</a>
-            </div>
-        </nav>
+
+    <!-- Skip Link -->
+    <a href="#main-content" class="sr-only skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" id="header" aria-label="Site header">
+        <div class="header__inner">
+            <a href="index.html" class="logo" aria-label="BioNova Home">BioNova</a>
+            <nav class="nav" aria-label="Main navigation">
+                <a href="index.html" class="nav__link">Home</a>
+                <a href="about.html" class="nav__link">About</a>
+                <a href="impact.html" class="nav__link">Impact</a>
+                <a href="stories.html" class="nav__link">Stories</a>
+                <a href="contact.html" class="nav__link">Contact</a>
+                <button class="btn btn--primary" onclick="openModal('donation')">
+                    <i class="fas fa-heart"></i> Donate Now
+                </button>
+            </nav>
+        </div>
     </header>
 
-    <!-- Enhanced Hero Section -->
-    <div class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                🌍 Creating Impact Since 2010
-            </div>
-            <h1>Building Hope, Changing Lives</h1>
-            <p>Empowering communities through sustainable development, education, and compassionate action</p>
-            <div class="cta-group">
-                <button class="cta-button" onclick="window.location.href='contact.html'">
-                    <i class="fas fa-hand-holding-heart"></i> Get Involved
-                </button>
-                <button class="cta-button secondary" onclick="window.location.href='articles.html'">
-                    <i class="fas fa-book"></i> Our Impact
-                </button>
-            </div>
-        </div>
-    </div>
+    <main id="main-content">
 
-    <section class="section">
-        <div class="section-wrapper">
-            <div class="impact-banner">
-                <div class="impact-grid">
-                    <div class="impact-item">
-                        <h3>500+</h3>
-                        <p>Projects Completed</p>
+        <!-- Hero: Immersive Storytelling -->
+        <section class="hero parallax" aria-labelledby="hero-title">
+            <div class="hero__content">
+                <h1 id="hero-title" class="hero__title">Pioneering Sustainable Futures</h1>
+                <p class="hero__subtitle">Empowering vulnerable communities with innovative, evidence-based solutions for resilience, equity, and lasting global change.</p>
+                <div class="hero__cta">
+                    <button class="btn btn--primary" onclick="openModal('donation')">
+                        <i class="fas fa-hand-holding-heart"></i> Support Our Mission
+                    </button>
+                    <a href="stories.html" class="btn btn--secondary">Explore Stories</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About: Asymmetric Layout -->
+        <section class="section" aria-labelledby="about-title">
+            <div class="container">
+                <header class="section__header">
+                    <h2 id="about-title" class="section__title">Our Vision for Tomorrow</h2>
+                    <p class="section__subtitle">Blending local wisdom with global expertise to drive equitable, sustainable development.</p>
+                    <div class="section__divider"></div>
+                </header>
+
+                <div class="about">
+                    <div class="about__text">
+                        <p>At BioNova, we believe sustainable change starts with empowered communities. Our programs span education, healthcare, economic inclusion, and environmental stewardship, reaching over 50,000 lives across 25 countries.</p>
+                        <p>Through transparent partnerships and measurable outcomes, we've transformed challenges into opportunities—proving that collective action creates resilient futures.</p>
+                        <a href="about.html" class="btn btn--secondary">Discover Our Work</a>
                     </div>
-                    <div class="impact-item">
-                        <h3>50K+</h3>
-                        <p>Lives Impacted</p>
-                    </div>
-                    <div class="impact-item">
-                        <h3>25+</h3>
-                        <p>Countries Reached</p>
-                    </div>
-                    <div class="impact-item">
-                        <h3>15</h3>
-                        <p>Years of Service</p>
+                    <div class="about__image float">
+                        <img src="/content/images/community-empowerment.jpg" alt="Diverse community leaders collaborating on sustainable initiatives" loading="lazy">
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="section-header">
-                <span class="section-tag">Who We Are</span>
-                <h2>Making a Real Difference</h2>
-                <p>We believe in the power of community, collaboration, and compassionate action to create lasting change.</p>
-            </div>
+        <!-- Stories: Immersive Grid -->
+        <section class="section section--alt" aria-labelledby="stories-title">
+            <div class="container">
+                <header class="section__header">
+                    <h2 id="stories-title" class="section__title">Stories of Real Impact</h2>
+                    <p class="section__subtitle">Heartfelt narratives from the communities we're transforming—one life at a time.</p>
+                    <div class="section__divider"></div>
+                </header>
 
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>We are a global organization dedicated to creating sustainable change in communities around the world. Since our founding, we've been committed to addressing critical challenges through innovative solutions and collaborative partnerships.</p>
-                    <p>Our mission is to empower individuals and communities by providing access to education, healthcare, and economic opportunities. We believe that lasting change comes from within, and we work alongside local leaders to develop programs that meet their unique needs.</p>
-                    
-                    <div class="values-grid">
-                        <div class="value-item">
-                            <h4><i class="fas fa-heart"></i> Compassion</h4>
-                            <p>Leading with empathy and understanding in all our initiatives</p>
-                        </div>
-                        <div class="value-item">
-                            <h4><i class="fas fa-handshake"></i> Collaboration</h4>
-                            <p>Working together with communities for greater impact</p>
-                        </div>
-                        <div class="value-item">
-                            <h4><i class="fas fa-leaf"></i> Sustainability</h4>
-                            <p>Creating solutions that last for generations to come</p>
-                        </div>
-                        <div class="value-item">
-                            <h4><i class="fas fa-lightbulb"></i> Innovation</h4>
-                            <p>Finding new ways to solve persistent challenges</p>
-                        </div>
+                <div id="stories-container" class="grid">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Discovering inspiring stories...</p>
                     </div>
                 </div>
-                <div class="about-image">
-                    <img src="/content/images/teamBio.jpeg" alt="Our Work in Communities" style="height: 400px; object-fit: cover;">
+
+                <div class="text-center" style="margin-top: var(--space-12);">
+                    <a href="stories.html" class="btn btn--secondary">View All Stories</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section light-bg">
-        <div class="section-wrapper">
-            <div class="section-header">
-                <span class="section-tag">Our Stories</span>
-                <h2>Latest Updates</h2>
-                <p>Discover the amazing stories of hope, resilience, and transformation from our community.</p>
-            </div>
-            <div id="articles-container" class="articles-grid">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    <p>Loading stories...</p>
+        <!-- Stats: Animated Credibility -->
+        <section class="stats" aria-labelledby="stats-title">
+            <h2 id="stats-title" class="sr-only">Our Global Impact</h2>
+            <div class="container">
+                <div class="stats__grid">
+                    <div class="stat" data-count="500">
+                        <div class="stat__number">0</div>
+                        <p class="stat__label">Projects Delivered</p>
+                    </div>
+                    <div class="stat" data-count="50000">
+                        <div class="stat__number">0</div>
+                        <p class="stat__label">Lives Transformed</p>
+                    </div>
+                    <div class="stat" data-count="25">
+                        <div class="stat__number">0</div>
+                        <p class="stat__label">Countries Reached</p>
+                    </div>
+                    <div class="stat" data-count="15">
+                        <div class="stat__number">0</div>
+                        <p class="stat__label">Years of Excellence</p>
+                    </div>
                 </div>
             </div>
-            <div class="view-all-container">
-                <a href="articles.html" class="view-all-btn">
-                    View All Stories →
-                </a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section gradient-bg">
-        <div class="section-wrapper">
-            <div class="section-header">
-                <span class="section-tag">The People</span>
-                <h2>Meet Our Team</h2>
-                <p>Passionate individuals dedicated to making the world a better place.</p>
-            </div>
-            <div id="team-container" class="team-grid">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    <p>Loading team...</p>
+        <!-- Team: Quick Credibility Peek -->
+        <section class="section" aria-labelledby="team-title">
+            <div class="container">
+                <header class="section__header">
+                    <h2 id="team-title" class="section__title">Our Global Experts</h2>
+                    <p class="section__subtitle">A diverse team of leaders driving innovation and equity worldwide.</p>
+                    <div class="section__divider"></div>
+                </header>
+
+                <div id="team-container" class="grid">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Assembling our impact team...</p>
+                    </div>
+                </div>
+
+                <div class="text-center" style="margin-top: var(--space-12);">
+                    <a href="team.html" class="btn btn--secondary">Meet the Team</a>
                 </div>
             </div>
-            <div class="view-all-container">
-                <a href="team.html" class="view-all-btn">
-                    Meet Everyone →
-                </a>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <footer>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-        <p>&copy; 2025 BioNova. All rights reserved. | Made with <i class="fas fa-heart" style="color:#ef4444;"></i> for a better world</p>
-        <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="articles.html">Stories</a>
-            <a href="team.html">Team</a>
-            <a href="contact.html">Contact</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 BioNova International. All rights reserved. | Building trust through transparency and measurable impact. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
         </div>
     </footer>
 
+    <!-- Donation Modal -->
+    <div id="donation-modal" class="modal">
+        <div class="modal-content">
+            <h3 style="font-size: var(--font-size-2xl); margin-bottom: var(--space-4);">Your Gift Changes Lives</h3>
+            <p style="margin-bottom: var(--space-6);">Select an amount to support sustainable development:</p>
+            <div style="display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-bottom: var(--space-6);">
+                <button class="btn btn--primary" onclick="donate(50)" style="padding: var(--space-3) var(--space-5);">$50</button>
+                <button class="btn btn--primary" onclick="donate(100)" style="padding: var(--space-3) var(--space-5);">$100</button>
+                <button class="btn btn--primary" onclick="donate(500)" style="padding: var(--space-3) var(--space-5);">$500</button>
+                <button class="btn btn--secondary" onclick="donate('custom')" style="padding: var(--space-3) var(--space-5);">Custom</button>
+            </div>
+            <button class="btn btn--secondary" onclick="closeModal('donation')" style="width: 100%;">Close</button>
+        </div>
+    </div>
+
     <script>
-        function parseYAML(yamlStr) {
-            const result = {};
-            const lines = yamlStr.trim().split('\n');
-            for (const line of lines) {
-                const [key, ...valueParts] = line.split(':');
-                const trimmedKey = key.trim();
-                let value = valueParts.join(':').trim();
-
-                if (value.startsWith('"') && value.endsWith('"')) {
-                    value = value.slice(1, -1);
-                } else if (value.startsWith("'") && value.endsWith("'")) {
-                    value = value.slice(1, -1);
-                } else if (value.startsWith('[') && value.endsWith(']')) {
-                    value = value.slice(1, -1).split(',').map(v => v.trim().replace(/"/g, '').replace(/'/g, ''));
-                } else if (value === 'true') {
-                    value = true;
-                } else if (value === 'false') {
-                    value = false;
-                } else if (!isNaN(value) && value !== '') {
-                    value = Number(value);
-                }
-                result[trimmedKey] = value;
-            }
-            return result;
-        }
-
-        function simpleMarkdownToHTML(md) {
-            let html = md;
-            html = html.replace(/^(\s*)## (.+)$/gm, '$1<h2>$2</h2>');
-            html = html.replace(/^(\s*)# (.+)$/gm, '$1<h1>$2</h1>');
-            html = html.replace(/^(\s*)### (.+)$/gm, '$1<h3>$2</h3>');
-            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-            html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
-            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-            html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
-            html = html.replace(/(<li>.+<\/li>)+/g, '<ul>$&</ul>');
-            html = html.replace(/\n/g, '<br>');
-            const paragraphs = html.split('<br><br>');
-            html = paragraphs.map(p => `<p>${p}</p>`).join('');
-            html = html.replace(/<br><br>/g, '<br>');
-            return html;
-        }
-
-        async function loadIndexContent() {
+        // Dynamic Content Loader (Inspired by Modern CMS Trends)
+        async function loadContent() {
             try {
-                const indexResponse = await fetch('/content/index.json');
-                const indexData = await indexResponse.json();
+                const res = await fetch('/content/index.json');
+                if (!res.ok) throw new Error('Content unavailable');
+                const data = await res.json();
 
-                // Load latest 3 articles
-                const articleFiles = indexData.articles.slice(0, 3);
-                const articlePromises = articleFiles.map(file => 
-                    fetch(`/content/${file}`).then(r => r.text())
-                );
-                const articleTexts = await Promise.all(articlePromises);
-
-                const articleCards = [];
-                for (let i = 0; i < articleTexts.length; i++) {
-                    const text = articleTexts[i];
-                    const parts = text.split('---');
-                    if (parts.length >= 3) {
-                        const frontmatter = parts[1];
-                        const body = parts.slice(2).join('---');
-                        const meta = parseYAML(frontmatter);
-                        const plainText = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 120) + '...';
-                        articleCards.push(`
-                            <div class="article-card">
-                                <div class="article-image">
-                                    <i class="fas fa-file-alt" style="font-size: 3rem; opacity: 0.3;"></i>
-                                </div>
-                                <div class="article-content">
-                                    <h3>${meta.title || 'Untitled'}</h3>
-                                    <p>${plainText}</p>
-                                    <button class="read-more-btn" 
-                                        onclick="openDetail('${articleFiles[i]}', 'article')">
-                                        <i class="fas fa-arrow-right"></i> Read More
-                                    </button>
-                                </div>
-                            </div>
-                        `);
-                    }
-                }
-
-                document.getElementById('articles-container').innerHTML = 
-                    articleCards.length ? 
-                    articleCards.join('') : 
-                    '<p style="text-align:center;color:#94a3b8;grid-column:1/-1;">No stories available at this time.</p>';
-
-                // Load latest 3 team members
-                const teamFiles = indexData.teams.slice(0, 3);
-                const teamPromises = teamFiles.map(file => 
-                    fetch(`/content/${file}`).then(r => r.text())
-                );
-                const teamTexts = await Promise.all(teamPromises);
-
-                const teamCards = [];
-                for (let i = 0; i < teamTexts.length; i++) {
-                    const text = teamTexts[i];
-                    const parts = text.split('---');
-                    if (parts.length >= 3) {
-                        const frontmatter = parts[1];
-                        const body = parts.slice(2).join('---');
-                        const meta = parseYAML(frontmatter);
-                        const excerpt = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 80) + '...';
-                        teamCards.push(`
-                            <div class="team-card">
-                                <div class="team-image">
-                                    <i class="fas fa-user" style="font-size: 3rem; opacity: 0.3;"></i>
-                                </div>
-                                <div class="team-info">
-                                    <h3>${meta.title || 'Team Member'}</h3>
-                                    <span class="team-role">${meta.role || 'Staff'}</span>
-                                    <p>${excerpt}</p>
-                                    <button onclick="openDetail('${teamFiles[i]}', 'team')">
-                                        <i class="fas fa-user-circle"></i> View Profile
-                                    </button>
-                                </div>
-                            </div>
-                        `);
-                    }
-                }
-
-                document.getElementById('team-container').innerHTML = 
-                    teamCards.length ? 
-                    teamCards.join('') : 
-                    '<p style="text-align:center;color:#94a3b8;grid-column:1/-1;">No team members available at this time.</p>';
-
-            } catch (error) {
-                console.error('Error loading index content:', error);
-                
-                document.getElementById('articles-container').innerHTML = 
-                    '<p style="text-align:center;color:#ef4444;grid-column:1/-1;">Failed to load stories. Please try again later.</p>';
-                
-                document.getElementById('team-container').innerHTML = 
-                    '<p style="text-align:center;color:#ef4444;grid-column:1/-1;">Failed to load team. Please try again later.</p>';
+                await loadStories(data.stories?.slice(0, 3) || []);
+                await loadTeam(data.team?.slice(0, 3) || []);
+                initAnimations();
+            } catch (err) {
+                console.error(err);
+                document.querySelectorAll('.loading').forEach(el => {
+                    el.innerHTML = '<p style="color: var(--color-muted);">Stories of impact loading soon...</p>';
+                });
             }
         }
 
-        function openDetail(id, type) {
-            sessionStorage.setItem('selectedFile', id);
-            if (type === 'article') {
-                window.location.href = 'article.html';
-            } else if (type === 'team') {
-                window.location.href = 'team_detail.html';
-            }
+        async function loadStories(files) {
+            const container = document.getElementById('stories-container');
+            const html = await Promise.all(files.map(async (file, idx) => {
+                try {
+                    const text = await (await fetch(`/content/${file}`)).text();
+                    const parts = text.split('---');
+                    if (parts.length < 3) return '';
+                    const meta = parseYAML(parts[1]);
+                    const excerpt = parts.slice(2).join('---').replace(/[#*_\-[\]()`]/g, '').substring(0, 150) + '...';
+                    return `
+                        <article class="story-card" style="animation-delay: ${idx * 0.1}s;">
+                            <div class="story-card__image">
+                                <img src="${meta.image || 'https://via.placeholder.com/400x220?text=Impact+Story'}" alt="${meta.title}" loading="lazy">
+                            </div>
+                            <div class="story-card__content">
+                                <h3 class="story-card__title">${meta.title}</h3>
+                                <p class="story-card__excerpt">${excerpt}</p>
+                                <div class="story-card__meta">
+                                    <span><i class="fas fa-calendar"></i> ${meta.date || 'Recent'}</span>
+                                    <a href="story.html?id=${file}" class="btn btn--primary" style="padding: var(--space-2) var(--space-4); font-size: var(--font-size-xs);"><i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </article>
+                    `;
+                } catch { return ''; }
+            }));
+            container.innerHTML = html.filter(Boolean).join('') || '<p class="text-center" style="grid-column: 1/-1;">Inspiring stories coming soon.</p>';
         }
 
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 30) {
-                header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.08)';
-            } else {
-                header.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.05)';
-            }
+        async function loadTeam(files) {
+            const container = document.getElementById('team-container');
+            // Similar to stories, adapted for team bios
+            const html = await Promise.all(files.map(async (file, idx) => {
+                try {
+                    const text = await (await fetch(`/content/${file}`)).text();
+                    const parts = text.split('---');
+                    if (parts.length < 3) return '';
+                    const meta = parseYAML(parts[1]);
+                    const excerpt = parts.slice(2).join('---').replace(/[#*_\-[\]()`]/g, '').substring(0, 100) + '...';
+                    return `
+                        <div class="story-card" style="animation-delay: ${idx * 0.1}s;"> <!-- Reuse card for consistency -->
+                            <div class="story-card__image">
+                                <img src="${meta.image || 'https://via.placeholder.com/400x220?text=Team+Member'}" alt="${meta.name}" loading="lazy">
+                            </div>
+                            <div class="story-card__content">
+                                <h3 class="story-card__title">${meta.name}</h3>
+                                <p class="story-card__excerpt"><strong>${meta.role}</strong> – ${excerpt}</p>
+                                <div class="story-card__meta">
+                                    <a href="team-detail.html?id=${file}" class="btn btn--primary" style="padding: var(--space-2) var(--space-4); font-size: var(--font-size-xs);"><i class="fas fa-user"></i> Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } catch { return ''; }
+            }));
+            container.innerHTML = html.filter(Boolean).join('') || '<p class="text-center" style="grid-column: 1/-1;">Meet our passionate team soon.</p>';
+        }
+
+        function parseYAML(str) {
+            return str.trim().split('\n').reduce((obj, line) => {
+                const [k, v = ''] = line.split(':');
+                if (k) obj[k.trim()] = v.trim().replace(/^["']|["']$/g, '');
+                return obj;
+            }, {});
+        }
+
+        // Modal Controls
+        function openModal(id) {
+            document.getElementById(`${id}-modal`).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById(`${id}-modal`).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function donate(amount) {
+            // Simulate payment integration (e.g., Stripe)
+            alert(`Thank you for your generous $${amount || 'custom'} donation! Redirecting to secure checkout...`);
+            closeModal('donation');
+        }
+
+        // Enhanced Animations
+        function initAnimations() {
+            // Stats Counter
+            const stats = document.querySelectorAll('.stat');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        const number = entry.target.querySelector('.stat__number');
+                        const target = parseInt(number.dataset.count);
+                        let current = 0;
+                        const increment = target / 100;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                number.textContent = target + (target > 1000 ? 'K+' : '+');
+                                clearInterval(timer);
+                            } else {
+                                number.textContent = Math.floor(current) + (target > 1000 ? 'K+' : '+');
+                            }
+                        }, 20);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            stats.forEach(stat => observer.observe(stat));
+
+            // Fade-Ins for Cards
+            const cardObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = `fadeInUp ${var(--transition-base)} ease-out forwards`;
+                    }
+                });
+            });
+            document.querySelectorAll('.story-card').forEach(card => cardObserver.observe(card));
+        }
+
+        // Scroll Effects
+        window.addEventListener('scroll', () => {
+            document.querySelector('.header').classList.toggle('scrolled', scrollY > 50);
         });
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', loadIndexContent);
+        // Close Modal on Outside Click
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) closeModal('donation');
+        });
+
+        // Init
+        document.addEventListener('DOMContentLoaded', loadContent);
     </script>
 </body>
-</html>
+</html> 
