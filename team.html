@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Team - Your NGO Name</title>
+    <title>Our Team - BioNova Franchising LLC</title>
+    <meta name="description" content="Meet the leadership and experts behind BioNova Franchising LLC — driving innovation for BioNova North America dealers.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         * {
             margin: 0;
@@ -13,25 +15,24 @@
         }
 
         :root {
-            --primary: #0ea5e9;
-            --primary-dark: #0284c7;
-            --primary-light: #7dd3fc;
-            --secondary: #8b5cf6;
-            --accent: #f59e0b;
-            --dark: #0f172a;
-            --dark-alt: #1e293b;
-            --gray: #64748b;
-            --gray-light: #cbd5e1;
-            --gray-lighter: #f1f5f9;
-            --white: #ffffff;
-            --success: #10b981;
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --primary: #FF6B35;
+            --primary-dark: #E55C2B;
+            --primary-light: #FF8C5D;
+            --dark-bg: #0D0D0D;
+            --dark-card: #141414;
+            --dark-alt: #1A1A1A;
+            --gray: #999999;
+            --gray-light: #B0B0B0;
+            --text: #E2E2E2;
+            --text-muted: #A0A0A0;
+            --border: #2A2A2A;
+            --gradient: linear-gradient(135deg, var(--primary), #FF4500);
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-            color: var(--dark);
+            background-color: var(--dark-bg);
+            color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
         }
@@ -41,17 +42,17 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(13, 13, 13, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1.25rem 0;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
         }
 
         header.scrolled {
             padding: 0.75rem 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         nav {
@@ -65,7 +66,7 @@
         }
 
         nav a {
-            color: var(--dark);
+            color: var(--text);
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
@@ -98,10 +99,10 @@
 
         /* Hero Section */
         .hero {
-            background: var(--gradient);
+            background: linear-gradient(135deg, #000000 0%, var(--dark-bg) 100%);
             padding: 8rem 3rem 5rem;
             text-align: center;
-            color: var(--white);
+            color: var(--text);
             position: relative;
             overflow: hidden;
         }
@@ -113,8 +114,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
+            background: url('image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255,255,255,0.02)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
         }
 
         .hero-content {
@@ -133,13 +133,60 @@
 
         .hero p {
             font-size: 1.25rem;
-            opacity: 0.95;
-            font-weight: 400;
+            opacity: 0.85;
+        }
+
+        /* Search Bar */
+        .search-container {
+            padding: 2rem 3rem 1.5rem;
+            background: var(--dark-bg);
+        }
+        .search-container .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+            font-size: 1.1rem;
+            pointer-events: none;
+        }
+
+        #team-search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            background: var(--dark-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--text);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        #team-search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
+        }
+
+        #team-search-input::placeholder {
+            color: var(--text-muted);
         }
 
         /* Section */
         .section {
-            padding: 5rem 3rem;
+            padding: 3rem 3rem 5rem;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -156,11 +203,11 @@
 
         .filters button {
             padding: 0.75rem 1.75rem;
-            background: var(--white);
-            border: 2px solid var(--gray-light);
+            background: var(--dark-card);
+            border: 2px solid var(--border);
             border-radius: 50px;
             cursor: pointer;
-            color: var(--dark);
+            color: var(--text);
             font-family: 'Inter', sans-serif;
             font-weight: 600;
             font-size: 0.95rem;
@@ -190,14 +237,14 @@
         .filters button:hover {
             border-color: var(--primary);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.25);
         }
 
         .filters button.active {
             background: var(--gradient);
-            color: var(--white);
+            color: #FFFFFF;
             border-color: transparent;
-            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
         }
 
         .filters button.active::before {
@@ -213,12 +260,12 @@
 
         /* Card Design */
         .card {
-            background: var(--white);
+            background: var(--dark-card);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid var(--gray-lighter);
+            border: 1px solid var(--border);
             text-align: center;
             position: relative;
         }
@@ -237,7 +284,7 @@
 
         .card:hover {
             transform: translateY(-12px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             border-color: var(--primary-light);
         }
 
@@ -247,7 +294,6 @@
 
         .card-image-wrapper {
             padding: 2rem 2rem 0;
-            position: relative;
         }
 
         .card img {
@@ -257,14 +303,14 @@
             object-fit: cover;
             margin: 0 auto;
             transition: all 0.4s ease;
-            border: 4px solid var(--gray-lighter);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            border: 4px solid var(--border);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
         }
 
         .card:hover img {
             transform: scale(1.08);
             border-color: var(--primary-light);
-            box-shadow: 0 12px 32px rgba(14, 165, 233, 0.2);
+            box-shadow: 0 12px 32px rgba(255, 107, 53, 0.3);
         }
 
         .card-content {
@@ -274,14 +320,14 @@
         .card-content h3 {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
-            color: var(--dark);
+            color: var(--text);
             font-weight: 700;
             line-height: 1.3;
         }
 
         .card-content p.role {
             color: var(--primary);
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 1rem;
             font-size: 1rem;
             text-transform: uppercase;
@@ -289,7 +335,7 @@
         }
 
         .card-content p {
-            color: var(--gray);
+            color: var(--text-muted);
             line-height: 1.7;
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
@@ -297,7 +343,7 @@
 
         .card button {
             background: var(--gradient);
-            color: var(--white);
+            color: #FFFFFF;
             border: none;
             padding: 0.875rem 2rem;
             border-radius: 50px;
@@ -310,12 +356,12 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
         }
 
         .card button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.4);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.45);
         }
 
         .card button::after {
@@ -336,7 +382,7 @@
         .pagination button {
             padding: 1rem 2.5rem;
             background: var(--gradient);
-            color: var(--white);
+            color: #FFFFFF;
             border: none;
             border-radius: 50px;
             cursor: pointer;
@@ -344,47 +390,12 @@
             font-weight: 600;
             font-size: 1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(14, 165, 233, 0.3);
+            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.35);
         }
 
         .pagination button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: var(--gray-light);
-            text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 6rem;
-        }
-
-        footer p {
-            font-size: 0.95rem;
-        }
-
-        /* Loading Animation */
-        .loading {
-            text-align: center;
-            padding: 5rem 2rem;
-            color: var(--gray);
-        }
-
-        .spinner {
-            border: 4px solid var(--gray-lighter);
-            border-top: 4px solid var(--primary);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 0.8s linear infinite;
-            margin: 0 auto 1.5rem;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.5);
         }
 
         /* Stats Bar */
@@ -393,12 +404,11 @@
             justify-content: center;
             gap: 4rem;
             padding: 2rem;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
+            background: var(--dark-alt);
             border-radius: 16px;
-            margin: -3rem auto 3rem;
+            margin: -2rem auto 3rem;
             max-width: 900px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .stat-item {
@@ -415,74 +425,83 @@
         }
 
         .stat-label {
-            color: var(--gray);
+            color: var(--text-muted);
             font-weight: 600;
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        /* Responsive Design */
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 5rem 2rem;
+            color: var(--text-muted);
+        }
+
+        .spinner {
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        footer {
+            background: #000000;
+            color: var(--text);
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        /* Responsive */
         @media (max-width: 1200px) {
-            .team-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
+            .team-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
         }
 
         @media (max-width: 768px) {
-            nav {
-                flex-wrap: wrap;
-                gap: 1.5rem;
-                padding: 0 1.5rem;
+            nav { 
+                flex-wrap: wrap; 
+                gap: 1.25rem; 
+                padding: 0 1.5rem; 
             }
-
-            .hero {
-                padding: 6rem 1.5rem 4rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .section {
-                padding: 3rem 1.5rem;
-            }
-
-            .team-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .card img {
-                width: 150px;
-                height: 150px;
-            }
-
-            .stats-bar {
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .filters {
-                gap: 0.75rem;
-            }
-
-            .filters button {
-                padding: 0.625rem 1.25rem;
-                font-size: 0.875rem;
-            }
+            .hero { padding: 6rem 1.5rem 4rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .section,
+            .search-container { padding: 2rem 1.5rem; }
+            .team-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .card img { width: 150px; height: 150px; }
+            .stats-bar { flex-direction: column; gap: 2rem; }
+            .filters button { padding: 0.625rem 1.25rem; font-size: 0.875rem; }
+            #team-search-input { padding: 0.875rem 0.875rem 0.875rem 2.75rem; font-size: 0.95rem; }
         }
 
-        /* Accessibility */
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
+            *, *::before, *::after { 
+                animation-duration: 0.01ms !important; 
+                transition-duration: 0.01ms !important; 
             }
         }
     </style>
@@ -501,7 +520,22 @@
     <div class="hero">
         <div class="hero-content">
             <h1>Meet Our Team</h1>
-            <p>Passionate individuals dedicated to making a difference in our community</p>
+            <p>Driving innovation and excellence across BioNova Franchising LLC</p>
+        </div>
+    </div>
+
+    <!-- 🔍 Search Bar -->
+    <div class="search-container">
+        <div class="container">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input 
+                    type="text" 
+                    id="team-search-input" 
+                    placeholder="Search team by name, role, or expertise..." 
+                    aria-label="Search team members"
+                />
+            </div>
         </div>
     </div>
 
@@ -516,42 +550,52 @@
                 <div class="stat-label">Years Experience</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">100+</div>
-                <div class="stat-label">Projects Completed</div>
+                <div class="stat-number">North America</div>
+                <div class="stat-label">Franchise Network</div>
             </div>
         </div>
 
         <div class="filters" id="team-tags-container">
-            <!-- Tags will be loaded here -->
+            <!-- Tags loaded dynamically -->
         </div>
+
         <div id="team-container" class="team-grid">
-            <!-- Team members will be loaded here -->
             <div class="loading">
                 <div class="spinner"></div>
                 <p>Loading team members...</p>
             </div>
         </div>
+
         <div class="pagination" id="team-pagination-container" style="display:none;">
             <button id="team-load-more-btn">Load More Team Members</button>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2024 Your NGO Name. All rights reserved. | Making a difference, together.</p>
+        <p>
+            &copy; 2025 BioNova Franchising LLC. The future home of BioNova Franchising for BioNova North America dealers.<br>
+            For more information on franchising please contact us at 
+            <a href="mailto:info@bionova.org">info@bionova.org</a>.
+        </p>
     </footer>
 
     <script>
         // Scroll effect for header
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+            header.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // --- Helper Functions ---
+        // Debounce helper
+        function debounce(func, wait) {
+            let timeout;
+            return (...args) => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
+        }
+
+        // YAML & Markdown helpers
         function parseYAML(yamlStr) {
             const result = {};
             const lines = yamlStr.trim().split('\n');
@@ -559,13 +603,10 @@
                 const [key, ...valueParts] = line.split(':');
                 const trimmedKey = key.trim();
                 let value = valueParts.join(':').trim();
-                if (value.startsWith('"') && value.endsWith('"')) {
-                    value = value.slice(1, -1);
-                } else if (value.startsWith("'") && value.endsWith("'")) {
-                    value = value.slice(1, -1);
-                } else if (value.startsWith('[') && value.endsWith(']')) {
+                if (value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
+                else if (value.startsWith("'") && value.endsWith("'")) value = value.slice(1, -1);
+                else if (value.startsWith('[') && value.endsWith(']')) 
                     value = value.slice(1, -1).split(',').map(v => v.trim().replace(/"/g, '').replace(/'/g, ''));
-                }
                 result[trimmedKey] = value;
             }
             return result;
@@ -578,131 +619,146 @@
             html = html.replace(/^(\s*)### (.+)$/gm, '$1<h3>$2</h3>');
             html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
             html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
-            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
             html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
             html = html.replace(/(<li>.+<\/li>)+/g, '<ul>$&</ul>');
-            html = html.replace(/\n/g, '<br>');
-            const paragraphs = html.split('<br><br>');
-            html = paragraphs.map(p => `<p>${p}</p>`).join('');
-            html = html.replace(/<br><br>/g, '<br>');
+            const paragraphs = html.split('\n\n');
+            html = paragraphs.map(p => p.trim() ? `<p>${p.replace(/\n/g, '<br>')}</p>` : '').join('');
             return html;
         }
 
-        // --- Team Loading Logic ---
+        // Team State
         let allTeamMembers = [];
-        let currentTeamMembers = [];
         let teamCurrentPage = 1;
         const teamItemsPerPage = 6;
         let teamCurrentFilter = 'all';
+        let teamCurrentSearch = '';
 
+        // Load & Render
         async function loadAllTeamMembers() {
             try {
-                const indexResponse = await fetch('/content/index.json');
-                const indexData = await indexResponse.json();
-                const teamFiles = indexData.teams;
-
-                const teamPromises = teamFiles.map(file => fetch(`/content/${file}`).then(r => r.text()));
-                const teamTexts = await Promise.all(teamPromises);
+                const res = await fetch('/content/index.json');
+                const indexData = await res.json();
+                const teamFiles = indexData.teams || [];
+                
+                const texts = await Promise.all(
+                    teamFiles.map(file => fetch(`/content/${file}`).then(r => r.text()))
+                );
 
                 allTeamMembers = [];
-                const allTags = new Set();
-                for (let i = 0; i < teamTexts.length; i++) {
-                    const text = teamTexts[i];
+                const tagsSet = new Set();
+                texts.forEach((text, i) => {
                     const parts = text.split('---');
                     if (parts.length >= 3) {
-                        const frontmatter = parts[1];
-                        const body = parts.slice(2).join('---');
-                        const meta = parseYAML(frontmatter);
-                        const htmlBody = simpleMarkdownToHTML(body);
-                        allTeamMembers.push({ id: teamFiles[i], meta, htmlBody });
-                        if (meta.tags && Array.isArray(meta.tags)) {
-                            meta.tags.forEach(tag => allTags.add(tag));
-                        }
+                        const meta = parseYAML(parts[1]);
+                        const body = simpleMarkdownToHTML(parts.slice(2).join('---'));
+                        allTeamMembers.push({ id: teamFiles[i], meta, htmlBody: body });
+                        if (Array.isArray(meta.tags)) meta.tags.forEach(t => tagsSet.add(t));
                     }
-                }
+                });
 
-                // Update team count
                 document.getElementById('team-count').textContent = allTeamMembers.length;
-
-                renderTeamTags(Array.from(allTags));
-                renderTeamMembers(allTeamMembers);
-            } catch (error) {
-                console.error('Error loading team members:', error);
-                document.getElementById('team-container').innerHTML = '<p>Error loading team members. Please try again later.</p>';
+                renderTeamTags([...tagsSet]);
+                applyFilters();
+            } catch (err) {
+                console.error('❌ Team load error:', err);
+                document.getElementById('team-container').innerHTML = 
+                    `<p style="text-align:center;color:#FF6B35;">Failed to load team. Check console.</p>`;
             }
         }
 
         function renderTeamTags(tags) {
-            const container = document.getElementById('team-tags-container');
-            const allButton = `<button class="active" onclick="filterTeamMembers('all', event)"><span>All</span></button>`;
-            const tagButtons = tags.map(tag => `<button onclick="filterTeamMembers('${tag}', event)"><span>${tag}</span></button>`).join('');
-            container.innerHTML = allButton + tagButtons;
+            const cont = document.getElementById('team-tags-container');
+            const allBtn = `<button class="active" onclick="setFilter('all', event)"><span>All</span></button>`;
+            const tagBtns = tags.map(t => 
+                `<button onclick="setFilter('${t}', event)"><span>${t}</span></button>`
+            ).join(' ');
+            cont.innerHTML = allBtn + tagBtns;
         }
 
-        function filterTeamMembers(tag, event) {
+        function setFilter(tag, e) {
             teamCurrentFilter = tag;
-            document.querySelectorAll('#team-tags-container button').forEach(btn => btn.classList.remove('active'));
-            event.target.closest('button').classList.add('active');
-
-            let filtered = allTeamMembers;
-            if (tag !== 'all') {
-                filtered = allTeamMembers.filter(member => member.meta.tags && member.meta.tags.includes(tag));
-            }
-            currentTeamMembers = filtered;
+            document.querySelectorAll('#team-tags-container button').forEach(b => b.classList.remove('active'));
+            e.target.closest('button').classList.add('active');
             teamCurrentPage = 1;
-            renderTeamMembers(currentTeamMembers);
+            applyFilters();
         }
 
-        function renderTeamMembers(members) {
-            const start = (teamCurrentPage - 1) * teamItemsPerPage;
-            const end = start + teamItemsPerPage;
-            const pageMembers = members.slice(0, end);
+        function setSearch(query) {
+            teamCurrentSearch = query.trim().toLowerCase();
+            teamCurrentPage = 1;
+            applyFilters();
+        }
 
-            let cardsHTML = '';
-            for (const member of pageMembers) {
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = member.htmlBody;
-                const plainText = tempDiv.textContent || tempDiv.innerText || '';
-                const excerpt = plainText.substring(0, 100) + '...';
+        function applyFilters() {
+            let filtered = allTeamMembers;
 
-                cardsHTML += `
+            // Tag
+            if (teamCurrentFilter !== 'all') {
+                filtered = filtered.filter(m => m.meta.tags?.includes(teamCurrentFilter));
+            }
+
+            // Search
+            if (teamCurrentSearch) {
+                filtered = filtered.filter(m => {
+                    const name = (m.meta.title || '').toLowerCase();
+                    const role = (m.meta.role || '').toLowerCase();
+                    const bio = (new DOMParser().parseFromString(m.htmlBody, 'text/html')).body.textContent.toLowerCase();
+                    const q = teamCurrentSearch;
+                    return name.includes(q) || role.includes(q) || bio.includes(q);
+                });
+            }
+
+            document.getElementById('team-count').textContent = filtered.length;
+            renderTeam(filtered);
+        }
+
+        function renderTeam(members) {
+            const end = teamCurrentPage * teamItemsPerPage;
+            const page = members.slice(0, end);
+
+            const html = page.map(m => {
+                const temp = document.createElement('div');
+                temp.innerHTML = m.htmlBody;
+                const excerpt = (temp.textContent || '').substring(0, 100) + '...';
+                return `
                     <div class="card">
                         <div class="card-image-wrapper">
-                            <img src="${member.meta.image}" alt="${member.meta.title}" loading="lazy">
+                            <img src="${m.meta.image || 'https://via.placeholder.com/180/141414/FF6B35?text=Photo'}" 
+                                 alt="${m.meta.title}" loading="lazy">
                         </div>
                         <div class="card-content">
-                            <h3>${member.meta.title}</h3>
-                            <p class="role">${member.meta.role}</p>
+                            <h3>${m.meta.title}</h3>
+                            <p class="role">${m.meta.role || 'Team Member'}</p>
                             <p>${excerpt}</p>
-                            <button onclick="openTeamDetail('${member.id}')">View Profile</button>
+                            <button onclick="openDetail('${m.id}')">View Profile</button>
                         </div>
                     </div>
                 `;
-            }
+            }).join('');
 
-            document.getElementById('team-container').innerHTML = cardsHTML;
-
-            const paginationContainer = document.getElementById('team-pagination-container');
-            if (members.length > end) {
-                paginationContainer.style.display = 'block';
-            } else {
-                paginationContainer.style.display = 'none';
-            }
+            document.getElementById('team-container').innerHTML = html;
+            document.getElementById('team-pagination-container').style.display = members.length > end ? 'block' : 'none';
         }
 
-        function loadMoreTeam() {
+        function loadMore() {
             teamCurrentPage++;
-            renderTeamMembers(currentTeamMembers);
+            applyFilters();
         }
 
-        function openTeamDetail(id) {
+        function openDetail(id) {
             sessionStorage.setItem('selectedFile', id);
             window.location.href = 'team_detail.html';
         }
 
+        // Init
         document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('team-search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', debounce(e => setSearch(e.target.value), 300));
+            }
+            document.getElementById('team-load-more-btn')?.addEventListener('click', loadMore);
             loadAllTeamMembers();
-            document.getElementById('team-load-more-btn').addEventListener('click', loadMoreTeam);
         });
     </script>
 </body>
