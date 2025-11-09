@@ -7,7 +7,7 @@
     <meta name="description" content="BioNova – Empowering sustainable community development through innovative, evidence-based solutions for global resilience." />
     <meta name="keywords" content="sustainable development, NGO, community empowerment, global impact, BioNova, nonprofit" />
     <meta name="author" content="BioNova International" />
-    <meta name="theme-color" content="#f97316" />
+    <meta name="theme-color" content="#1d4ed8" />
     <meta property="og:title" content="BioNova | Sustainable Community Development" />
     <meta property="og:description" content="Join us in building resilient futures through local partnerships and global expertise." />
     <meta property="og:type" content="website" />
@@ -30,19 +30,18 @@
 
     <style>
         :root {
-            /* Colors: Updated — primary is now ORANGE */
-            --color-primary: #f97316;            /* Orange */
-            --color-primary-dark: #ea580c;
-            --color-accent: #f97316;
-            --color-accent-dark: #c2410c;
-            --color-text: #1e293b;
-            --color-text-light: #64748b;
+            /* Colors: WHITE + INDIGO */
+            --color-primary: #1d4ed8;            /* Indigo (main accent) */
+            --color-primary-dark: #1e40af;
+            --color-accent: #1d4ed8;
+            --color-accent-dark: #1e3a8a;
+            --color-text: #0f172a;               /* Slate-900 */
+            --color-text-light: #475569;         /* Slate-600 */
             --color-text-inverse: #f8fafc;
             --color-bg: #ffffff;
             --color-bg-alt: #f8fafc;
             --color-border: #e2e8f0;
             --color-muted: #94a3b8;
-            --color-highlight: #fef3c7;
 
             /* Typography */
             --font-base: 'Inter', system-ui, sans-serif;
@@ -77,18 +76,10 @@
             --radius-md: 0.5rem;
             --radius-lg: 0.75rem;
             --radius-xl: 1rem;
-            --radius-2xl: 1.5rem;
             --radius-full: 9999px;
 
-            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
-
             /* Transitions */
-            --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
             /* Layout */
             --container-max: 1280px;
@@ -187,7 +178,6 @@
         }
 
         .text-center { text-align: center; }
-        .text-left { text-align: left; }
 
         /* Header */
         .header {
@@ -200,11 +190,7 @@
             border-bottom: 1px solid var(--color-border);
             z-index: 1000;
             transition: var(--transition-base);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .header.scrolled {
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
 
         .nav {
@@ -230,7 +216,7 @@
             left: 50%;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            background: var(--color-primary);
             transition: var(--transition-base);
             transform: translateX(-50%);
         }
@@ -264,7 +250,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 20% 80%, rgba(249, 115, 22, 0.2), transparent 50%);
+            background: radial-gradient(circle at 20% 80%, rgba(29, 78, 216, 0.1), transparent 50%);
             z-index: 0;
         }
 
@@ -273,7 +259,6 @@
             padding: 0 var(--space-6);
             position: relative;
             z-index: 1;
-            animation: fadeInUp var(--transition-slow) ease-out;
         }
 
         .hero h1 {
@@ -301,14 +286,12 @@
             font-weight: 600;
             font-size: var(--font-size-lg);
             border-radius: var(--radius-full);
-            box-shadow: var(--shadow-md);
             transition: var(--transition-base);
         }
 
         .cta-button:hover {
             background: var(--color-primary-dark);
             transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
         }
 
         /* Section Base */
@@ -344,7 +327,7 @@
             display: block;
             width: 100px;
             height: 3px;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            background: var(--color-primary);
             margin: var(--space-6) auto 0;
             border-radius: 2px;
         }
@@ -367,7 +350,7 @@
             align-items: center;
             gap: var(--space-3);
             padding: var(--space-4) var(--space-8);
-            background: var(--color-accent);
+            background: var(--color-primary);
             color: white;
             font-weight: 600;
             border-radius: var(--radius-full);
@@ -375,324 +358,186 @@
         }
 
         .learn-more-btn:hover {
-            background: var(--color-accent-dark);
+            background: var(--color-primary-dark);
             transform: translateY(-2px);
         }
 
         .about-image {
             border-radius: var(--radius-2xl);
             overflow: hidden;
-            box-shadow: var(--shadow-xl);
-            transition: var(--transition-slow);
             aspect-ratio: 4/3;
-        }
-
-        .about-image:hover {
-            transform: scale(1.02);
         }
 
         .about-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform var(--transition-slow);
         }
 
-        /* ===== Articles Section (Enhanced) ===== */
+        /* ===== Articles Section (Flat, White, Indigo Tags) ===== */
         .article-grid {
             display: grid;
             gap: var(--space-10);
-            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         }
 
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             .article-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
         .article-card {
-            background: var(--color-bg);
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition-base);
+            background: white;
+            border: none;
+            box-shadow: none;
             display: flex;
             flex-direction: column;
             height: 100%;
         }
 
-        .article-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-        }
-
         .article-image-wrap {
             position: relative;
-            height: 240px;
+            width: 100%;
             overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 16/9;
             background: var(--color-bg-alt);
-        }
-
-        .article-image-wrap::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-            z-index: 1;
-        }
-
-        .article-card:hover .article-image-wrap::before {
-            transform: scaleX(1);
         }
 
         .article-image-wrap img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.3s ease;
         }
 
-        .article-card:hover .article-image-wrap img {
+        .article-image-wrap:hover img {
             transform: scale(1.05);
         }
 
         .article-content {
-            padding: var(--space-6);
+            padding: var(--space-4) 0;
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .article-meta {
-            display: flex;
             gap: var(--space-3);
-            font-size: var(--font-size-sm);
-            color: var(--color-muted);
-            margin-bottom: var(--space-4);
-        }
-
-        .article-meta span {
-            display: flex;
-            align-items: center;
-            gap: var(--space-1);
         }
 
         .article-title {
-            font-size: var(--font-size-2xl);
+            font-size: var(--font-size-xl);
             font-family: var(--font-display);
             color: var(--color-text);
-            margin-bottom: var(--space-4);
+            margin-bottom: var(--space-2);
             line-height: 1.3;
+            font-weight: 700;
+            word-wrap: break-word;
         }
 
-        .article-excerpt {
-            color: var(--color-text-light);
-            line-height: 1.7;
-            margin-bottom: var(--space-5);
-            flex-grow: 1;
-        }
-
-        .article-read-more {
-            display: inline-flex;
-            align-items: center;
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
             gap: var(--space-2);
-            padding: var(--space-3) var(--space-5);
-            background: transparent;
-            color: var(--color-primary);
-            font-weight: 600;
+        }
+
+        .article-tag {
             font-size: var(--font-size-sm);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            transition: var(--transition-base);
-            align-self: flex-start;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            padding: 0.125rem 0.375rem;
+            border-radius: 0.25rem;
+            transition: color 0.2s ease;
         }
 
-        .article-read-more:hover,
-        .article-read-more:focus {
-            background: var(--color-primary);
-            color: white;
-            border-color: var(--color-primary);
-            transform: translateX(3px);
+        .article-tag:hover,
+        .article-tag:focus {
+            color: var(--color-primary-dark);
+            text-decoration: underline;
         }
 
-        .article-read-more i {
-            transition: transform 0.2s ease;
-        }
-
-        .article-read-more:hover i {
-            transform: translateX(2px);
-        }
-
-        /* ===== Team Section (Enhanced) ===== */
+        /* ===== Team Section (Flat, White, Indigo Roles) ===== */
         .team-grid {
             display: grid;
             gap: var(--space-10);
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         }
 
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             .team-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
         .team-card {
-            background: var(--color-bg);
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition-base);
+            background: white;
+            border: none;
+            box-shadow: none;
             display: flex;
             flex-direction: column;
-            height: 100%;
+            align-items: center;
             text-align: center;
-        }
-
-        .team-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
+            height: 100%;
         }
 
         .team-avatar {
             width: 100%;
-            height: 280px;
             display: flex;
             justify-content: center;
-            align-items: center;
-            background: var(--color-bg-alt);
-            overflow: hidden;
+            padding: var(--space-2) 0;
         }
 
         .team-avatar img {
-            width: 180px;
-            height: 180px;
+            width: 96px;
+            height: 96px;
             object-fit: cover;
             border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .team-card:hover .team-avatar img {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            border: 2px solid var(--color-border);
         }
 
         .team-info {
-            padding: var(--space-6) var(--space-6) var(--space-8);
-            flex-grow: 1;
             display: flex;
             flex-direction: column;
+            gap: var(--space-2);
+            padding: 0 var(--space-2);
         }
 
         .team-name {
-            font-size: var(--font-size-2xl);
+            font-size: var(--font-size-xl);
             font-family: var(--font-display);
             color: var(--color-text);
-            margin-bottom: var(--space-2);
+            margin: 0;
+            font-weight: 700;
         }
 
         .team-role {
-            font-size: var(--font-size-lg);
+            font-size: var(--font-size-base);
             font-weight: 600;
             color: var(--color-primary);
-            margin-bottom: var(--space-4);
-        }
-
-        .team-role::after {
-            content: '';
-            display: block;
-            width: 40px;
-            height: 2px;
-            background: var(--color-primary);
-            margin: var(--space-2) auto 0;
-            border-radius: 1px;
+            margin: 0;
         }
 
         .team-bio {
+            font-size: var(--font-size-sm);
             color: var(--color-text-light);
-            line-height: 1.7;
-            margin-bottom: var(--space-5);
-            flex-grow: 1;
+            margin: 0;
+            line-height: 1.6;
         }
 
         .team-profile-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-2);
-            padding: var(--space-3) var(--space-6);
-            background: var(--color-accent);
-            color: white;
+            margin-top: var(--space-4);
+            color: var(--color-primary);
             font-weight: 600;
             font-size: var(--font-size-sm);
+            background: none;
+            padding: 0.25rem 0.5rem;
             border-radius: var(--radius-md);
-            margin: 0 auto;
-            transition: var(--transition-base);
         }
 
         .team-profile-btn:hover,
         .team-profile-btn:focus {
-            background: var(--color-accent-dark);
-            transform: translateY(-2px);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .article-card,
-            .team-card,
-            .article-image-wrap img,
-            .team-avatar img {
-                transition: none !important;
-                transform: none !important;
-            }
-        }
-
-        /* Stats */
-        .stats-section {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-            color: var(--color-text-inverse);
-            padding: var(--space-24) 0;
-            text-align: center;
-            position: relative;
-        }
-
-        .stats-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: 
-                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.05) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05) 0%, transparent 50%);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--space-12);
-            max-width: 1100px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stat-item h3 {
-            font-size: clamp(3rem, 8vw, 5rem);
-            font-weight: 900;
-            margin-bottom: var(--space-3);
-            line-height: 1;
-            color: var(--color-text-inverse);
-        }
-
-        .stat-item p {
-            font-size: var(--font-size-lg);
-            opacity: 0.95;
-            color: var(--color-text-inverse);
+            background: rgba(29, 78, 216, 0.05);
+            text-decoration: underline;
         }
 
         /* View All */
@@ -716,7 +561,7 @@
 
         .view-all-btn:hover {
             background: var(--color-primary);
-            color: var(--color-text-inverse);
+            color: white;
             transform: translateY(-2px);
         }
 
@@ -734,45 +579,6 @@
             opacity: 0.9;
         }
 
-        /* Loading */
-        .loading {
-            text-align: center;
-            padding: var(--space-12);
-            color: var(--color-muted);
-        }
-
-        .spinner {
-            width: 48px;
-            height: 48px;
-            border: 4px solid rgba(249, 115, 22, 0.2);
-            border-top: 4px solid var(--color-primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto var(--space-4);
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
         /* Responsive */
         @media (max-width: 1024px) {
             .about-content { 
@@ -783,51 +589,16 @@
         }
 
         @media (max-width: 768px) {
-            .hero { 
-                height: 90vh; 
-                background-attachment: scroll; 
-            }
-            .hero h1 { 
-                font-size: var(--font-size-4xl); 
-            }
-            .section { 
-                padding: var(--space-12) 0; 
-            }
-            .nav { 
-                gap: var(--space-6); 
-                flex-wrap: wrap; 
-                justify-content: center; 
-            }
-            .stats-grid { 
-                grid-template-columns: repeat(2, 1fr); 
-            }
-            .card-image,
-            .article-image-wrap {
-                height: 200px;
-            }
-            .team-avatar {
-                height: 240px;
-            }
-            .team-avatar img {
-                width: 160px;
-                height: 160px;
-            }
+            .hero { height: 90vh; background-attachment: scroll; }
+            .hero h1 { font-size: var(--font-size-4xl); }
+            .section { padding: var(--space-12) 0; }
+            .nav { gap: var(--space-6); flex-wrap: wrap; justify-content: center; }
         }
 
         @media (max-width: 480px) {
-            .stats-grid { 
-                grid-template-columns: 1fr; 
-            }
-            .hero h1 { 
-                font-size: var(--font-size-3xl); 
-            }
-            .nav {
-                gap: var(--space-4);
-                padding: 0 var(--space-4);
-            }
-            .nav a {
-                font-size: var(--font-size-xs);
-            }
+            .hero h1 { font-size: var(--font-size-3xl); }
+            .nav { gap: var(--space-4); padding: 0 var(--space-4); }
+            .nav a { font-size: var(--font-size-xs); }
         }
     </style>
 </head>
@@ -870,7 +641,7 @@
                         <p>Through strategic partnerships with local organizations, government agencies, and international stakeholders, we've successfully implemented programs that have transformed lives across multiple continents while maintaining the highest standards of accountability and transparency.</p>
                         <a href="#" class="learn-more-btn">Explore Our Impact <i class="fas fa-arrow-right"></i></a>
                     </div>
-                    <div class="about-image fade-in">
+                    <div class="about-image">
                         <img src="/content/images/teamBio.jpeg" alt="BioNova team collaborating on community development project" loading="lazy">
                     </div>
                 </div>
@@ -885,9 +656,8 @@
                     <p>Research findings, program updates, and stories of transformation from our global initiatives</p>
                 </header>
                 <div class="article-grid" id="articles-container">
-                    <div class="loading">
-                        <div class="spinner"></div>
-                        <p>Loading articles...</p>
+                    <div class="loading" style="grid-column:1/-1;text-align:center;padding:2rem;color:#94a3b8;">
+                        Loading articles...
                     </div>
                 </div>
                 <div class="view-all-container">
@@ -904,9 +674,8 @@
                     <p>Dedicated professionals driving sustainable change across our global operations</p>
                 </header>
                 <div class="team-grid" id="team-container">
-                    <div class="loading">
-                        <div class="spinner"></div>
-                        <p>Loading team...</p>
+                    <div class="loading" style="grid-column:1/-1;text-align:center;padding:2rem;color:#94a3b8;">
+                        Loading team...
                     </div>
                 </div>
                 <div class="view-all-container">
@@ -942,151 +711,109 @@
             return result;
         }
 
-        function simpleMarkdownToHTML(md) {
-            let html = md;
-            html = html.replace(/^(\s*)## (.+)$/gm, '$1<h2>$2</h2>');
-            html = html.replace(/^(\s*)# (.+)$/gm, '$1<h1>$2</h1>');
-            html = html.replace(/^(\s*)### (.+)$/gm, '$1<h3>$2</h3>');
-            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-            html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
-            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-            html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
-            html = html.replace(/(<li>.+<\/li>)+/g, '<ul>$&</ul>');
-            html = html.replace(/\n/g, '<br>');
-            const paragraphs = html.split('<br><br>');
-            html = paragraphs.map(p => `<p>${p}</p>`).join('');
-            html = html.replace(/<br><br>/g, '<br>');
-            return html;
-        }
-
         async function loadIndexContent() {
             try {
                 const indexResponse = await fetch('/content/index.json');
-                if (!indexResponse.ok) {
-                    throw new Error(`HTTP error! status: ${indexResponse.status}`);
-                }
                 const indexData = await indexResponse.json();
 
-                // Articles
+                // === ARTICLES ===
                 const articleFiles = indexData.articles.slice(0, 3);
                 const articlePromises = articleFiles.map(file =>
-                    fetch(`/content/${file}`)
-                        .then(r => r.ok ? r.text() : Promise.reject(new Error(`Failed to load article: ${file}`)))
-                        .catch(err => {
-                            console.error(`Error loading article ${file}:`, err);
-                            return null;
-                        })
+                    fetch(`/content/${file}`).then(r => r.ok ? r.text() : null)
                 );
-
                 const articleTexts = await Promise.all(articlePromises);
-                const validArticleTexts = articleTexts.filter(text => text !== null);
                 const articleCards = [];
-                for (let i = 0; i < validArticleTexts.length; i++) {
-                    const text = validArticleTexts[i];
+                for (let i = 0; i < articleTexts.length; i++) {
+                    const text = articleTexts[i];
+                    if (!text) continue;
                     const parts = text.split('---');
-                    if (parts.length >= 3) {
-                        const frontmatter = parts[1];
-                        const body = parts.slice(2).join('---');
-                        const meta = parseYAML(frontmatter);
-                        const plainText = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 150) + '...';
-                        articleCards.push(`
-                            <article class="article-card" role="article">
-                                <div class="article-image-wrap">
-                                    <img src="${meta.image || '/content/images/placeholder-article.jpg'}" 
-                                         alt="${meta.title}" 
-                                         loading="lazy">
+                    if (parts.length < 3) continue;
+                    const meta = parseYAML(parts[1]);
+                    const title = meta.title || 'Untitled';
+                    const tags = meta.tags ? meta.tags.split(',').map(t => t.trim()) : ['Uncategorized'];
+                    const img = meta.image || '/content/images/placeholder-article.jpg';
+                    articleCards.push(`
+                        <article class="article-card" role="article">
+                            <div class="article-image-wrap" onclick="openDetail('${articleFiles[i]}', 'article')">
+                                <img src="${img}" alt="${title}" loading="lazy">
+                            </div>
+                            <div class="article-content">
+                                <h3 class="article-title">${title}</h3>
+                                <div class="article-tags">
+                                    ${tags.map(tag => `<a href="#" class="article-tag">${tag}</a>`).join('')}
                                 </div>
-                                <div class="article-content">
-                                    <div class="article-meta">
-                                        <span><i class="far fa-calendar"></i> ${meta.date || 'Unknown date'}</span>
-                                        <span><i class="fas fa-tag"></i> ${meta.category || 'General'}</span>
-                                    </div>
-                                    <h3 class="article-title">${meta.title}</h3>
-                                    <p class="article-excerpt">${plainText}</p>
-                                    <button class="article-read-more" 
-                                            onclick="openDetail('${articleFiles[i]}', 'article')">
-                                        Read More <i class="fas fa-arrow-right"></i>
-                                    </button>
-                                </div>
-                            </article>
-                        `);
-                    }
+                            </div>
+                        </article>
+                    `);
                 }
 
-                const articlesContainer = document.getElementById('articles-container');
-                if (articleCards.length) {
-                    articlesContainer.innerHTML = articleCards.join('');
-                } else {
-                    articlesContainer.innerHTML = '<p style="text-align:center;color:#94a3b8;">No articles available at this time.</p>';
-                }
+                document.getElementById('articles-container').innerHTML = articleCards.length 
+                    ? articleCards.join('') 
+                    : '<p style="grid-column:1/-1;text-align:center;color:#94a3b8;">No articles available.</p>';
 
-                // Team
+                // === TEAM ===
                 const teamFiles = indexData.teams.slice(0, 3);
                 const teamPromises = teamFiles.map(file =>
-                    fetch(`/content/${file}`)
-                        .then(r => r.ok ? r.text() : Promise.reject(new Error(`Failed to load team member: ${file}`)))
-                        .catch(err => {
-                            console.error(`Error loading team member ${file}:`, err);
-                            return null;
-                        })
+                    fetch(`/content/${file}`).then(r => r.ok ? r.text() : null)
                 );
-
                 const teamTexts = await Promise.all(teamPromises);
-                const validTeamTexts = teamTexts.filter(text => text !== null);
                 const teamCards = [];
-                for (let i = 0; i < validTeamTexts.length; i++) {
-                    const text = validTeamTexts[i];
+                for (let i = 0; i < teamTexts.length; i++) {
+                    const text = teamTexts[i];
+                    if (!text) continue;
                     const parts = text.split('---');
-                    if (parts.length >= 3) {
-                        const frontmatter = parts[1];
-                        const body = parts.slice(2).join('---');
-                        const meta = parseYAML(frontmatter);
-                        const excerpt = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 100) + '...';
-                        teamCards.push(`
-                            <article class="team-card" role="article">
-                                <div class="team-avatar">
-                                    <img src="${meta.image || '/content/images/placeholder-team.jpg'}" 
-                                         alt="${meta.title}" 
-                                         loading="lazy">
-                                </div>
-                                <div class="team-info">
-                                    <h3 class="team-name">${meta.title}</h3>
-                                    <div class="team-role">${meta.role || 'Team Member'}</div>
-                                    <p class="team-bio">${excerpt}</p>
-                                    <button class="team-profile-btn" 
-                                            onclick="openDetail('${teamFiles[i]}', 'team')">
-                                        View Profile <i class="fas fa-user"></i>
-                                    </button>
-                                </div>
-                            </article>
-                        `);
-                    }
+                    if (parts.length < 3) continue;
+                    const meta = parseYAML(parts[1]);
+                    const name = meta.title || 'Team Member';
+                    const role = meta.role || 'Role';
+                    const img = meta.image || '/content/images/placeholder-team.jpg';
+                    teamCards.push(`
+                        <article class="team-card" role="article">
+                            <div class="team-avatar">
+                                <img src="${img}" alt="${name}" loading="lazy">
+                            </div>
+                            <div class="team-info">
+                                <h3 class="team-name">${name}</h3>
+                                <div class="team-role">${role}</div>
+                                <button class="team-profile-btn" onclick="openDetail('${teamFiles[i]}', 'team')">
+                                    View Profile
+                                </button>
+                            </div>
+                        </article>
+                    `);
                 }
 
-                const teamContainer = document.getElementById('team-container');
-                if (teamCards.length) {
-                    teamContainer.innerHTML = teamCards.join('');
-                } else {
-                    teamContainer.innerHTML = '<p style="text-align:center;color:#94a3b8;">No team members available at this time.</p>';
-                }
-            } catch (error) {
-                console.error('Error loading index content:', error);
-                document.getElementById('articles-container').innerHTML = '<p style="text-align:center;color:#ef4444;">Unable to load articles at this time.</p>';
-                document.getElementById('team-container').innerHTML = '<p style="text-align:center;color:#ef4444;">Unable to load team information at this time.</p>';
+                document.getElementById('team-container').innerHTML = teamCards.length 
+                    ? teamCards.join('') 
+                    : '<p style="grid-column:1/-1;text-align:center;color:#94a3b8;">No team members available.</p>';
+
+            } catch (e) {
+                console.error(e);
+                document.getElementById('articles-container').innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#ef4444;">Failed to load content.</p>';
+                document.getElementById('team-container').innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#ef4444;">Failed to load content.</p>';
             }
         }
 
         function openDetail(id, type) {
             sessionStorage.setItem('selectedFile', id);
-            if (type === 'article') {
-                window.location.href = 'article.html';
-            } else if (type === 'team') {
-                window.location.href = 'team_detail.html';
-            }
+            window.location.href = type === 'article' ? 'article.html' : 'team_detail.html';
         }
 
+        // Zoom on image click (simple toggle)
+        document.addEventListener('click', function(e) {
+            const imgWrap = e.target.closest('.article-image-wrap');
+            if (imgWrap) {
+                const img = imgWrap.querySelector('img');
+                if (img.style.transform === 'scale(1.5)') {
+                    img.style.transform = 'scale(1)';
+                } else {
+                    img.style.transform = 'scale(1.5)';
+                }
+                img.style.transition = 'transform 0.3s ease';
+            }
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
-            // Optional: add scroll effect to header
             window.addEventListener('scroll', () => {
                 document.getElementById('header').classList.toggle('scrolled', window.scrollY > 10);
             });
