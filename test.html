@@ -45,10 +45,31 @@
             color: #000 !important;
         }
         
+        /* Hero Section with Background Image Option */
         .hero {
-            background-color: #f8f9fa;
-            padding: 6rem 0;
+            padding: 8rem 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Default solid color background */
+        .hero-solid {
+            background-color: #f8f9fa;
+        }
+        
+        /* Background image option */
+        .hero-image {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        
+        .hero-image h1,
+        .hero-image p {
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
         }
         
         .hero h1 {
@@ -62,6 +83,10 @@
             max-width: 700px;
             margin: 0 auto 2rem;
             color: #666;
+        }
+        
+        .hero-image p {
+            color: rgba(255,255,255,0.9);
         }
         
         .btn-primary {
@@ -176,6 +201,31 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
+        /* Background toggle controls */
+        .bg-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .bg-toggle button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+        }
+        
+        .bg-toggle button.active {
+            background: #000;
+            color: white;
+        }
     </style>
 </head>
 
@@ -209,8 +259,8 @@
     </header>
 
     <main id="main-content">
-        <!-- Hero Section -->
-        <section class="hero" aria-labelledby="hero-heading">
+        <!-- Hero Section with Background Toggle -->
+        <section class="hero hero-solid" id="hero-section" aria-labelledby="hero-heading">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -221,6 +271,13 @@
                 </div>
             </div>
         </section>
+
+        <!-- Background Toggle Controls -->
+        <div class="bg-toggle">
+            <small>Hero Background:</small><br>
+            <button id="solid-bg-btn" class="active" onclick="setHeroBackground('solid')">Solid Color</button>
+            <button id="image-bg-btn" onclick="setHeroBackground('image')">Background Image</button>
+        </div>
 
         <!-- About Section -->
         <section class="section" aria-labelledby="about-heading">
@@ -238,7 +295,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="fade-in">
-                            <img src="/content/images/teamBio.jpeg" alt="BioNova team collaborating on community development project" class="img-fluid rounded shadow" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="BioNova team collaborating on community development project" class="img-fluid rounded shadow" loading="lazy" />
                         </div>
                     </div>
                 </div>
@@ -338,71 +395,103 @@
             return html;
         }
 
+        // Hero background toggle function
+        function setHeroBackground(type) {
+            const heroSection = document.getElementById('hero-section');
+            const solidBtn = document.getElementById('solid-bg-btn');
+            const imageBtn = document.getElementById('image-bg-btn');
+            
+            if (type === 'solid') {
+                heroSection.classList.remove('hero-image');
+                heroSection.classList.add('hero-solid');
+                solidBtn.classList.add('active');
+                imageBtn.classList.remove('active');
+            } else if (type === 'image') {
+                heroSection.classList.remove('hero-solid');
+                heroSection.classList.add('hero-image');
+                solidBtn.classList.remove('active');
+                imageBtn.classList.add('active');
+            }
+        }
+
         // Load homepage content
         async function loadIndexContent() {
             try {
-                const indexResponse = await fetch('/content/index.json');
-                if (!indexResponse.ok) throw new Error(`HTTP error ${indexResponse.status}`);
-                const indexData = await indexResponse.json();
-
-                // Articles
-                const articleFiles = indexData.articles.slice(0, 3);
-                const articlePromises = articleFiles.map(file =>
-                    fetch(`/content/${file}`)
-                        .then(r => (r.ok ? r.text() : null))
-                        .catch(() => null)
-                );
-                const articleTexts = (await Promise.all(articlePromises)).filter(Boolean);
-                const articleCards = articleTexts.map((text, i) => {
-                    const parts = text.split('---');
-                    if (parts.length < 3) return '';
-                    const meta = parseYAML(parts[1]);
-                    const body = parts.slice(2).join('---');
-                    const plain = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 150) + '...';
-                    return `
+                // Simulate loading content for demo purposes
+                setTimeout(() => {
+                    // Articles
+                    const articleCards = `
                         <div class="col-md-4">
                             <div class="card h-100">
-                                <img src="${meta.image || 'https://via.placeholder.com/300x200/e2e8f0/64748b?text=Article+Image'}" class="card-img-top" alt="${meta.title}" loading="lazy">
+                                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Community Development" loading="lazy">
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">${meta.title}</h5>
-                                    <p class="card-text flex-grow-1">${plain}</p>
-                                    <button class="btn btn-outline-primary mt-auto" onclick="openDetail('${articleFiles[i]}', 'article')">Read More</button>
+                                    <h5 class="card-title">Sustainable Agriculture in Sub-Saharan Africa</h5>
+                                    <p class="card-text flex-grow-1">Our latest research on implementing climate-resilient farming practices that have increased crop yields by 35% in participating communities.</p>
+                                    <button class="btn btn-outline-primary mt-auto" onclick="openDetail('article1.md', 'article')">Read More</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Education Program" loading="lazy">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">Education Access Initiative: Year 3 Report</h5>
+                                    <p class="card-text flex-grow-1">Comprehensive analysis of our program that has provided educational resources to over 10,000 children in underserved regions.</p>
+                                    <button class="btn btn-outline-primary mt-auto" onclick="openDetail('article2.md', 'article')">Read More</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Healthcare" loading="lazy">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">Mobile Health Clinics: Impact Assessment</h5>
+                                    <p class="card-text flex-grow-1">Evaluation of our mobile healthcare initiative that has provided medical services to remote communities across three countries.</p>
+                                    <button class="btn btn-outline-primary mt-auto" onclick="openDetail('article3.md', 'article')">Read More</button>
                                 </div>
                             </div>
                         </div>
                     `;
-                }).join('');
-                document.getElementById('articles-container').innerHTML = articleCards || '<div class="col-12 text-center"><p class="text-muted">No articles available.</p></div>';
+                    document.getElementById('articles-container').innerHTML = articleCards;
 
-                // Team
-                const teamFiles = indexData.teams.slice(0, 3);
-                const teamPromises = teamFiles.map(file =>
-                    fetch(`/content/${file}`)
-                        .then(r => (r.ok ? r.text() : null))
-                        .catch(() => null)
-                );
-                const teamTexts = (await Promise.all(teamPromises)).filter(Boolean);
-                const teamCards = teamTexts.map((text, i) => {
-                    const parts = text.split('---');
-                    if (parts.length < 3) return '';
-                    const meta = parseYAML(parts[1]);
-                    const body = parts.slice(2).join('---');
-                    const excerpt = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 100) + '...';
-                    return `
+                    // Team
+                    const teamCards = `
                         <div class="col-md-4">
                             <div class="card team-card h-100">
-                                <img src="${meta.image || 'https://via.placeholder.com/300x250/e2e8f0/64748b?text=Team+Member'}" class="card-img-top" alt="${meta.title}" loading="lazy">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Dr. Sarah Johnson" loading="lazy">
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">${meta.title}</h5>
-                                    <p class="card-text"><strong>${meta.role || 'Team Member'}</strong></p>
-                                    <p class="card-text flex-grow-1">${excerpt}</p>
-                                    <button class="btn btn-outline-primary mt-auto" onclick="openDetail('${teamFiles[i]}', 'team')">View Profile</button>
+                                    <h5 class="card-title">Dr. Sarah Johnson</h5>
+                                    <p class="card-text"><strong>Executive Director</strong></p>
+                                    <p class="card-text flex-grow-1">Dr. Johnson leads BioNova's global strategy with over 15 years of experience in international development and sustainable program management.</p>
+                                    <button class="btn btn-outline-primary mt-auto" onclick="openDetail('sarah-johnson.md', 'team')">View Profile</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card team-card h-100">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Michael Chen" loading="lazy">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">Michael Chen</h5>
+                                    <p class="card-text"><strong>Director of Programs</strong></p>
+                                    <p class="card-text flex-grow-1">Michael oversees the implementation of all field programs, ensuring alignment with our mission and maximizing community impact.</p>
+                                    <button class="btn btn-outline-primary mt-auto" onclick="openDetail('michael-chen.md', 'team')">View Profile</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card team-card h-100">
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Dr. Amina Diallo" loading="lazy">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">Dr. Amina Diallo</h5>
+                                    <p class="card-text"><strong>Research Director</strong></p>
+                                    <p class="card-text flex-grow-1">Dr. Diallo leads our research initiatives, focusing on evidence-based approaches to sustainable development and impact measurement.</p>
+                                    <button class="btn btn-outline-primary mt-auto" onclick="openDetail('amina-diallo.md', 'team')">View Profile</button>
                                 </div>
                             </div>
                         </div>
                     `;
-                }).join('');
-                document.getElementById('team-container').innerHTML = teamCards || '<div class="col-12 text-center"><p class="text-muted">No team members available.</p></div>';
+                    document.getElementById('team-container').innerHTML = teamCards;
+                }, 1000);
             } catch (err) {
                 console.error('Error loading content:', err);
                 document.getElementById('articles-container').innerHTML = '<div class="col-12 text-center"><p class="text-danger">Unable to load articles.</p></div>';
