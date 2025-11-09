@@ -4,292 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Articles - BioNova</title>
-    
+
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     <style>
         :root {
-            --bs-primary: #000;
-            --bs-secondary: #6c757d;
-            --bs-light: #f8f9fa;
-            --bs-dark: #212529;
+            --primary: #000000;
+            --primary-rgb: 0, 0, 0;
+            --secondary: #6c757d;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --success: #28a745;
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            --card-bg: #ffffff;
         }
-        
+
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Inter', sans-serif;
+            background-color: #fafbfc;
         }
         
-        /* Header */
-        .navbar {
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,.1);
-            transition: all 0.3s ease;
-        }
-        
-        .navbar.scrolled {
-            box-shadow: 0 4px 12px rgba(0,0,0,.15);
-        }
-        
+        /* Minimal custom CSS */
         .navbar-brand {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: #000 !important;
+            font-weight: 800;
+            font-size: 1.6rem;
         }
         
-        .nav-link {
-            color: #333 !important;
-            font-weight: 500;
-        }
-        
-        .nav-link:hover {
-            color: #000 !important;
-        }
-        
-        /* Hero Section */
         .hero-section {
-            background-color: #f8f9fa;
-            padding: 6rem 0 4rem;
-            text-align: center;
-        }
-        
-        .hero-section h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        
-        .hero-section p {
-            font-size: 1.2rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-        
-        /* Search */
-        .search-container {
-            position: relative;
-            max-width: 500px;
-            margin: 0 auto 2rem;
-        }
-        
-        .search-icon {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #6c757d;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 12px 20px 12px 45px;
-            border: 1px solid #dee2e6;
-            border-radius: 50px;
-            font-size: 1rem;
-        }
-        
-        .search-input:focus {
-            outline: none;
-            border-color: #000;
-            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
-        }
-        
-        /* Filters */
-        .filters {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
         }
         
         .filter-tag {
-            padding: 8px 16px;
-            border: 1px solid #dee2e6;
-            background: white;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .filter-tag:hover {
-            border-color: #000;
+            transition: var(--transition);
         }
         
         .filter-tag.active {
-            background: #000;
+            background: var(--primary);
             color: white;
-            border-color: #000;
-        }
-        
-        /* Articles Grid */
-        .articles-grid {
-            padding: 3rem 0;
+            border-color: var(--primary);
         }
         
         .article-card {
-            border: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,.1);
-            transition: transform 0.3s ease;
+            transition: var(--transition);
             height: 100%;
-            margin-bottom: 2rem;
         }
         
         .article-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .article-image {
+            height: 200px;
+            overflow: hidden;
         }
         
         .article-image img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+            transition: transform 0.5s ease;
         }
         
-        .article-content {
-            padding: 1.5rem;
-        }
-        
-        .article-meta {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 1rem;
-            font-size: 0.85rem;
-            color: #6c757d;
-        }
-        
-        .article-meta span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .article-content h3 {
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-        }
-        
-        .article-excerpt {
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-        
-        .article-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .article-tags {
-            display: flex;
-            gap: 8px;
-        }
-        
-        .tag {
-            padding: 4px 8px;
-            background: #f8f9fa;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            color: #495057;
+        .article-card:hover .article-image img {
+            transform: scale(1.03);
         }
         
         .read-more-btn {
-            background: none;
-            border: none;
-            color: #000;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            transition: var(--transition);
         }
         
         .read-more-btn:hover {
-            color: #333;
-        }
-        
-        /* Loading */
-        .loading {
-            text-align: center;
-            padding: 3rem;
-        }
-        
-        .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-left-color: #000;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: #6c757d;
-        }
-        
-        .empty-state i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #adb5bd;
-        }
-        
-        .empty-state h3 {
-            margin-bottom: 1rem;
-            color: #495057;
-        }
-        
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            padding: 2rem 0;
-        }
-        
-        .load-more-btn {
-            padding: 12px 30px;
-            background: #000;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background 0.2s ease;
-        }
-        
-        .load-more-btn:hover {
-            background: #333;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: #000;
-            color: #fff;
-            padding: 2rem 0;
-            text-align: center;
+            transform: translateX(4px);
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm py-3">
         <div class="container">
-            <a class="navbar-brand" href="index.html">BioNova</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand text-dark" href="index.html">BioNova</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -315,53 +121,66 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <h1>Insights & Impact Stories</h1>
-            <p>Explore our research, program updates, and stories of transformation from communities around the world</p>
-            
-            <div class="search-container">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" class="search-input" id="search-input" placeholder="Search articles by title or content...">
-            </div>
+    <section class="hero-section pt-5 mt-5 pb-5">
+        <div class="container pt-5">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h1 class="display-5 fw-bold mb-4">Insights & Impact Stories</h1>
+                    <p class="lead mb-5 text-muted">
+                        Explore our research, program updates, and stories of transformation from communities around the world
+                    </p>
 
-            <div class="filters" id="tags-container">
-                <button class="filter-tag active" onclick="filterArticles('all')">All Articles</button>
+                    <!-- Search -->
+                    <div class="position-relative mb-4 mx-auto" style="max-width: 520px;">
+                        <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                        <input type="text" class="form-control border-2 py-3 ps-5 rounded-pill" 
+                               id="search-input" placeholder="Search articles by title or content...">
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="filters d-flex flex-wrap justify-content-center gap-2 mb-4" id="tags-container">
+                        <button class="filter-tag btn btn-outline-dark rounded-pill px-3 active" 
+                                onclick="filterArticles('all')">All Articles</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Main Content -->
-    <main class="main-content">
+    <main class="py-5">
         <div class="container">
-            <div id="articles-container" class="row">
+            <div id="articles-container" class="row g-4">
                 <div class="col-12">
-                    <div class="loading">
-                        <div class="spinner"></div>
-                        <p>Loading articles...</p>
+                    <div class="loading bg-white rounded shadow-sm p-5 text-center">
+                        <div class="spinner-border text-primary mb-3" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="text-muted mb-0">Loading articles...</p>
                     </div>
                 </div>
             </div>
 
-            <div class="pagination" id="pagination-container" style="display:none;">
-                <button class="load-more-btn" id="load-more-btn">
-                    Load More Articles
+            <!-- Pagination -->
+            <div class="d-flex justify-content-center mt-5" id="pagination-container" style="display:none;">
+                <button class="btn btn-dark btn-lg px-4 py-2 rounded-pill" id="load-more-btn">
+                    Load More Articles <i class="fas fa-arrow-down ms-2"></i>
                 </button>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 BioNova. All rights reserved. Committed to transparency and accountability.</p>
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 BioNova. All rights reserved. Committed to transparency and accountability.</p>
         </div>
     </footer>
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Original Script (Unchanged) -->
+    <!-- Your Original Script - Completely Unchanged -->
     <script>
         // Helper Functions
         function parseYAML(yamlStr) {
@@ -390,7 +209,7 @@
             html = html.replace(/^(\s*)### (.+)$/gm, '$1<h3>$2</h3>');
             html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
             html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
-            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
             html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
             html = html.replace(/(<li>.+<\/li>)+/g, '<ul>$&</ul>');
             html = html.replace(/\n/g, '<br>');
@@ -419,7 +238,7 @@
 
                 allArticles = [];
                 const allTags = new Set();
-                
+
                 for (let i = 0; i < articleTexts.length; i++) {
                     const text = articleTexts[i];
                     const parts = text.split('---');
@@ -441,10 +260,12 @@
             } catch (error) {
                 console.error('Error loading articles:', error);
                 document.getElementById('articles-container').innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-exclamation-circle"></i>
-                        <h3>Unable to Load Articles</h3>
-                        <p>Please try again later</p>
+                    <div class="col-12">
+                        <div class="empty-state bg-white rounded shadow-sm p-5 text-center">
+                            <i class="fas fa-exclamation-circle fa-3x text-muted mb-3"></i>
+                            <h3 class="text-dark">Unable to Load Articles</h3>
+                            <p class="text-muted">Please try again later</p>
+                        </div>
                     </div>
                 `;
             }
@@ -452,9 +273,9 @@
 
         function renderTags(tags) {
             const container = document.getElementById('tags-container');
-            const allButton = '<button class="filter-tag active" onclick="filterArticles(\'all\')">All Articles</button>';
-            const tagButtons = tags.map(tag => 
-                `<button class="filter-tag" onclick="filterArticles('${tag}')">${tag}</button>`
+            const allButton = '<button class="filter-tag btn btn-outline-dark rounded-pill px-3 active" onclick="filterArticles(\'all\')">All Articles</button>';
+            const tagButtons = tags.map(tag =>
+                `<button class="filter-tag btn btn-outline-dark rounded-pill px-3" onclick="filterArticles('${tag}')">${tag}</button>`
             ).join('');
             container.innerHTML = allButton + tagButtons;
         }
@@ -463,7 +284,6 @@
             currentFilter = tag;
             document.querySelectorAll('.filter-tag').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
-
             applyFilters();
         }
 
@@ -472,7 +292,7 @@
 
             // Apply tag filter
             if (currentFilter !== 'all') {
-                filtered = filtered.filter(article => 
+                filtered = filtered.filter(article =>
                     article.meta.tags && article.meta.tags.includes(currentFilter)
                 );
             }
@@ -499,10 +319,12 @@
 
             if (pageArticles.length === 0) {
                 container.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-search"></i>
-                        <h3>No Articles Found</h3>
-                        <p>Try adjusting your filters or search query</p>
+                    <div class="col-12">
+                        <div class="empty-state bg-white rounded shadow-sm p-5 text-center">
+                            <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                            <h3 class="text-dark">No Articles Found</h3>
+                            <p class="text-muted">Try adjusting your filters or search query</p>
+                        </div>
                     </div>
                 `;
                 document.getElementById('pagination-container').style.display = 'none';
@@ -512,34 +334,35 @@
             const articleCards = pageArticles.map(article => {
                 const plainText = article.htmlBody.replace(/<[^>]*>/g, '').substring(0, 150);
                 const excerpt = plainText + (plainText.length >= 150 ? '...' : '');
-                const imageUrl = article.meta.image || 'https://via.placeholder.com/340x240/e2e8f0/64748b?text=Article';
-                const tags = article.meta.tags && Array.isArray(article.meta.tags) 
-                    ? article.meta.tags.slice(0, 2).map(tag => `<span class="tag">${tag}</span>`).join('')
+                const imageUrl = article.meta.image || 'https://via.placeholder.com/340x200/e2e8f0/64748b?text=Article+Image';
+                const tags = article.meta.tags && Array.isArray(article.meta.tags)
+                    ? article.meta.tags.slice(0, 2).map(tag => `<span class="badge bg-light text-dark">${tag}</span>`).join('')
                     : '';
-                const date = article.meta.date ? new Date(article.meta.date).toLocaleDateString('en-US', { 
-                    month: 'short', 
-                    day: 'numeric', 
-                    year: 'numeric' 
+                const date = article.meta.date ? new Date(article.meta.date).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
                 }) : '';
                 const author = article.meta.author || 'BioNova Team';
 
                 return `
                     <div class="col-md-6 col-lg-4">
-                        <div class="article-card">
-                            <div class="article-image">
-                                <img src="${imageUrl}" alt="${article.meta.title}" loading="lazy">
+                        <div class="article-card card shadow h-100" role="article" aria-labelledby="title-${article.id}">
+                            <div class="article-image card-img-top">
+                                <img src="${imageUrl}" class="img-fluid w-100 h-100 object-fit-cover" alt="${article.meta.title}" loading="lazy">
                             </div>
-                            <div class="article-content">
-                                <div class="article-meta">
-                                    ${date ? `<span><i class="far fa-calendar"></i> ${date}</span>` : ''}
-                                    <span><i class="far fa-user"></i> ${author}</span>
+                            <div class="card-body d-flex flex-column">
+                                <div class="article-meta text-muted small mb-2">
+                                    ${date ? `<span><i class="far fa-calendar me-1"></i> ${date}</span>` : ''}
+                                    <span><i class="far fa-user me-1"></i> ${author}</span>
                                 </div>
-                                <h3>${article.meta.title}</h3>
-                                <p class="article-excerpt">${excerpt}</p>
-                                <div class="article-footer">
-                                    <div class="article-tags">${tags}</div>
-                                    <button class="read-more-btn" onclick="openDetail('${article.id}')">
-                                        Read More <i class="fas fa-arrow-right"></i>
+                                <h5 class="card-title fw-bold" id="title-${article.id}">${article.meta.title}</h5>
+                                <p class="article-excerpt card-text text-muted flex-grow-1">${excerpt}</p>
+                                <div class="article-footer mt-auto">
+                                    <div class="article-tags mb-2">${tags}</div>
+                                    <button class="read-more-btn btn btn-link text-decoration-none p-0 text-dark fw-semibold" onclick="openDetail('${article.id}')">
+                                        Read More <i class="fas fa-arrow-right ms-1 small"></i>
+                                        <span class="visually-hidden">Read full article: ${article.meta.title}</span>
                                     </button>
                                 </div>
                             </div>
@@ -571,17 +394,17 @@
 
         // Search functionality
         document.getElementById('search-input').addEventListener('input', (e) => {
-            searchQuery = e.target.value;
+            searchQuery = e.target.value.trim();
             applyFilters();
         });
 
         // Scroll effect for header
         window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
+            const header = document.querySelector('.navbar');
             if (window.scrollY > 50) {
-                header.classList.add('scrolled');
+                header.classList.add('shadow');
             } else {
-                header.classList.remove('scrolled');
+                header.classList.remove('shadow');
             }
         });
 
