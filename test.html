@@ -10,7 +10,7 @@
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
             --bs-primary: #000;
@@ -18,165 +18,173 @@
             --bs-light: #f8f9fa;
             --bs-dark: #212529;
         }
-        
+
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
         }
-        
+
         .navbar {
             background-color: #fff;
             box-shadow: 0 2px 4px rgba(0,0,0,.1);
         }
-        
+
         .navbar-brand {
             font-weight: 700;
             font-size: 1.5rem;
             color: #000 !important;
         }
-        
+
         .nav-link {
             color: #333 !important;
             font-weight: 500;
         }
-        
+
         .nav-link:hover {
             color: #000 !important;
         }
-        
-        /* Hero Section with Background Image Option */
+
+        /* Hero Section */
         .hero {
             padding: 8rem 0;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
-        
-        /* Default solid color background */
+
         .hero-solid {
             background-color: #f8f9fa;
+            color: #333;
         }
-        
-        /* Background image option */
+
         .hero-image {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1504805572947-2f9e3e878434?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             color: white;
         }
-        
-        .hero-image h1,
-        .hero-image p {
-            color: white;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-        }
-        
+
         .hero h1 {
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
         }
-        
+
         .hero p {
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto 2rem;
-            color: #666;
         }
-        
+
+        .hero-image h1,
         .hero-image p {
-            color: rgba(255,255,255,0.9);
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
         }
-        
+
         .btn-primary {
             background-color: #000;
             border-color: #000;
             padding: 0.75rem 2rem;
             font-weight: 500;
         }
-        
+
         .btn-primary:hover {
             background-color: #333;
             border-color: #333;
         }
-        
+
         .btn-outline-primary {
             color: #000;
             border-color: #000;
         }
-        
+
         .btn-outline-primary:hover {
             background-color: #000;
             color: #fff;
         }
-        
+
+        .btn-outline-light {
+            color: #fff;
+            border-color: #fff;
+        }
+
+        .btn-outline-light:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
         .section {
             padding: 5rem 0;
         }
-        
+
         .section-header {
             text-align: center;
             margin-bottom: 3rem;
         }
-        
+
         .section-header h2 {
             font-weight: 700;
             margin-bottom: 1rem;
         }
-        
+
         .section-header p {
             color: #666;
             max-width: 700px;
             margin: 0 auto;
         }
-        
+
         .alt-bg {
             background-color: #f8f9fa;
         }
-        
+
         .card {
             border: none;
             box-shadow: 0 4px 6px rgba(0,0,0,.1);
             transition: transform 0.3s ease;
             height: 100%;
         }
-        
+
         .card:hover {
             transform: translateY(-5px);
         }
-        
+
+        /* ✅ Critical: ensure images fill card tops */
         .card-img-top {
             height: 200px;
+            width: 100%;
             object-fit: cover;
+            object-position: center;
         }
-        
+
+        .team-card .card-img-top {
+            height: 250px;
+            object-fit: cover;
+            object-position: center;
+        }
+
         .card-body {
             padding: 1.5rem;
         }
-        
+
         .card-title {
             font-weight: 600;
             margin-bottom: 0.75rem;
         }
-        
-        .team-card img {
-            height: 250px;
-            object-fit: cover;
-        }
-        
+
         footer {
             background-color: #000;
             color: #fff;
             padding: 2rem 0;
             text-align: center;
         }
-        
+
         .loading {
             text-align: center;
             padding: 2rem;
         }
-        
+
         .spinner {
             border: 4px solid rgba(0, 0, 0, 0.1);
             border-left-color: #000;
@@ -186,23 +194,22 @@
             animation: spin 1s linear infinite;
             margin: 0 auto 1rem;
         }
-        
+
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-        
-        /* Custom fade-in animation */
+
         .fade-in {
             opacity: 0;
             animation: fadeIn 1s ease forwards;
         }
-        
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        /* Background toggle controls */
+
+        /* Background toggle */
         .bg-toggle {
             position: fixed;
             bottom: 20px;
@@ -213,7 +220,7 @@
             border-radius: 5px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        
+
         .bg-toggle button {
             margin: 0 5px;
             padding: 5px 10px;
@@ -221,7 +228,7 @@
             background: white;
             cursor: pointer;
         }
-        
+
         .bg-toggle button.active {
             background: #000;
             color: white;
@@ -241,7 +248,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="services.html">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="articles.html">Publications</a>
@@ -259,25 +266,19 @@
     </header>
 
     <main id="main-content">
-        <!-- Hero Section with Background Toggle -->
-        <section class="hero hero-solid" id="hero-section" aria-labelledby="hero-heading">
+        <section class="hero" id="hero-section" aria-labelledby="hero-heading"
+                 style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('content/images/tester.jpg'); background-size: cover; background-position: center; color: white;">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <h1 id="hero-heading" class="display-4 fw-bold mb-4">Sustainable Solutions for Global Challenges</h1>
                         <p class="lead mb-4">Empowering communities through innovative development programs and strategic partnerships</p>
-                        <button class="btn btn-primary btn-lg" onclick="window.location.href='contact.html'">Join Our Mission</button>
+                        <button class="btn btn-primary btn-lg me-2" onclick="window.location.href='contact.html'">Join Our Mission</button>
+                        <button class="btn btn-outline-light btn-lg" onclick="window.location.href='about.html'">Learn More</button>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Background Toggle Controls -->
-        <div class="bg-toggle">
-            <small>Hero Background:</small><br>
-            <button id="solid-bg-btn" class="active" onclick="setHeroBackground('solid')">Solid Color</button>
-            <button id="image-bg-btn" onclick="setHeroBackground('image')">Background Image</button>
-        </div>
 
         <!-- About Section -->
         <section class="section" aria-labelledby="about-heading">
@@ -288,14 +289,17 @@
                 </header>
                 <div class="row align-items-center">
                     <div class="col-lg-6 mb-4 mb-lg-0">
-                        <p class="mb-3">BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide. Our evidence-based approach combines local knowledge with global expertise to address the most pressing challenges facing vulnerable populations.</p>
-                        <p class="mb-3">Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives. We prioritize local leadership and participatory approaches to ensure our programs are culturally appropriate and sustainable in the long term.</p>
-                        <p class="mb-4">Through strategic partnerships with local organizations, government agencies, and international stakeholders, we've successfully implemented programs that have transformed lives across multiple continents while maintaining the highest standards of accountability and transparency.</p>
-                        <a href="#" class="btn btn-outline-primary">Explore Our Impact <i class="fas fa-arrow-right ms-2"></i></a>
+                        <p class="mb-3">BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide.</p>
+                        <p class="mb-3">Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives.</p>
+                        <p class="mb-4">We prioritize local leadership and participatory approaches to ensure programs are culturally appropriate and sustainable.</p>
+                        <a href="about.html" class="btn btn-outline-primary">Explore Our Impact <i class="fas fa-arrow-right ms-2"></i></a>
                     </div>
                     <div class="col-lg-6">
                         <div class="fade-in">
-                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="BioNova team collaborating on community development project" class="img-fluid rounded shadow" loading="lazy" />
+                            <img src="content/images/teamBio.jpeg" 
+                                 alt="BioNova team collaborating" 
+                                 class="img-fluid rounded shadow" 
+                                 loading="lazy" />
                         </div>
                     </div>
                 </div>
@@ -307,9 +311,9 @@
             <div class="container">
                 <header class="section-header">
                     <h2 id="articles-heading" class="display-5 fw-bold">Insights & Impact Stories</h2>
-                    <p>Research findings, program updates, and stories of transformation from our global initiatives</p>
+                    <p>Research findings, program updates, and stories of transformation</p>
                 </header>
-                <div id="articles-container" class="row g-4">
+                <div class="row g-4" id="articles-container">
                     <div class="col-12 text-center">
                         <div class="loading">
                             <div class="spinner"></div>
@@ -328,9 +332,9 @@
             <div class="container">
                 <header class="section-header">
                     <h2 id="team-heading" class="display-5 fw-bold">Our Leadership & Experts</h2>
-                    <p>Dedicated professionals driving sustainable change across our global operations</p>
+                    <p>Dedicated professionals driving sustainable change</p>
                 </header>
-                <div id="team-container" class="row g-4">
+                <div class="row g-4" id="team-container">
                     <div class="col-12 text-center">
                         <div class="loading">
                             <div class="spinner"></div>
@@ -348,16 +352,16 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 BioNova. All rights reserved. Committed to transparency and accountability.</p>
+            <p>&copy; 2025 BioNova. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Script -->
+    <!-- Script (with critical fixes applied) -->
     <script>
-        // Utility: Parse YAML-like frontmatter
+        // Utility function for parsing YAML frontmatter
         function parseYAML(yamlStr) {
             const result = {};
             const lines = yamlStr.trim().split('\n');
@@ -370,17 +374,14 @@
                 } else if (value.startsWith("'") && value.endsWith("'")) {
                     value = value.slice(1, -1);
                 } else if (value.startsWith('[') && value.endsWith(']')) {
-                    value = value
-                        .slice(1, -1)
-                        .split(',')
-                        .map((v) => v.trim().replace(/["']/g, ''));
+                    value = value.slice(1, -1).split(',').map(v => v.trim().replace(/"/g, '').replace(/'/g, ''));
                 }
                 result[trimmedKey] = value;
             }
             return result;
         }
 
-        // Markdown → HTML (simple version)
+        // Function to convert markdown to HTML (simplified)
         function simpleMarkdownToHTML(md) {
             let html = md;
             html = html.replace(/^(\s*)## (.+)$/gm, '$1<h2>$2</h2>');
@@ -392,119 +393,140 @@
             html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
             html = html.replace(/(<li>.+<\/li>)+/g, '<ul>$&</ul>');
             html = html.replace(/\n/g, '<br>');
+            const paragraphs = html.split('<br><br>');
+            html = paragraphs.map(p => `<p>${p}</p>`).join('');
+            html = html.replace(/<br><br>/g, '<br>');
             return html;
         }
 
-        // Hero background toggle function
-        function setHeroBackground(type) {
-            const heroSection = document.getElementById('hero-section');
-            const solidBtn = document.getElementById('solid-bg-btn');
-            const imageBtn = document.getElementById('image-bg-btn');
-            
-            if (type === 'solid') {
-                heroSection.classList.remove('hero-image');
-                heroSection.classList.add('hero-solid');
-                solidBtn.classList.add('active');
-                imageBtn.classList.remove('active');
-            } else if (type === 'image') {
-                heroSection.classList.remove('hero-solid');
-                heroSection.classList.add('hero-image');
-                solidBtn.classList.remove('active');
-                imageBtn.classList.add('active');
-            }
-        }
 
-        // Load homepage content
+        // Main function to load content
         async function loadIndexContent() {
             try {
-                // Simulate loading content for demo purposes
-                setTimeout(() => {
-                    // Articles
-                    const articleCards = `
-                        <div class="col-md-4">
-                            <div class="card h-100">
-                                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Community Development" loading="lazy">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">Sustainable Agriculture in Sub-Saharan Africa</h5>
-                                    <p class="card-text flex-grow-1">Our latest research on implementing climate-resilient farming practices that have increased crop yields by 35% in participating communities.</p>
-                                    <button class="btn btn-outline-primary mt-auto" onclick="openDetail('article1.md', 'article')">Read More</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card h-100">
-                                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Education Program" loading="lazy">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">Education Access Initiative: Year 3 Report</h5>
-                                    <p class="card-text flex-grow-1">Comprehensive analysis of our program that has provided educational resources to over 10,000 children in underserved regions.</p>
-                                    <button class="btn btn-outline-primary mt-auto" onclick="openDetail('article2.md', 'article')">Read More</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card h-100">
-                                <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Healthcare" loading="lazy">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">Mobile Health Clinics: Impact Assessment</h5>
-                                    <p class="card-text flex-grow-1">Evaluation of our mobile healthcare initiative that has provided medical services to remote communities across three countries.</p>
-                                    <button class="btn btn-outline-primary mt-auto" onclick="openDetail('article3.md', 'article')">Read More</button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    document.getElementById('articles-container').innerHTML = articleCards;
+                const indexResponse = await fetch('/content/index.json');
+                if (!indexResponse.ok) {
+                    throw new Error(`HTTP error! status: ${indexResponse.status}`);
+                }
+                const indexData = await indexResponse.json();
 
-                    // Team
-                    const teamCards = `
-                        <div class="col-md-4">
-                            <div class="card team-card h-100">
-                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Dr. Sarah Johnson" loading="lazy">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">Dr. Sarah Johnson</h5>
-                                    <p class="card-text"><strong>Executive Director</strong></p>
-                                    <p class="card-text flex-grow-1">Dr. Johnson leads BioNova's global strategy with over 15 years of experience in international development and sustainable program management.</p>
-                                    <button class="btn btn-outline-primary mt-auto" onclick="openDetail('sarah-johnson.md', 'team')">View Profile</button>
+                // Load latest 3 articles
+                const articleFiles = indexData.articles.slice(0, 3);
+                const articlePromises = articleFiles.map(file =>
+                    fetch(`/content/${file}`)
+                        .then(r => {
+                            if (!r.ok) throw new Error(`Failed to load article: ${file}`);
+                            return r.text();
+                        })
+                        .catch(err => {
+                            console.error(`Error loading article ${file}:`, err);
+                            return null;
+                        })
+                );
+
+                const articleTexts = await Promise.all(articlePromises);
+                const validArticleTexts = articleTexts.filter(text => text !== null);
+                const articleCards = [];
+                for (let i = 0; i < validArticleTexts.length; i++) {
+                    const text = validArticleTexts[i];
+                    const parts = text.split('---');
+                    if (parts.length >= 3) {
+                        const frontmatter = parts[1];
+                        const body = parts.slice(2).join('---');
+                        const meta = parseYAML(frontmatter);
+                        const plainText = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 150) + '...';
+                        articleCards.push(`
+                            <div class="col-md-4">
+                                <div class="card h-100">
+                                    <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article+Image'}" 
+                                         class="card-img-top" 
+                                         alt="${meta.title}" 
+                                         loading="lazy">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">${meta.title}</h5>
+                                        <p class="card-text flex-grow-1">${plainText}</p>
+                                        <button class="btn btn-outline-primary mt-auto" onclick="openDetail('${articleFiles[i]}', 'article')">Read More</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card team-card h-100">
-                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Michael Chen" loading="lazy">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">Michael Chen</h5>
-                                    <p class="card-text"><strong>Director of Programs</strong></p>
-                                    <p class="card-text flex-grow-1">Michael oversees the implementation of all field programs, ensuring alignment with our mission and maximizing community impact.</p>
-                                    <button class="btn btn-outline-primary mt-auto" onclick="openDetail('michael-chen.md', 'team')">View Profile</button>
+                        `);
+                    }
+                }
+
+                const articlesContainer = document.getElementById('articles-container');
+                if (articleCards.length) {
+                    articlesContainer.innerHTML = articleCards.join('');
+                } else {
+                    articlesContainer.innerHTML = '<div class="col-12"><p class="text-center text-muted">No articles available at this time.</p></div>';
+                }
+
+                // Load team members
+                const teamFiles = indexData.teams.slice(0, 3);
+                const teamPromises = teamFiles.map(file =>
+                    fetch(`/content/${file}`)
+                        .then(r => {
+                            if (!r.ok) throw new Error(`Failed to load team member: ${file}`);
+                            return r.text();
+                        })
+                        .catch(err => {
+                            console.error(`Error loading team member ${file}:`, err);
+                            return null;
+                        })
+                );
+
+                const teamTexts = await Promise.all(teamPromises);
+                const validTeamTexts = teamTexts.filter(text => text !== null);
+                const teamCards = [];
+                for (let i = 0; i < validTeamTexts.length; i++) {
+                    const text = validTeamTexts[i];
+                    const parts = text.split('---');
+                    if (parts.length >= 3) {
+                        const frontmatter = parts[1];
+                        const body = parts.slice(2).join('---');
+                        const meta = parseYAML(frontmatter);
+                        const excerpt = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 100) + '...';
+                        teamCards.push(`
+                            <div class="col-md-4">
+                                <div class="card team-card h-100">
+                                    <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Team+Member'}" 
+                                         class="card-img-top" 
+                                         alt="${meta.title}" 
+                                         loading="lazy">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">${meta.title}</h5>
+                                        <p class="card-text"><strong>${meta.role || 'Team Member'}</strong></p>
+                                        <p class="card-text flex-grow-1">${excerpt}</p>
+                                        <button class="btn btn-outline-primary mt-auto" onclick="openDetail('${teamFiles[i]}', 'team')">View Profile</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card team-card h-100">
-                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Dr. Amina Diallo" loading="lazy">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">Dr. Amina Diallo</h5>
-                                    <p class="card-text"><strong>Research Director</strong></p>
-                                    <p class="card-text flex-grow-1">Dr. Diallo leads our research initiatives, focusing on evidence-based approaches to sustainable development and impact measurement.</p>
-                                    <button class="btn btn-outline-primary mt-auto" onclick="openDetail('amina-diallo.md', 'team')">View Profile</button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    document.getElementById('team-container').innerHTML = teamCards;
-                }, 1000);
-            } catch (err) {
-                console.error('Error loading content:', err);
-                document.getElementById('articles-container').innerHTML = '<div class="col-12 text-center"><p class="text-danger">Unable to load articles.</p></div>';
-                document.getElementById('team-container').innerHTML = '<div class="col-12 text-center"><p class="text-danger">Unable to load team info.</p></div>';
+                        `);
+                    }
+                }
+
+                const teamContainer = document.getElementById('team-container');
+                if (teamCards.length) {
+                    teamContainer.innerHTML = teamCards.join('');
+                } else {
+                    teamContainer.innerHTML = '<div class="col-12"><p class="text-center text-muted">No team members available at this time.</p></div>';
+                }
+            } catch (error) {
+                console.error('Error loading index content:', error);
+                document.getElementById('articles-container').innerHTML = '<div class="col-12"><p class="text-center text-danger">Unable to load articles at this time.</p></div>';
+                document.getElementById('team-container').innerHTML = '<div class="col-12"><p class="text-center text-danger">Unable to load team information at this time.</p></div>';
             }
         }
 
-        // Open detail pages
+        // Function to open detail pages
         function openDetail(id, type) {
             sessionStorage.setItem('selectedFile', id);
-            window.location.href = type === 'article' ? 'article.html' : 'team_detail.html';
+            if (type === 'article') {
+                window.location.href = 'article.html';
+            } else if (type === 'team') {
+                window.location.href = 'team_detail.html';
+            }
         }
 
+        // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', loadIndexContent);
     </script>
 </body>
