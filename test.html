@@ -1,305 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="BioNova – Empowering sustainable community development." />
-  <title>BioNova | Sustainable Community Development</title>
-
-  <!-- Bootstrap 5.3 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-  <!-- Icons (lightweight) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <style>
-    /* Minimal: zoom behavior + monochrome tone */
-    .zoomable {
-      cursor: zoom-in;
-      transition: transform 0.3s ease;
-    }
-    .zoomed {
-      transform: scale(1.5);
-      cursor: zoom-out;
-    }
-    body {
-      background-color: #ffffff;
-      color: #000000;
-    }
-    .text-muted {
-      color: #6c757d !important;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BioNova - Sustainable Development NGO</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" href="/content/images/logo.png" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
-<body class="bg-white text-dark">
 
-  <!-- Header -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="index.html">BioNova</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navLinks">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="articles.html">Articles</a></li>
-          <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
-          <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="logo">BioNova</a>
+                <ul class="nav-links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="articles.html">Publications</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-  <main>
-    <!-- Hero -->
-    <div class="bg-dark text-white text-center py-5" style="min-height: 60vh; display: flex; align-items: center; justify-content: center;">
-      <div class="container">
-        <h1 class="display-4 fw-bold mb-3">Sustainable Solutions for Global Challenges</h1>
-        <p class="lead mb-4">Empowering communities through innovative development programs and strategic partnerships</p>
-        <a href="contact.html" class="btn btn-outline-light btn-lg">Join Our Mission</a>
-      </div>
-    </div>
+    <main id="main-content">
+        <!-- Hero -->
+        <section class="hero" aria-labelledby="hero-heading">
+            <div class="hero-content">
+                <h1 id="hero-heading">Sustainable Solutions for Global Challenges</h1>
+                <p>Empowering communities through innovative development programs and strategic partnerships</p>
+                <button class="cta-button" onclick="window.location.href='contact.html'">Join Our Mission</button>
+            </div>
+        </section>
 
-    <!-- About -->
-    <div class="container py-5">
-      <div class="row justify-content-center mb-5">
-        <div class="col-md-8 text-center">
-          <h2 class="fw-bold mb-3">Our Commitment to Sustainable Change</h2>
-          <p class="lead text-muted">
-            Building resilient communities through evidence-based approaches and collaborative partnerships
-          </p>
+        <!-- About -->
+        <section class="section" aria-labelledby="about-heading">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="about-heading">Our Commitment to Sustainable Change</h2>
+                    <p>Building resilient communities through evidence-based approaches and collaborative partnerships</p>
+                </header>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide. Our evidence-based approach combines local knowledge with global expertise to address the most pressing challenges facing vulnerable populations.</p>
+                        <p>Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives. We prioritize local leadership and participatory approaches to ensure our programs are culturally appropriate and sustainable in the long term.</p>
+                        <p>Through strategic partnerships with local organizations, government agencies, and international stakeholders, we've successfully implemented programs that have transformed lives across multiple continents while maintaining the highest standards of accountability and transparency.</p>
+                        <a href="#" class="learn-more-btn">Explore Our Impact <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="about-image fade-in">
+                        <img src="/content/images/teamBio.jpeg" alt="BioNova team collaborating on community development project" loading="lazy" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Articles -->
+        <section class="section alt-bg" aria-labelledby="articles-heading">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="articles-heading">Insights & Impact Stories</h2>
+                    <p>Research findings, program updates, and stories of transformation from our global initiatives</p>
+                </header>
+                <div id="articles-container" class="articles-preview">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Loading articles...</p>
+                    </div>
+                </div>
+                <div class="view-all-container">
+                    <a href="articles.html" class="view-all-btn">View All Publications <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team -->
+        <section class="section alt-bg" aria-labelledby="team-heading">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="team-heading">Our Leadership & Experts</h2>
+                    <p>Dedicated professionals driving sustainable change across our global operations</p>
+                </header>
+                <div id="team-container" class="team-preview">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Loading team...</p>
+                    </div>
+                </div>
+                <div class="view-all-container">
+                    <a href="team.html" class="view-all-btn">Meet Our Full Team <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 BioNova. All rights reserved. Committed to transparency and accountability.</p>
         </div>
-      </div>
-      <div class="row align-items-center">
-        <div class="col-md-6 mb-4 mb-md-0">
-          <img src="/content/images/teamBio.jpeg" class="img-fluid rounded" alt="BioNova team collaborating" loading="lazy">
-        </div>
-        <div class="col-md-6">
-          <p class="mb-3">
-            BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide.
-          </p>
-          <p class="mb-3">
-            Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development.
-          </p>
-          <p class="mb-4">
-            Through strategic partnerships with local organizations, government agencies, and international stakeholders, we've successfully implemented programs that have transformed lives across multiple continents while maintaining the highest standards of accountability and transparency.
-          </p>
-          <a href="#" class="btn btn-outline-dark">Explore Our Impact <i class="fas fa-arrow-right ms-1"></i></a>
-        </div>
-      </div>
-    </div>
+    </footer>
 
-    <!-- Articles -->
-    <div class="bg-light py-5">
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-8 text-center">
-            <h2 class="fw-bold mb-3">Insights & Impact Stories</h2>
-            <p class="lead text-muted">
-              Research findings, program updates, and stories of transformation from our global initiatives
-            </p>
-          </div>
-        </div>
-        <div class="row g-4" id="articles-container">
-          <div class="col-12 text-center py-4 text-muted">Loading articles...</div>
-        </div>
-        <div class="text-center mt-5">
-          <a href="articles.html" class="btn btn-link text-dark fw-bold">
-            View All Publications <i class="fas fa-arrow-right ms-1"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Team -->
-    <div class="container py-5">
-      <div class="row justify-content-center mb-5">
-        <div class="col-md-8 text-center">
-          <h2 class="fw-bold mb-3">Our Leadership & Experts</h2>
-          <p class="lead text-muted">
-            Dedicated professionals driving sustainable change across our global operations
-          </p>
-        </div>
-      </div>
-      <div class="row g-4" id="team-container">
-        <div class="col-12 text-center py-4 text-muted">Loading team...</div>
-      </div>
-      <div class="text-center mt-5">
-        <a href="team.html" class="btn btn-link text-dark fw-bold">
-          Meet Our Full Team <i class="fas fa-arrow-right ms-1"></i>
-        </a>
-      </div>
-    </div>
-
-    <!-- Franchising Notice -->
-    <div class="bg-dark text-white py-4">
-      <div class="container text-center">
-        <h3 class="mb-2">BioNova Franchising LLC</h3>
-        <p class="mb-3">
-          The future home of BioNova Franchising for BioNova North America dealers.
-        </p>
-        <p class="mb-0">
-          For more information on franchising, please contact us at 
-          <a href="mailto:info@bionova.org" class="text-white text-decoration-underline">info@bionova.org</a>.
-        </p>
-        <p class="mt-2 fst-italic text-secondary">
-          *Click/tap images to zoom*
-        </p>
-      </div>
-    </div>
-  </main>
-
-  <footer class="bg-dark text-white py-4">
-    <div class="container text-center">
-      <p class="mb-0">&copy; 2025 BioNova. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
-
-  <script>
-    // --- Your original utility functions ---
-    function parseYAML(yamlStr) {
-        const result = {};
-        const lines = yamlStr.trim().split('\n');
-        for (const line of lines) {
-            const [key, ...valueParts] = line.split(':');
-            const trimmedKey = key.trim();
-            let value = valueParts.join(':').trim();
-            if (value.startsWith('"') && value.endsWith('"')) {
-                value = value.slice(1, -1);
-            } else if (value.startsWith("'") && value.endsWith("'")) {
-                value = value.slice(1, -1);
-            } else if (value.startsWith('[') && value.endsWith(']')) {
-                value = value.slice(1, -1).split(',').map(v => v.trim().replace(/"/g, '').replace(/'/g, ''));
+    <!-- Script -->
+    <script>
+        // Utility: Parse YAML-like frontmatter
+        function parseYAML(yamlStr) {
+            const result = {};
+            const lines = yamlStr.trim().split('\n');
+            for (const line of lines) {
+                const [key, ...valueParts] = line.split(':');
+                const trimmedKey = key.trim();
+                let value = valueParts.join(':').trim();
+                if (value.startsWith('"') && value.endsWith('"')) {
+                    value = value.slice(1, -1);
+                } else if (value.startsWith("'") && value.endsWith("'")) {
+                    value = value.slice(1, -1);
+                } else if (value.startsWith('[') && value.endsWith(']')) {
+                    value = value
+                        .slice(1, -1)
+                        .split(',')
+                        .map((v) => v.trim().replace(/["']/g, ''));
+                }
+                result[trimmedKey] = value;
             }
-            result[trimmedKey] = value;
+            return result;
         }
-        return result;
-    }
 
-    // --- Dynamic Content Loading (Your Script) ---
-    async function loadIndexContent() {
-        try {
-            const indexResponse = await fetch('/content/index.json');
-            if (!indexResponse.ok) throw new Error(`HTTP ${indexResponse.status}`);
-            const indexData = await indexResponse.json();
+        // Markdown → HTML (simple version)
+        function simpleMarkdownToHTML(md) {
+            let html = md;
+            html = html.replace(/^(\s*)## (.+)$/gm, '$1<h2>$2</h2>');
+            html = html.replace(/^(\s*)# (.+)$/gm, '$1<h1>$2</h1>');
+            html = html.replace(/^(\s*)### (.+)$/gm, '$1<h3>$2</h3>');
+            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+            html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.+<\/li>)+/g, '<ul>$&</ul>');
+            html = html.replace(/\n/g, '<br>');
+            return html;
+        }
 
-            // === ARTICLES ===
-            const articleFiles = indexData.articles.slice(0, 3);
-            const articlePromises = articleFiles.map(file =>
-                fetch(`/content/${file}`)
-                    .then(r => r.ok ? r.text() : Promise.reject(`Failed: ${file}`))
-                    .catch(err => {
-                        console.warn(err);
-                        return null;
-                    })
-            );
-            const articleTexts = await Promise.all(articlePromises);
-            const articleCards = [];
-            for (let i = 0; i < articleTexts.length; i++) {
-                const text = articleTexts[i];
-                if (!text) continue;
-                const parts = text.split('---');
-                if (parts.length < 3) continue;
-                const meta = parseYAML(parts[1]);
-                const title = meta.title || 'Untitled';
-                const tags = meta.tags ? meta.tags.split(',').map(t => t.trim()) : ['General'];
-                const img = meta.image || 'data:image/svg+xml;charset=UTF-8,<svg%20width%3D"400"%20height%3D"225"%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%3E%3Crect%20width%3D"100%25"%20height%3D"100%25"%20fill%3D"%23eee"%2F%3E%3Ctext%20x%3D"50%25"%20y%3D"50%25"%20text-anchor%3D"middle"%20dy%3D".3em"%20fill%3D"%23aaa"%3EImage%20Not%20Found%3C%2Ftext%3E%3C%2Fsvg%3E';
+        // Load homepage content
+        async function loadIndexContent() {
+            try {
+                const indexResponse = await fetch('/content/index.json');
+                if (!indexResponse.ok) throw new Error(`HTTP error ${indexResponse.status}`);
+                const indexData = await indexResponse.json();
 
-                articleCards.push(`
-                    <div class="col-md-4">
-                        <div class="card border-0 h-100">
-                            <img src="${img}"
-                                 class="card-img-top zoomable"
-                                 alt="${title}"
-                                 loading="lazy"
-                                 onclick="this.classList.toggle('zoomed')"
-                                 style="object-fit:cover; height:225px;">
-                            <div class="card-body p-0 pt-3">
-                                <h5 class="card-title h5 fw-bold">${title}</h5>
-                                <div class="mt-2">
-                                    ${tags.map(tag => 
-                                        `<span class="badge bg-light text-dark border">${tag}</span>`
-                                    ).join(' ')}
+                // Articles
+                const articleFiles = indexData.articles.slice(0, 3);
+                const articlePromises = articleFiles.map(file =>
+                    fetch(`/content/${file}`)
+                        .then(r => (r.ok ? r.text() : null))
+                        .catch(() => null)
+                );
+                const articleTexts = (await Promise.all(articlePromises)).filter(Boolean);
+                const articleCards = articleTexts.map((text, i) => {
+                    const parts = text.split('---');
+                    if (parts.length < 3) return '';
+                    const meta = parseYAML(parts[1]);
+                    const body = parts.slice(2).join('---');
+                    const plain = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 150) + '...';
+                    return `
+                        <div class="article-card">
+                            <div class="card-image">
+                                <img src="${meta.image || 'https://via.placeholder.com/280x200/e2e8f0/64748b?text=Article+Image'}" alt="${meta.title}" loading="lazy">
+                            </div>
+                            <div class="card-content">
+                                <div>
+                                    <h3>${meta.title}</h3>
+                                    <p>${plain}</p>
                                 </div>
+                                <button class="read-more-btn" onclick="openDetail('${articleFiles[i]}', 'article')">Read More</button>
                             </div>
                         </div>
-                    </div>
-                `);
+                    `;
+                }).join('');
+                document.getElementById('articles-container').innerHTML = articleCards || '<p style="text-align:center;color:#94a3b8;">No articles available.</p>';
+
+                // Team
+                const teamFiles = indexData.teams.slice(0, 3);
+                const teamPromises = teamFiles.map(file =>
+                    fetch(`/content/${file}`)
+                        .then(r => (r.ok ? r.text() : null))
+                        .catch(() => null)
+                );
+                const teamTexts = (await Promise.all(teamPromises)).filter(Boolean);
+                const teamCards = teamTexts.map((text, i) => {
+                    const parts = text.split('---');
+                    if (parts.length < 3) return '';
+                    const meta = parseYAML(parts[1]);
+                    const body = parts.slice(2).join('---');
+                    const excerpt = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 100) + '...';
+                    return `
+                        <div class="card team-card">
+                            <img src="${meta.image || 'https://via.placeholder.com/300x180/e2e8f0/64748b?text=Team+Member'}" alt="${meta.title}" loading="lazy">
+                            <div class="card-content-team">
+                                <h3>${meta.title}</h3>
+                                <p><strong>${meta.role || 'Team Member'}</strong></p>
+                                <p>${excerpt}</p>
+                                <button onclick="openDetail('${teamFiles[i]}', 'team')">View Profile</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                document.getElementById('team-container').innerHTML = teamCards || '<p style="text-align:center;color:#94a3b8;">No team members available.</p>';
+            } catch (err) {
+                console.error('Error loading content:', err);
+                document.getElementById('articles-container').innerHTML = '<p style="text-align:center;color:#ef4444;">Unable to load articles.</p>';
+                document.getElementById('team-container').innerHTML = '<p style="text-align:center;color:#ef4444;">Unable to load team info.</p>';
             }
-
-            document.getElementById('articles-container').innerHTML = articleCards.length
-                ? articleCards.join('')
-                : '<div class="col-12 text-center text-muted">No articles available.</div>';
-
-            // === TEAM ===
-            const teamFiles = indexData.teams.slice(0, 3);
-            const teamPromises = teamFiles.map(file =>
-                fetch(`/content/${file}`)
-                    .then(r => r.ok ? r.text() : Promise.reject(`Failed: ${file}`))
-                    .catch(err => {
-                        console.warn(err);
-                        return null;
-                    })
-            );
-            const teamTexts = await Promise.all(teamPromises);
-            const teamCards = [];
-            for (let i = 0; i < teamTexts.length; i++) {
-                const text = teamTexts[i];
-                if (!text) continue;
-                const parts = text.split('---');
-                if (parts.length < 3) continue;
-                const meta = parseYAML(parts[1]);
-                const name = meta.title || 'Team Member';
-                const role = meta.role || 'Role';
-                const img = meta.image || 'data:image/svg+xml;charset=UTF-8,<svg%20width%3D"120"%20height%3D"120"%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%3E%3Ccircle%20cx%3D"60"%20cy%3D"60"%20r%3D"50"%20fill%3D"%23eee"%20stroke%3D"%23ccc"%20stroke-width%3D"2"%2F%3E%3Ctext%20x%3D"60"%20y%3D"65"%20text-anchor%3D"middle"%20fill%3D"%23aaa"%20font-size%3D"12"%3EN%2FA%3C%2Ftext%3E%3C%2Fsvg%3E';
-
-                teamCards.push(`
-                    <div class="col-md-4 text-center">
-                        <img src="${img}"
-                             class="rounded-circle zoomable mb-3"
-                             alt="${name}"
-                             loading="lazy"
-                             onclick="this.classList.toggle('zoomed')"
-                             style="width:120px; height:120px; object-fit:cover;">
-                        <h5 class="fw-bold mb-1">${name}</h5>
-                        <p class="text-muted mb-1">${role}</p>
-                        <button class="btn btn-link p-0 text-dark fw-bold"
-                                onclick="openDetail('${teamFiles[i]}', 'team')">
-                            View Profile
-                        </button>
-                    </div>
-                `);
-            }
-
-            document.getElementById('team-container').innerHTML = teamCards.length
-                ? teamCards.join('')
-                : '<div class="col-12 text-center text-muted">No team members available.</div>';
-
-        } catch (error) {
-            console.error('Load error:', error);
-            document.getElementById('articles-container').innerHTML = '<div class="col-12 text-center text-danger">Failed to load articles.</div>';
-            document.getElementById('team-container').innerHTML = '<div class="col-12 text-center text-danger">Failed to load team.</div>';
         }
-    }
 
-    function openDetail(id, type) {
-        sessionStorage.setItem('selectedFile', id);
-        const url = type === 'article' ? 'article.html' : 'team_detail.html';
-        window.location.href = url;
-    }
+        // Open detail pages
+        function openDetail(id, type) {
+            sessionStorage.setItem('selectedFile', id);
+            window.location.href = type === 'article' ? 'article.html' : 'team_detail.html';
+        }
 
-    // Init
-    document.addEventListener('DOMContentLoaded', loadIndexContent);
-  </script>
+        document.addEventListener('DOMContentLoaded', loadIndexContent);
+    </script>
 </body>
 </html>
