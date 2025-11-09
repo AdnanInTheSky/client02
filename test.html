@@ -1,697 +1,776 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- SEO & Metadata -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="BioNova – Empowering sustainable community development through innovative, evidence-based solutions for global resilience." />
-    <meta name="keywords" content="sustainable development, NGO, community empowerment, global impact, BioNova, nonprofit" />
-    <meta name="author" content="BioNova International" />
-    <meta name="theme-color" content="#1d4ed8" />
-    <meta property="og:title" content="BioNova | Sustainable Community Development" />
-    <meta property="og:description" content="Join us in building resilient futures through local partnerships and global expertise." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://bionova.org" />
-    <meta property="og:image" content="/content/images/og-impact.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
-
     <title>BioNova | Sustainable Community Development</title>
 
-    <!-- Fonts: Inter for body, Playfair for headings -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Favicon -->
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
 
     <style>
         :root {
-            /* Colors: WHITE + INDIGO */
-            --color-primary: #1d4ed8;            /* Indigo (main accent) */
-            --color-primary-dark: #1e40af;
-            --color-accent: #1d4ed8;
-            --color-accent-dark: #1e3a8a;
-            --color-text: #0f172a;               /* Slate-900 */
-            --color-text-light: #475569;         /* Slate-600 */
-            --color-text-inverse: #f8fafc;
-            --color-bg: #ffffff;
-            --color-bg-alt: #f8fafc;
-            --color-border: #e2e8f0;
-            --color-muted: #94a3b8;
-
-            /* Typography */
-            --font-base: 'Inter', system-ui, sans-serif;
-            --font-display: 'Playfair Display', Georgia, serif;
-            --font-size-xs: clamp(0.75rem, 0.6rem + 0.5vw, 0.875rem);
-            --font-size-sm: clamp(0.875rem, 0.75rem + 0.4vw, 1rem);
-            --font-size-base: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
-            --font-size-lg: clamp(1.125rem, 1rem + 0.4vw, 1.25rem);
-            --font-size-xl: clamp(1.25rem, 1.125rem + 0.4vw, 1.5rem);
-            --font-size-2xl: clamp(1.5rem, 1.25rem + 0.8vw, 1.875rem);
-            --font-size-3xl: clamp(1.875rem, 1.5rem + 1.2vw, 2.25rem);
-            --font-size-4xl: clamp(2.25rem, 1.875rem + 1.2vw, 2.75rem);
-            --font-size-5xl: clamp(3rem, 2.5rem + 1.5vw, 3.75rem);
-            --font-size-6xl: clamp(3.75rem, 3rem + 2.25vw, 4.5rem);
-
-            /* Spacing */
-            --space-1: 0.25rem;
-            --space-2: 0.5rem;
-            --space-3: 0.75rem;
-            --space-4: 1rem;
-            --space-5: 1.25rem;
-            --space-6: 1.5rem;
-            --space-8: 2rem;
-            --space-10: 2.5rem;
-            --space-12: 3rem;
-            --space-16: 4rem;
-            --space-20: 5rem;
-            --space-24: 6rem;
-
-            /* Radius & Shadows */
-            --radius-sm: 0.375rem;
-            --radius-md: 0.5rem;
-            --radius-lg: 0.75rem;
-            --radius-xl: 1rem;
-            --radius-full: 9999px;
-
-            /* Transitions */
-            --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-            /* Layout */
-            --container-max: 1280px;
-            --header-height: 80px;
+            --primary-purple: #7C3AED;
+            --dark-purple: #5B21B6;
+            --light-purple: #A78BFA;
+            --accent-purple: #8B5CF6;
+            --text-dark: #1F2937;
+            --text-light: #6B7280;
+            --bg-light: #F9FAFB;
+            --white: #FFFFFF;
         }
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --color-bg: #0f172a;
-                --color-bg-alt: #1e293b;
-                --color-text: #f1f5f9;
-                --color-text-light: #cbd5e1;
-                --color-border: #334155;
-            }
-        }
-
-        *, *::before, *::after {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-            font-size: 100%;
-            -webkit-text-size-adjust: 100%;
-        }
-
         body {
-            font-family: var(--font-base);
-            font-size: var(--font-size-base);
-            line-height: 1.75;
-            color: var(--color-text);
-            background-color: var(--color-bg);
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
             overflow-x: hidden;
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        img, picture, video, canvas, svg {
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-            transition: var(--transition-base);
-        }
-
-        button {
-            font-family: inherit;
-            cursor: pointer;
-            border: none;
-            background: none;
-            transition: var(--transition-base);
         }
 
         h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-display);
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
-            line-height: 1.15;
-            letter-spacing: -0.025em;
-            margin-bottom: var(--space-4);
         }
 
-        p {
-            margin-bottom: var(--space-5);
-            color: var(--color-text-light);
+        /* Navbar */
+        .navbar {
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            padding: 1.2rem 0;
+            transition: all 0.3s ease;
         }
 
-        *:focus-visible {
-            outline: 2px solid var(--color-primary);
-            outline-offset: 2px;
-            border-radius: var(--radius-sm);
+        .navbar.scrolled {
+            padding: 0.8rem 0;
+            box-shadow: 0 4px 30px rgba(124, 58, 237, 0.1);
         }
 
-        .container {
-            width: min(100%, var(--container-max));
-            margin: 0 auto;
-            padding: 0 var(--space-6);
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-purple) !important;
+            font-family: 'Playfair Display', serif;
         }
 
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0,0,0,0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        .text-center { text-align: center; }
-
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: var(--header-height);
-            background: var(--color-bg);
-            border-bottom: 1px solid var(--color-border);
-            z-index: 1000;
-            transition: var(--transition-base);
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
-
-        .nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            gap: var(--space-10);
-        }
-
-        .nav a {
+        .navbar-nav .nav-link {
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 0.5rem 1.2rem !important;
+            transition: all 0.3s ease;
             position: relative;
-            font-weight: 600;
-            font-size: var(--font-size-sm);
-            color: var(--color-text);
-            padding: var(--space-3) 0;
         }
 
-        .nav a::after {
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--primary-purple);
+        }
+
+        .navbar-nav .nav-link::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 50%;
+            transform: translateX(-50%);
             width: 0;
             height: 2px;
-            background: var(--color-primary);
-            transition: var(--transition-base);
-            transform: translateX(-50%);
+            background: var(--primary-purple);
+            transition: width 0.3s ease;
         }
 
-        .nav a:hover::after,
-        .nav a:focus::after {
-            width: 100%;
+        .navbar-nav .nav-link:hover::after {
+            width: 60%;
         }
 
-        .nav a:hover,
-        .nav a:focus {
-            color: var(--color-primary);
+        .btn-donate {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
         }
 
-        /* Hero */
-        .hero {
-            margin-top: var(--header-height);
-            height: 100vh;
-            min-height: 700px;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/content/images/hero-sustainable.jpg') center/cover no-repeat fixed;
-            color: var(--color-text-inverse);
+        .btn-donate:hover {
+            background: var(--dark-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.95) 0%, rgba(91, 33, 182, 0.9) 100%),
+                        url('/content/images/hero-sustainable.jpg') center/cover no-repeat;
+            color: var(--white);
+            padding: 120px 0 80px;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 20% 80%, rgba(29, 78, 216, 0.1), transparent 50%);
-            z-index: 0;
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
         }
 
-        .hero-content {
-            max-width: 900px;
-            padding: 0 var(--space-6);
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: var(--font-size-6xl);
-            margin-bottom: var(--space-6);
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-        }
-
-        .hero p {
-            font-size: var(--font-size-xl);
-            max-width: 700px;
-            margin: 0 auto var(--space-8);
+        .hero-content p {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            margin-bottom: 2.5rem;
             opacity: 0.95;
-            color: var(--color-text-inverse);
+            animation: fadeInUp 1s ease 0.2s both;
         }
 
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-3);
-            padding: var(--space-4) var(--space-8);
-            background: var(--color-primary);
-            color: white;
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn-primary-custom {
+            background: var(--white);
+            color: var(--primary-purple);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
             font-weight: 600;
-            font-size: var(--font-size-lg);
-            border-radius: var(--radius-full);
-            transition: var(--transition-base);
+            border: none;
+            transition: all 0.3s ease;
         }
 
-        .cta-button:hover {
-            background: var(--color-primary-dark);
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            border: 2px solid var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-custom:hover {
+            background: var(--white);
+            color: var(--primary-purple);
             transform: translateY(-3px);
         }
 
-        /* Section Base */
-        .section {
-            padding: var(--space-20) 0;
-        }
-
-        .section.alt-bg {
-            background: var(--color-bg-alt);
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto var(--space-12);
-        }
-
-        .section-header h2 {
-            font-size: var(--font-size-5xl);
-            color: var(--color-text);
-            margin-bottom: var(--space-3);
-        }
-
-        .section-header p {
-            font-size: var(--font-size-lg);
-            color: var(--color-text-light);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .section-header::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 3px;
-            background: var(--color-primary);
-            margin: var(--space-6) auto 0;
-            border-radius: 2px;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-12);
-            align-items: center;
-        }
-
-        .about-text p {
-            font-size: var(--font-size-lg);
-            line-height: 1.8;
-            margin-bottom: var(--space-6);
-        }
-
-        .learn-more-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-3);
-            padding: var(--space-4) var(--space-8);
-            background: var(--color-primary);
-            color: white;
-            font-weight: 600;
-            border-radius: var(--radius-full);
-            transition: var(--transition-base);
-        }
-
-        .learn-more-btn:hover {
-            background: var(--color-primary-dark);
-            transform: translateY(-2px);
-        }
-
-        .about-image {
-            border-radius: var(--radius-2xl);
-            overflow: hidden;
-            aspect-ratio: 4/3;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* ===== Articles Section (Flat, White, Indigo Tags) ===== */
-        .article-grid {
-            display: grid;
-            gap: var(--space-10);
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        }
-
-        @media (min-width: 768px) {
-            .article-grid {
-                grid-template-columns: repeat(3, 1fr);
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        .article-card {
-            background: white;
-            border: none;
-            box-shadow: none;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .article-image-wrap {
+        /* Stats Section */
+        .stats-section {
+            background: var(--white);
+            padding: 4rem 0;
+            margin-top: -50px;
             position: relative;
-            width: 100%;
-            overflow: hidden;
-            cursor: pointer;
-            aspect-ratio: 16/9;
-            background: var(--color-bg-alt);
+            z-index: 10;
         }
 
-        .article-image-wrap img {
+        .stats-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(124, 58, 237, 0.2);
+        }
+
+        .stats-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-label {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 6rem 0;
+            background: var(--bg-light);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-subtitle {
+            color: var(--primary-purple);
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-img {
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .about-img::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+            border: 3px solid var(--primary-purple);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .about-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.5s ease;
         }
 
-        .article-image-wrap:hover img {
+        .about-img:hover img {
             transform: scale(1.05);
         }
 
-        .article-content {
-            padding: var(--space-4) 0;
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-purple));
+            border-radius: 15px;
             display: flex;
-            flex-direction: column;
-            gap: var(--space-3);
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Articles Section */
+        .articles-section {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            height: 100%;
+            border: none;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.2);
+        }
+
+        .article-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+        }
+
+        .article-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .article-card:hover .article-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .article-body {
+            padding: 1.8rem;
         }
 
         .article-title {
-            font-size: var(--font-size-xl);
-            font-family: var(--font-display);
-            color: var(--color-text);
-            margin-bottom: var(--space-2);
-            line-height: 1.3;
-            font-weight: 700;
-            word-wrap: break-word;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            line-height: 1.4;
         }
 
         .article-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: var(--space-2);
+            gap: 0.5rem;
+            margin-top: 1rem;
         }
 
         .article-tag {
-            font-size: var(--font-size-sm);
-            color: var(--color-primary);
-            text-decoration: none;
+            background: rgba(124, 58, 237, 0.1);
+            color: var(--primary-purple);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
             font-weight: 500;
-            letter-spacing: 0.01em;
-            padding: 0.125rem 0.375rem;
-            border-radius: 0.25rem;
-            transition: color 0.2s ease;
+            transition: all 0.3s ease;
         }
 
-        .article-tag:hover,
-        .article-tag:focus {
-            color: var(--color-primary-dark);
-            text-decoration: underline;
+        .article-tag:hover {
+            background: var(--primary-purple);
+            color: var(--white);
+            text-decoration: none;
         }
 
-        /* ===== Team Section (Flat, White, Indigo Roles) ===== */
-        .team-grid {
-            display: grid;
-            gap: var(--space-10);
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        }
-
-        @media (min-width: 768px) {
-            .team-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        /* Team Section */
+        .team-section {
+            padding: 6rem 0;
+            background: var(--bg-light);
         }
 
         .team-card {
-            background: white;
-            border: none;
-            box-shadow: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
             text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
             height: 100%;
+            border: none;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.2);
         }
 
         .team-avatar {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            padding: var(--space-2) 0;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--primary-purple);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
         }
 
         .team-avatar img {
-            width: 96px;
-            height: 96px;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid var(--color-border);
-        }
-
-        .team-info {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-2);
-            padding: 0 var(--space-2);
         }
 
         .team-name {
-            font-size: var(--font-size-xl);
-            font-family: var(--font-display);
-            color: var(--color-text);
-            margin: 0;
-            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
         }
 
         .team-role {
-            font-size: var(--font-size-base);
+            color: var(--primary-purple);
             font-weight: 600;
-            color: var(--color-primary);
-            margin: 0;
+            margin-bottom: 1rem;
         }
 
         .team-bio {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-light);
-            margin: 0;
+            color: var(--text-light);
+            font-size: 0.95rem;
             line-height: 1.6;
         }
 
-        .team-profile-btn {
-            margin-top: var(--space-4);
-            color: var(--color-primary);
+        .btn-view-profile {
+            margin-top: 1rem;
+            color: var(--primary-purple);
             font-weight: 600;
-            font-size: var(--font-size-sm);
-            background: none;
-            padding: 0.25rem 0.5rem;
-            border-radius: var(--radius-md);
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
 
-        .team-profile-btn:hover,
-        .team-profile-btn:focus {
-            background: rgba(29, 78, 216, 0.05);
-            text-decoration: underline;
+        .btn-view-profile:hover {
+            color: var(--dark-purple);
         }
 
-        /* View All */
-        .view-all-container {
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
+            padding: 5rem 0;
+            color: var(--white);
             text-align: center;
-            margin-top: var(--space-12);
         }
 
-        .view-all-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-3);
-            padding: var(--space-4) var(--space-8);
-            background: transparent;
-            color: var(--color-primary);
-            border: 2px solid var(--color-primary);
-            border-radius: var(--radius-full);
-            font-weight: 600;
-            transition: var(--transition-base);
+        .cta-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
         }
 
-        .view-all-btn:hover {
-            background: var(--color-primary);
-            color: white;
-            transform: translateY(-2px);
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
         }
 
         /* Footer */
-        footer {
-            background: var(--color-primary-dark);
-            color: var(--color-text-inverse);
-            text-align: center;
-            padding: var(--space-12) 0;
-            font-size: var(--font-size-sm);
+        .footer {
+            background: #1F2937;
+            color: var(--white);
+            padding: 4rem 0 2rem;
         }
 
-        footer p {
-            color: var(--color-text-inverse);
-            opacity: 0.9;
+        .footer h5 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--light-purple);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary-purple);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            .about-content { 
-                grid-template-columns: 1fr; 
-                text-align: center; 
-                gap: var(--space-8); 
-            }
-        }
-
         @media (max-width: 768px) {
-            .hero { height: 90vh; background-attachment: scroll; }
-            .hero h1 { font-size: var(--font-size-4xl); }
-            .section { padding: var(--space-12) 0; }
-            .nav { gap: var(--space-6); flex-wrap: wrap; justify-content: center; }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 { font-size: var(--font-size-3xl); }
-            .nav { gap: var(--space-4); padding: 0 var(--space-4); }
-            .nav a { font-size: var(--font-size-xs); }
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .btn-primary-custom,
+            .btn-outline-custom {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Skip Link -->
-    <a href="#main-content" class="sr-only">Skip to main content</a>
-
-    <!-- Header -->
-    <header class="header" id="header">
-        <nav class="nav" aria-label="Main navigation">
-            <a href="index.html">Home</a>
-            <a href="articles.html">Articles</a>
-            <a href="team.html">Team</a>
-            <a href="services.html">Services</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
-
-    <main id="main-content">
-        <!-- Hero -->
-        <section class="hero" aria-labelledby="hero-heading">
-            <div class="hero-content">
-                <h1 id="hero-heading">Sustainable Solutions for Global Challenges</h1>
-                <p>Empowering communities through innovative development programs and strategic partnerships</p>
-                <button class="cta-button" onclick="window.location.href='contact.html'">Join Our Mission</button>
-            </div>
-        </section>
-
-        <!-- About -->
-        <section class="section" aria-labelledby="about-heading">
-            <div class="container">
-                <header class="section-header">
-                    <h2 id="about-heading">Our Commitment to Sustainable Change</h2>
-                    <p>Building resilient communities through evidence-based approaches and collaborative partnerships</p>
-                </header>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide. Our evidence-based approach combines local knowledge with global expertise to address the most pressing challenges facing vulnerable populations.</p>
-                        <p>Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives. We prioritize local leadership and participatory approaches to ensure our programs are culturally appropriate and sustainable in the long term.</p>
-                        <p>Through strategic partnerships with local organizations, government agencies, and international stakeholders, we've successfully implemented programs that have transformed lives across multiple continents while maintaining the highest standards of accountability and transparency.</p>
-                        <a href="#" class="learn-more-btn">Explore Our Impact <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                    <div class="about-image">
-                        <img src="/content/images/teamBio.jpeg" alt="BioNova team collaborating on community development project" loading="lazy">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Articles -->
-        <section class="section alt-bg" aria-labelledby="articles-heading">
-            <div class="container">
-                <header class="section-header">
-                    <h2 id="articles-heading">Insights & Impact Stories</h2>
-                    <p>Research findings, program updates, and stories of transformation from our global initiatives</p>
-                </header>
-                <div class="article-grid" id="articles-container">
-                    <div class="loading" style="grid-column:1/-1;text-align:center;padding:2rem;color:#94a3b8;">
-                        Loading articles...
-                    </div>
-                </div>
-                <div class="view-all-container">
-                    <a href="articles.html" class="view-all-btn">View All Publications <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Team -->
-        <section class="section alt-bg" aria-labelledby="team-heading">
-            <div class="container">
-                <header class="section-header">
-                    <h2 id="team-heading">Our Leadership & Experts</h2>
-                    <p>Dedicated professionals driving sustainable change across our global operations</p>
-                </header>
-                <div class="team-grid" id="team-container">
-                    <div class="loading" style="grid-column:1/-1;text-align:center;padding:2rem;color:#94a3b8;">
-                        Loading team...
-                    </div>
-                </div>
-                <div class="view-all-container">
-                    <a href="team.html" class="view-all-btn">Meet Our Full Team <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
-            <p>&copy; 2025 BioNova. All rights reserved. Committed to transparency and accountability.</p>
+            <a class="navbar-brand" href="#">BioNova</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#articles">Articles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#team">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <button class="btn btn-donate">Donate Now</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="hero-content">
+                        <h1>Sustainable Solutions for Global Challenges</h1>
+                        <p>Empowering communities through innovative development programs and strategic partnerships</p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary-custom">Join Our Mission</button>
+                            <button class="btn btn-outline-custom">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6">
+                    <div class="stats-card">
+                        <div class="stats-number">50+</div>
+                        <div class="stats-label">Countries Reached</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stats-card">
+                        <div class="stats-number">1M+</div>
+                        <div class="stats-label">Lives Impacted</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stats-card">
+                        <div class="stats-number">200+</div>
+                        <div class="stats-label">Projects Completed</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stats-card">
+                        <div class="stats-number">15</div>
+                        <div class="stats-label">Years of Impact</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="about-img">
+                        <img src="/content/images/teamBio.jpeg" alt="BioNova team collaboration" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="section-subtitle">About Us</div>
+                    <h2 class="section-title">Our Commitment to Sustainable Change</h2>
+                    <p class="text-muted mb-4">BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide. Our evidence-based approach combines local knowledge with global expertise to address the most pressing challenges facing vulnerable populations.</p>
+                    
+                    <div class="row g-4 mt-3">
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="feature-icon">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <h5>Sustainable Impact</h5>
+                                    <p class="text-muted mb-0">Long-term solutions for communities</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="feature-icon">
+                                    <i class="fas fa-hands-helping"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <h5>Global Partnership</h5>
+                                    <p class="text-muted mb-0">Collaborative approach to change</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary-custom mt-4">Explore Our Impact <i class="fas fa-arrow-right ms-2"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section class="articles-section" id="articles">
+        <div class="container">
+            <div class="text-center mb-5">
+                <div class="section-subtitle">Latest Updates</div>
+                <h2 class="section-title">Insights & Impact Stories</h2>
+                <p class="text-muted">Research findings, program updates, and stories of transformation</p>
+            </div>
+            
+            <div class="row g-4" id="articles-container">
+                <div class="col-12 text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <button class="btn btn-outline-custom">View All Articles <i class="fas fa-arrow-right ms-2"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section" id="team">
+        <div class="container">
+            <div class="text-center mb-5">
+                <div class="section-subtitle">Our Team</div>
+                <h2 class="section-title">Meet Our Leadership</h2>
+                <p class="text-muted">Dedicated professionals driving sustainable change worldwide</p>
+            </div>
+            
+            <div class="row g-4" id="team-container">
+                <div class="col-12 text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <button class="btn btn-outline-custom">View Full Team <i class="fas fa-arrow-right ms-2"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Make a Difference?</h2>
+            <p>Join us in creating sustainable change and empowering communities worldwide</p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <button class="btn btn-primary-custom">Get Involved</button>
+                <button class="btn btn-outline-custom">Contact Us</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5>BioNova</h5>
+                    <p class="text-muted">Empowering communities through innovative development programs and strategic partnerships.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#articles">Articles</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                    <h5>Programs</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Healthcare</a></li>
+                        <li><a href="#">Environment</a></li>
+                        <li><a href="#">Economic Dev</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h5>Newsletter</h5>
+                    <p class="text-muted">Subscribe to receive updates on our latest impact stories</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <button class="btn btn-primary-custom" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p class="mb-0">&copy; 2025 BioNova. All rights reserved. Committed to transparency and accountability.</p>
+            </div>
         </div>
     </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
     <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Simple YAML parser
         function parseYAML(yamlStr) {
             const result = {};
             const lines = yamlStr.trim().split('\n');
@@ -711,18 +790,20 @@
             return result;
         }
 
-        async function loadIndexContent() {
+        // Load content
+        async function loadContent() {
             try {
                 const indexResponse = await fetch('/content/index.json');
                 const indexData = await indexResponse.json();
 
-                // === ARTICLES ===
+                // Load Articles
                 const articleFiles = indexData.articles.slice(0, 3);
                 const articlePromises = articleFiles.map(file =>
                     fetch(`/content/${file}`).then(r => r.ok ? r.text() : null)
                 );
                 const articleTexts = await Promise.all(articlePromises);
-                const articleCards = [];
+                
+                let articlesHTML = '';
                 for (let i = 0; i < articleTexts.length; i++) {
                     const text = articleTexts[i];
                     if (!text) continue;
@@ -732,32 +813,35 @@
                     const title = meta.title || 'Untitled';
                     const tags = meta.tags ? meta.tags.split(',').map(t => t.trim()) : ['Uncategorized'];
                     const img = meta.image || '/content/images/placeholder-article.jpg';
-                    articleCards.push(`
-                        <article class="article-card" role="article">
-                            <div class="article-image-wrap" onclick="openDetail('${articleFiles[i]}', 'article')">
-                                <img src="${img}" alt="${title}" loading="lazy">
-                            </div>
-                            <div class="article-content">
-                                <h3 class="article-title">${title}</h3>
-                                <div class="article-tags">
-                                    ${tags.map(tag => `<a href="#" class="article-tag">${tag}</a>`).join('')}
+                    
+                    articlesHTML += `
+                        <div class="col-lg-4 col-md-6">
+                            <div class="article-card">
+                                <div class="article-img-wrapper">
+                                    <img src="${img}" alt="${title}">
+                                </div>
+                                <div class="article-body">
+                                    <h3 class="article-title">${title}</h3>
+                                    <div class="article-tags">
+                                        ${tags.map(tag => `<a href="#" class="article-tag">${tag}</a>`).join('')}
+                                    </div>
                                 </div>
                             </div>
-                        </article>
-                    `);
+                        </div>
+                    `;
                 }
+                
+                document.getElementById('articles-container').innerHTML = articlesHTML || 
+                    '<div class="col-12 text-center"><p class="text-muted">No articles available.</p></div>';
 
-                document.getElementById('articles-container').innerHTML = articleCards.length 
-                    ? articleCards.join('') 
-                    : '<p style="grid-column:1/-1;text-align:center;color:#94a3b8;">No articles available.</p>';
-
-                // === TEAM ===
+                // Load Team
                 const teamFiles = indexData.teams.slice(0, 3);
                 const teamPromises = teamFiles.map(file =>
                     fetch(`/content/${file}`).then(r => r.ok ? r.text() : null)
                 );
                 const teamTexts = await Promise.all(teamPromises);
-                const teamCards = [];
+                
+                let teamHTML = '';
                 for (let i = 0; i < teamTexts.length; i++) {
                     const text = teamTexts[i];
                     if (!text) continue;
@@ -767,58 +851,48 @@
                     const name = meta.title || 'Team Member';
                     const role = meta.role || 'Role';
                     const img = meta.image || '/content/images/placeholder-team.jpg';
-                    teamCards.push(`
-                        <article class="team-card" role="article">
-                            <div class="team-avatar">
-                                <img src="${img}" alt="${name}" loading="lazy">
-                            </div>
-                            <div class="team-info">
+                    
+                    teamHTML += `
+                        <div class="col-lg-4 col-md-6">
+                            <div class="team-card">
+                                <div class="team-avatar">
+                                    <img src="${img}" alt="${name}">
+                                </div>
                                 <h3 class="team-name">${name}</h3>
                                 <div class="team-role">${role}</div>
-                                <button class="team-profile-btn" onclick="openDetail('${teamFiles[i]}', 'team')">
-                                    View Profile
-                                </button>
+                                <a href="#" class="btn-view-profile">View Profile <i class="fas fa-arrow-right ms-1"></i></a>
                             </div>
-                        </article>
-                    `);
+                        </div>
+                    `;
                 }
-
-                document.getElementById('team-container').innerHTML = teamCards.length 
-                    ? teamCards.join('') 
-                    : '<p style="grid-column:1/-1;text-align:center;color:#94a3b8;">No team members available.</p>';
+                
+                document.getElementById('team-container').innerHTML = teamHTML || 
+                    '<div class="col-12 text-center"><p class="text-muted">No team members available.</p></div>';
 
             } catch (e) {
-                console.error(e);
-                document.getElementById('articles-container').innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#ef4444;">Failed to load content.</p>';
-                document.getElementById('team-container').innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#ef4444;">Failed to load content.</p>';
+                console.error('Error loading content:', e);
+                document.getElementById('articles-container').innerHTML = 
+                    '<div class="col-12 text-center"><p class="text-danger">Failed to load articles.</p></div>';
+                document.getElementById('team-container').innerHTML = 
+                    '<div class="col-12 text-center"><p class="text-danger">Failed to load team.</p></div>';
             }
         }
 
-        function openDetail(id, type) {
-            sessionStorage.setItem('selectedFile', id);
-            window.location.href = type === 'article' ? 'article.html' : 'team_detail.html';
-        }
-
-        // Zoom on image click (simple toggle)
-        document.addEventListener('click', function(e) {
-            const imgWrap = e.target.closest('.article-image-wrap');
-            if (imgWrap) {
-                const img = imgWrap.querySelector('img');
-                if (img.style.transform === 'scale(1.5)') {
-                    img.style.transform = 'scale(1)';
-                } else {
-                    img.style.transform = 'scale(1.5)';
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
                 }
-                img.style.transition = 'transform 0.3s ease';
-            }
+            });
         });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            window.addEventListener('scroll', () => {
-                document.getElementById('header').classList.toggle('scrolled', window.scrollY > 10);
-            });
-            loadIndexContent();
-        });
-    </script>
-</body>
-</html>
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', loadContent);
