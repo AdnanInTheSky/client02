@@ -301,7 +301,7 @@
                         const plainText = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 150) + '...';
                         articleCards.push(`
                             <div class="col-md-4">
-                                <div class="card h-100 shadow-sm style="max-width: 50px;">
+                                <div class="card h-100 shadow-sm" style="max-width: 350px; margin: 0 auto;">
                                     <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article+Image'}" 
                                          class="card-img-top" 
                                          alt="${meta.title}" 
@@ -351,7 +351,7 @@
                         const excerpt = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 100) + '...';
                         teamCards.push(`
                             <div class="col-md-4">
-                                <div class="card team-card h-100 shadow-sm style="max-width: 50px;">
+                                <div class="card team-card h-100 shadow-sm style="max-width: 350px; margin: 0 auto;">
                                     <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Team+Member'}" 
                                          class="card-img-top" 
                                          alt="${meta.title}" 
