@@ -3,288 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading...</title> <!-- Will be updated by JS -->
+    <title>Loading...</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Inter Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* Minimal custom CSS — only what Bootstrap doesn’t handle */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            color: #1a1a1a;
-            line-height: 1.6;
+            padding-top: 80px; /* Account for fixed header height */
         }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: #ffffff;
-            z-index: 1000;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+        .header-fixed {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        nav a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #2563eb;
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #2563eb;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Article Detail Section */
-        .article-detail {
-            max-width: 800px;
-            margin: 100px auto 4rem; /* Top margin for fixed header, bottom for footer */
-            padding: 2rem;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e5e7eb;
-        }
-
-        .article-detail img {
-            width: 100%;
-            height: 400px; /* Fixed height for consistency */
+        .article-hero-img {
+            height: 400px;
             object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
+            border-radius: 0.5rem;
         }
-
-        .article-meta {
-            color: #6b7280;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        .article-meta span {
-            display: flex;
-            align-items: center;
-        }
-        .article-meta span::before {
-            content: '•';
-            margin: 0 0.5rem;
-        }
-        .article-meta span:first-child::before {
-            display: none; /* Hide bullet before first item */
-        }
-
-        .article-body {
-            line-height: 1.8;
-            color: #374151;
-        }
-        .article-body h1, .article-body h2, .article-body h3 {
-            color: #1a1a1a;
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        .article-body h1 {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-        .article-body h2 {
-            font-size: 1.75rem;
-            font-weight: 600;
-        }
-        .article-body h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-        .article-body p {
-            margin-bottom: 1.25rem;
-        }
-        .article-body a {
-            color: #2563eb;
-            text-decoration: underline;
-        }
-        .article-body a:hover {
-            color: #1e40af;
-        }
-        .article-body ul, .article-body ol {
-            margin-left: 1.5rem;
-            margin-bottom: 1.25rem;
-        }
-        .article-body li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Footer */
-        footer {
-            background: #1a1a1a;
-            color: #9ca3af;
-            text-align: center;
-            padding: 2.5rem 2rem;
-        }
-
-        footer p {
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            nav {
-                flex-wrap: wrap;
-                gap: 1rem;
-                justify-content: center;
-            }
-
-            .article-detail {
-                margin: 90px 1rem 2rem; /* Adjusted for mobile */
-                padding: 1.5rem;
-            }
-
-            .article-detail img {
-                height: 250px; /* Smaller image on mobile */
-            }
-
-            .article-meta {
-                font-size: 0.8rem;
+            .article-hero-img {
+                height: 250px;
             }
         }
     </style>
 </head>
 <body>
-    <header id="header">
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="articles.html">Articles</a>
-            <a href="team.html">Team</a>
-            <a href="services.html">Services</a>
-            <a href="contact.html">Contact</a>
+
+    <!-- Fixed Header (Bootstrap Navbar) -->
+    <header class="header-fixed">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container">
+                <a class="navbar-brand d-lg-none" href="index.html">NGO</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link px-3" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-3" href="articles.html">Articles</a></li>
+                        <li class="nav-item"><a class="nav-link px-3" href="team.html">Team</a></li>
+                        <li class="nav-item"><a class="nav-link px-3" href="services.html">Services</a></li>
+                        <li class="nav-item"><a class="nav-link px-3" href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <div class="article-detail">
-        <img id="article-image" src="" alt="" loading="lazy">
-        <h1 id="article-title">Loading...</h1>
-        <div class="article-meta">
-            <span id="article-author">By Unknown</span>
-            <span id="article-date">Date Unknown</span>
+    <!-- Article Content -->
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card border-0 shadow-sm mb-4">
+                    <img id="article-image" class="card-img-top article-hero-img" src="" alt="" loading="lazy">
+                    <div class="card-body">
+                        <h1 id="article-title" class="card-title h2 mb-3">Loading...</h1>
+                        <div id="article-meta" class="text-muted small mb-4">
+                            <span id="article-author">By Unknown</span> • 
+                            <span id="article-date">Date Unknown</span>
+                        </div>
+                        <div id="article-body" class="article-body fs-5">
+                            <!-- Content injected here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="article-body" class="article-body">
-            <!-- Article content will be loaded here -->
-        </div>
-    </div>
+    </main>
 
-    <footer>
-        <p>&copy; 2024 Your NGO Name. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-auto">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 Your NGO Name. All rights reserved.</p>
+        </div>
     </footer>
 
+    <!-- Bootstrap JS (optional for navbar toggle) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
-        // --- Helper Functions (same as index.html) ---
+        // --- Helper Functions ---
+
         function parseYAML(yamlStr) {
             const result = {};
             const lines = yamlStr.trim().split('\n');
             for (const line of lines) {
-                const [key, ...valueParts] = line.split(':');
-                const trimmedKey = key.trim();
-                let value = valueParts.join(':').trim();
-                if (value.startsWith('"') && value.endsWith('"')) {
+                const match = line.match(/^([^:]+):\s*(.*)$/);
+                if (!match) continue;
+                let [_, key, value] = match;
+                key = key.trim();
+                value = value.trim();
+
+                if ((value.startsWith('"') && value.endsWith('"')) ||
+                    (value.startsWith("'") && value.endsWith("'"))) {
                     value = value.slice(1, -1);
-                } else if (value.startsWith("'") && value.endsWith("'")) {
-                    value = value.slice(1, -1);
-                } else if (value.startsWith('[') && value.endsWith(']')) {
-                    value = value.slice(1, -1).split(',').map(v => v.trim().replace(/"/g, '').replace(/'/g, ''));
                 }
-                result[trimmedKey] = value;
+                else if (value.startsWith('[') && value.endsWith(']')) {
+                    value = value.slice(1, -1)
+                        .split(',')
+                        .map(v => v.trim().replace(/^["'](.*)["']$/, '$1'));
+                }
+                else if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+                    const date = new Date(value);
+                    if (!isNaN(date)) value = date;
+                }
+
+                result[key] = value;
             }
             return result;
         }
 
-        function simpleMarkdownToHTML(md) {
-            let html = md;
-            html = html.replace(/^(\s*)## (.+)$/gm, '$1<h2>$2</h2>');
-            html = html.replace(/^(\s*)# (.+)$/gm, '$1<h1>$2</h1>');
-            html = html.replace(/^(\s*)### (.+)$/gm, '$1<h3>$2</h3>');
-            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-            html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
-            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-            html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
-            html = html.replace(/(<li>.+<\/li>)+/g, '<ul>$&</ul>');
-            html = html.replace(/\n/g, '<br>');
-            const paragraphs = html.split('<br><br>');
-            html = paragraphs.map(p => `<p>${p}</p>`).join('');
-            html = html.replace(/<br><br>/g, '<br>');
+        function markdownToHTML(md) {
+            let lines = md.split('\n');
+            let html = '';
+            let inList = false;
+            let listType = null;
+            let inTable = false;
+            let tableRows = [];
+
+            function escapeHtml(text) {
+                return text
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '<')
+                    .replace(/>/g, '>')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#039;');
+            }
+
+            function processInline(text) {
+                text = text.replace(/`([^`]+)`/g, '<code class="bg-light p-1 rounded">$1</code>');
+                text = text.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
+                text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+                text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
+                text = text.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="img-fluid my-3 rounded">');
+                text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-primary">$1</a>');
+                return text;
+            }
+
+            for (let i = 0; i < lines.length; i++) {
+                let line = lines[i].trim();
+
+                if (line === '' && !inList && !inTable) continue;
+
+                // Horizontal Rule
+                if (/^(-{3,}|\*{3,})$/.test(line)) {
+                    if (inList) { html += `</${listType}>`; inList = false; }
+                    html += '<hr class="my-4">';
+                    continue;
+                }
+
+                // Headings
+                if (line.startsWith('# ')) {
+                    if (inList) { html += `</${listType}>`; inList = false; }
+                    html += `<h1 class="h2 mt-4 mb-3">${processInline(line.slice(2))}</h1>`;
+                    continue;
+                }
+                if (line.startsWith('## ')) {
+                    if (inList) { html += `</${listType}>`; inList = false; }
+                    html += `<h2 class="h3 mt-4 mb-3">${processInline(line.slice(3))}</h2>`;
+                    continue;
+                }
+                if (line.startsWith('### ')) {
+                    if (inList) { html += `</${listType}>`; inList = false; }
+                    html += `<h3 class="h4 mt-4 mb-3">${processInline(line.slice(4))}</h3>`;
+                    continue;
+                }
+
+                // Blockquote
+                if (line.startsWith('> ')) {
+                    if (inList) { html += `</${listType}>`; inList = false; }
+                    html += `<blockquote class="blockquote fst-italic ps-3 border-start border-3 border-primary my-3">${processInline(line.slice(2))}</blockquote>`;
+                    continue;
+                }
+
+                // Ordered List
+                const olMatch = line.match(/^(\d+)\.\s+(.+)$/);
+                if (olMatch) {
+                    const content = processInline(olMatch[2]);
+                    if (!inList || listType !== 'ol') {
+                        if (inList) html += `</${listType}>`;
+                        html += '<ol class="ps-4">';
+                        inList = true;
+                        listType = 'ol';
+                    }
+                    html += `<li>${content}</li>`;
+                    continue;
+                }
+
+                // Unordered List
+                const ulMatch = line.match(/^[-*+]\s+(.+)$/);
+                if (ulMatch) {
+                    const content = processInline(ulMatch[1]);
+                    if (!inList || listType !== 'ul') {
+                        if (inList) html += `</${listType}>`;
+                        html += '<ul class="ps-4">';
+                        inList = true;
+                        listType = 'ul';
+                    }
+                    html += `<li>${content}</li>`;
+                    continue;
+                }
+
+                // Table
+                if (line.includes('|') && line.split('|').length > 2) {
+                    if (inList) { html += `</${listType}>`; inList = false; }
+                    tableRows = [];
+                    while (i < lines.length && lines[i].trim().includes('|')) {
+                        let rowLine = lines[i].trim();
+                        if (rowLine.startsWith('|')) rowLine = rowLine.slice(1);
+                        if (rowLine.endsWith('|')) rowLine = rowLine.slice(0, -1);
+                        const cells = rowLine.split('|').map(cell => cell.trim());
+                        tableRows.push(cells);
+                        i++;
+                    }
+                    i--;
+
+                    if (tableRows.length >= 2) {
+                        html += '<div class="table-responsive my-4"><table class="table table-bordered">';
+                        html += '<thead class="table-light"><tr>';
+                        tableRows[0].forEach(cell => {
+                            html += `<th>${processInline(cell)}</th>`;
+                        });
+                        html += '</tr></thead><tbody>';
+
+                        let startRow = 1;
+                        if (tableRows.length > 2 && /^[-:\s|]+$/.test(lines[i - (tableRows.length - 1) + 1])) {
+                            startRow = 2;
+                        }
+
+                        for (let r = startRow; r < tableRows.length; r++) {
+                            html += '<tr>';
+                            tableRows[r].forEach(cell => {
+                                html += `<td>${processInline(cell)}</td>`;
+                            });
+                            html += '</tr>';
+                        }
+                        html += '</tbody></table></div>';
+                    }
+                    continue;
+                }
+
+                // Paragraphs
+                let paragraphLines = [];
+                while (i < lines.length && lines[i].trim() !== '' &&
+                       !lines[i].trim().match(/^# |^## |^### |> |^[-*+]\s|^\d+\.\s|^(-{3,}|\*{3,})$/) &&
+                       !lines[i].includes('|')) {
+                    paragraphLines.push(lines[i]);
+                    i++;
+                }
+                i--;
+
+                if (paragraphLines.length > 0) {
+                    if (inList) { html += `</${listType}>`; inList = false; }
+                    let paraText = paragraphLines.join('\n').trim();
+                    paraText = processInline(paraText);
+                    paraText = paraText.replace(/  \n|\n/g, '<br>');
+                    html += `<p class="mb-3">${paraText}</p>`;
+                }
+            }
+
+            if (inList) html += `</${listType}>`;
             return html;
         }
 
-        // --- Article Detail Loading Logic ---
+        // --- Load Article ---
         async function loadArticle() {
             const id = sessionStorage.getItem('selectedFile');
 
             if (!id || !id.startsWith('articles/')) {
-                document.getElementById('article-body').innerHTML = '<p>Error: Article not found.</p>';
+                document.getElementById('article-body').innerHTML = '<p class="text-danger">Error: Article not found.</p>';
                 document.title = 'Article Not Found';
                 return;
             }
 
             try {
                 const response = await fetch(`/content/${id}`);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+                if (!response.ok) throw new Error('Network response was not ok');
                 const text = await response.text();
-                const parts = text.split('---');
-                if (parts.length < 3) {
-                    throw new Error('Invalid Markdown format');
+
+                const parts = text.split(/^---\s*$/m);
+                let meta = {}, body = text;
+                if (parts.length >= 3 && parts[0].trim() === '') {
+                    meta = parseYAML(parts[1]);
+                    body = parts.slice(2).join('---\n');
                 }
 
-                const frontmatter = parts[1];
-                const body = parts.slice(2).join('---');
-                const meta = parseYAML(frontmatter);
-                const htmlBody = simpleMarkdownToHTML(body);
+                const htmlBody = markdownToHTML(body);
 
-                document.getElementById('article-image').src = meta.image;
-                document.getElementById('article-image').alt = meta.title;
-                document.getElementById('article-title').textContent = meta.title;
+                const imgEl = document.getElementById('article-image');
+                if (meta.image && meta.image.trim()) {
+                    imgEl.src = meta.image;
+                    imgEl.alt = meta.title || '';
+                    imgEl.classList.remove('d-none');
+                } else {
+                    imgEl.classList.add('d-none');
+                }
+
+                document.getElementById('article-title').textContent = meta.title || 'Untitled';
                 document.getElementById('article-author').textContent = `By ${meta.author || 'Unknown'}`;
-                document.getElementById('article-date').textContent = new Date(meta.date).toLocaleDateString();
+                const date = meta.date instanceof Date ? meta.date : new Date(meta.date || Date.now());
+                document.getElementById('article-date').textContent = date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
                 document.getElementById('article-body').innerHTML = htmlBody;
-                document.title = meta.title;
+                document.title = meta.title || 'Article';
 
             } catch (error) {
-                console.error('Error loading article:', error);
-                document.getElementById('article-body').innerHTML = '<p>Error loading article content.</p>';
-                document.title = 'Error Loading Article';
+                console.error('Error:', error);
+                document.getElementById('article-body').innerHTML = 
+                    `<p class="text-danger"><strong>Error:</strong> ${error.message || 'Failed to load article.'}</p>`;
+                document.title = 'Error';
             }
         }
 
