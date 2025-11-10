@@ -12,40 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        :root {
-            --bs-primary: #000;
-            --bs-secondary: #6c757d;
-            --bs-light: #f8f9fa;
-            --bs-dark: #212529;
-        }
-
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        .navbar {
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,.1);
-        }
-
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: #000 !important;
-        }
-
-        .nav-link {
-            color: #333 !important;
-            font-weight: 500;
-        }
-
-        .nav-link:hover {
-            color: #000 !important;
-        }
-
-        /* Hero Section */
+        /* Minimal custom CSS - only what's essential */
         .hero {
             padding: 8rem 0;
             text-align: center;
@@ -53,104 +20,11 @@
             overflow: hidden;
         }
 
-        .hero-solid {
-            background-color: #f8f9fa;
-            color: #333;
-        }
-
-        .hero-image {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1504805572947-2f9e3e878434?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-
-        .hero-image h1,
-        .hero-image p {
-            color: white;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-        }
-
-        .btn-primary {
-            background-color: #000;
-            border-color: #000;
-            padding: 0.75rem 2rem;
-            font-weight: 500;
-        }
-
-        .btn-primary:hover {
-            background-color: #333;
-            border-color: #333;
-        }
-
-        .btn-outline-primary {
-            color: #000;
-            border-color: #000;
-        }
-
-        .btn-outline-primary:hover {
-            background-color: #000;
-            color: #fff;
-        }
-
-        .btn-outline-light {
-            color: #fff;
-            border-color: #fff;
-        }
-
-        .btn-outline-light:hover {
-            background-color: #fff;
-            color: #000;
-        }
-
         .section {
             padding: 5rem 0;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h2 {
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .alt-bg {
-            background-color: #f8f9fa;
-        }
-
-        .card {
-            border: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,.1);
-            transition: transform 0.3s ease;
-            height: 100%;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* ✅ Critical: ensure images fill card tops */
+        /* Ensure images fill card tops properly */
         .card-img-top {
             height: 200px;
             width: 100%;
@@ -164,22 +38,7 @@
             object-position: center;
         }
 
-        .card-body {
-            padding: 1.5rem;
-        }
-
-        .card-title {
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-
-        footer {
-            background-color: #000;
-            color: #fff;
-            padding: 2rem 0;
-            text-align: center;
-        }
-
+        /* Loading animation */
         .loading {
             text-align: center;
             padding: 2rem;
@@ -197,16 +56,6 @@
 
         @keyframes spin {
             to { transform: rotate(360deg); }
-        }
-
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 1s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Background toggle */
@@ -239,9 +88,9 @@
 <body>
     <!-- Navigation -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="index.html">BioNova</a>
+                <a class="navbar-brand fw-bold" href="index.html">BioNova</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -273,7 +122,7 @@
                     <div class="col-lg-8">
                         <h1 id="hero-heading" class="display-4 fw-bold mb-4">Sustainable Solutions for Global Challenges</h1>
                         <p class="lead mb-4">Empowering communities through innovative development programs and strategic partnerships</p>
-                        <button class="btn btn-primary btn-lg me-2" onclick="window.location.href='contact.html'">Join Our Mission</button>
+                        <button class="btn btn-dark btn-lg me-2" onclick="window.location.href='contact.html'">Join Our Mission</button>
                         <button class="btn btn-outline-light btn-lg" onclick="window.location.href='services.html'">Learn More</button>
                     </div>
                 </div>
@@ -281,25 +130,42 @@
         </section>
 
         <!-- About Section -->
-        <section class="section" aria-labelledby="about-heading">
+        <section class="py-5 bg-light" aria-labelledby="about-heading">
             <div class="container">
-                <header class="section-header">
-                    <h2 id="about-heading" class="display-5 fw-bold">Our Commitment to Sustainable Change</h2>
-                    <p>Building resilient communities through evidence-based approaches and collaborative partnerships</p>
-                </header>
-                <div class="row align-items-center">
-                    <div class="col-lg-6 mb-4 mb-lg-0">
-                        <p class="mb-3">BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide.</p>
-                        <p class="mb-3">Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives.</p>
-                        <p class="mb-4">We prioritize local leadership and participatory approaches to ensure programs are culturally appropriate and sustainable.</p>
-                        <a href="services.html" class="btn btn-outline-primary">Explore Our Impact <i class="fas fa-arrow-right ms-2"></i></a>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="fade-in">
-                            <img src="content/images/teamBio.jpeg" 
-                                 alt="BioNova team collaborating" 
-                                 class="img-fluid rounded shadow" 
-                                 loading="lazy" />
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                    <div class="row g-0 align-items-center">
+                        <!-- Text Content -->
+                        <div class="col-lg-6 p-5">
+                            <header class="mb-4">
+                                <h2 id="about-heading" class="display-6 fw-bold mb-3">
+                                    Our Commitment to Sustainable Change
+                                </h2>
+                                <p class="text-muted">
+                                    Building resilient communities through evidence-based approaches and collaborative partnerships
+                                </p>
+                            </header>
+                            <p class="mb-3">
+                                BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide.
+                            </p>
+                            <p class="mb-3">
+                                Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives.
+                            </p>
+                            <p class="mb-4">
+                                We prioritize local leadership and participatory approaches to ensure programs are culturally appropriate and sustainable.
+                            </p>
+                            <a href="services.html" class="btn btn-dark">
+                                Explore Our Impact <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+
+                        <!-- Image -->
+                        <div class="col-lg-6">
+                            <img
+                                src="content/images/teamBio.jpeg"
+                                alt="BioNova team collaborating"
+                                class="img-fluid w-100 h-100 object-fit-cover"
+                                loading="lazy"
+                            />
                         </div>
                     </div>
                 </div>
@@ -307,11 +173,11 @@
         </section>
 
         <!-- Articles Section -->
-        <section class="section alt-bg" aria-labelledby="articles-heading">
+        <section class="section bg-light" aria-labelledby="articles-heading">
             <div class="container">
-                <header class="section-header">
+                <header class="text-center mb-5">
                     <h2 id="articles-heading" class="display-5 fw-bold">Insights & Impact Stories</h2>
-                    <p>Research findings, program updates, and stories of transformation</p>
+                    <p class="text-muted">Research findings, program updates, and stories of transformation</p>
                 </header>
                 <div class="row g-4" id="articles-container">
                     <div class="col-12 text-center">
@@ -322,7 +188,7 @@
                     </div>
                 </div>
                 <div class="text-center mt-5">
-                    <a href="articles.html" class="btn btn-outline-primary">View All Publications <i class="fas fa-arrow-right ms-2"></i></a>
+                    <a href="articles.html" class="btn btn-outline-dark">View All Publications <i class="fas fa-arrow-right ms-2"></i></a>
                 </div>
             </div>
         </section>
@@ -330,9 +196,9 @@
         <!-- Team Section -->
         <section class="section" aria-labelledby="team-heading">
             <div class="container">
-                <header class="section-header">
+                <header class="text-center mb-5">
                     <h2 id="team-heading" class="display-5 fw-bold">Our Leadership & Experts</h2>
-                    <p>Dedicated professionals driving sustainable change</p>
+                    <p class="text-muted">Dedicated professionals driving sustainable change</p>
                 </header>
                 <div class="row g-4" id="team-container">
                     <div class="col-12 text-center">
@@ -343,15 +209,15 @@
                     </div>
                 </div>
                 <div class="text-center mt-5">
-                    <a href="team.html" class="btn btn-outline-primary">Meet Our Full Team <i class="fas fa-arrow-right ms-2"></i></a>
+                    <a href="team.html" class="btn btn-outline-dark">Meet Our Full Team <i class="fas fa-arrow-right ms-2"></i></a>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
             <p>&copy; 2025 BioNova. All rights reserved.</p>
         </div>
     </footer>
@@ -399,7 +265,6 @@
             return html;
         }
 
-
         // Main function to load content
         async function loadIndexContent() {
             try {
@@ -436,7 +301,7 @@
                         const plainText = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 150) + '...';
                         articleCards.push(`
                             <div class="col-md-4">
-                                <div class="card h-100">
+                                <div class="card h-100 shadow-sm">
                                     <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article+Image'}" 
                                          class="card-img-top" 
                                          alt="${meta.title}" 
@@ -444,7 +309,7 @@
                                     <div class="card-body d-flex flex-column">
                                         <h5 class="card-title">${meta.title}</h5>
                                         <p class="card-text flex-grow-1">${plainText}</p>
-                                        <button class="btn btn-outline-primary mt-auto" onclick="openDetail('${articleFiles[i]}', 'article')">Read More</button>
+                                        <button class="btn btn-outline-dark mt-auto" onclick="openDetail('${articleFiles[i]}', 'article')">Read More</button>
                                     </div>
                                 </div>
                             </div>
@@ -486,7 +351,7 @@
                         const excerpt = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 100) + '...';
                         teamCards.push(`
                             <div class="col-md-4">
-                                <div class="card team-card h-100">
+                                <div class="card team-card h-100 shadow-sm">
                                     <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Team+Member'}" 
                                          class="card-img-top" 
                                          alt="${meta.title}" 
@@ -495,7 +360,7 @@
                                         <h5 class="card-title">${meta.title}</h5>
                                         <p class="card-text"><strong>${meta.role || 'Team Member'}</strong></p>
                                         <p class="card-text flex-grow-1">${excerpt}</p>
-                                        <button class="btn btn-outline-primary mt-auto" onclick="openDetail('${teamFiles[i]}', 'team')">View Profile</button>
+                                        <button class="btn btn-outline-dark mt-auto" onclick="openDetail('${teamFiles[i]}', 'team')">View Profile</button>
                                     </div>
                                 </div>
                             </div>
