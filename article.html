@@ -23,6 +23,15 @@
       height: auto;
       border-radius: 0.5rem;
     }
+    /* Fix for card sizing */
+    .card {
+      display: flex;
+      flex-direction: column;
+    }
+    .card-img-top {
+      width: 100%;
+      object-fit: cover;
+    }
   </style>
 </head>
 <body>
@@ -49,12 +58,12 @@
   <main class="container" style="margin-top: 6rem;">
     <div class="card border-0 shadow-sm mb-5">
       <img id="article-image" class="card-img-top" src="" alt="Article Image" loading="lazy">
-      <div class="card-body">
+      <div class="card-body d-flex flex-column">
         <h1 id="article-title" class="card-title fw-bold mb-3">Loading...</h1>
         <div class="text-muted mb-3" id="article-meta">
           <small><span id="article-author">By Unknown</span> • <span id="article-date">Date Unknown</span></small>
         </div>
-        <div id="article-body" class="markdown-body"></div>
+        <div id="article-body" class="markdown-body flex-grow-1"></div>
       </div>
     </div>
   </main>
