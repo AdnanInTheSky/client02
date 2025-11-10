@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BioNova - Sustainable Development NGO</title>
     
-    <!-- Bootstrap 5 CSS CDN -->
+    <!-- Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Font Awesome for icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Animate.css (for lightweight, clean animations) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
     <style>
-        /* Minimal custom CSS - only what's essential */
+        /* Only essential: preserve hero background & loading spinner */
         .hero {
             padding: 8rem 0;
             text-align: center;
@@ -20,25 +23,6 @@
             overflow: hidden;
         }
 
-        .section {
-            padding: 5rem 0;
-        }
-
-        /* Ensure images fill card tops properly */
-        .card-img-top {
-            height: 200px;
-            width: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        .team-card .card-img-top {
-            height: 250px;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        /* Loading animation */
         .loading {
             text-align: center;
             padding: 2rem;
@@ -58,29 +42,11 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Background toggle */
-        .bg-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .bg-toggle button {
-            margin: 0 5px;
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            background: white;
-            cursor: pointer;
-        }
-
-        .bg-toggle button.active {
-            background: #000;
-            color: white;
+        /* Prevent layout shift on card load */
+        .card-placeholder {
+            height: 420px;
+            background: #f8f9fa;
+            border-radius: 0.5rem;
         }
     </style>
 </head>
@@ -120,10 +86,12 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
-                        <h1 id="hero-heading" class="display-4 fw-bold mb-4">Sustainable Solutions for Global Challenges</h1>
-                        <p class="lead mb-4">Empowering communities through innovative development programs and strategic partnerships</p>
-                        <button class="btn btn-dark btn-lg me-2" onclick="window.location.href='contact.html'">Join Our Mission</button>
-                        <button class="btn btn-outline-light btn-lg" onclick="window.location.href='services.html'">Learn More</button>
+                        <h1 id="hero-heading" class="display-4 fw-bold mb-4 animate__animated animate__fadeInUp">Sustainable Solutions for Global Challenges</h1>
+                        <p class="lead mb-4 animate__animated animate__fadeInUp animate__delay-1s">Empowering communities through innovative development programs and strategic partnerships</p>
+                        <div class="animate__animated animate__fadeInUp animate__delay-2s">
+                            <button class="btn btn-dark btn-lg me-2" onclick="window.location.href='contact.html'">Join Our Mission</button>
+                            <button class="btn btn-outline-light btn-lg" onclick="window.location.href='services.html'">Learn More</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -134,7 +102,6 @@
             <div class="container">
                 <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
                     <div class="row g-0 align-items-center">
-                        <!-- Text Content -->
                         <div class="col-lg-6 p-5">
                             <header class="mb-4">
                                 <h2 id="about-heading" class="display-6 fw-bold mb-3">
@@ -157,13 +124,12 @@
                                 Explore Our Impact <i class="fas fa-arrow-right ms-2"></i>
                             </a>
                         </div>
-
-                        <!-- Image -->
                         <div class="col-lg-6">
                             <img
                                 src="content/images/teamBio.jpeg"
                                 alt="BioNova team collaborating"
-                                class="img-fluid w-100 h-100 object-fit-cover"
+                                class="img-fluid w-100 h-100"
+                                style="object-fit: cover;"
                                 loading="lazy"
                             />
                         </div>
@@ -173,215 +139,107 @@
         </section>
 
         <!-- Articles Section -->
-        <section class="section bg-light" aria-labelledby="articles-heading">
+        <section class="section bg-light py-5" aria-labelledby="articles-heading">
             <div class="container">
-                <header class="text-center mb-5">
+                <header class="text-center mb-5 animate__animated animate__fadeIn">
                     <h2 id="articles-heading" class="display-5 fw-bold">Insights & Impact Stories</h2>
                     <p class="text-muted">Research findings, program updates, and stories of transformation</p>
                 </header>
                 <div class="row g-4" id="articles-container">
-                    <div class="col-12 text-center">
-                        <div class="loading">
-                            <div class="spinner"></div>
-                            <p>Loading articles...</p>
-                        </div>
+                    <!-- Initial placeholders for smoother perceived load -->
+                    <div class="col-12 col-md-6 col-lg-4 d-flex">
+                        <div class="card-placeholder w-100"></div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 d-flex">
+                        <div class="card-placeholder w-100"></div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 d-flex">
+                        <div class="card-placeholder w-100"></div>
                     </div>
                 </div>
-                <div class="text-center mt-5">
+                <div class="text-center mt-5 animate__animated animate__fadeIn animate__delay-1s">
                     <a href="articles.html" class="btn btn-outline-dark">View All Publications <i class="fas fa-arrow-right ms-2"></i></a>
                 </div>
             </div>
         </section>
 
         <!-- Team Section -->
-        <section class="section" aria-labelledby="team-heading">
+        <section class="section py-5" aria-labelledby="team-heading">
             <div class="container">
-                <header class="text-center mb-5">
+                <header class="text-center mb-5 animate__animated animate__fadeIn">
                     <h2 id="team-heading" class="display-5 fw-bold">Our Leadership & Experts</h2>
                     <p class="text-muted">Dedicated professionals driving sustainable change</p>
                 </header>
                 <div class="row g-4" id="team-container">
-                    <div class="col-12 text-center">
-                        <div class="loading">
-                            <div class="spinner"></div>
-                            <p>Loading team...</p>
-                        </div>
+                    <!-- Placeholders -->
+                    <div class="col-12 col-md-6 col-lg-4 d-flex">
+                        <div class="card-placeholder w-100"></div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 d-flex">
+                        <div class="card-placeholder w-100"></div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 d-flex">
+                        <div class="card-placeholder w-100"></div>
                     </div>
                 </div>
-                <div class="text-center mt-5">
+                <div class="text-center mt-5 animate__animated animate__fadeIn animate__delay-1s">
                     <a href="team.html" class="btn btn-outline-dark">Meet Our Full Team <i class="fas fa-arrow-right ms-2"></i></a>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-dark text-white py-4">
         <div class="container text-center">
             <p>&copy; 2025 BioNova. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Bootstrap JS Bundle with Popper -->
+    <!-- Bootstrap & Animate.js (for triggering animations) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
-    <!-- Script (with critical fixes applied) -->
     <script>
-        // Utility function for parsing YAML frontmatter
+        // Utility: Parse YAML frontmatter
         function parseYAML(yamlStr) {
             const result = {};
             const lines = yamlStr.trim().split('\n');
             for (const line of lines) {
-                const [key, ...valueParts] = line.split(':');
-                const trimmedKey = key.trim();
-                let value = valueParts.join(':').trim();
-                if (value.startsWith('"') && value.endsWith('"')) {
-                    value = value.slice(1, -1);
-                } else if (value.startsWith("'") && value.endsWith("'")) {
-                    value = value.slice(1, -1);
-                } else if (value.startsWith('[') && value.endsWith(']')) {
-                    value = value.slice(1, -1).split(',').map(v => v.trim().replace(/"/g, '').replace(/'/g, ''));
-                }
-                result[trimmedKey] = value;
+                const colonIdx = line.indexOf(':');
+                if (colonIdx === -1) continue;
+                const key = line.substring(0, colonIdx).trim();
+                let value = line.substring(colonIdx + 1).trim();
+                if (value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
+                else if (value.startsWith("'") && value.endsWith("'")) value = value.slice(1, -1);
+                else if (value === 'true') value = true;
+                else if (value === 'false') value = false;
+                else if (!isNaN(value) && value !== '') value = Number(value);
+                result[key] = value;
             }
             return result;
         }
 
-        // Function to convert markdown to HTML (simplified)
-        function simpleMarkdownToHTML(md) {
-            let html = md;
-            html = html.replace(/^(\s*)## (.+)$/gm, '$1<h2>$2</h2>');
-            html = html.replace(/^(\s*)# (.+)$/gm, '$1<h1>$2</h1>');
-            html = html.replace(/^(\s*)### (.+)$/gm, '$1<h3>$2</h3>');
-            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-            html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
-            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-            html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
-            html = html.replace(/(<li>.+<\/li>)+/g, '<ul>$&</ul>');
-            html = html.replace(/\n/g, '<br>');
-            const paragraphs = html.split('<br><br>');
-            html = paragraphs.map(p => `<p>${p}</p>`).join('');
-            html = html.replace(/<br><br>/g, '<br>');
-            return html;
+        // Simplified markdown cleanup (for excerpt)
+        function cleanExcerpt(text, wordLimit = 20) {
+            return text
+                .replace(/[#*_\-[\]()`>]/g, '')
+                .split(/\s+/)
+                .slice(0, wordLimit)
+                .join(' ') + (text.split(/\s+/).length > wordLimit ? '…' : '');
         }
 
-        // Main function to load content
-        async function loadIndexContent() {
-            try {
-                const indexResponse = await fetch('/content/index.json');
-                if (!indexResponse.ok) {
-                    throw new Error(`HTTP error! status: ${indexResponse.status}`);
-                }
-                const indexData = await indexResponse.json();
-
-                // Load latest 3 articles
-                const articleFiles = indexData.articles.slice(0, 3);
-                const articlePromises = articleFiles.map(file =>
-                    fetch(`/content/${file}`)
-                        .then(r => {
-                            if (!r.ok) throw new Error(`Failed to load article: ${file}`);
-                            return r.text();
-                        })
-                        .catch(err => {
-                            console.error(`Error loading article ${file}:`, err);
-                            return null;
-                        })
-                );
-
-                const articleTexts = await Promise.all(articlePromises);
-                const validArticleTexts = articleTexts.filter(text => text !== null);
-                const articleCards = [];
-                for (let i = 0; i < validArticleTexts.length; i++) {
-                    const text = validArticleTexts[i];
-                    const parts = text.split('---');
-                    if (parts.length >= 3) {
-                        const frontmatter = parts[1];
-                        const body = parts.slice(2).join('---');
-                        const meta = parseYAML(frontmatter);
-                        const plainText = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 150) + '...';
-                        articleCards.push(`
-                            <div class="col-md-4 shadow-sm">
-                                <div class="card h-100 shadow-sm" style="max-width: 350px; margin: 0 auto;">
-                                    <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article+Image'}" 
-                                         class="card-img-top" 
-                                         alt="${meta.title}" 
-                                         loading="lazy">
-                                    <div class="card-body d-flex flex-column">
-                                        <h5 class="card-title">${meta.title}</h5>
-                                        <p class="card-text flex-grow-1">${plainText}</p>
-                                        <button class="btn btn-outline-dark mt-auto" onclick="openDetail('${articleFiles[i]}', 'article')">Read More</button>
-                                    </div>
-                                </div>
-                            </div>
-                        `);
-                    }
-                }
-
-                const articlesContainer = document.getElementById('articles-container');
-                if (articleCards.length) {
-                    articlesContainer.innerHTML = articleCards.join('');
-                } else {
-                    articlesContainer.innerHTML = '<div class="col-12"><p class="text-center text-muted">No articles available at this time.</p></div>';
-                }
-
-                // Load team members
-                const teamFiles = indexData.teams.slice(0, 3);
-                const teamPromises = teamFiles.map(file =>
-                    fetch(`/content/${file}`)
-                        .then(r => {
-                            if (!r.ok) throw new Error(`Failed to load team member: ${file}`);
-                            return r.text();
-                        })
-                        .catch(err => {
-                            console.error(`Error loading team member ${file}:`, err);
-                            return null;
-                        })
-                );
-
-                const teamTexts = await Promise.all(teamPromises);
-                const validTeamTexts = teamTexts.filter(text => text !== null);
-                const teamCards = [];
-                for (let i = 0; i < validTeamTexts.length; i++) {
-                    const text = validTeamTexts[i];
-                    const parts = text.split('---');
-                    if (parts.length >= 3) {
-                        const frontmatter = parts[1];
-                        const body = parts.slice(2).join('---');
-                        const meta = parseYAML(frontmatter);
-                        const excerpt = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 100) + '...';
-                        teamCards.push(`
-                            <div class="col-md-4 shadow-sm">
-                                <div class="card team-card h-100 shadow-sm" style="max-width: 350px; margin: 0 auto;">
-                                    <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Team+Member'}" 
-                                         class="card-img-top" 
-                                         alt="${meta.title}" 
-                                         loading="lazy">
-                                    <div class="card-body d-flex flex-column">
-                                        <h5 class="card-title">${meta.title}</h5>
-                                        <p class="card-text"><strong>${meta.role || 'Team Member'}</strong></p>
-                                        <p class="card-text flex-grow-1">${excerpt}</p>
-                                        <button class="btn btn-outline-dark mt-auto" onclick="openDetail('${teamFiles[i]}', 'team')">View Profile</button>
-                                    </div>
-                                </div>
-                            </div>
-                        `);
-                    }
-                }
-
-                const teamContainer = document.getElementById('team-container');
-                if (teamCards.length) {
-                    teamContainer.innerHTML = teamCards.join('');
-                } else {
-                    teamContainer.innerHTML = '<div class="col-12"><p class="text-center text-muted">No team members available at this time.</p></div>';
-                }
-            } catch (error) {
-                console.error('Error loading index content:', error);
-                document.getElementById('articles-container').innerHTML = '<div class="col-12"><p class="text-center text-danger">Unable to load articles at this time.</p></div>';
-                document.getElementById('team-container').innerHTML = '<div class="col-12"><p class="text-center text-danger">Unable to load team information at this time.</p></div>';
-            }
+        // Staggered animation for cards
+        function animateCards(containerSelector, delay = 100) {
+            const cards = document.querySelectorAll(`${containerSelector} .card`);
+            cards.forEach((card, i) => {
+                card.classList.add('animate__animated', 'animate__fadeInUp');
+                card.style.animationDelay = `${i * delay}ms`;
+                card.style.opacity = '0';
+                setTimeout(() => card.style.opacity = '1', i * delay);
+            });
         }
 
-        // Function to open detail pages
+        // Open detail (preserves back button)
         function openDetail(id, type) {
             sessionStorage.setItem('selectedFile', id);
             if (type === 'article') {
@@ -391,8 +249,135 @@
             }
         }
 
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', loadIndexContent);
+        // Main content loader
+        async function loadIndexContent() {
+            try {
+                const res = await fetch('/content/index.json');
+                if (!res.ok) throw new Error(`Failed to load index.json: ${res.status}`);
+                const indexData = await res.json();
+
+                // ——————— ARTICLES ———————
+                const articleFiles = indexData.articles?.slice(0, 3) || [];
+                const articleCards = [];
+
+                for (const file of articleFiles) {
+                    try {
+                        const txt = await fetch(`/content/${file}`).then(r => {
+                            if (!r.ok) throw new Error();
+                            return r.text();
+                        });
+                        const parts = txt.split('---');
+                        if (parts.length < 3) continue;
+                        const meta = parseYAML(parts[1]);
+                        const body = parts.slice(2).join('---');
+                        const excerpt = cleanExcerpt(body, 22);
+
+                        articleCards.push(`
+                            <div class="col-12 col-md-6 col-lg-4 d-flex">
+                                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
+                                    <img 
+                                        src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article'}" 
+                                        class="card-img-top img-fluid"
+                                        alt="${meta.title || 'Article image'}"
+                                        loading="lazy"
+                                        onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Image+Unavailable'"
+                                    >
+                                    <div class="card-body d-flex flex-column p-4">
+                                        <h5 class="card-title h5 mb-2">${meta.title || 'Untitled'}</h5>
+                                        ${meta.date ? `<p class="card-text text-muted small mb-2"><i class="far fa-calendar-alt me-1"></i>${meta.date}</p>` : ''}
+                                        <p class="card-text flex-grow-1">${excerpt}</p>
+                                        <a 
+                                            href="article.html" 
+                                            class="btn btn-outline-dark mt-3"
+                                            onclick="openDetail('${file}', 'article'); return false;"
+                                            aria-label="Read full article: ${meta.title || 'untitled'}"
+                                        >
+                                            Read More <i class="fas fa-arrow-right ms-1"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                    } catch (e) {
+                        console.warn(`Skipping article: ${file}`, e);
+                    }
+                }
+
+                const articlesContainer = document.getElementById('articles-container');
+                if (articleCards.length) {
+                    articlesContainer.innerHTML = articleCards.join('');
+                    animateCards('#articles-container', 150);
+                } else {
+                    articlesContainer.innerHTML = `<div class="col-12"><div class="alert alert-info text-center py-4 mb-0">No recent publications available.</div></div>`;
+                }
+
+                // ——————— TEAM ———————
+                const teamFiles = indexData.teams?.slice(0, 3) || [];
+                const teamCards = [];
+
+                for (const file of teamFiles) {
+                    try {
+                        const txt = await fetch(`/content/${file}`).then(r => {
+                            if (!r.ok) throw new Error();
+                            return r.text();
+                        });
+                        const parts = txt.split('---');
+                        if (parts.length < 3) continue;
+                        const meta = parseYAML(parts[1]);
+                        const body = parts.slice(2).join('---');
+                        const bio = cleanExcerpt(body, 18);
+
+                        teamCards.push(`
+                            <div class="col-12 col-md-6 col-lg-4 d-flex">
+                                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
+                                    <img 
+                                        src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Team'}" 
+                                        class="card-img-top img-fluid"
+                                        alt="${meta.title || 'Team member'}"
+                                        loading="lazy"
+                                        onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Photo+Unavailable'"
+                                    >
+                                    <div class="card-body d-flex flex-column p-4">
+                                        <h5 class="card-title h5 mb-1">${meta.title || 'Name'}</h5>
+                                        <p class="card-text text-primary fw-medium mb-2">${meta.role || 'Role'}</p>
+                                        <p class="card-text text-muted small flex-grow-1">${bio}</p>
+                                        <a 
+                                            href="team_detail.html" 
+                                            class="btn btn-outline-dark mt-3"
+                                            onclick="openDetail('${file}', 'team'); return false;"
+                                            aria-label="View profile of ${meta.title || 'team member'}"
+                                        >
+                                            View Profile <i class="fas fa-user ms-1"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                    } catch (e) {
+                        console.warn(`Skipping team member: ${file}`, e);
+                    }
+                }
+
+                const teamContainer = document.getElementById('team-container');
+                if (teamCards.length) {
+                    teamContainer.innerHTML = teamCards.join('');
+                    animateCards('#team-container', 150);
+                } else {
+                    teamContainer.innerHTML = `<div class="col-12"><div class="alert alert-info text-center py-4 mb-0">No team profiles available.</div></div>`;
+                }
+            } catch (error) {
+                console.error('Critical load error:', error);
+                document.getElementById('articles-container').innerHTML = 
+                    `<div class="col-12"><div class="alert alert-danger text-center py-4 mb-0">Publications failed to load.</div></div>`;
+                document.getElementById('team-container').innerHTML = 
+                    `<div class="col-12"><div class="alert alert-danger text-center py-4 mb-0">Team profiles failed to load.</div></div>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fade hero content in after slight delay for better perceived performance
+            setTimeout(loadIndexContent, 300);
+        });
     </script>
 </body>
 </html>
