@@ -1,467 +1,358 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BioNova - Sustainable Development NGO</title>
-    
-    <!-- Bootstrap 5.3 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BioNova – Sustainable Development NGO</title>
 
-    <!-- Animate.css (for lightweight, clean animations) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    
-    <style>
-        /* Only essential: preserve hero background & loading spinner */
-        .hero {
-            padding: 8rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        .loading {
-            text-align: center;
-            padding: 2rem;
-        }
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-left-color: #000;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+  <style>
+    /* ────── Color Palette ────── */
+    :root {
+      --color-primary:   #1a1a1a;   /* Deep charcoal */
+      --color-secondary:#2c3e50;   /* Navy slate */
+      --color-accent:    #e67e22;   /* Warm coral */
+      --color-light:     #f8f9fa;
+      --color-muted:     #6c757d;
+      --color-bg-dark:   #111111;
+      --color-bg-light:  #ffffff;
+    }
 
-        /* Prevent layout shift on card load */
-        .card-placeholder {
-            height: 420px;
-            background: #f8f9fa;
-            border-radius: 0.5rem;
-        }
-    </style>
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+
+    /* ────── Global Styles ────── */
+    .section { padding: 5rem 0; }
+    .btn-dark { background: var(--color-primary); border: none; }
+    .btn-dark:hover { background: var(--color-secondary); transform: translateY(-2px); }
+    .btn-outline-dark { border-color: var(--color-primary); color: var(--color-primary); }
+    .btn-outline-dark:hover { background: var(--color-primary); color: #fff; }
+
+    /* ────── Navbar ────── */
+    .navbar { transition: all 0.3s; }
+    .navbar.scrolled { background: rgba(255,255,255,0.95) !important; box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+
+    /* ────── Hero ────── */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('content/images/tester.jpg') center/cover no-repeat;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero h1 { font-weight: 800; letter-spacing: -0.5px; }
+    .hero .lead { font-size: 1.25rem; opacity: .92; }
+
+    /* ────── Cards ────── */
+    .card {
+      transition: transform .3s, box-shadow .3s;
+      border: none;
+      overflow: hidden;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0,0,0,.12) !important;
+    }
+    .card-img-top { height: 220px; object-fit: cover; }
+
+    /* ────── About Card (image + text) ────── */
+    .about-card .img-wrapper { height: 100%; }
+    .about-card img { object-fit: cover; height: 100%; width: 100%; }
+
+    /* ────── Loading Spinner ────── */
+    .spinner {
+      width: 44px; height: 44px;
+      border: 4px solid rgba(0,0,0,.1);
+      border-left-color: var(--color-primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 2rem auto;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .card-placeholder {
+      height: 420px;
+      background: var(--color-light);
+      border-radius: .75rem;
+    }
+
+    /* ────── Footer ────── */
+    footer { background: var(--color-bg-dark); }
+    footer a { color: #aaa; text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    /* ────── Focus Styles ────── */
+    a:focus, button:focus, .btn:focus {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+  </style>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand fw-bold" href="index.html">BioNova</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="services.html">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="articles.html">Publications</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="team.html">Team</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
 
-    <main id="main-content">
-        <section class="hero" id="hero-section" aria-labelledby="hero-heading"
-                 style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('content/images/tester.jpg'); background-size: cover; background-position: center; color: white;">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <h1 id="hero-heading" class="display-4 fw-bold mb-4 animate__animated animate__fadeInUp">Sustainable Solutions for Global Challenges</h1>
-                        <p class="lead mb-4 animate__animated animate__fadeInUp animate__delay-1s">Empowering communities through innovative development programs and strategic partnerships</p>
-                        <div class="animate__animated animate__fadeInUp animate__delay-2s">
-                            <button class="btn btn-dark btn-lg me-2" onclick="window.location.href='contact.html'">Join Our Mission</button>
-                            <button class="btn btn-outline-light btn-lg" onclick="window.location.href='services.html'">Learn More</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section class="py-5 bg-light" aria-labelledby="about-heading">
-            <div class="container">
-                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
-                    <div class="row g-0 align-items-center">
-                        <div class="col-lg-6 p-5">
-                            <header class="mb-4">
-                                <h2 id="about-heading" class="display-6 fw-bold mb-3">
-                                    Our Commitment to Sustainable Change
-                                </h2>
-                                <p class="text-muted">
-                                    Building resilient communities through evidence-based approaches and collaborative partnerships
-                                </p>
-                            </header>
-                            <p class="mb-3">
-                                BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide.
-                            </p>
-                            <p class="mb-3">
-                                Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives.
-                            </p>
-                            <p class="mb-4">
-                                We prioritize local leadership and participatory approaches to ensure programs are culturally appropriate and sustainable.
-                            </p>
-                            <a href="services.html" class="btn btn-dark">
-                                Explore Our Impact <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                        <div class="col-lg-6">
-                            <img
-                                src="content/images/teamBio.jpeg"
-                                alt="BioNova team collaborating"
-                                class="img-fluid w-100 h-100"
-                                style="object-fit: cover;"
-                                loading="lazy"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- About Section -->
-        <section class="py-5 bg-light" aria-labelledby="about-heading">
-            <div class="container">
-                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
-                    <div class="row g-0 align-items-center">
-                        <div class="col-lg-6 p-5">
-                            <header class="mb-4">
-                                <h2 id="about-heading" class="display-6 fw-bold mb-3">
-                                    Our Commitment to Sustainable Change
-                                </h2>
-                                <p class="text-muted">
-                                    Building resilient communities through evidence-based approaches and collaborative partnerships
-                                </p>
-                            </header>
-                            <p class="mb-3">
-                                BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide.
-                            </p>
-                            <p class="mb-3">
-                                Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives.
-                            </p>
-                            <p class="mb-4">
-                                We prioritize local leadership and participatory approaches to ensure programs are culturally appropriate and sustainable.
-                            </p>
-                            <a href="services.html" class="btn btn-dark">
-                                Explore Our Impact <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                        <div class="col-lg-6">
-                            <img
-                                src="content/images/teamBio.jpeg"
-                                alt="BioNova team collaborating"
-                                class="img-fluid w-100 h-100"
-                                style="object-fit: cover;"
-                                loading="lazy"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- About Section -->
-        <section class="py-5 bg-light" aria-labelledby="about-heading">
-            <div class="container">
-                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
-                    <div class="row g-0 align-items-center">
-                        <div class="col-lg-6 p-5">
-                            <header class="mb-4">
-                                <h2 id="about-heading" class="display-6 fw-bold mb-3">
-                                    Our Commitment to Sustainable Change
-                                </h2>
-                                <p class="text-muted">
-                                    Building resilient communities through evidence-based approaches and collaborative partnerships
-                                </p>
-                            </header>
-                            <p class="mb-3">
-                                BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide.
-                            </p>
-                            <p class="mb-3">
-                                Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives.
-                            </p>
-                            <p class="mb-4">
-                                We prioritize local leadership and participatory approaches to ensure programs are culturally appropriate and sustainable.
-                            </p>
-                            <a href="services.html" class="btn btn-dark">
-                                Explore Our Impact <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                        <div class="col-lg-6">
-                            <img
-                                src="content/images/teamBio.jpeg"
-                                alt="BioNova team collaborating"
-                                class="img-fluid w-100 h-100"
-                                style="object-fit: cover;"
-                                loading="lazy"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Articles Section -->
-        <section class="section bg-light py-5" aria-labelledby="articles-heading">
-            <div class="container">
-                <header class="text-center mb-5 animate__animated animate__fadeIn">
-                    <h2 id="articles-heading" class="display-5 fw-bold">Insights & Impact Stories</h2>
-                    <p class="text-muted">Research findings, program updates, and stories of transformation</p>
-                </header>
-                <div class="row g-4" id="articles-container">
-                    <!-- Initial placeholders for smoother perceived load -->
-                    <div class="col-12 col-md-6 col-lg-4 d-flex">
-                        <div class="card-placeholder w-100"></div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 d-flex">
-                        <div class="card-placeholder w-100"></div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 d-flex">
-                        <div class="card-placeholder w-100"></div>
-                    </div>
-                </div>
-                <div class="text-center mt-5 animate__animated animate__fadeIn animate__delay-1s">
-                    <a href="articles.html" class="btn btn-outline-dark">View All Publications <i class="fas fa-arrow-right ms-2"></i></a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Team Section -->
-        <section class="section py-5" aria-labelledby="team-heading">
-            <div class="container">
-                <header class="text-center mb-5 animate__animated animate__fadeIn">
-                    <h2 id="team-heading" class="display-5 fw-bold">Our Leadership & Experts</h2>
-                    <p class="text-muted">Dedicated professionals driving sustainable change</p>
-                </header>
-                <div class="row g-4" id="team-container">
-                    <!-- Placeholders -->
-                    <div class="col-12 col-md-6 col-lg-4 d-flex">
-                        <div class="card-placeholder w-100"></div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 d-flex">
-                        <div class="card-placeholder w-100"></div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 d-flex">
-                        <div class="card-placeholder w-100"></div>
-                    </div>
-                </div>
-                <div class="text-center mt-5 animate__animated animate__fadeIn animate__delay-1s">
-                    <a href="team.html" class="btn btn-outline-dark">Meet Our Full Team <i class="fas fa-arrow-right ms-2"></i></a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-dark text-white py-4">
-        <div class="container text-center">
-            <p>&copy; 2025 BioNova. All rights reserved.</p>
+  <!-- Navigation -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="index.html">BioNova</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="services.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="articles.html">Publications</a></li>
+            <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
         </div>
-    </footer>
+      </div>
+    </nav>
+  </header>
 
-    <!-- Bootstrap & Animate.js (for triggering animations) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <main id="main-content">
 
-    <script>
-        // Utility: Parse YAML frontmatter
-        function parseYAML(yamlStr) {
-            const result = {};
-            const lines = yamlStr.trim().split('\n');
-            for (const line of lines) {
-                const colonIdx = line.indexOf(':');
-                if (colonIdx === -1) continue;
-                const key = line.substring(0, colonIdx).trim();
-                let value = line.substring(colonIdx + 1).trim();
-                if (value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
-                else if (value.startsWith("'") && value.endsWith("'")) value = value.slice(1, -1);
-                else if (value === 'true') value = true;
-                else if (value === 'false') value = false;
-                else if (!isNaN(value) && value !== '') value = Number(value);
-                result[key] = value;
-            }
-            return result;
-        }
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-9 col-xl-8">
+            <h1 id="hero-heading" class="display-4 fw-bold mb-4 animate__animated animate__fadeInUp">
+              Sustainable Solutions for Global Challenges
+            </h1>
+            <p class="lead mb-5 animate__animated animate__fadeInUp animate__delay-1s">
+              Empowering communities through innovative development programs and strategic partnerships
+            </p>
+            <div class="animate__animated animate__fadeInUp animate__delay-2s">
+              <a href="contact.html" class="btn btn-dark btn-lg me-3">Join Our Mission</a>
+              <a href="services.html" class="btn btn-outline-light btn-lg">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        // Simplified markdown cleanup (for excerpt)
-        function cleanExcerpt(text, wordLimit = 20) {
-            return text
-                .replace(/[#*_\-[\]()`>]/g, '')
-                .split(/\s+/)
-                .slice(0, wordLimit)
-                .join(' ') + (text.split(/\s+/).length > wordLimit ? '…' : '');
-        }
+    <!-- About -->
+    <section class="section bg-light" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="card about-card border-0 shadow-lg rounded-4 overflow-hidden">
+          <div class="row g-0 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+              <div class="img-wrapper">
+                <img src="content/images/teamBio.jpeg" alt="BioNova team collaborating" class="img-fluid" loading="lazy">
+              </div>
+            </div>
+            <div class="col-lg-6 order-lg-1 p-5 p-lg-6">
+              <header class="mb-4">
+                <h2 id="about-heading" class="display-6 fw-bold mb-3">Our Commitment to Sustainable Change</h2>
+                <p class="text-muted fs-5">Building resilient communities through evidence-based approaches and collaborative partnerships</p>
+              </header>
+              <p class="mb-3">BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide.</p>
+              <p class="mb-3">Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives.</p>
+              <p class="mb-4">We prioritize local leadership and participatory approaches to ensure programs are culturally appropriate and sustainable.</p>
+              <a href="services.html" class="btn btn-dark">
+                Explore Our Impact <i class="fas fa-arrow-right ms-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        // Staggered animation for cards
-        function animateCards(containerSelector, delay = 100) {
-            const cards = document.querySelectorAll(`${containerSelector} .card`);
-            cards.forEach((card, i) => {
-                card.classList.add('animate__animated', 'animate__fadeInUp');
-                card.style.animationDelay = `${i * delay}ms`;
-                card.style.opacity = '0';
-                setTimeout(() => card.style.opacity = '1', i * delay);
-            });
-        }
+    <!-- Articles -->
+    <section class="section bg-white" aria-labelledby="articles-heading">
+      <div class="container">
+        <header class="text-center mb-5 animate__animated animate__fadeIn">
+          <h2 id="articles-heading" class="display-5 fw-bold">Insights & Impact Stories</h2>
+          <p class="text-muted">Research findings, program updates, and stories of transformation</p>
+        </header>
 
-        // Open detail (preserves back button)
-        function openDetail(id, type) {
-            sessionStorage.setItem('selectedFile', id);
-            if (type === 'article') {
-                window.location.href = 'article.html';
-            } else if (type === 'team') {
-                window.location.href = 'team_detail.html';
-            }
-        }
+        <div class="row g-4" id="articles-container">
+          <!-- Placeholders -->
+          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
+          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
+          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
+        </div>
 
-        // Main content loader
-        async function loadIndexContent() {
-            try {
-                const res = await fetch('/content/index.json');
-                if (!res.ok) throw new Error(`Failed to load index.json: ${res.status}`);
-                const indexData = await res.json();
+        <div class="text-center mt-5">
+          <a href="articles.html" class="btn btn-outline-dark">View All Publications <i class="fas fa-arrow-right ms-2"></i></a>
+        </div>
+      </div>
+    </section>
 
-                // ——————— ARTICLES ———————
-                const articleFiles = indexData.articles?.slice(0, 3) || [];
-                const articleCards = [];
+    <!-- Team -->
+    <section class="section bg-light" aria-labelledby="team-heading">
+      <div class="container">
+        <header class="text-center mb-5 animate__animated animate__fadeIn">
+          <h2 id="team-heading" class="display-5 fw-bold">Our Leadership & Experts</h2>
+          <p class="text-muted">Dedicated professionals driving sustainable change</p>
+        </header>
 
-                for (const file of articleFiles) {
-                    try {
-                        const txt = await fetch(`/content/${file}`).then(r => {
-                            if (!r.ok) throw new Error();
-                            return r.text();
-                        });
-                        const parts = txt.split('---');
-                        if (parts.length < 3) continue;
-                        const meta = parseYAML(parts[1]);
-                        const body = parts.slice(2).join('---');
-                        const excerpt = cleanExcerpt(body, 22);
+        <div class="row g-4" id="team-container">
+          <!-- Placeholders -->
+          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
+          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
+          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
+        </div>
 
-                        articleCards.push(`
-                            <div class="col-12 col-md-6 col-lg-4 d-flex">
-                                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
-                                    <img 
-                                        src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article'}" 
-                                        class="card-img-top img-fluid"
-                                        alt="${meta.title || 'Article image'}"
-                                        loading="lazy"
-                                        onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Image+Unavailable'"
-                                    >
-                                    <div class="card-body d-flex flex-column p-4">
-                                        <h5 class="card-title h5 mb-2">${meta.title || 'Untitled'}</h5>
-                                        ${meta.date ? `<p class="card-text text-muted small mb-2"><i class="far fa-calendar-alt me-1"></i>${meta.date}</p>` : ''}
-                                        <p class="card-text flex-grow-1">${excerpt}</p>
-                                        <a 
-                                            href="article.html" 
-                                            class="btn btn-outline-dark mt-3"
-                                            onclick="openDetail('${file}', 'article'); return false;"
-                                            aria-label="Read full article: ${meta.title || 'untitled'}"
-                                        >
-                                            Read More <i class="fas fa-arrow-right ms-1"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        `);
-                    } catch (e) {
-                        console.warn(`Skipping article: ${file}`, e);
-                    }
-                }
+        <div class="text-center mt-5">
+          <a href="team.html" class="btn btn-outline-dark">Meet Our Full Team <i class="fas fa-user ms-2"></i></a>
+        </div>
+      </div>
+    </section>
 
-                const articlesContainer = document.getElementById('articles-container');
-                if (articleCards.length) {
-                    articlesContainer.innerHTML = articleCards.join('');
-                    animateCards('#articles-container', 150);
-                } else {
-                    articlesContainer.innerHTML = `<div class="col-12"><div class="alert alert-info text-center py-4 mb-0">No recent publications available.</div></div>`;
-                }
+  </main>
 
-                // ——————— TEAM ———————
-                const teamFiles = indexData.teams?.slice(0, 3) || [];
-                const teamCards = [];
+  <!-- Footer -->
+  <footer class="py-5 text-white">
+    <div class="container text-center">
+      <p class="mb-2">&copy; 2025 BioNova. All rights reserved.</p>
+      <p class="small">
+        <a href="#" class="mx-2">Privacy</a> |
+        <a href="#" class="mx-2">Terms</a> |
+        <a href="contact.html" class="mx-2">Contact</a>
+      </p>
+    </div>
+  </footer>
 
-                for (const file of teamFiles) {
-                    try {
-                        const txt = await fetch(`/content/${file}`).then(r => {
-                            if (!r.ok) throw new Error();
-                            return r.text();
-                        });
-                        const parts = txt.split('---');
-                        if (parts.length < 3) continue;
-                        const meta = parseYAML(parts[1]);
-                        const body = parts.slice(2).join('---');
-                        const bio = cleanExcerpt(body, 18);
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
-                        teamCards.push(`
-                            <div class="col-12 col-md-6 col-lg-4 d-flex">
-                                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
-                                    <img 
-                                        src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Team'}" 
-                                        class="card-img-top img-fluid"
-                                        alt="${meta.title || 'Team member'}"
-                                        loading="lazy"
-                                        onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Photo+Unavailable'"
-                                    >
-                                    <div class="card-body d-flex flex-column p-4">
-                                        <h5 class="card-title h5 mb-1">${meta.title || 'Name'}</h5>
-                                        <p class="card-text text-primary fw-medium mb-2">${meta.role || 'Role'}</p>
-                                        <p class="card-text text-muted small flex-grow-1">${bio}</p>
-                                        <a 
-                                            href="team_detail.html" 
-                                            class="btn btn-outline-dark mt-3"
-                                            onclick="openDetail('${file}', 'team'); return false;"
-                                            aria-label="View profile of ${meta.title || 'team member'}"
-                                        >
-                                            View Profile <i class="fas fa-user ms-1"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        `);
-                    } catch (e) {
-                        console.warn(`Skipping team member: ${file}`, e);
-                    }
-                }
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
+    });
 
-                const teamContainer = document.getElementById('team-container');
-                if (teamCards.length) {
-                    teamContainer.innerHTML = teamCards.join('');
-                    animateCards('#team-container', 150);
-                } else {
-                    teamContainer.innerHTML = `<div class="col-12"><div class="alert alert-info text-center py-4 mb-0">No team profiles available.</div></div>`;
-                }
-            } catch (error) {
-                console.error('Critical load error:', error);
-                document.getElementById('articles-container').innerHTML = 
-                    `<div class="col-12"><div class="alert alert-danger text-center py-4 mb-0">Publications failed to load.</div></div>`;
-                document.getElementById('team-container').innerHTML = 
-                    `<div class="col-12"><div class="alert alert-danger text-center py-4 mb-0">Team profiles failed to load.</div></div>`;
-            }
-        }
+    // YAML parser (unchanged)
+    function parseYAML(yamlStr) {
+      const result = {};
+      yamlStr.trim().split('\n').forEach(line => {
+        const idx = line.indexOf(':');
+        if (idx === -1) return;
+        let key = line.slice(0, idx).trim();
+        let val = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
+        if (val === 'true') val = true;
+        if (val === 'false') val = false;
+        if (!isNaN(val) && val !== '') val = Number(val);
+        result[key] = val;
+      });
+      return result;
+    }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // Fade hero content in after slight delay for better perceived performance
-            setTimeout(loadIndexContent, 300);
+    function cleanExcerpt(text, limit = 20) {
+      return text.replace(/[#*_\-[\]()`>]/g, '')
+        .split(/\s+/)
+        .slice(0, limit)
+        .join(' ') + (text.split(/\s+/).length > limit ? '…' : '');
+    }
+
+    function animateCards(container, delay = 120) {
+      container.querySelectorAll('.card').forEach((c, i) => {
+        c.classList.add('animate__animated', 'animate__fadeInUp');
+        c.style.animationDelay = `${i * delay}ms`;
+      });
+    }
+
+    function openDetail(id, type) {
+      sessionStorage.setItem('selectedFile', id);
+      window.location.href = type === 'article' ? 'article.html' : 'team_detail.html';
+    }
+
+    async function loadIndexContent() {
+      try {
+        const res = await fetch('/content/index.json');
+        if (!res.ok) throw new Error('index.json');
+        const data = await res.json();
+
+        // Articles
+        const articleHTML = await Promise.all((data.articles?.slice(0,3) || []).map(async file => {
+          try {
+            const txt = await fetch(`/content/${file}`).then(r => r.ok ? r.text() : Promise.reject());
+            const parts = txt.split('---');
+            if (parts.length < 3) return '';
+            const meta = parseYAML(parts[1]);
+            const excerpt = cleanExcerpt(parts.slice(2).join('---'), 22);
+            return `
+              <div class="col-12 col-md-6 col-lg-4 d-flex">
+                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
+                  <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article'}"
+                       class="card-img-top" alt="${meta.title}" loading="lazy"
+                       onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Image+Unavailable'">
+                  <div class="card-body d-flex flex-column p-4">
+                    <h5 class="card-title h5 mb-2">${meta.title || 'Untitled'}</h5>
+                    ${meta.date ? `<p class="text-muted small mb-2"><i class="far fa-calendar-alt me-1"></i>${meta.date}</p>` : ''}
+                    <p class="card-text flex-grow-1">${excerpt}</p>
+                    <a href="article.html" class="btn btn-outline-dark mt-3"
+                       onclick="openDetail('${file}','article');return false;">
+                      Read More <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>`;
+          } catch { return ''; }
+        }));
+
+        const articlesContainer = document.getElementById('articles-container');
+        articlesContainer.innerHTML = articleHTML.filter(Boolean).join('') ||
+          `<div class="col-12"><div class="alert alert-info text-center py-4">No recent publications available.</div></div>`;
+        animateCards(articlesContainer);
+
+        // Team
+        const teamHTML = await Promise.all((data.teams?.slice(0,3) || []).map(async file => {
+          try {
+            const txt = await fetch(`/content/${file}`).then(r => r.ok ? r.text() : Promise.reject());
+            const parts = txt.split('---');
+            if (parts.length < 3) return '';
+            const meta = parseYAML(parts[1]);
+            const bio = cleanExcerpt(parts.slice(2).join('---'), 18);
+            return `
+              <div class="col-12 col-md-6 col-lg-4 d-flex">
+                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
+                  <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Team'}"
+                       class="card-img-top" alt="${meta.title}" loading="lazy"
+                       onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Photo+Unavailable'">
+                  <div class="card-body d-flex flex-column p-4">
+                    <h5 class="card-title h5 mb-1">${meta.title || 'Name'}</h5>
+                    <p class="text-primary fw-medium mb-2">${meta.role || 'Role'}</p>
+                    <p class="text-muted small flex-grow-1">${bio}</p>
+                    <a href="team_detail.html" class="btn btn-outline-dark mt-3"
+                       onclick="openDetail('${file}','team');return false;">
+                      View Profile <i class="fas fa-user ms-1"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>`;
+          } catch { return ''; }
+        }));
+
+        const teamContainer = document.getElementById('team-container');
+        teamContainer.innerHTML = teamHTML.filter(Boolean).join('') ||
+          `<div class="col-12"><div class="alert alert-info text-center py-4">No team profiles available.</div></div>`;
+        animateCards(teamContainer);
+
+      } catch (err) {
+        console.error(err);
+        ['articles','team'].forEach(id => {
+          document.getElementById(`${id}-container`).innerHTML =
+            `<div class="col-12"><div class="alert alert-danger text-center py-4">Failed to load ${id}.</div></div>`;
         });
-    </script>
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => setTimeout(loadIndexContent, 300));
+  </script>
 </body>
 </html>
