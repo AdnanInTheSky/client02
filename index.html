@@ -286,7 +286,7 @@
             const meta = parseYAML(parts[1]);
             const excerpt = cleanExcerpt(parts.slice(2).join('---'), 22);
             return `
-              <div class="col-12 col-md-6 col-lg-4 d-flex">
+              <div class="col">
                 <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
                   <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article'}"
                        class="card-img-top" alt="${meta.title}" loading="lazy"
@@ -319,13 +319,13 @@
             const meta = parseYAML(parts[1]);
             const bio = cleanExcerpt(parts.slice(2).join('---'), 18);
             return `
-              <div class="col-12 col-md-6 col-lg-4 d-flex">
+              <div class="col">
                 <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
                   <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Team'}"
                        class="card-img-top" alt="${meta.title}" loading="lazy"
                        onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Photo+Unavailable'">
                   <div class="card-body d-flex flex-column p-4">
-                    <h5 class="card-title h5 mb-1">${meta.title || 'Name'}</h5>
+                    <h5 class="card-title h5 mb-2">${meta.title || 'Name'}</h5>
                     <p class="text-primary fw-medium mb-2">${meta.role || 'Role'}</p>
                     <p class="text-muted small flex-grow-1">${bio}</p>
                     <a href="team_detail.html" class="btn btn-outline-dark mt-3"
