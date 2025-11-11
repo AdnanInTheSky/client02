@@ -14,316 +14,475 @@
   <!-- Animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     /* ────── Color Palette ────── */
     :root {
-      --color-primary:   #1a1a1a;
-      --color-secondary: #2c3e50;
-      --color-accent:    #3b5998;
-      --color-blue:      #2563eb;
+      --color-primary:   #1a1a1a;   /* Deep charcoal */
+      --color-secondary: #2c3e50;   /* Navy slate */
+      --color-accent:    #e67e22;   /* Warm coral */
+      --color-accent-light: #f39c12; /* Lighter accent */
       --color-light:     #f8f9fa;
       --color-muted:     #6c757d;
       --color-bg-dark:   #111111;
       --color-bg-light:  #ffffff;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      --color-border:    #e9ecef;
+      --color-success:   #28a745;
+      --color-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
 
     body { 
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif; 
       line-height: 1.6;
-      color: #333;
+      color: var(--color-secondary);
     }
 
     /* ────── Global Styles ────── */
-    .section { padding: 5rem 0; }
+    .section { 
+      padding: 6rem 0; 
+      position: relative;
+    }
     
-    .btn {
-      padding: 0.875rem 2rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      font-size: 0.875rem;
-      transition: all 0.3s ease;
-      border-radius: 0;
+    .section-title {
+      position: relative;
+      margin-bottom: 3rem;
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--color-accent);
+      border-radius: 2px;
+    }
+    
+    .section-title.text-start:after {
+      left: 0;
+      transform: none;
     }
     
     .btn-primary { 
-      background: var(--color-blue); 
-      border: none;
-      color: white;
+      background: var(--color-primary); 
+      border: none; 
+      padding: 0.75rem 1.75rem;
+      font-weight: 600;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
     }
+    
     .btn-primary:hover { 
-      background: #1d4ed8;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+      background: var(--color-secondary); 
+      transform: translateY(-2px); 
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
     
     .btn-outline-primary { 
-      border: 2px solid var(--color-blue);
-      color: var(--color-blue);
-      background: transparent;
+      border-color: var(--color-primary); 
+      color: var(--color-primary); 
+      padding: 0.75rem 1.75rem;
+      font-weight: 600;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
     }
+    
     .btn-outline-primary:hover { 
-      background: var(--color-blue);
-      color: white;
+      background: var(--color-primary); 
+      color: #fff; 
       transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
-
-    .btn-outline-light {
-      border: 2px solid white;
+    
+    .btn-accent {
+      background: var(--color-accent);
       color: white;
-      background: transparent;
+      border: none;
+      padding: 0.75rem 1.75rem;
+      font-weight: 600;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
     }
-    .btn-outline-light:hover {
-      background: white;
-      color: var(--color-primary);
+    
+    .btn-accent:hover {
+      background: var(--color-accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(230, 126, 34, 0.3);
     }
 
     /* ────── Navbar ────── */
-    .navbar {
-      transition: all 0.3s;
+    .navbar { 
+      transition: all 0.4s ease; 
       padding: 1rem 0;
-      background: white !important;
     }
     
-    .navbar.scrolled {
-      box-shadow: 0 2px 20px rgba(0,0,0,.08);
+    .navbar.scrolled { 
+      background: rgba(255,255,255,0.98) !important; 
+      box-shadow: 0 4px 20px rgba(0,0,0,.08); 
+      padding: 0.5rem 0;
     }
-
+    
     .navbar-brand {
-      font-size: 1.75rem;
       font-weight: 800;
+      font-size: 1.75rem;
       color: var(--color-primary) !important;
-      letter-spacing: -0.5px;
+      position: relative;
     }
-
+    
+    .navbar-brand:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 3px;
+      background: var(--color-accent);
+      border-radius: 2px;
+    }
+    
     .nav-link {
       font-weight: 500;
-      color: var(--color-primary) !important;
-      padding: 0.5rem 1rem !important;
-      margin: 0 0.25rem;
-      transition: color 0.3s;
+      margin: 0 0.5rem;
+      position: relative;
+      transition: color 0.3s ease;
     }
-
-    .nav-link:hover {
-      color: var(--color-blue) !important;
+    
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover, .nav-link.active {
+      color: var(--color-accent) !important;
+    }
+    
+    .nav-link:hover:after, .nav-link.active:after {
+      width: 100%;
     }
 
     /* ────── Hero ────── */
     .hero {
-      background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.5)), url('content/images/tester.jpg') center/cover no-repeat;
+      background: linear-gradient(135deg, rgba(26,26,26,0.85) 0%, rgba(44,62,80,0.8) 100%), url('content/images/tester.jpg') center/cover no-repeat;
       color: #fff;
       min-height: 100vh;
       display: flex;
       align-items: center;
       text-align: center;
       position: relative;
-    }
-
-    .hero h1 { 
-      font-weight: 800;
-      letter-spacing: -1px;
-      font-size: 3.5rem;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-    }
-    
-    .hero .lead { 
-      font-size: 1.35rem;
-      opacity: .95;
-      font-weight: 400;
-      max-width: 700px;
-      margin: 0 auto 3rem;
-    }
-
-    /* ────── Vision Section ────── */
-    .vision-section {
-      background: white;
-      padding: 0;
       overflow: hidden;
     }
-
-    .vision-container {
-      display: flex;
-      align-items: stretch;
-      min-height: 600px;
-    }
-
-    .vision-image {
-      flex: 0 0 45%;
-      position: relative;
-      background: var(--color-blue);
-    }
-
-    .vision-image-inner {
-      position: absolute;
-      top: 30px;
-      left: 30px;
-      right: -30px;
-      bottom: -30px;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .vision-content {
-      flex: 1;
-      padding: 4rem 5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: #f8f9fa;
-    }
-
-    .vision-heading {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-      position: relative;
-      padding-bottom: 1rem;
-    }
-
-    .vision-heading::after {
+    
+    .hero:before {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 60px;
-      height: 4px;
-      background: var(--color-blue);
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(to top, var(--color-light), transparent);
+      z-index: 1;
     }
 
-    .vision-text {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #555;
-      margin: 1.5rem 0;
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero h1 { 
+      font-weight: 800; 
+      letter-spacing: -0.5px; 
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .hero .lead { 
+      font-size: 1.35rem; 
+      opacity: .92; 
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+    }
+    
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
-    @media (max-width: 991px) {
-      .vision-container {
-        flex-direction: column;
-      }
-      .vision-image {
-        flex: 0 0 400px;
-      }
-      .vision-content {
-        padding: 3rem 2rem;
-      }
-    }
-
-    /* ────── Cards ────── */
-    .card {
-      transition: all .4s ease;
+    /* ────── Premium Card Styles ────── */
+    .premium-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       border: none;
       overflow: hidden;
-      border-radius: 0;
-      background: #fff;
+      border-radius: 1rem;
       height: 100%;
-      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+      background: white;
+      position: relative;
     }
     
-    .card:hover {
+    .premium-card:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--color-gradient);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+      z-index: 2;
+    }
+    
+    .premium-card:hover {
       transform: translateY(-12px);
-      box-shadow: 0 20px 40px rgba(0,0,0,.15);
+      box-shadow: 0 25px 50px rgba(0,0,0,.15) !important;
     }
     
-    .card-img-top { 
-      height: 300px;
-      object-fit: cover;
-      border-radius: 0;
-      transition: transform .4s ease;
+    .premium-card:hover:before {
+      transform: scaleX(1);
     }
-
-    .card:hover .card-img-top {
-      transform: scale(1.05);
+    
+    .card-img-container {
+      height: 240px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .premium-card .card-img-top { 
+      height: 100%; 
+      width: 100%;
+      object-fit: cover; 
+      transition: transform 0.7s ease;
+    }
+    
+    .premium-card:hover .card-img-top {
+      transform: scale(1.1);
+    }
+    
+    .card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+    }
+    
+    .premium-card:hover .card-overlay {
+      opacity: 1;
+    }
+    
+    .card-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--color-accent);
+      color: white;
+      padding: 0.35rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      z-index: 3;
+      box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
     }
     
     .card-body {
       padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
     }
     
     .card-title {
       font-weight: 700;
+      margin-bottom: 1rem;
       color: var(--color-primary);
       line-height: 1.3;
-      margin-bottom: 1rem;
-      font-size: 1.35rem;
-      min-height: 2.6em;
     }
     
-    .card-category {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--color-blue);
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
       margin-bottom: 1rem;
+      font-size: 0.85rem;
+    }
+    
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--color-muted);
     }
     
     .card-text {
-      color: #666;
-      line-height: 1.7;
-      font-size: 0.95rem;
+      flex-grow: 1;
+      color: var(--color-muted);
+      margin-bottom: 1.5rem;
+    }
+    
+    .card-footer {
+      background: transparent;
+      border-top: 1px solid var(--color-border);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .card-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .action-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-light);
+      color: var(--color-muted);
+      border: none;
+      transition: all 0.3s ease;
+    }
+    
+    .action-btn:hover {
+      background: var(--color-accent);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    /* Team specific card styles */
+    .team-card .card-img-container {
+      height: 280px;
+    }
+    
+    .team-role {
+      color: var(--color-accent);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .team-expertise {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
       margin-bottom: 1rem;
     }
-
-    .card-date {
-      font-size: 0.85rem;
-      color: #999;
+    
+    .expertise-tag {
+      background: rgba(230, 126, 34, 0.1);
+      color: var(--color-accent);
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
       font-weight: 500;
     }
-
-    /* ────── Section Headers ────── */
-    .section-header {
-      margin-bottom: 4rem;
+    
+    .social-links-mini {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .social-link-mini {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-light);
+      color: var(--color-muted);
+      transition: all 0.3s ease;
+      font-size: 0.85rem;
+    }
+    
+    .social-link-mini:hover {
+      background: var(--color-accent);
+      color: white;
+      transform: translateY(-2px);
     }
 
-    .section-title {
-      font-size: 2.75rem;
-      font-weight: 800;
-      color: var(--color-primary);
-      margin-bottom: 1rem;
-      letter-spacing: -0.5px;
-    }
-
-    .section-subtitle {
-      font-size: 1.15rem;
-      color: #666;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* ────── About Card ────── */
-    .about-card {
-      border-radius: 0;
+    /* ────── About Card (image + text) ────── */
+    .about-card { 
+      border-radius: 1.5rem; 
       overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0,0,0,.1);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
     }
     
     .about-card .img-wrapper { 
-      height: 100%;
-      min-height: 500px;
+      height: 100%; 
+      position: relative;
+      overflow: hidden;
     }
     
     .about-card img { 
-      object-fit: cover;
-      height: 100%;
-      width: 100%;
+      object-fit: cover; 
+      height: 100%; 
+      width: 100%; 
+      transition: transform 0.8s ease;
+    }
+    
+    .about-card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .about-content {
+      padding: 4rem 3rem;
+    }
+    
+    .stats-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border);
+    }
+    
+    .stat-item {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--color-accent);
+      display: block;
+      line-height: 1;
+    }
+    
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      margin-top: 0.5rem;
     }
 
     /* ────── Loading Spinner ────── */
     .spinner {
-      width: 44px;
+      width: 44px; 
       height: 44px;
       border: 4px solid rgba(0,0,0,.1);
-      border-left-color: var(--color-blue);
+      border-left-color: var(--color-primary);
       border-radius: 50%;
       animation: spin 1s linear infinite;
       margin: 2rem auto;
@@ -334,55 +493,144 @@
     }
 
     .card-placeholder {
-      height: 500px;
+      height: 420px;
       background: var(--color-light);
-      border-radius: 0;
-      animation: pulse 1.5s ease-in-out infinite;
+      border-radius: 1rem;
+      position: relative;
+      overflow: hidden;
     }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
+    
+    .card-placeholder:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: shimmer 1.5s infinite;
+    }
+    
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
     }
 
     /* ────── Footer ────── */
     footer { 
-      background: var(--color-bg-dark);
-      padding: 3rem 0;
+      background: var(--color-bg-dark); 
+      padding: 4rem 0 2rem;
     }
     
     footer a { 
-      color: #aaa;
-      text-decoration: none;
-      transition: color 0.3s;
+      color: #aaa; 
+      text-decoration: none; 
+      transition: color 0.3s ease;
     }
     
     footer a:hover { 
-      color: #fff;
+      color: #fff; 
+    }
+    
+    .footer-logo {
+      font-size: 2rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+    
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+      background: var(--color-accent);
+      transform: translateY(-3px);
     }
 
     /* ────── Focus Styles ────── */
     a:focus, button:focus, .btn:focus {
-      outline: 2px solid var(--color-blue);
+      outline: 2px solid var(--color-accent);
       outline-offset: 2px;
     }
-
-    /* ────── Responsive ────── */
+    
+    /* ────── Animations ────── */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* ────── Responsive Adjustments ────── */
     @media (max-width: 768px) {
+      .section {
+        padding: 4rem 0;
+      }
+      
       .hero h1 {
         font-size: 2.5rem;
       }
+      
       .hero .lead {
-        font-size: 1.1rem;
+        fontSize: 1.2rem;
       }
-      .section {
-        padding: 3rem 0;
+      
+      .about-content {
+        padding: 2.5rem 1.5rem;
       }
-      .section-title {
-        font-size: 2rem;
+      
+      .stats-container {
+        flex-direction: column;
+        gap: 1.5rem;
       }
-      .card-img-top {
-        height: 250px;
+      
+      .hero-btns {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .hero-btns .btn {
+        width: 100%;
+        max-width: 280px;
+      }
+      
+      .card-footer {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+      
+      .card-actions {
+        align-self: flex-end;
       }
     }
   </style>
@@ -392,7 +640,7 @@
 
   <!-- Navigation -->
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm" id="mainNav">
       <div class="container">
         <a class="navbar-brand" href="index.html">BioNova</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -401,6 +649,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="services.html">About</a></li>
             <li class="nav-item"><a class="nav-link" href="articles.html">Publications</a></li>
             <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
@@ -417,39 +666,64 @@
     <section class="hero" aria-labelledby="hero-heading">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <h1 id="hero-heading" class="animate__animated animate__fadeInUp">
-              Sustainable Solutions for Global Challenges
-            </h1>
-            <p class="lead animate__animated animate__fadeInUp animate__delay-1s">
-              Empowering communities through innovative development programs and strategic partnerships
-            </p>
-            <div class="animate__animated animate__fadeInUp animate__delay-2s">
-              <a href="contact.html" class="btn btn-primary btn-lg me-3">Join Our Mission</a>
-              <a href="services.html" class="btn btn-outline-light btn-lg">Learn More</a>
+          <div class="col-lg-9 col-xl-8">
+            <div class="hero-content">
+              <h1 id="hero-heading" class="display-4 fw-bold mb-4 animate__animated animate__fadeInUp">
+                Sustainable Solutions for Global Challenges
+              </h1>
+              <p class="lead mb-5 animate__animated animate__fadeInUp animate__delay-1s">
+                Empowering communities through innovative development programs and strategic partnerships
+              </p>
+              <div class="hero-btns animate__animated animate__fadeInUp animate__delay-2s">
+                <a href="contact.html" class="btn btn-accent btn-lg">Join Our Mission</a>
+                <a href="services.html" class="btn btn-outline-light btn-lg">Learn More</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Vision Section -->
-    <section class="vision-section" aria-labelledby="vision-heading">
-      <div class="vision-container">
-        <div class="vision-image">
-          <div class="vision-image-inner" style="background-image: url('content/images/teamBio.jpeg')"></div>
-        </div>
-        <div class="vision-content">
-          <h2 id="vision-heading" class="vision-heading">OUR VISION</h2>
-          <p class="vision-text">
-            We are an international Social Purpose Organisation guided by our vision of a world where people—especially the hard-to-reach and unaddressed—have equal opportunities to live with dignity and hope.
-          </p>
-          <p class="vision-text">
-            Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives that create lasting, sustainable change.
-          </p>
-          <a href="services.html" class="btn btn-primary mt-3">
-            More About Us
-          </a>
+    <!-- About -->
+    <section class="section bg-light" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="card about-card border-0 overflow-hidden">
+          <div class="row g-0 align-items-center">
+            <div class="col-lg-6">
+              <div class="img-wrapper">
+                <img src="content/images/teamBio.jpeg" alt="BioNova team collaborating" class="img-fluid" loading="lazy">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="about-content">
+                <header class="mb-4">
+                  <h2 id="about-heading" class="display-6 fw-bold mb-3">Our Commitment to Sustainable Change</h2>
+                  <p class="text-muted fs-5">Building resilient communities through evidence-based approaches and collaborative partnerships</p>
+                </header>
+                <p class="mb-3">BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide.</p>
+                <p class="mb-3">Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives.</p>
+                <p class="mb-4">We prioritize local leadership and participatory approaches to ensure programs are culturally appropriate and sustainable.</p>
+                <a href="services.html" class="btn btn-primary">
+                  Explore Our Impact <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+                
+                <div class="stats-container">
+                  <div class="stat-item">
+                    <span class="stat-number" data-count="120">0</span>
+                    <span class="stat-label">Projects</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-number" data-count="45">0</span>
+                    <span class="stat-label">Countries</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-number" data-count="15">0</span>
+                    <span class="stat-label">Years</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -457,20 +731,20 @@
     <!-- Articles -->
     <section class="section bg-white" aria-labelledby="articles-heading">
       <div class="container">
-        <div class="section-header text-center">
-          <h2 id="articles-heading" class="section-title">Insights & Impact Stories</h2>
-          <p class="section-subtitle">Research findings, program updates, and stories of transformation</p>
-        </div>
+        <header class="text-center mb-5 animate__animated animate__fadeIn">
+          <h2 id="articles-heading" class="display-5 fw-bold section-title">Insights & Impact Stories</h2>
+          <p class="text-muted fs-5">Research findings, program updates, and stories of transformation</p>
+        </header>
 
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="articles-container">
+        <div class="row g-4" id="articles-container">
           <!-- Placeholders -->
-          <div class="col"><div class="card-placeholder"></div></div>
-          <div class="col"><div class="card-placeholder"></div></div>
-          <div class="col"><div class="card-placeholder"></div></div>
+          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
+          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
+          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
         </div>
 
         <div class="text-center mt-5">
-          <a href="articles.html" class="btn btn-outline-primary btn-lg">View All Publications</a>
+          <a href="articles.html" class="btn btn-outline-primary">View All Publications <i class="fas fa-arrow-right ms-2"></i></a>
         </div>
       </div>
     </section>
@@ -478,20 +752,20 @@
     <!-- Team -->
     <section class="section bg-light" aria-labelledby="team-heading">
       <div class="container">
-        <div class="section-header text-center">
-          <h2 id="team-heading" class="section-title">Our Leadership & Experts</h2>
-          <p class="section-subtitle">Dedicated professionals driving sustainable change</p>
-        </div>
+        <header class="text-center mb-5 animate__animated animate__fadeIn">
+          <h2 id="team-heading" class="display-5 fw-bold section-title">Our Leadership & Experts</h2>
+          <p class="text-muted fs-5">Dedicated professionals driving sustainable change</p>
+        </header>
 
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="team-container">
+        <div class="row g-4" id="team-container">
           <!-- Placeholders -->
-          <div class="col"><div class="card-placeholder"></div></div>
-          <div class="col"><div class="card-placeholder"></div></div>
-          <div class="col"><div class="card-placeholder"></div></div>
+          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
+          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
+          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
         </div>
 
         <div class="text-center mt-5">
-          <a href="team.html" class="btn btn-outline-primary btn-lg">Meet Our Full Team</a>
+          <a href="team.html" class="btn btn-outline-primary">Meet Our Full Team <i class="fas fa-user ms-2"></i></a>
         </div>
       </div>
     </section>
@@ -500,18 +774,39 @@
 
   <!-- Footer -->
   <footer class="text-white">
-    <div class="container text-center">
-      <p class="mb-2">&copy; 2025 BioNova. All rights reserved.</p>
-      <p class="small">
-        <a href="#" class="mx-2">Privacy</a> |
-        <a href="#" class="mx-2">Terms</a> |
-        <a href="contact.html" class="mx-2">Contact</a>
-      </p>
+    <div class="container">
+      <div class="row justify-content-center text-center mb-4">
+        <div class="col-lg-8">
+          <a href="index.html" class="footer-logo">BioNova</a>
+          <p class="mb-4">Creating sustainable solutions for global challenges through innovation and collaboration.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">About</a>
+        <a href="articles.html">Publications</a>
+        <a href="team.html">Team</a>
+        <a href="contact.html">Contact</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+      
+      <div class="text-center pt-4 mt-4 border-top border-secondary">
+        <p class="mb-0">&copy; 2025 BioNova. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
   <script>
     // Navbar scroll effect
@@ -519,118 +814,360 @@
       document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // YAML parser
+    // Stats counter animation
+    function animateStats() {
+      const statNumbers = document.querySelectorAll('.stat-number');
+      statNumbers.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-count'));
+        let current = 0;
+        const increment = target / 50;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            stat.textContent = target;
+            clearInterval(timer);
+          } else {
+            stat.textContent = Math.floor(current);
+          }
+        }, 40);
+      });
+    }
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          if (entry.target.classList.contains('stats-container')) {
+            animateStats();
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe elements for animation
+    document.addEventListener('DOMContentLoaded', () => {
+      const elementsToAnimate = document.querySelectorAll('.fade-in-up');
+      elementsToAnimate.forEach(el => observer.observe(el));
+      
+      // Also observe stats container
+      const statsContainer = document.querySelector('.stats-container');
+      if (statsContainer) observer.observe(statsContainer);
+    });
+
+    // Enhanced YAML parser with better field extraction
     function parseYAML(yamlStr) {
       const result = {};
-      yamlStr.trim().split('\n').forEach(line => {
+      const lines = yamlStr.trim().split('\n');
+      
+      for (let line of lines) {
         const idx = line.indexOf(':');
-        if (idx === -1) return;
+        if (idx === -1) continue;
+        
         let key = line.slice(0, idx).trim();
-        let val = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
+        let val = line.slice(idx + 1).trim();
+        
+        // Remove surrounding quotes if present
+        val = val.replace(/^["']|["']$/g, '');
+        
+        // Handle boolean values
         if (val === 'true') val = true;
         if (val === 'false') val = false;
+        
+        // Handle numbers
         if (!isNaN(val) && val !== '') val = Number(val);
+        
+        // Handle arrays (comma-separated values)
+        if (typeof val === 'string' && val.includes(',')) {
+          val = val.split(',').map(item => item.trim()).filter(item => item);
+        }
+        
         result[key] = val;
-      });
+      }
       return result;
     }
 
+    // Enhanced excerpt cleaner with HTML tag removal
     function cleanExcerpt(text, limit = 20) {
-      return text.replace(/[#*_\-[\]()`>]/g, '')
-        .split(/\s+/)
-        .slice(0, limit)
-        .join(' ') + (text.split(/\s+/).length > limit ? '…' : '');
+      // Remove markdown and HTML tags
+      const cleanText = text
+        .replace(/[#*_\-[\]()`>]/g, '')
+        .replace(/<[^>]*>/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+      
+      const words = cleanText.split(/\s+/);
+      const excerpt = words.slice(0, limit).join(' ');
+      
+      return excerpt + (words.length > limit ? '…' : '');
     }
 
-    function animateCards(container, delay = 80) {
-      container.querySelectorAll('.card').forEach((c, i) => {
-        c.classList.add('animate__animated', 'animate__fadeInUp');
-        c.style.animationDelay = `${i * delay}ms`;
+    // Generate random article badge
+    function getArticleBadge(category) {
+      const badges = {
+        research: { text: 'Research', color: '#e74c3c' },
+        impact: { text: 'Impact Story', color: '#2ecc71' },
+        update: { text: 'Program Update', color: '#3498db' },
+        innovation: { text: 'Innovation', color: '#9b59b6' }
+      };
+      
+      if (category && badges[category.toLowerCase()]) {
+        return badges[category.toLowerCase()];
+      }
+      
+      // Return random badge if no category specified
+      const badgeKeys = Object.keys(badges);
+      const randomKey = badgeKeys[Math.floor(Math.random() * badgeKeys.length)];
+      return badges[randomKey];
+    }
+
+    // Format date for display
+    function formatDate(dateString) {
+      if (!dateString) return '';
+      
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString('en-US', options);
+    }
+
+    // Calculate reading time
+    function calculateReadingTime(text) {
+      const wordsPerMinute = 200;
+      const wordCount = text.split(/\s+/).length;
+      return Math.ceil(wordCount / wordsPerMinute);
+    }
+
+    // Enhanced card animation
+    function animateCards(container, delay = 120) {
+      container.querySelectorAll('.premium-card').forEach((card, index) => {
+        card.style.animationDelay = `${index * delay}ms`;
+        card.classList.add('animate__animated', 'animate__fadeInUp');
       });
     }
 
+    // Open detail page with smooth transition
     function openDetail(id, type) {
-      sessionStorage.setItem('selectedFile', id);
-      window.location.href = type === 'article' ? 'article.html' : 'team_detail.html';
+      // Add fade out animation to main content
+      const mainContent = document.getElementById('main-content');
+      mainContent.style.opacity = '0';
+      mainContent.style.transition = 'opacity 0.3s ease';
+      
+      setTimeout(() => {
+        sessionStorage.setItem('selectedFile', id);
+        window.location.href = type === 'article' ? 'article.html' : 'team_detail.html';
+      }, 300);
     }
 
+    // Generate expertise tags for team members
+    function generateExpertiseTags(expertise, limit = 3) {
+      if (!expertise) return '';
+      
+      const tags = Array.isArray(expertise) ? expertise : [expertise];
+      return tags.slice(0, limit).map(tag => 
+        `<span class="expertise-tag">${tag}</span>`
+      ).join('');
+    }
+
+    // Enhanced content loader with error handling and fallbacks
     async function loadIndexContent() {
       try {
+        // Show loading state
+        document.querySelectorAll('.card-placeholder').forEach(placeholder => {
+          placeholder.innerHTML = '<div class="spinner"></div>';
+        });
+
         const res = await fetch('/content/index.json');
-        if (!res.ok) throw new Error('index.json');
+        if (!res.ok) throw new Error('Failed to load index.json');
         const data = await res.json();
 
-        // Articles
-        const articleHTML = await Promise.all((data.articles?.slice(0,3) || []).map(async file => {
+        // Load Articles
+        const articlePromises = (data.articles?.slice(0, 3) || []).map(async (file) => {
           try {
-            const txt = await fetch(`/content/${file}`).then(r => r.ok ? r.text() : Promise.reject());
+            const response = await fetch(`/content/${file}`);
+            if (!response.ok) throw new Error(`Failed to load ${file}`);
+            
+            const txt = await response.text();
             const parts = txt.split('---');
-            if (parts.length < 3) return '';
+            if (parts.length < 3) throw new Error('Invalid article format');
+            
             const meta = parseYAML(parts[1]);
-            const excerpt = cleanExcerpt(parts.slice(2).join('---'), 20);
-            const categories = meta.category ? meta.category.split(',').slice(0, 2).join(', ').toUpperCase() : '';
+            const content = parts.slice(2).join('---');
+            const excerpt = cleanExcerpt(content, 22);
+            const readingTime = calculateReadingTime(content);
+            const badge = getArticleBadge(meta.category);
+            const formattedDate = formatDate(meta.date);
+            
             return `
-              <div class="col">
-                <article class="card">
-                  <img src="${meta.image || 'https://via.placeholder.com/800x600/2d5a3d/ffffff?text=Article'}"
-                       class="card-img-top" alt="${meta.title}" loading="lazy"
-                       onerror="this.onerror=null;this.src='https://via.placeholder.com/800x600/2d5a3d/ffffff?text=Image'">
-                  <div class="card-body d-flex flex-column">
-                    <h3 class="card-title">${meta.title || 'Untitled'}</h3>
-                    ${categories ? `<div class="card-category">${categories}</div>` : ''}
-                    <p class="card-text flex-grow-1">${excerpt}</p>
-                    ${meta.date ? `<p class="card-date"><i class="far fa-calendar-alt me-2"></i>${meta.date}</p>` : ''}
+              <div class="col-12 col-md-6 col-lg-4 d-flex">
+                <div class="premium-card fade-in-up">
+                  ${badge ? `<div class="card-badge" style="background: ${badge.color}">${badge.text}</div>` : ''}
+                  <div class="card-img-container">
+                    <img src="${meta.image || 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}"
+                         class="card-img-top" alt="${meta.title}" loading="lazy"
+                         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                    <div class="card-overlay">
+                      <p class="text-white mb-0 small">${excerpt}</p>
+                    </div>
                   </div>
-                </article>
-              </div>`;
-          } catch { return ''; }
-        }));
-
-        const articlesContainer = document.getElementById('articles-container');
-        articlesContainer.innerHTML = articleHTML.filter(Boolean).join('') ||
-          `<div class="col-12"><div class="alert alert-info text-center py-4">No recent publications available.</div></div>`;
-        animateCards(articlesContainer);
-
-        // Team
-        const teamHTML = await Promise.all((data.teams?.slice(0,3) || []).map(async file => {
-          try {
-            const txt = await fetch(`/content/${file}`).then(r => r.ok ? r.text() : Promise.reject());
-            const parts = txt.split('---');
-            if (parts.length < 3) return '';
-            const meta = parseYAML(parts[1]);
-            const bio = cleanExcerpt(parts.slice(2).join('---'), 16);
-            return `
-              <div class="col">
-                <article class="card">
-                  <img src="${meta.image || 'https://via.placeholder.com/800x800/2d5a3d/ffffff?text=Team'}" 
-                       class="card-img-top" 
-                       alt="${meta.title}" loading="lazy"
-                       onerror="this.onerror=null;this.src='https://via.placeholder.com/800x800/2d5a3d/ffffff?text=Photo'">
-                  <div class="card-body d-flex flex-column text-center">
-                    <h3 class="card-title">${meta.title}</h3>
-                    <p class="card-category">${meta.role || 'Team Member'}</p>
-                    <p class="card-text flex-grow-1">${bio}</p>
+                  <div class="card-body">
+                    <h5 class="card-title">${meta.title || 'Untitled Article'}</h5>
+                    <div class="card-meta">
+                      ${formattedDate ? `<div class="meta-item"><i class="far fa-calendar-alt"></i> ${formattedDate}</div>` : ''}
+                      <div class="meta-item"><i class="far fa-clock"></i> ${readingTime} min read</div>
+                    </div>
+                    <p class="card-text">${excerpt}</p>
                   </div>
-                </article>
+                  <div class="card-footer">
+                    <a href="article.html" class="btn btn-outline-primary btn-sm"
+                       onclick="openDetail('${file}','article');return false;">
+                      Read More <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
+                    <div class="card-actions">
+                      <button class="action-btn" title="Save for later">
+                        <i class="far fa-bookmark"></i>
+                      </button>
+                      <button class="action-btn" title="Share article">
+                        <i class="fas fa-share-alt"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>`;
-          } catch { return ''; }
-        }));
-
-        const teamContainer = document.getElementById('team-container');
-        teamContainer.innerHTML = teamHTML.filter(Boolean).join('') ||
-          `<div class="col-12"><div class="alert alert-info text-center py-4">No team profiles available.</div></div>`;
-        animateCards(teamContainer);
-
-      } catch (err) {
-        console.error(err);
-        ['articles','team'].forEach(id => {
-          document.getElementById(`${id}-container`).innerHTML =
-            `<div class="col-12"><div class="alert alert-danger text-center py-4">Failed to load ${id}.</div></div>`;
+          } catch (error) {
+            console.error(`Error loading article ${file}:`, error);
+            return '';
+          }
         });
+
+        const articleHTML = (await Promise.all(articlePromises)).filter(Boolean);
+        const articlesContainer = document.getElementById('articles-container');
+        
+        if (articleHTML.length > 0) {
+          articlesContainer.innerHTML = articleHTML.join('');
+          animateCards(articlesContainer);
+        } else {
+          articlesContainer.innerHTML = `
+            <div class="col-12">
+              <div class="text-center py-5">
+                <i class="fas fa-newspaper fa-3x text-muted mb-3"></i>
+                <h4 class="text-muted">No Publications Available</h4>
+                <p class="text-muted">Check back later for our latest insights and stories.</p>
+              </div>
+            </div>`;
+        }
+
+        // Load Team Members
+        const teamPromises = (data.teams?.slice(0, 3) || []).map(async (file) => {
+          try {
+            const response = await fetch(`/content/${file}`);
+            if (!response.ok) throw new Error(`Failed to load ${file}`);
+            
+            const txt = await response.text();
+            const parts = txt.split('---');
+            if (parts.length < 3) throw new Error('Invalid team member format');
+            
+            const meta = parseYAML(parts[1]);
+            const bio = parts.slice(2).join('---');
+            const excerpt = cleanExcerpt(bio, 18);
+            const expertiseTags = generateExpertiseTags(meta.expertise);
+            
+            return `
+              <div class="col-12 col-md-6 col-lg-4 d-flex">
+                <div class="premium-card team-card fade-in-up">
+                  <div class="card-img-container">
+                    <img src="${meta.image || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}"
+                         class="card-img-top" alt="${meta.title}" loading="lazy"
+                         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                    <div class="card-overlay">
+                      <div class="social-links-mini">
+                        ${meta.linkedin ? `<a href="${meta.linkedin}" class="social-link-mini" target="_blank"><i class="fab fa-linkedin-in"></i></a>` : ''}
+                        ${meta.twitter ? `<a href="${meta.twitter}" class="social-link-mini" target="_blank"><i class="fab fa-twitter"></i></a>` : ''}
+                        ${meta.email ? `<a href="mailto:${meta.email}" class="social-link-mini"><i class="far fa-envelope"></i></a>` : ''}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">${meta.title || 'Team Member'}</h5>
+                    <p class="team-role">${meta.role || 'Team Member'}</p>
+                    ${expertiseTags ? `<div class="team-expertise">${expertiseTags}</div>` : ''}
+                    <p class="card-text">${excerpt}</p>
+                  </div>
+                  <div class="card-footer">
+                    <a href="team_detail.html" class="btn btn-outline-primary btn-sm"
+                       onclick="openDetail('${file}','team');return false;">
+                      View Profile <i class="fas fa-user ms-1"></i>
+                    </a>
+                    <div class="card-actions">
+                      <button class="action-btn" title="Contact">
+                        <i class="far fa-envelope"></i>
+                      </button>
+                      <button class="action-btn" title="Connect">
+                        <i class="fas fa-user-plus"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>`;
+          } catch (error) {
+            console.error(`Error loading team member ${file}:`, error);
+            return '';
+          }
+        });
+
+        const teamHTML = (await Promise.all(teamPromises)).filter(Boolean);
+        const teamContainer = document.getElementById('team-container');
+        
+        if (teamHTML.length > 0) {
+          teamContainer.innerHTML = teamHTML.join('');
+          animateCards(teamContainer);
+        } else {
+          teamContainer.innerHTML = `
+            <div class="col-12">
+              <div class="text-center py-5">
+                <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                <h4 class="text-muted">Team Profiles Coming Soon</h4>
+                <p class="text-muted">We're assembling our team of experts. Check back soon!</p>
+              </div>
+            </div>`;
+        }
+
+      } catch (error) {
+        console.error('Error loading content:', error);
+        
+        // Enhanced error states
+        const errorHTML = `
+          <div class="col-12">
+            <div class="text-center py-5">
+              <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
+              <h4 class="text-muted">Content Temporarily Unavailable</h4>
+              <p class="text-muted mb-3">We're experiencing some technical difficulties.</p>
+              <button class="btn btn-primary" onclick="loadIndexContent()">
+                <i class="fas fa-redo me-2"></i> Try Again
+              </button>
+            </div>
+          </div>`;
+        
+        document.getElementById('articles-container').innerHTML = errorHTML;
+        document.getElementById('team-container').innerHTML = errorHTML;
       }
     }
 
-    document.addEventListener('DOMContentLoaded', () => setTimeout(loadIndexContent, 300));
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      // Add fade-in-up class to all premium cards after a short delay
+      setTimeout(() => {
+        document.querySelectorAll('.premium-card').forEach(card => {
+          card.classList.add('fade-in-up');
+        });
+      }, 100);
+      
+      // Load content with a slight delay for better perceived performance
+      setTimeout(loadIndexContent, 500);
+    });
   </script>
 </body>
 </html>
