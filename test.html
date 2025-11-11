@@ -1,533 +1,636 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BioNova - Sustainable Development NGO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BioNova – Sustainable Development NGO</title>
+
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <style>
+    /* ────── Color Palette ────── */
+    :root {
+      --color-primary:   #1a1a1a;
+      --color-secondary: #2c3e50;
+      --color-accent:    #3b5998;
+      --color-blue:      #2563eb;
+      --color-light:     #f8f9fa;
+      --color-muted:     #6c757d;
+      --color-bg-dark:   #111111;
+      --color-bg-light:  #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* ────── Global Styles ────── */
+    .section { padding: 5rem 0; }
     
-    <!-- Bootstrap 5 CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    .btn {
+      padding: 0.875rem 2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.875rem;
+      transition: all 0.3s ease;
+      border-radius: 0;
+    }
     
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    .btn-primary { 
+      background: var(--color-blue); 
+      border: none;
+      color: white;
+    }
+    .btn-primary:hover { 
+      background: #1d4ed8;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+    }
+    
+    .btn-outline-primary { 
+      border: 2px solid var(--color-blue);
+      color: var(--color-blue);
+      background: transparent;
+    }
+    .btn-outline-primary:hover { 
+      background: var(--color-blue);
+      color: white;
+      transform: translateY(-2px);
+    }
 
-    <style>
-        :root {
-            --bs-primary: #000;
-            --bs-secondary: #6c757d;
-            --bs-light: #f8f9fa;
-            --bs-dark: #212529;
-        }
+    .btn-outline-light {
+      border: 2px solid white;
+      color: white;
+      background: transparent;
+    }
+    .btn-outline-light:hover {
+      background: white;
+      color: var(--color-primary);
+    }
 
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
+    /* ────── Navbar ────── */
+    .navbar {
+      transition: all 0.3s;
+      padding: 1rem 0;
+      background: white !important;
+    }
+    
+    .navbar.scrolled {
+      box-shadow: 0 2px 20px rgba(0,0,0,.08);
+    }
 
-        .navbar {
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,.1);
-        }
+    .navbar-brand {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--color-primary) !important;
+      letter-spacing: -0.5px;
+    }
 
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: #000 !important;
-        }
+    .nav-link {
+      font-weight: 500;
+      color: var(--color-primary) !important;
+      padding: 0.5rem 1rem !important;
+      margin: 0 0.25rem;
+      transition: color 0.3s;
+    }
 
-        .nav-link {
-            color: #333 !important;
-            font-weight: 500;
-        }
+    .nav-link:hover {
+      color: var(--color-blue) !important;
+    }
 
-        .nav-link:hover {
-            color: #000 !important;
-        }
+    /* ────── Hero ────── */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.5)), url('content/images/tester.jpg') center/cover no-repeat;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
 
-        /* Hero Section */
-        .hero {
-            padding: 8rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+    .hero h1 { 
+      font-weight: 800;
+      letter-spacing: -1px;
+      font-size: 3.5rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero .lead { 
+      font-size: 1.35rem;
+      opacity: .95;
+      font-weight: 400;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
 
-        .hero-solid {
-            background-color: #f8f9fa;
-            color: #333;
-        }
+    /* ────── Vision Section ────── */
+    .vision-section {
+      background: white;
+      padding: 0;
+      overflow: hidden;
+    }
 
-        .hero-image {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1504805572947-2f9e3e878434?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-        }
+    .vision-container {
+      display: flex;
+      align-items: stretch;
+      min-height: 600px;
+    }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
+    .vision-image {
+      flex: 0 0 45%;
+      position: relative;
+      background: var(--color-blue);
+    }
 
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
+    .vision-image-inner {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      right: -30px;
+      bottom: -30px;
+      background-size: cover;
+      background-position: center;
+    }
 
-        .hero-image h1,
-        .hero-image p {
-            color: white;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-        }
+    .vision-content {
+      flex: 1;
+      padding: 4rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #f8f9fa;
+    }
 
-        .btn-primary {
-            background-color: #000;
-            border-color: #000;
-            padding: 0.75rem 2rem;
-            font-weight: 500;
-        }
+    .vision-heading {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      position: relative;
+      padding-bottom: 1rem;
+    }
 
-        .btn-primary:hover {
-            background-color: #333;
-            border-color: #333;
-        }
+    .vision-heading::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--color-blue);
+    }
 
-        .btn-outline-primary {
-            color: #000;
-            border-color: #000;
-        }
+    .vision-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #555;
+      margin: 1.5rem 0;
+    }
 
-        .btn-outline-primary:hover {
-            background-color: #000;
-            color: #fff;
-        }
+    @media (max-width: 991px) {
+      .vision-container {
+        flex-direction: column;
+      }
+      .vision-image {
+        flex: 0 0 400px;
+      }
+      .vision-content {
+        padding: 3rem 2rem;
+      }
+    }
 
-        .btn-outline-light {
-            color: #fff;
-            border-color: #fff;
-        }
+    /* ────── Cards ────── */
+    .card {
+      transition: all .4s ease;
+      border: none;
+      overflow: hidden;
+      border-radius: 0;
+      background: #fff;
+      height: 100%;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    }
+    
+    .card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0,0,0,.15);
+    }
+    
+    .card-img-top { 
+      height: 300px;
+      object-fit: cover;
+      border-radius: 0;
+      transition: transform .4s ease;
+    }
 
-        .btn-outline-light:hover {
-            background-color: #fff;
-            color: #000;
-        }
+    .card:hover .card-img-top {
+      transform: scale(1.05);
+    }
+    
+    .card-body {
+      padding: 2rem;
+    }
+    
+    .card-title {
+      font-weight: 700;
+      color: var(--color-primary);
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      font-size: 1.35rem;
+      min-height: 2.6em;
+    }
+    
+    .card-category {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-blue);
+      margin-bottom: 1rem;
+    }
+    
+    .card-text {
+      color: #666;
+      line-height: 1.7;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
 
-        .section {
-            padding: 5rem 0;
-        }
+    .card-date {
+      font-size: 0.85rem;
+      color: #999;
+      font-weight: 500;
+    }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
+    /* ────── Section Headers ────── */
+    .section-header {
+      margin-bottom: 4rem;
+    }
 
-        .section-header h2 {
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
+    .section-title {
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
+    }
 
-        .section-header p {
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-        }
+    .section-subtitle {
+      font-size: 1.15rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+    }
 
-        .alt-bg {
-            background-color: #f8f9fa;
-        }
+    /* ────── About Card ────── */
+    .about-card {
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,.1);
+    }
+    
+    .about-card .img-wrapper { 
+      height: 100%;
+      min-height: 500px;
+    }
+    
+    .about-card img { 
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
 
-        .card {
-            border: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,.1);
-            transition: transform 0.3s ease;
-            height: 100%;
-        }
+    /* ────── Loading Spinner ────── */
+    .spinner {
+      width: 44px;
+      height: 44px;
+      border: 4px solid rgba(0,0,0,.1);
+      border-left-color: var(--color-blue);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 2rem auto;
+    }
+    
+    @keyframes spin { 
+      to { transform: rotate(360deg); } 
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+    .card-placeholder {
+      height: 500px;
+      background: var(--color-light);
+      border-radius: 0;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
 
-        /* ✅ Critical: ensure images fill card tops */
-        .card-img-top {
-            height: 200px;
-            width: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
 
-        .team-card .card-img-top {
-            height: 250px;
-            object-fit: cover;
-            object-position: center;
-        }
+    /* ────── Footer ────── */
+    footer { 
+      background: var(--color-bg-dark);
+      padding: 3rem 0;
+    }
+    
+    footer a { 
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    footer a:hover { 
+      color: #fff;
+    }
 
-        .card-body {
-            padding: 1.5rem;
-        }
+    /* ────── Focus Styles ────── */
+    a:focus, button:focus, .btn:focus {
+      outline: 2px solid var(--color-blue);
+      outline-offset: 2px;
+    }
 
-        .card-title {
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-
-        footer {
-            background-color: #000;
-            color: #fff;
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-left-color: #000;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 1s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Background toggle */
-        .bg-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .bg-toggle button {
-            margin: 0 5px;
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            background: white;
-            cursor: pointer;
-        }
-
-        .bg-toggle button.active {
-            background: #000;
-            color: white;
-        }
-    </style>
+    /* ────── Responsive ────── */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero .lead {
+        font-size: 1.1rem;
+      }
+      .section {
+        padding: 3rem 0;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .card-img-top {
+        height: 250px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">BioNova</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="services.html">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="articles.html">Publications</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="team.html">Team</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
 
-    <main id="main-content">
-        <section class="hero" id="hero-section" aria-labelledby="hero-heading"
-                 style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('content/images/tester.jpg'); background-size: cover; background-position: center; color: white;">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <h1 id="hero-heading" class="display-4 fw-bold mb-4">Sustainable Solutions for Global Challenges</h1>
-                        <p class="lead mb-4">Empowering communities through innovative development programs and strategic partnerships</p>
-                        <button class="btn btn-primary btn-lg me-2" onclick="window.location.href='contact.html'">Join Our Mission</button>
-                        <button class="btn btn-outline-light btn-lg" onclick="window.location.href='about.html'">Learn More</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section class="section" aria-labelledby="about-heading">
-            <div class="container">
-                <header class="section-header">
-                    <h2 id="about-heading" class="display-5 fw-bold">Our Commitment to Sustainable Change</h2>
-                    <p>Building resilient communities through evidence-based approaches and collaborative partnerships</p>
-                </header>
-                <div class="row align-items-center">
-                    <div class="col-lg-6 mb-4 mb-lg-0">
-                        <p class="mb-3">BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide.</p>
-                        <p class="mb-3">Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives.</p>
-                        <p class="mb-4">We prioritize local leadership and participatory approaches to ensure programs are culturally appropriate and sustainable.</p>
-                        <a href="about.html" class="btn btn-outline-primary">Explore Our Impact <i class="fas fa-arrow-right ms-2"></i></a>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="fade-in">
-                            <img src="content/images/teamBio.jpeg" 
-                                 alt="BioNova team collaborating" 
-                                 class="img-fluid rounded shadow" 
-                                 loading="lazy" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Articles Section -->
-        <section class="section alt-bg" aria-labelledby="articles-heading">
-            <div class="container">
-                <header class="section-header">
-                    <h2 id="articles-heading" class="display-5 fw-bold">Insights & Impact Stories</h2>
-                    <p>Research findings, program updates, and stories of transformation</p>
-                </header>
-                <div class="row g-4" id="articles-container">
-                    <div class="col-12 text-center">
-                        <div class="loading">
-                            <div class="spinner"></div>
-                            <p>Loading articles...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-5">
-                    <a href="articles.html" class="btn btn-outline-primary">View All Publications <i class="fas fa-arrow-right ms-2"></i></a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Team Section -->
-        <section class="section" aria-labelledby="team-heading">
-            <div class="container">
-                <header class="section-header">
-                    <h2 id="team-heading" class="display-5 fw-bold">Our Leadership & Experts</h2>
-                    <p>Dedicated professionals driving sustainable change</p>
-                </header>
-                <div class="row g-4" id="team-container">
-                    <div class="col-12 text-center">
-                        <div class="loading">
-                            <div class="spinner"></div>
-                            <p>Loading team...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-5">
-                    <a href="team.html" class="btn btn-outline-primary">Meet Our Full Team <i class="fas fa-arrow-right ms-2"></i></a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 BioNova. All rights reserved.</p>
+  <!-- Navigation -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">BioNova</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="services.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="articles.html">Publications</a></li>
+            <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
         </div>
-    </footer>
+      </div>
+    </nav>
+  </header>
 
-    <!-- Bootstrap JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <main id="main-content">
 
-    <!-- Script (with critical fixes applied) -->
-    <script>
-        // Utility function for parsing YAML frontmatter
-        function parseYAML(yamlStr) {
-            const result = {};
-            const lines = yamlStr.trim().split('\n');
-            for (const line of lines) {
-                const [key, ...valueParts] = line.split(':');
-                const trimmedKey = key.trim();
-                let value = valueParts.join(':').trim();
-                if (value.startsWith('"') && value.endsWith('"')) {
-                    value = value.slice(1, -1);
-                } else if (value.startsWith("'") && value.endsWith("'")) {
-                    value = value.slice(1, -1);
-                } else if (value.startsWith('[') && value.endsWith(']')) {
-                    value = value.slice(1, -1).split(',').map(v => v.trim().replace(/"/g, '').replace(/'/g, ''));
-                }
-                result[trimmedKey] = value;
-            }
-            return result;
-        }
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <h1 id="hero-heading" class="animate__animated animate__fadeInUp">
+              Sustainable Solutions for Global Challenges
+            </h1>
+            <p class="lead animate__animated animate__fadeInUp animate__delay-1s">
+              Empowering communities through innovative development programs and strategic partnerships
+            </p>
+            <div class="animate__animated animate__fadeInUp animate__delay-2s">
+              <a href="contact.html" class="btn btn-primary btn-lg me-3">Join Our Mission</a>
+              <a href="services.html" class="btn btn-outline-light btn-lg">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        // Function to convert markdown to HTML (simplified)
-        function simpleMarkdownToHTML(md) {
-            let html = md;
-            html = html.replace(/^(\s*)## (.+)$/gm, '$1<h2>$2</h2>');
-            html = html.replace(/^(\s*)# (.+)$/gm, '$1<h1>$2</h1>');
-            html = html.replace(/^(\s*)### (.+)$/gm, '$1<h3>$2</h3>');
-            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-            html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
-            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-            html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
-            html = html.replace(/(<li>.+<\/li>)+/g, '<ul>$&</ul>');
-            html = html.replace(/\n/g, '<br>');
-            const paragraphs = html.split('<br><br>');
-            html = paragraphs.map(p => `<p>${p}</p>`).join('');
-            html = html.replace(/<br><br>/g, '<br>');
-            return html;
-        }
+    <!-- Vision Section -->
+    <section class="vision-section" aria-labelledby="vision-heading">
+      <div class="vision-container">
+        <div class="vision-image">
+          <div class="vision-image-inner" style="background-image: url('content/images/teamBio.jpeg')"></div>
+        </div>
+        <div class="vision-content">
+          <h2 id="vision-heading" class="vision-heading">OUR VISION</h2>
+          <p class="vision-text">
+            We are an international Social Purpose Organisation guided by our vision of a world where people—especially the hard-to-reach and unaddressed—have equal opportunities to live with dignity and hope.
+          </p>
+          <p class="vision-text">
+            Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives that create lasting, sustainable change.
+          </p>
+          <a href="services.html" class="btn btn-primary mt-3">
+            More About Us
+          </a>
+        </div>
+      </div>
+    </section>
 
+    <!-- Articles -->
+    <section class="section bg-white" aria-labelledby="articles-heading">
+      <div class="container">
+        <div class="section-header text-center">
+          <h2 id="articles-heading" class="section-title">Insights & Impact Stories</h2>
+          <p class="section-subtitle">Research findings, program updates, and stories of transformation</p>
+        </div>
 
-        // Main function to load content
-        async function loadIndexContent() {
-            try {
-                const indexResponse = await fetch('/content/index.json');
-                if (!indexResponse.ok) {
-                    throw new Error(`HTTP error! status: ${indexResponse.status}`);
-                }
-                const indexData = await indexResponse.json();
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="articles-container">
+          <!-- Placeholders -->
+          <div class="col"><div class="card-placeholder"></div></div>
+          <div class="col"><div class="card-placeholder"></div></div>
+          <div class="col"><div class="card-placeholder"></div></div>
+        </div>
 
-                // Load latest 3 articles
-                const articleFiles = indexData.articles.slice(0, 3);
-                const articlePromises = articleFiles.map(file =>
-                    fetch(`/content/${file}`)
-                        .then(r => {
-                            if (!r.ok) throw new Error(`Failed to load article: ${file}`);
-                            return r.text();
-                        })
-                        .catch(err => {
-                            console.error(`Error loading article ${file}:`, err);
-                            return null;
-                        })
-                );
+        <div class="text-center mt-5">
+          <a href="articles.html" class="btn btn-outline-primary btn-lg">View All Publications</a>
+        </div>
+      </div>
+    </section>
 
-                const articleTexts = await Promise.all(articlePromises);
-                const validArticleTexts = articleTexts.filter(text => text !== null);
-                const articleCards = [];
-                for (let i = 0; i < validArticleTexts.length; i++) {
-                    const text = validArticleTexts[i];
-                    const parts = text.split('---');
-                    if (parts.length >= 3) {
-                        const frontmatter = parts[1];
-                        const body = parts.slice(2).join('---');
-                        const meta = parseYAML(frontmatter);
-                        const plainText = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 150) + '...';
-                        articleCards.push(`
-                            <div class="col-md-4">
-                                <div class="card h-100">
-                                    <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article+Image'}" 
-                                         class="card-img-top" 
-                                         alt="${meta.title}" 
-                                         loading="lazy">
-                                    <div class="card-body d-flex flex-column">
-                                        <h5 class="card-title">${meta.title}</h5>
-                                        <p class="card-text flex-grow-1">${plainText}</p>
-                                        <button class="btn btn-outline-primary mt-auto" onclick="openDetail('${articleFiles[i]}', 'article')">Read More</button>
-                                    </div>
-                                </div>
-                            </div>
-                        `);
-                    }
-                }
+    <!-- Team -->
+    <section class="section bg-light" aria-labelledby="team-heading">
+      <div class="container">
+        <div class="section-header text-center">
+          <h2 id="team-heading" class="section-title">Our Leadership & Experts</h2>
+          <p class="section-subtitle">Dedicated professionals driving sustainable change</p>
+        </div>
 
-                const articlesContainer = document.getElementById('articles-container');
-                if (articleCards.length) {
-                    articlesContainer.innerHTML = articleCards.join('');
-                } else {
-                    articlesContainer.innerHTML = '<div class="col-12"><p class="text-center text-muted">No articles available at this time.</p></div>';
-                }
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="team-container">
+          <!-- Placeholders -->
+          <div class="col"><div class="card-placeholder"></div></div>
+          <div class="col"><div class="card-placeholder"></div></div>
+          <div class="col"><div class="card-placeholder"></div></div>
+        </div>
 
-                // Load team members
-                const teamFiles = indexData.teams.slice(0, 3);
-                const teamPromises = teamFiles.map(file =>
-                    fetch(`/content/${file}`)
-                        .then(r => {
-                            if (!r.ok) throw new Error(`Failed to load team member: ${file}`);
-                            return r.text();
-                        })
-                        .catch(err => {
-                            console.error(`Error loading team member ${file}:`, err);
-                            return null;
-                        })
-                );
+        <div class="text-center mt-5">
+          <a href="team.html" class="btn btn-outline-primary btn-lg">Meet Our Full Team</a>
+        </div>
+      </div>
+    </section>
 
-                const teamTexts = await Promise.all(teamPromises);
-                const validTeamTexts = teamTexts.filter(text => text !== null);
-                const teamCards = [];
-                for (let i = 0; i < validTeamTexts.length; i++) {
-                    const text = validTeamTexts[i];
-                    const parts = text.split('---');
-                    if (parts.length >= 3) {
-                        const frontmatter = parts[1];
-                        const body = parts.slice(2).join('---');
-                        const meta = parseYAML(frontmatter);
-                        const excerpt = body.replace(/[#*_\-[\]()`]/g, '').substring(0, 100) + '...';
-                        teamCards.push(`
-                            <div class="col-md-4">
-                                <div class="card team-card h-100">
-                                    <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Team+Member'}" 
-                                         class="card-img-top" 
-                                         alt="${meta.title}" 
-                                         loading="lazy">
-                                    <div class="card-body d-flex flex-column">
-                                        <h5 class="card-title">${meta.title}</h5>
-                                        <p class="card-text"><strong>${meta.role || 'Team Member'}</strong></p>
-                                        <p class="card-text flex-grow-1">${excerpt}</p>
-                                        <button class="btn btn-outline-primary mt-auto" onclick="openDetail('${teamFiles[i]}', 'team')">View Profile</button>
-                                    </div>
-                                </div>
-                            </div>
-                        `);
-                    }
-                }
+  </main>
 
-                const teamContainer = document.getElementById('team-container');
-                if (teamCards.length) {
-                    teamContainer.innerHTML = teamCards.join('');
-                } else {
-                    teamContainer.innerHTML = '<div class="col-12"><p class="text-center text-muted">No team members available at this time.</p></div>';
-                }
-            } catch (error) {
-                console.error('Error loading index content:', error);
-                document.getElementById('articles-container').innerHTML = '<div class="col-12"><p class="text-center text-danger">Unable to load articles at this time.</p></div>';
-                document.getElementById('team-container').innerHTML = '<div class="col-12"><p class="text-center text-danger">Unable to load team information at this time.</p></div>';
-            }
-        }
+  <!-- Footer -->
+  <footer class="text-white">
+    <div class="container text-center">
+      <p class="mb-2">&copy; 2025 BioNova. All rights reserved.</p>
+      <p class="small">
+        <a href="#" class="mx-2">Privacy</a> |
+        <a href="#" class="mx-2">Terms</a> |
+        <a href="contact.html" class="mx-2">Contact</a>
+      </p>
+    </div>
+  </footer>
 
-        // Function to open detail pages
-        function openDetail(id, type) {
-            sessionStorage.setItem('selectedFile', id);
-            if (type === 'article') {
-                window.location.href = 'article.html';
-            } else if (type === 'team') {
-                window.location.href = 'team_detail.html';
-            }
-        }
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', loadIndexContent);
-    </script>
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // YAML parser
+    function parseYAML(yamlStr) {
+      const result = {};
+      yamlStr.trim().split('\n').forEach(line => {
+        const idx = line.indexOf(':');
+        if (idx === -1) return;
+        let key = line.slice(0, idx).trim();
+        let val = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
+        if (val === 'true') val = true;
+        if (val === 'false') val = false;
+        if (!isNaN(val) && val !== '') val = Number(val);
+        result[key] = val;
+      });
+      return result;
+    }
+
+    function cleanExcerpt(text, limit = 20) {
+      return text.replace(/[#*_\-[\]()`>]/g, '')
+        .split(/\s+/)
+        .slice(0, limit)
+        .join(' ') + (text.split(/\s+/).length > limit ? '…' : '');
+    }
+
+    function animateCards(container, delay = 80) {
+      container.querySelectorAll('.card').forEach((c, i) => {
+        c.classList.add('animate__animated', 'animate__fadeInUp');
+        c.style.animationDelay = `${i * delay}ms`;
+      });
+    }
+
+    function openDetail(id, type) {
+      sessionStorage.setItem('selectedFile', id);
+      window.location.href = type === 'article' ? 'article.html' : 'team_detail.html';
+    }
+
+    async function loadIndexContent() {
+      try {
+        const res = await fetch('/content/index.json');
+        if (!res.ok) throw new Error('index.json');
+        const data = await res.json();
+
+        // Articles
+        const articleHTML = await Promise.all((data.articles?.slice(0,3) || []).map(async file => {
+          try {
+            const txt = await fetch(`/content/${file}`).then(r => r.ok ? r.text() : Promise.reject());
+            const parts = txt.split('---');
+            if (parts.length < 3) return '';
+            const meta = parseYAML(parts[1]);
+            const excerpt = cleanExcerpt(parts.slice(2).join('---'), 20);
+            const categories = meta.category ? meta.category.split(',').slice(0, 2).join(', ').toUpperCase() : '';
+            return `
+              <div class="col">
+                <article class="card">
+                  <img src="${meta.image || 'https://via.placeholder.com/800x600/2d5a3d/ffffff?text=Article'}"
+                       class="card-img-top" alt="${meta.title}" loading="lazy"
+                       onerror="this.onerror=null;this.src='https://via.placeholder.com/800x600/2d5a3d/ffffff?text=Image'">
+                  <div class="card-body d-flex flex-column">
+                    <h3 class="card-title">${meta.title || 'Untitled'}</h3>
+                    ${categories ? `<div class="card-category">${categories}</div>` : ''}
+                    <p class="card-text flex-grow-1">${excerpt}</p>
+                    ${meta.date ? `<p class="card-date"><i class="far fa-calendar-alt me-2"></i>${meta.date}</p>` : ''}
+                  </div>
+                </article>
+              </div>`;
+          } catch { return ''; }
+        }));
+
+        const articlesContainer = document.getElementById('articles-container');
+        articlesContainer.innerHTML = articleHTML.filter(Boolean).join('') ||
+          `<div class="col-12"><div class="alert alert-info text-center py-4">No recent publications available.</div></div>`;
+        animateCards(articlesContainer);
+
+        // Team
+        const teamHTML = await Promise.all((data.teams?.slice(0,3) || []).map(async file => {
+          try {
+            const txt = await fetch(`/content/${file}`).then(r => r.ok ? r.text() : Promise.reject());
+            const parts = txt.split('---');
+            if (parts.length < 3) return '';
+            const meta = parseYAML(parts[1]);
+            const bio = cleanExcerpt(parts.slice(2).join('---'), 16);
+            return `
+              <div class="col">
+                <article class="card">
+                  <img src="${meta.image || 'https://via.placeholder.com/800x800/2d5a3d/ffffff?text=Team'}" 
+                       class="card-img-top" 
+                       alt="${meta.title}" loading="lazy"
+                       onerror="this.onerror=null;this.src='https://via.placeholder.com/800x800/2d5a3d/ffffff?text=Photo'">
+                  <div class="card-body d-flex flex-column text-center">
+                    <h3 class="card-title">${meta.title}</h3>
+                    <p class="card-category">${meta.role || 'Team Member'}</p>
+                    <p class="card-text flex-grow-1">${bio}</p>
+                  </div>
+                </article>
+              </div>`;
+          } catch { return ''; }
+        }));
+
+        const teamContainer = document.getElementById('team-container');
+        teamContainer.innerHTML = teamHTML.filter(Boolean).join('') ||
+          `<div class="col-12"><div class="alert alert-info text-center py-4">No team profiles available.</div></div>`;
+        animateCards(teamContainer);
+
+      } catch (err) {
+        console.error(err);
+        ['articles','team'].forEach(id => {
+          document.getElementById(`${id}-container`).innerHTML =
+            `<div class="col-12"><div class="alert alert-danger text-center py-4">Failed to load ${id}.</div></div>`;
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => setTimeout(loadIndexContent, 300));
+  </script>
 </body>
 </html>
