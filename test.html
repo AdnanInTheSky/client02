@@ -222,19 +222,20 @@
       flex-wrap: wrap;
     }
 
-    /* ────── Premium Card Styles ────── */
-    .premium-card {
+    /* ────── Horizontal Article Cards ────── */
+    .horizontal-card {
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       border: none;
       overflow: hidden;
       border-radius: 1rem;
-      height: 100%;
       background: white;
       position: relative;
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+      height: 280px;
     }
     
-    .premium-card:before {
+    .horizontal-card:before {
       content: '';
       position: absolute;
       top: 0;
@@ -248,62 +249,71 @@
       z-index: 2;
     }
     
-    .premium-card:hover {
-      transform: translateY(-10px);
+    .horizontal-card:hover {
+      transform: translateY(-5px);
       box-shadow: 0 20px 40px rgba(0,0,0,.12) !important;
     }
     
-    .premium-card:hover:before {
+    .horizontal-card:hover:before {
       transform: scaleX(1);
     }
     
-    .card-img-container {
-      height: 220px;
-      overflow: hidden;
-      position: relative;
+    .horizontal-card .row {
+      height: 100%;
+      margin: 0;
     }
     
-    .premium-card .card-img-top { 
-      height: 100%; 
+    .horizontal-card .img-container {
+      height: 100%;
+      padding: 0;
+      overflow: hidden;
+    }
+    
+    .horizontal-card .card-img {
+      height: 100%;
       width: 100%;
-      object-fit: cover; 
+      object-fit: cover;
       transition: transform 0.7s ease;
     }
     
-    .premium-card:hover .card-img-top {
-      transform: scale(1.08);
+    .horizontal-card:hover .card-img {
+      transform: scale(1.05);
     }
     
-    .card-body {
-      padding: 1.5rem;
+    .horizontal-card .card-body {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     
-    .card-title {
+    .horizontal-card .card-title {
       font-weight: 700;
       margin-bottom: 0.75rem;
       color: var(--color-primary);
-      font-size: 1.25rem;
+      font-size: 1.5rem;
     }
     
-    .card-meta {
+    .horizontal-card .card-meta {
       display: flex;
       align-items: center;
       gap: 1rem;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
       font-size: 0.85rem;
       color: var(--color-muted);
     }
     
-    .card-text {
+    .horizontal-card .card-text {
       color: var(--color-muted);
       margin-bottom: 1.25rem;
-      font-size: 0.95rem;
+      font-size: 1rem;
+      line-height: 1.6;
     }
     
-    .card-footer {
+    .horizontal-card .card-footer {
       background: transparent;
-      border-top: 1px solid var(--color-border);
-      padding: 1.25rem 1.5rem;
+      border-top: none;
+      padding: 0;
     }
 
     /* Team card enhancements */
@@ -402,11 +412,12 @@
     @keyframes spin { to { transform: rotate(360deg); } }
 
     .card-placeholder {
-      height: 380px;
+      height: 280px;
       background: var(--color-light);
       border-radius: 1rem;
       position: relative;
       overflow: hidden;
+      margin-bottom: 2rem;
     }
     
     .card-placeholder:after {
@@ -488,6 +499,16 @@
     }
 
     /* ────── Responsive ────── */
+    @media (max-width: 992px) {
+      .horizontal-card {
+        height: auto;
+      }
+      
+      .horizontal-card .img-container {
+        height: 250px;
+      }
+    }
+
     @media (max-width: 768px) {
       .section { padding: 4rem 0; }
       
@@ -523,6 +544,14 @@
         max-width: 280px;
       }
       
+      .horizontal-card .card-body {
+        padding: 1.5rem;
+      }
+      
+      .horizontal-card .card-title {
+        font-size: 1.3rem;
+      }
+      
       .card-img-container { height: 200px; }
       .team-card .card-img-container { height: 220px; }
       .card-body { padding: 1.25rem; }
@@ -532,7 +561,7 @@
     @media (max-width: 576px) {
       .hero h1 { font-size: 2.1rem; }
       .hero .lead { font-size: 1.15rem; }
-      .card-placeholder { height: 400px; }
+      .card-placeholder { height: 280px; }
     }
   </style>
 </head>
@@ -633,10 +662,10 @@
           <p class="text-muted fs-5">Research findings, program updates, and stories of transformation</p>
         </header>
 
-        <div class="row g-4" id="articles-container">
-          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
-          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
-          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
+        <div id="articles-container">
+          <div class="card-placeholder"></div>
+          <div class="card-placeholder"></div>
+          <div class="card-placeholder"></div>
         </div>
 
         <div class="text-center mt-5">
@@ -761,7 +790,7 @@
     }
 
     // Clean excerpt
-    function cleanExcerpt(text, limit = 20) {
+    function cleanExcerpt(text, limit = 30) {
       const cleanText = text
         .replace(/[#*_\-[\]()`>]/g, '')
         .replace(/<[^>]*>/g, '')
@@ -811,7 +840,7 @@
         if (!res.ok) throw new Error('Failed to load index.json');
         const data = await res.json();
 
-        // Articles
+        // Articles - Horizontal Layout
         const articlePromises = (data.articles?.slice(0, 3) || []).map(async (file) => {
           try {
             const response = await fetch(`/content/${file}`);
@@ -821,31 +850,33 @@
             if (parts.length < 3) throw new Error('Invalid article format');
             const meta = parseYAML(parts[1]);
             const content = parts.slice(2).join('---');
-            const excerpt = cleanExcerpt(content, 22);
+            const excerpt = cleanExcerpt(content, 30);
             const readingTime = calculateReadingTime(content);
             const formattedDate = formatDate(meta.date);
 
             return `
-              <div class="col-12 col-md-6 col-lg-4 d-flex">
-                <div class="premium-card fade-in-up">
-                  <div class="card-img-container">
+              <div class="horizontal-card fade-in-up">
+                <div class="row g-0 h-100">
+                  <div class="col-md-4 img-container">
                     <img src="${meta.image || 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}"
-                         class="card-img-top" alt="${meta.title}" loading="lazy"
+                         class="card-img" alt="${meta.title}" loading="lazy"
                          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
                   </div>
-                  <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">${meta.title || 'Untitled Article'}</h5>
-                    <div class="card-meta">
-                      ${formattedDate ? `<span><i class="far fa-calendar-alt me-1"></i> ${formattedDate}</span>` : ''}
-                      <span><i class="far fa-clock me-1"></i> ${readingTime} min read</span>
+                  <div class="col-md-8">
+                    <div class="card-body h-100">
+                      <h3 class="card-title">${meta.title || 'Untitled Article'}</h3>
+                      <div class="card-meta">
+                        ${formattedDate ? `<span><i class="far fa-calendar-alt me-1"></i> ${formattedDate}</span>` : ''}
+                        <span><i class="far fa-clock me-1"></i> ${readingTime} min read</span>
+                      </div>
+                      <p class="card-text">${excerpt}</p>
+                      <div class="card-footer">
+                        <a href="article.html" class="btn btn-outline-primary"
+                           onclick="openDetail('${file}','article');return false;">
+                          Read More <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                      </div>
                     </div>
-                    <p class="card-text flex-grow-1">${excerpt}</p>
-                  </div>
-                  <div class="card-footer">
-                    <a href="article.html" class="btn btn-outline-primary btn-sm w-100"
-                       onclick="openDetail('${file}','article');return false;">
-                      Read More <i class="fas fa-arrow-right ms-1"></i>
-                    </a>
                   </div>
                 </div>
               </div>`;
@@ -861,7 +892,7 @@
           ? articleHTML.join('') 
           : `<div class="col-12"><div class="text-center py-5"><i class="fas fa-newspaper fa-3x text-muted mb-3"></i><h4>No Publications</h4></div></div>`;
 
-        // Team
+        // Team - Keep vertical cards for team members
         const teamPromises = (data.teams?.slice(0, 3) || []).map(async (file) => {
           try {
             const response = await fetch(`/content/${file}`);
