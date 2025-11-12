@@ -29,7 +29,7 @@
     body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
 
     /* ────── Global Styles ────── */
-    .section { padding: 5rem 0; }
+    .section { padding: 3rem 0; }
     .btn-dark { background: var(--color-primary); border: none; }
     .btn-dark:hover { background: var(--color-secondary); transform: translateY(-2px); }
     .btn-outline-dark { border-color: var(--color-primary); color: var(--color-primary); }
@@ -57,12 +57,17 @@
       transition: transform .3s, box-shadow .3s;
       border: none;
       overflow: hidden;
+      height: 100%;
     }
     .card:hover {
       transform: translateY(-8px);
       box-shadow: 0 12px 24px rgba(0,0,0,.12) !important;
     }
-    .card-img-top { height: 220px; object-fit: cover; }
+    .card-img-top { 
+      height: 220px; 
+      object-fit: cover;
+      width: 100%;
+    }
 
     /* ────── About Card (image + text) ────── */
     .about-card .img-wrapper { height: 100%; }
@@ -80,7 +85,7 @@
     @keyframes spin { to { transform: rotate(360deg); } }
 
     .card-placeholder {
-      height: 420px;
+      height: 380px;
       background: var(--color-light);
       border-radius: .75rem;
     }
@@ -95,6 +100,48 @@
       outline: 2px solid var(--color-accent);
       outline-offset: 2px;
     }
+
+    /* ────── Custom Styles for Redesign ────── */
+    .compact-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    .we-are-heading {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--color-primary);
+      text-align: center;
+      margin-bottom: 2rem;
+      letter-spacing: -1px;
+    }
+    
+    .compact-row {
+      --bs-gutter-x: 1.5rem;
+      --bs-gutter-y: 1.5rem;
+    }
+    
+    .compact-card {
+      margin-bottom: 0;
+    }
+    
+    .section-tight {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    /* Fix for equal height cards */
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    
+    .card-text {
+      flex-grow: 1;
+    }
   </style>
 </head>
 
@@ -103,7 +150,7 @@
   <!-- Navigation -->
   <header>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm" id="mainNav">
-      <div class="container">
+      <div class="container compact-section">
         <a class="navbar-brand fw-bold text-primary" href="index.html">BioNova</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -125,7 +172,7 @@
 
     <!-- Hero -->
     <section class="hero" aria-labelledby="hero-heading">
-      <div class="container">
+      <div class="container compact-section">
         <div class="row justify-content-center">
           <div class="col-lg-9 col-xl-8">
             <h1 id="hero-heading" class="display-4 fw-bold mb-4 animate__animated animate__fadeInUp">
@@ -143,9 +190,16 @@
       </div>
     </section>
 
+    <!-- WE ARE Heading -->
+    <section class="section bg-white section-tight">
+      <div class="container compact-section">
+        <h2 class="we-are-heading">WE ARE</h2>
+      </div>
+    </section>
+
     <!-- About -->
-    <section class="section bg-light" aria-labelledby="about-heading">
-      <div class="container">
+    <section class="section bg-light section-tight" aria-labelledby="about-heading">
+      <div class="container compact-section">
         <div class="card about-card border-0 shadow-lg rounded-4 overflow-hidden">
           <div class="row g-0 align-items-center">
             <div class="col-lg-6 order-lg-2">
@@ -171,42 +225,63 @@
     </section>
 
     <!-- Articles -->
-    <section class="section bg-white" aria-labelledby="articles-heading">
-      <div class="container">
-        <header class="text-center mb-5 animate__animated animate__fadeIn">
+    <section class="section bg-white section-tight" aria-labelledby="articles-heading">
+      <div class="container compact-section">
+        <header class="text-center mb-4 animate__animated animate__fadeIn">
           <h2 id="articles-heading" class="display-5 fw-bold">Insights & Impact Stories</h2>
           <p class="text-muted">Research findings, program updates, and stories of transformation</p>
         </header>
 
-        <div class="row g-4" id="articles-container">
-          <!-- Placeholders -->
-          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
-          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
-          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
+        <div class="row compact-row" id="articles-container">
+          <!-- Placeholders for 6 articles -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
         </div>
 
-        <div class="text-center mt-5">
+        <div class="text-center mt-4">
           <a href="articles.html" class="btn btn-outline-dark">View All Publications <i class="fas fa-arrow-right ms-2"></i></a>
         </div>
       </div>
     </section>
 
     <!-- Team -->
-    <section class="section bg-light" aria-labelledby="team-heading">
-      <div class="container">
-        <header class="text-center mb-5 animate__animated animate__fadeIn">
+    <section class="section bg-light section-tight" aria-labelledby="team-heading">
+      <div class="container compact-section">
+        <header class="text-center mb-4 animate__animated animate__fadeIn">
           <h2 id="team-heading" class="display-5 fw-bold">Our Leadership & Experts</h2>
           <p class="text-muted">Dedicated professionals driving sustainable change</p>
         </header>
 
-        <div class="row g-4" id="team-container">
+        <div class="row compact-row" id="team-container">
           <!-- Placeholders -->
-          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
-          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
-          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
         </div>
 
-        <div class="text-center mt-5">
+        <div class="text-center mt-4">
           <a href="team.html" class="btn btn-outline-dark">Meet Our Full Team <i class="fas fa-user ms-2"></i></a>
         </div>
       </div>
@@ -216,7 +291,7 @@
 
   <!-- Footer -->
   <footer class="py-5 text-white">
-    <div class="container text-center">
+    <div class="container compact-section text-center">
       <p class="mb-2">&copy; 2025 BioNova. All rights reserved.</p>
       <p class="small">
         <a href="#" class="mx-2">Privacy</a> |
@@ -277,8 +352,8 @@
         if (!res.ok) throw new Error('index.json');
         const data = await res.json();
 
-        // Articles
-        const articleHTML = await Promise.all((data.articles?.slice(0,3) || []).map(async file => {
+        // Articles - now loading 6 instead of 3
+        const articleHTML = await Promise.all((data.articles?.slice(0,6) || []).map(async file => {
           try {
             const txt = await fetch(`/content/${file}`).then(r => r.ok ? r.text() : Promise.reject());
             const parts = txt.split('---');
@@ -286,8 +361,8 @@
             const meta = parseYAML(parts[1]);
             const excerpt = cleanExcerpt(parts.slice(2).join('---'), 22);
             return `
-              <div class="col-12 col-md-6 col-lg-4 d-flex">
-                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden compact-card">
                   <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article'}"
                        class="card-img-top" alt="${meta.title}" loading="lazy"
                        onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Image+Unavailable'">
@@ -319,8 +394,8 @@
             const meta = parseYAML(parts[1]);
             const bio = cleanExcerpt(parts.slice(2).join('---'), 18);
             return `
-              <div class="col-12 col-md-6 col-lg-4 d-flex">
-                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden compact-card">
                   <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Team'}"
                        class="card-img-top" alt="${meta.title}" loading="lazy"
                        onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Photo+Unavailable'">
