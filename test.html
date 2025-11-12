@@ -14,554 +14,116 @@
   <!-- Animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
   <style>
     /* ────── Color Palette ────── */
     :root {
-      --color-primary:   #1a1a1a;
-      --color-secondary: #2c3e50;
-      --color-accent:    #e67e22;
-      --color-accent-light: #f39c12;
+      --color-primary:   #1a1a1a;   /* Deep charcoal */
+      --color-secondary:#2c3e50;   /* Navy slate */
+      --color-accent:    #e67e22;   /* Warm coral */
       --color-light:     #f8f9fa;
       --color-muted:     #6c757d;
       --color-bg-dark:   #111111;
       --color-bg-light:  #ffffff;
-      --color-border:    #e9ecef;
-      --color-success:   #28a745;
-      --color-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
 
-    body { 
-      font-family: 'Inter', system-ui, -apple-system, sans-serif; 
-      line-height: 1.6;
-      color: var(--color-secondary);
-    }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
 
     /* ────── Global Styles ────── */
-    .section { 
-      padding: 6rem 0; 
-      position: relative;
-    }
-    
-    .section-title {
-      position: relative;
-      margin-bottom: 3rem;
-    }
-    
-    .section-title:after {
-      content: '';
-      position: absolute;
-      bottom: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: var(--color-accent);
-      border-radius: 2px;
-    }
-    
-    .section-title.text-start:after {
-      left: 0;
-      transform: none;
-    }
-    
-    .btn-primary { 
-      background: var(--color-primary); 
-      border: none; 
-      padding: 0.75rem 1.75rem;
-      font-weight: 600;
-      border-radius: 0.5rem;
-      transition: all 0.3s ease;
-    }
-    
-    .btn-primary:hover { 
-      background: var(--color-secondary); 
-      transform: translateY(-2px); 
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-    
-    .btn-outline-primary { 
-      border-color: var(--color-primary); 
-      color: var(--color-primary); 
-      padding: 0.75rem 1.75rem;
-      font-weight: 600;
-      border-radius: 0.5rem;
-      transition: all 0.3s ease;
-    }
-    
-    .btn-outline-primary:hover { 
-      background: var(--color-primary); 
-      color: #fff; 
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-    
-    .btn-accent {
-      background: var(--color-accent);
-      color: white;
-      border: none;
-      padding: 0.85rem 2rem;
-      font-weight: 700;
-      font-size: 1.1rem;
-      border-radius: 0.6rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(230, 126, 34, 0.25);
-    }
-    
-    .btn-accent:hover {
-      background: var(--color-accent-light);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(230, 126, 34, 0.4);
-    }
+    .section { padding: 3rem 0; }
+    .btn-dark { background: var(--color-primary); border: none; }
+    .btn-dark:hover { background: var(--color-secondary); transform: translateY(-2px); }
+    .btn-outline-dark { border-color: var(--color-primary); color: var(--color-primary); }
+    .btn-outline-dark:hover { background: var(--color-primary); color: #fff; }
 
     /* ────── Navbar ────── */
-    .navbar { 
-      transition: all 0.4s ease; 
-      padding: 1rem 0;
-    }
-    
-    .navbar.scrolled { 
-      background: rgba(255,255,255,0.98) !important; 
-      box-shadow: 0 4px 20px rgba(0,0,0,.08); 
-      padding: 0.5rem 0;
-    }
-    
-    .navbar-brand {
-      font-weight: 800;
-      font-size: 1.75rem;
-      color: var(--color-primary) !important;
-      position: relative;
-    }
-    
-    .navbar-brand:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 30px;
-      height: 3px;
-      background: var(--color-accent);
-      border-radius: 2px;
-    }
-    
-    .nav-link {
-      font-weight: 500;
-      margin: 0 0.5rem;
-      position: relative;
-      transition: color 0.3s ease;
-    }
-    
-    .nav-link:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--color-accent);
-      transition: width 0.3s ease;
-    }
-    
-    .nav-link:hover, .nav-link.active {
-      color: var(--color-accent) !important;
-    }
-    
-    .nav-link:hover:after, .nav-link.active:after {
-      width: 100%;
-    }
+    .navbar { transition: all 0.3s; }
+    .navbar.scrolled { background: rgba(255,255,255,0.95) !important; box-shadow: 0 4px 12px rgba(0,0,0,.08); }
 
-    /* ────── Hero Section — Enhanced for Clarity ────── */
+    /* ────── Hero ────── */
     .hero {
-      background: linear-gradient(135deg, rgba(26,26,26,0.6) 0%, rgba(44,62,80,0.5) 100%), url('content/images/tester.jpg') center/cover no-repeat;
+      background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('content/images/tester.jpg') center/cover no-repeat;
       color: #fff;
       min-height: 100vh;
       display: flex;
       align-items: center;
       text-align: center;
-      position: relative;
-      overflow: hidden;
     }
 
-    .hero-content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
-      position: relative;
-      z-index: 2;
-      background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(4px);
-      border-radius: 1.5rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
+    .hero h1 { font-weight: 800; letter-spacing: -0.5px; }
+    .hero .lead { font-size: 1.25rem; opacity: .92; }
 
-    .hero h1 { 
-      font-weight: 800; 
-      font-size: 3.5rem;
-      letter-spacing: -0.8px; 
-      margin-bottom: 1.25rem;
-      line-height: 1.2;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.25);
-    }
-    
-    .hero .lead { 
-      font-size: 1.4rem; 
-      font-weight: 400;
-      opacity: 0.95;
-      margin-bottom: 2.5rem;
-      line-height: 1.5;
-    }
-    
-    .hero-btns {
-      display: flex;
-      gap: 1.25rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* ────── Horizontal Article Cards ────── */
-    .horizontal-card {
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* ────── Cards ────── */
+    .card {
+      transition: transform .3s, box-shadow .3s;
       border: none;
       overflow: hidden;
-      border-radius: 1rem;
-      background: white;
-      position: relative;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      margin-bottom: 2rem;
-      height: 280px;
     }
-    
-    .horizontal-card:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--color-gradient);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-      z-index: 2;
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0,0,0,.12) !important;
     }
-    
-    .horizontal-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0,0,0,.12) !important;
-    }
-    
-    .horizontal-card:hover:before {
-      transform: scaleX(1);
-    }
-    
-    .horizontal-card .row {
-      height: 100%;
-      margin: 0;
-    }
-    
-    .horizontal-card .img-container {
-      height: 100%;
-      padding: 0;
-      overflow: hidden;
-    }
-    
-    .horizontal-card .card-img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      transition: transform 0.7s ease;
-    }
-    
-    .horizontal-card:hover .card-img {
-      transform: scale(1.05);
-    }
-    
-    .horizontal-card .card-body {
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    
-    .horizontal-card .card-title {
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-      color: var(--color-primary);
-      font-size: 1.5rem;
-    }
-    
-    .horizontal-card .card-meta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-      font-size: 0.85rem;
-      color: var(--color-muted);
-    }
-    
-    .horizontal-card .card-text {
-      color: var(--color-muted);
-      margin-bottom: 1.25rem;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-    
-    .horizontal-card .card-footer {
-      background: transparent;
-      border-top: none;
-      padding: 0;
-    }
+    .card-img-top { height: 220px; object-fit: cover; }
 
-    /* Team card enhancements */
-    .team-card .card-img-container {
-      height: 240px;
-    }
-    
-    .team-role {
-      color: var(--color-accent);
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-bottom: 0.25rem;
-    }
-    
-    .team-expertise {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-bottom: 0.75rem;
-    }
-    
-    .expertise-tag {
-      background: rgba(230, 126, 34, 0.1);
-      color: var(--color-accent);
-      padding: 0.2rem 0.6rem;
-      border-radius: 30px;
-      font-size: 0.75rem;
-      font-weight: 500;
-    }
+    /* ────── About Card (image + text) ────── */
+    .about-card .img-wrapper { height: 100%; }
+    .about-card img { object-fit: cover; height: 100%; width: 100%; }
 
-    /* ────── About Card ────── */
-    .about-card { 
-      border-radius: 1.5rem; 
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-    }
-    
-    .about-card .img-wrapper { 
-      height: 100%; 
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .about-card img { 
-      object-fit: cover; 
-      height: 100%; 
-      width: 100%; 
-      transition: transform 0.8s ease;
-    }
-    
-    .about-card:hover img {
-      transform: scale(1.05);
-    }
-    
-    .about-content {
-      padding: 4rem 3rem;
-    }
-    
-    .stats-container {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 2.5rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--color-border);
-    }
-    
-    .stat-item {
-      text-align: center;
-    }
-    
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--color-accent);
-      display: block;
-      line-height: 1;
-    }
-    
-    .stat-label {
-      font-size: 0.9rem;
-      color: var(--color-muted);
-      margin-top: 0.5rem;
-    }
-
-    /* ────── Loading & Animations ────── */
+    /* ────── Loading Spinner ────── */
     .spinner {
-      width: 44px; 
-      height: 44px;
+      width: 44px; height: 44px;
       border: 4px solid rgba(0,0,0,.1);
       border-left-color: var(--color-primary);
       border-radius: 50%;
       animation: spin 1s linear infinite;
       margin: 2rem auto;
     }
-    
     @keyframes spin { to { transform: rotate(360deg); } }
 
     .card-placeholder {
-      height: 280px;
+      height: 420px;
       background: var(--color-light);
-      border-radius: 1rem;
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 2rem;
-    }
-    
-    .card-placeholder:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-      animation: shimmer 1.5s infinite;
-    }
-    
-    @keyframes shimmer {
-      0% { left: -100%; }
-      100% { left: 100%; }
+      border-radius: .75rem;
     }
 
     /* ────── Footer ────── */
-    footer { 
-      background: var(--color-bg-dark); 
-      padding: 4rem 0 2rem;
-    }
-    
-    footer a { 
-      color: #aaa; 
-      text-decoration: none; 
-      transition: color 0.3s ease;
-    }
-    
-    footer a:hover { 
-      color: #fff; 
-    }
-    
-    .footer-logo {
-      font-size: 2rem;
-      font-weight: 800;
-      color: white;
-      margin-bottom: 1rem;
-      display: inline-block;
-    }
-    
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    
-    .social-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-      color: white;
-      transition: all 0.3s ease;
-    }
-    
-    .social-link:hover {
-      background: var(--color-accent);
-      transform: translateY(-3px);
-    }
+    footer { background: var(--color-bg-dark); }
+    footer a { color: #aaa; text-decoration: none; }
+    footer a:hover { color: #fff; }
 
-    /* ────── Focus & Accessibility ────── */
+    /* ────── Focus Styles ────── */
     a:focus, button:focus, .btn:focus {
       outline: 2px solid var(--color-accent);
       outline-offset: 2px;
     }
 
-    /* ────── Responsive ────── */
-    @media (max-width: 992px) {
-      .horizontal-card {
-        height: auto;
-      }
-      
-      .horizontal-card .img-container {
-        height: 250px;
-      }
+    /* ────── Custom Styles for Redesign ────── */
+    .compact-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
-
-    @media (max-width: 768px) {
-      .section { padding: 4rem 0; }
-      
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      
-      .hero .lead {
-        font-size: 1.25rem;
-      }
-      
-      .hero-content {
-        border-radius: 1rem;
-        padding: 1.5rem;
-      }
-      
-      .about-content {
-        padding: 2.5rem 1.5rem;
-      }
-      
-      .stats-container {
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-      
-      .hero-btns {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .hero-btns .btn {
-        width: 100%;
-        max-width: 280px;
-      }
-      
-      .horizontal-card .card-body {
-        padding: 1.5rem;
-      }
-      
-      .horizontal-card .card-title {
-        font-size: 1.3rem;
-      }
-      
-      .card-img-container { height: 200px; }
-      .team-card .card-img-container { height: 220px; }
-      .card-body { padding: 1.25rem; }
-      .card-footer { padding: 1rem 1.25rem; }
+    
+    .we-are-heading {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--color-primary);
+      text-align: center;
+      margin-bottom: 2rem;
+      letter-spacing: -1px;
     }
-
-    @media (max-width: 576px) {
-      .hero h1 { font-size: 2.1rem; }
-      .hero .lead { font-size: 1.15rem; }
-      .card-placeholder { height: 280px; }
+    
+    .compact-card-group {
+      gap: 1.5rem;
+    }
+    
+    .compact-card-group .card {
+      margin-bottom: 0;
+    }
+    
+    .section-tight {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
     }
   </style>
 </head>
@@ -571,15 +133,14 @@
   <!-- Navigation -->
   <header>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">BioNova</a>
+      <div class="container compact-section">
+        <a class="navbar-brand fw-bold text-primary" href="index.html">BioNova</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="services.html">About</a></li>
             <li class="nav-item"><a class="nav-link" href="articles.html">Publications</a></li>
             <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
@@ -594,60 +155,52 @@
 
     <!-- Hero -->
     <section class="hero" aria-labelledby="hero-heading">
-      <div class="container">
-        <div class="hero-content animate__animated animate__fadeInUp">
-          <h1 id="hero-heading" class="fw-bold mb-3">
-            Sustainable Solutions for Global Challenges
-          </h1>
-          <p class="lead mb-4">
-            Empowering communities through innovative development programs and strategic partnerships
-          </p>
-          <div class="hero-btns animate__animated animate__fadeIn animate__delay-1s">
-            <a href="contact.html" class="btn btn-accent btn-lg">Join Our Mission</a>
-            <a href="services.html" class="btn btn-outline-light btn-lg">Learn More</a>
+      <div class="container compact-section">
+        <div class="row justify-content-center">
+          <div class="col-lg-9 col-xl-8">
+            <h1 id="hero-heading" class="display-4 fw-bold mb-4 animate__animated animate__fadeInUp">
+              Sustainable Solutions for Global Challenges
+            </h1>
+            <p class="lead mb-5 animate__animated animate__fadeInUp animate__delay-1s">
+              Empowering communities through innovative development programs and strategic partnerships
+            </p>
+            <div class="animate__animated animate__fadeInUp animate__delay-2s">
+              <a href="contact.html" class="btn btn-dark btn-lg me-3">Join Our Mission</a>
+              <a href="services.html" class="btn btn-outline-light btn-lg">Learn More</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- WE ARE Heading -->
+    <section class="section bg-white section-tight">
+      <div class="container compact-section">
+        <h2 class="we-are-heading">WE ARE</h2>
+      </div>
+    </section>
+
     <!-- About -->
-    <section class="section bg-light" aria-labelledby="about-heading">
-      <div class="container">
-        <div class="card about-card border-0 overflow-hidden">
+    <section class="section bg-light section-tight" aria-labelledby="about-heading">
+      <div class="container compact-section">
+        <div class="card about-card border-0 shadow-lg rounded-4 overflow-hidden">
           <div class="row g-0 align-items-center">
-            <div class="col-lg-6">
+            <div class="col-lg-6 order-lg-2">
               <div class="img-wrapper">
                 <img src="content/images/teamBio.jpeg" alt="BioNova team collaborating" class="img-fluid" loading="lazy">
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="about-content">
-                <header class="mb-4">
-                  <h2 id="about-heading" class="display-6 fw-bold mb-3">Our Commitment to Sustainable Change</h2>
-                  <p class="text-muted fs-5">Building resilient communities through evidence-based approaches and collaborative partnerships</p>
-                </header>
-                <p class="mb-3">BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide.</p>
-                <p class="mb-3">Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives.</p>
-                <p class="mb-4">We prioritize local leadership and participatory approaches to ensure programs are culturally appropriate and sustainable.</p>
-                <a href="services.html" class="btn btn-primary">
-                  Explore Our Impact <i class="fas fa-arrow-right ms-2"></i>
-                </a>
-                
-                <div class="stats-container">
-                  <div class="stat-item">
-                    <span class="stat-number" data-count="120">0</span>
-                    <span class="stat-label">Projects</span>
-                  </div>
-                  <div class="stat-item">
-                    <span class="stat-number" data-count="45">0</span>
-                    <span class="stat-label">Countries</span>
-                  </div>
-                  <div class="stat-item">
-                    <span class="stat-number" data-count="15">0</span>
-                    <span class="stat-label">Years</span>
-                  </div>
-                </div>
-              </div>
+            <div class="col-lg-6 order-lg-1 p-5 p-lg-6">
+              <header class="mb-4">
+                <h2 id="about-heading" class="display-6 fw-bold mb-3">Our Commitment to Sustainable Change</h2>
+                <p class="text-muted fs-5">Building resilient communities through evidence-based approaches and collaborative partnerships</p>
+              </header>
+              <p class="mb-3">BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide.</p>
+              <p class="mb-3">Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives.</p>
+              <p class="mb-4">We prioritize local leadership and participatory approaches to ensure programs are culturally appropriate and sustainable.</p>
+              <a href="services.html" class="btn btn-dark">
+                Explore Our Impact <i class="fas fa-arrow-right ms-2"></i>
+              </a>
             </div>
           </div>
         </div>
@@ -655,41 +208,43 @@
     </section>
 
     <!-- Articles -->
-    <section class="section bg-white" aria-labelledby="articles-heading">
-      <div class="container">
-        <header class="text-center mb-5 animate__animated animate__fadeIn">
-          <h2 id="articles-heading" class="display-5 fw-bold section-title">Insights & Impact Stories</h2>
-          <p class="text-muted fs-5">Research findings, program updates, and stories of transformation</p>
+    <section class="section bg-white section-tight" aria-labelledby="articles-heading">
+      <div class="container compact-section">
+        <header class="text-center mb-4 animate__animated animate__fadeIn">
+          <h2 id="articles-heading" class="display-5 fw-bold">Insights & Impact Stories</h2>
+          <p class="text-muted">Research findings, program updates, and stories of transformation</p>
         </header>
 
-        <div id="articles-container">
-          <div class="card-placeholder"></div>
-          <div class="card-placeholder"></div>
-          <div class="card-placeholder"></div>
+        <div class="row compact-card-group" id="articles-container">
+          <!-- Placeholders -->
+          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
+          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
+          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
         </div>
 
-        <div class="text-center mt-5">
-          <a href="articles.html" class="btn btn-outline-primary">View All Publications <i class="fas fa-arrow-right ms-2"></i></a>
+        <div class="text-center mt-4">
+          <a href="articles.html" class="btn btn-outline-dark">View All Publications <i class="fas fa-arrow-right ms-2"></i></a>
         </div>
       </div>
     </section>
 
     <!-- Team -->
-    <section class="section bg-light" aria-labelledby="team-heading">
-      <div class="container">
-        <header class="text-center mb-5 animate__animated animate__fadeIn">
-          <h2 id="team-heading" class="display-5 fw-bold section-title">Our Leadership & Experts</h2>
-          <p class="text-muted fs-5">Dedicated professionals driving sustainable change</p>
+    <section class="section bg-light section-tight" aria-labelledby="team-heading">
+      <div class="container compact-section">
+        <header class="text-center mb-4 animate__animated animate__fadeIn">
+          <h2 id="team-heading" class="display-5 fw-bold">Our Leadership & Experts</h2>
+          <p class="text-muted">Dedicated professionals driving sustainable change</p>
         </header>
 
-        <div class="row g-4" id="team-container">
+        <div class="row compact-card-group" id="team-container">
+          <!-- Placeholders -->
           <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
           <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
           <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
         </div>
 
-        <div class="text-center mt-5">
-          <a href="team.html" class="btn btn-outline-primary">Meet Our Full Team <i class="fas fa-user ms-2"></i></a>
+        <div class="text-center mt-4">
+          <a href="team.html" class="btn btn-outline-dark">Meet Our Full Team <i class="fas fa-user ms-2"></i></a>
         </div>
       </div>
     </section>
@@ -697,34 +252,14 @@
   </main>
 
   <!-- Footer -->
-  <footer class="text-white">
-    <div class="container">
-      <div class="row justify-content-center text-center mb-4">
-        <div class="col-lg-8">
-          <a href="index.html" class="footer-logo">BioNova</a>
-          <p class="mb-4">Creating sustainable solutions for global challenges through innovation and collaboration.</p>
-          <div class="social-links">
-            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="services.html">About</a>
-        <a href="articles.html">Publications</a>
-        <a href="team.html">Team</a>
-        <a href="contact.html">Contact</a>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-      </div>
-      
-      <div class="text-center pt-4 mt-4 border-top border-secondary">
-        <p class="mb-0">&copy; 2025 BioNova. All rights reserved.</p>
-      </div>
+  <footer class="py-5 text-white">
+    <div class="container compact-section text-center">
+      <p class="mb-2">&copy; 2025 BioNova. All rights reserved.</p>
+      <p class="small">
+        <a href="#" class="mx-2">Privacy</a> |
+        <a href="#" class="mx-2">Terms</a> |
+        <a href="contact.html" class="mx-2">Contact</a>
+      </p>
     </div>
   </footer>
 
@@ -738,219 +273,123 @@
       document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Stats counter animation
-    function animateStats() {
-      const statNumbers = document.querySelectorAll('.stat-number');
-      statNumbers.forEach(stat => {
-        const target = parseInt(stat.getAttribute('data-count'));
-        let current = 0;
-        const increment = target / 50;
-        const timer = setInterval(() => {
-          current += increment;
-          if (current >= target) {
-            stat.textContent = target;
-            clearInterval(timer);
-          } else {
-            stat.textContent = Math.floor(current);
-          }
-        }, 40);
-      });
-    }
-
-    // Simple fade-in animation (no observer for simplicity)
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-          el.classList.add('visible');
-        });
-        const stats = document.querySelector('.stats-container');
-        if (stats) animateStats();
-      }, 300);
-    });
-
-    // YAML parser
+    // YAML parser (unchanged)
     function parseYAML(yamlStr) {
       const result = {};
-      const lines = yamlStr.trim().split('\n');
-      for (let line of lines) {
+      yamlStr.trim().split('\n').forEach(line => {
         const idx = line.indexOf(':');
-        if (idx === -1) continue;
+        if (idx === -1) return;
         let key = line.slice(0, idx).trim();
-        let val = line.slice(idx + 1).trim();
-        val = val.replace(/^["']|["']$/g, '');
+        let val = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
         if (val === 'true') val = true;
         if (val === 'false') val = false;
         if (!isNaN(val) && val !== '') val = Number(val);
-        if (typeof val === 'string' && val.includes(',')) {
-          val = val.split(',').map(item => item.trim()).filter(item => item);
-        }
         result[key] = val;
-      }
+      });
       return result;
     }
 
-    // Clean excerpt
-    function cleanExcerpt(text, limit = 30) {
-      const cleanText = text
-        .replace(/[#*_\-[\]()`>]/g, '')
-        .replace(/<[^>]*>/g, '')
-        .replace(/\s+/g, ' ')
-        .trim();
-      const words = cleanText.split(/\s+/);
-      const excerpt = words.slice(0, limit).join(' ');
-      return excerpt + (words.length > limit ? '…' : '');
+    function cleanExcerpt(text, limit = 20) {
+      return text.replace(/[#*_\-[\]()`>]/g, '')
+        .split(/\s+/)
+        .slice(0, limit)
+        .join(' ') + (text.split(/\s+/).length > limit ? '…' : '');
     }
 
-    // Format date
-    function formatDate(dateString) {
-      if (!dateString) return '';
-      const options = { year: 'numeric', month: 'short', day: 'numeric' };
-      return new Date(dateString).toLocaleDateString('en-US', options);
+    function animateCards(container, delay = 120) {
+      container.querySelectorAll('.card').forEach((c, i) => {
+        c.classList.add('animate__animated', 'animate__fadeInUp');
+        c.style.animationDelay = `${i * delay}ms`;
+      });
     }
 
-    // Reading time
-    function calculateReadingTime(text) {
-      const wordsPerMinute = 200;
-      const wordCount = text.split(/\s+/).length;
-      return Math.ceil(wordCount / wordsPerMinute);
-    }
-
-    // Open detail
     function openDetail(id, type) {
       sessionStorage.setItem('selectedFile', id);
       window.location.href = type === 'article' ? 'article.html' : 'team_detail.html';
     }
 
-    // Expertise tags
-    function generateExpertiseTags(expertise, limit = 3) {
-      if (!expertise) return '';
-      const tags = Array.isArray(expertise) ? expertise : [expertise];
-      return tags.slice(0, limit).map(tag => 
-        `<span class="expertise-tag">${tag}</span>`
-      ).join('');
-    }
-
-    // Content loader
     async function loadIndexContent() {
       try {
-        const placeholders = document.querySelectorAll('.card-placeholder');
-        placeholders.forEach(p => p.innerHTML = '<div class="spinner"></div>');
-
         const res = await fetch('/content/index.json');
-        if (!res.ok) throw new Error('Failed to load index.json');
+        if (!res.ok) throw new Error('index.json');
         const data = await res.json();
 
-        // Articles - Horizontal Layout
-        const articlePromises = (data.articles?.slice(0, 3) || []).map(async (file) => {
+        // Articles
+        const articleHTML = await Promise.all((data.articles?.slice(0,3) || []).map(async file => {
           try {
-            const response = await fetch(`/content/${file}`);
-            if (!response.ok) throw new Error(`Failed to load ${file}`);
-            const txt = await response.text();
+            const txt = await fetch(`/content/${file}`).then(r => r.ok ? r.text() : Promise.reject());
             const parts = txt.split('---');
-            if (parts.length < 3) throw new Error('Invalid article format');
+            if (parts.length < 3) return '';
             const meta = parseYAML(parts[1]);
-            const content = parts.slice(2).join('---');
-            const excerpt = cleanExcerpt(content, 30);
-            const readingTime = calculateReadingTime(content);
-            const formattedDate = formatDate(meta.date);
-
+            const excerpt = cleanExcerpt(parts.slice(2).join('---'), 22);
             return `
-              <div class="horizontal-card fade-in-up">
-                <div class="row g-0 h-100">
-                  <div class="col-md-4 img-container">
-                    <img src="${meta.image || 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}"
-                         class="card-img" alt="${meta.title}" loading="lazy"
-                         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body h-100">
-                      <h3 class="card-title">${meta.title || 'Untitled Article'}</h3>
-                      <div class="card-meta">
-                        ${formattedDate ? `<span><i class="far fa-calendar-alt me-1"></i> ${formattedDate}</span>` : ''}
-                        <span><i class="far fa-clock me-1"></i> ${readingTime} min read</span>
-                      </div>
-                      <p class="card-text">${excerpt}</p>
-                      <div class="card-footer">
-                        <a href="article.html" class="btn btn-outline-primary"
-                           onclick="openDetail('${file}','article');return false;">
-                          Read More <i class="fas fa-arrow-right ms-1"></i>
-                        </a>
-                      </div>
-                    </div>
+              <div class="col-12 col-md-6 col-lg-4 d-flex">
+                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
+                  <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article'}"
+                       class="card-img-top" alt="${meta.title}" loading="lazy"
+                       onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Image+Unavailable'">
+                  <div class="card-body d-flex flex-column p-4">
+                    <h5 class="card-title h5 mb-2">${meta.title || 'Untitled'}</h5>
+                    ${meta.date ? `<p class="text-muted small mb-2"><i class="far fa-calendar-alt me-1"></i>${meta.date}</p>` : ''}
+                    <p class="card-text flex-grow-1">${excerpt}</p>
+                    <a href="article.html" class="btn btn-outline-dark mt-3"
+                       onclick="openDetail('${file}','article');return false;">
+                      Read More <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
                   </div>
                 </div>
               </div>`;
-          } catch (e) {
-            console.warn(`Skipped article ${file}:`, e);
-            return '';
-          }
-        });
+          } catch { return ''; }
+        }));
 
-        const articleHTML = (await Promise.all(articlePromises)).filter(Boolean);
         const articlesContainer = document.getElementById('articles-container');
-        articlesContainer.innerHTML = articleHTML.length 
-          ? articleHTML.join('') 
-          : `<div class="col-12"><div class="text-center py-5"><i class="fas fa-newspaper fa-3x text-muted mb-3"></i><h4>No Publications</h4></div></div>`;
+        articlesContainer.innerHTML = articleHTML.filter(Boolean).join('') ||
+          `<div class="col-12"><div class="alert alert-info text-center py-4">No recent publications available.</div></div>`;
+        animateCards(articlesContainer);
 
-        // Team - Keep vertical cards for team members
-        const teamPromises = (data.teams?.slice(0, 3) || []).map(async (file) => {
+        // Team
+        const teamHTML = await Promise.all((data.teams?.slice(0,3) || []).map(async file => {
           try {
-            const response = await fetch(`/content/${file}`);
-            if (!response.ok) throw new Error(`Failed to load ${file}`);
-            const txt = await response.text();
+            const txt = await fetch(`/content/${file}`).then(r => r.ok ? r.text() : Promise.reject());
             const parts = txt.split('---');
-            if (parts.length < 3) throw new Error('Invalid team format');
+            if (parts.length < 3) return '';
             const meta = parseYAML(parts[1]);
-            const bio = parts.slice(2).join('---');
-            const excerpt = cleanExcerpt(bio, 18);
-            const expertiseTags = generateExpertiseTags(meta.expertise);
-
+            const bio = cleanExcerpt(parts.slice(2).join('---'), 18);
             return `
               <div class="col-12 col-md-6 col-lg-4 d-flex">
-                <div class="premium-card team-card fade-in-up">
-                  <div class="card-img-container">
-                    <img src="${meta.image || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}"
-                         class="card-img-top" alt="${meta.title}" loading="lazy"
-                         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">${meta.title || 'Team Member'}</h5>
-                    <p class="team-role">${meta.role || 'Team Member'}</p>
-                    ${expertiseTags ? `<div class="team-expertise">${expertiseTags}</div>` : ''}
-                    <p class="card-text">${excerpt}</p>
-                  </div>
-                  <div class="card-footer">
-                    <a href="team_detail.html" class="btn btn-outline-primary btn-sm w-100"
+                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
+                  <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Team'}"
+                       class="card-img-top" alt="${meta.title}" loading="lazy"
+                       onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Photo+Unavailable'">
+                  <div class="card-body d-flex flex-column p-4">
+                    <h5 class="card-title h5 mb-1">${meta.title || 'Name'}</h5>
+                    <p class="text-primary fw-medium mb-2">${meta.role || 'Role'}</p>
+                    <p class="text-muted small flex-grow-1">${bio}</p>
+                    <a href="team_detail.html" class="btn btn-outline-dark mt-3"
                        onclick="openDetail('${file}','team');return false;">
                       View Profile <i class="fas fa-user ms-1"></i>
                     </a>
                   </div>
                 </div>
               </div>`;
-          } catch (e) {
-            console.warn(`Skipped team ${file}:`, e);
-            return '';
-          }
-        });
+          } catch { return ''; }
+        }));
 
-        const teamHTML = (await Promise.all(teamPromises)).filter(Boolean);
         const teamContainer = document.getElementById('team-container');
-        teamContainer.innerHTML = teamHTML.length 
-          ? teamHTML.join('') 
-          : `<div class="col-12"><div class="text-center py-5"><i class="fas fa-users fa-3x text-muted mb-3"></i><h4>Team Coming Soon</h4></div></div>`;
+        teamContainer.innerHTML = teamHTML.filter(Boolean).join('') ||
+          `<div class="col-12"><div class="alert alert-info text-center py-4">No team profiles available.</div></div>`;
+        animateCards(teamContainer);
 
-      } catch (error) {
-        console.error('Content load failed:', error);
-        const err = `<div class="col-12"><div class="text-center py-5"><i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i><h4>Unavailable</h4><button class="btn btn-primary mt-2" onclick="loadIndexContent()"><i class="fas fa-redo me-1"></i> Retry</button></div></div>`;
-        document.getElementById('articles-container').innerHTML = err;
-        document.getElementById('team-container').innerHTML = err;
+      } catch (err) {
+        console.error(err);
+        ['articles','team'].forEach(id => {
+          document.getElementById(`${id}-container`).innerHTML =
+            `<div class="col-12"><div class="alert alert-danger text-center py-4">Failed to load ${id}.</div></div>`;
+        });
       }
     }
 
-    // Initialize
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(loadIndexContent, 500);
-    });
+    document.addEventListener('DOMContentLoaded', () => setTimeout(loadIndexContent, 300));
   </script>
 </body>
 </html>
