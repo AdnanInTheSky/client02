@@ -150,6 +150,7 @@
             padding: 0.4rem 0.8rem;
             font-size: 0.85rem;
             margin: 0 3px 5px;
+            cursor: pointer;
         }
         
         .clear-filters-btn {
@@ -333,23 +334,86 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // --- Helper functions ---
+        // --- Improved YAML Parser ---
         function parseYAML(yamlStr) {
             const result = {};
             const lines = yamlStr.trim().split('\n');
+            let currentKey = '';
+            let currentValue = '';
+            let inMultiLine = false;
+            let inArray = false;
+            let arrayValues = [];
+
             for (const line of lines) {
-                const [key, ...valueParts] = line.split(':');
-                const trimmedKey = key.trim();
-                let value = valueParts.join(':').trim();
-                if (value.startsWith('"') && value.endsWith('"')) {
-                    value = value.slice(1, -1);
-                } else if (value.startsWith("'") && value.endsWith("'")) {
-                    value = value.slice(1, -1);
-                } else if (value.startsWith('[') && value.endsWith(']')) {
-                    value = value.slice(1, -1).split(',').map(v => v.trim().replace(/"/g, '').replace(/'/g, ''));
+                const trimmedLine = line.trim();
+                
+                // Skip empty lines and comments
+                if (!trimmedLine || trimmedLine.startsWith('#')) continue;
+                
+                // Handle multi-line values
+                if (inMultiLine) {
+                    if (trimmedLine === '---' || trimmedLine === '...') {
+                        inMultiLine = false;
+                        result[currentKey] = currentValue.trim();
+                        currentValue = '';
+                    } else {
+                        currentValue += line + '\n';
+                    }
+                    continue;
                 }
-                result[trimmedKey] = value;
+                
+                // Handle array values
+                if (inArray) {
+                    if (trimmedLine.startsWith('- ')) {
+                        const value = trimmedLine.substring(2).trim();
+                        // Remove quotes if present
+                        arrayValues.push(value.replace(/^['"](.*)['"]$/, '$1'));
+                    } else if (trimmedLine === ']' || !trimmedLine.startsWith('-')) {
+                        inArray = false;
+                        result[currentKey] = arrayValues;
+                        arrayValues = [];
+                    }
+                    continue;
+                }
+                
+                // Regular key-value pairs
+                const colonIndex = line.indexOf(':');
+                if (colonIndex !== -1) {
+                    const key = line.substring(0, colonIndex).trim();
+                    let value = line.substring(colonIndex + 1).trim();
+                    
+                    // Handle empty values that might be arrays or multi-line
+                    if (value === '' || value === '|' || value === '>') {
+                        if (line.includes('[')) {
+                            inArray = true;
+                            currentKey = key;
+                        } else {
+                            inMultiLine = true;
+                            currentKey = key;
+                            currentValue = '';
+                        }
+                        continue;
+                    }
+                    
+                    // Handle array syntax
+                    if (value.startsWith('[') && value.endsWith(']')) {
+                        const arrayContent = value.substring(1, value.length - 1);
+                        result[key] = arrayContent.split(',').map(item => 
+                            item.trim().replace(/^['"](.*)['"]$/, '$1')
+                        ).filter(item => item !== '');
+                    } 
+                    // Handle quoted values
+                    else if ((value.startsWith('"') && value.endsWith('"')) || 
+                             (value.startsWith("'") && value.endsWith("'"))) {
+                        result[key] = value.substring(1, value.length - 1);
+                    }
+                    // Handle regular values
+                    else {
+                        result[key] = value;
+                    }
+                }
             }
+            
             return result;
         }
 
@@ -373,10 +437,37 @@
         let allArticles = [];
         let currentFilter = 'all';
         let searchQuery = '';
-        let selectedTags = new Set(); // Track multiple selected tags
+        let selectedTags = new Set();
+
+        // For testing - remove this in production
+        const testArticles = [
+            {
+                id: 'test-article-1.md',
+                meta: {
+                    title: 'Prototype 2',
+                    date: '2025-10-28',
+                    author: 'Syed Adnan Rahman',
+                    image: '/content/images/teamBio.jpeg',
+                    tags: ['Update', 'Prototype', 'Research']
+                },
+                htmlBody: 'This is a test article about prototype development and research updates.'
+            },
+            {
+                id: 'test-article-2.md',
+                meta: {
+                    title: 'Community Impact Report',
+                    date: '2025-09-15',
+                    author: 'BioNova Team',
+                    image: '/content/images/impact.jpg',
+                    tags: ['Report', 'Community', 'Impact']
+                },
+                htmlBody: 'Report on community impact and transformation stories.'
+            }
+        ];
 
         async function loadAllArticles() {
             try {
+                // Try to load from actual files first
                 const indexResponse = await fetch('/content/index.json');
                 const indexData = await indexResponse.json();
                 const articleFiles = indexData.articles;
@@ -393,33 +484,56 @@
                         const frontmatter = parts[1];
                         const body = parts.slice(2).join('---');
                         const meta = parseYAML(frontmatter);
+                        console.log('Parsed meta:', meta); // Debug log
                         const htmlBody = simpleMarkdownToHTML(body);
                         allArticles.push({ id: articleFiles[i], meta, htmlBody });
-                        if (meta.tags && Array.isArray(meta.tags)) {
-                            meta.tags.forEach(tag => allTags.add(tag));
+                        
+                        // Extract tags - handle both array and string formats
+                        if (meta.tags) {
+                            if (Array.isArray(meta.tags)) {
+                                meta.tags.forEach(tag => allTags.add(tag));
+                            } else if (typeof meta.tags === 'string') {
+                                // Handle comma-separated tags
+                                meta.tags.split(',').map(tag => tag.trim()).forEach(tag => allTags.add(tag));
+                            }
                         }
                     }
                 }
 
+                // If no articles loaded, use test data
+                if (allArticles.length === 0) {
+                    console.log('Using test articles');
+                    allArticles = testArticles;
+                    testArticles.forEach(article => {
+                        if (article.meta.tags) {
+                            article.meta.tags.forEach(tag => allTags.add(tag));
+                        }
+                    });
+                }
+
                 renderTags(Array.from(allTags));
-                filterAndRender(); // render all immediately
+                filterAndRender();
             } catch (error) {
                 console.error('Error loading articles:', error);
-                document.getElementById('articles-container').innerHTML = `
-                    <div class="col-12">
-                        <div class="bg-white rounded shadow-sm p-4 text-center">
-                            <i class="fas fa-exclamation-circle fa-2x text-muted mb-2"></i>
-                            <h5 class="text-dark">Unable to Load Articles</h5>
-                            <p class="text-muted small">Please try again later</p>
-                        </div>
-                    </div>
-                `;
+                console.log('Using test articles as fallback');
+                
+                // Fallback to test data
+                const allTags = new Set();
+                allArticles = testArticles;
+                testArticles.forEach(article => {
+                    if (article.meta.tags) {
+                        article.meta.tags.forEach(tag => allTags.add(tag));
+                    }
+                });
+                
+                renderTags(Array.from(allTags));
+                filterAndRender();
             }
         }
 
         function renderTags(tags) {
             const container = document.getElementById('tags-container');
-            let html = `<button class="btn filter-btn ${currentFilter === 'all' && selectedTags.size === 0 ? 'active' : ''}" onclick="clearAllFilters()">All Articles</button>`;
+            let html = `<button class="btn filter-btn ${selectedTags.size === 0 ? 'active' : ''}" onclick="clearAllFilters()">All Articles</button>`;
             tags.forEach(tag => {
                 const isActive = selectedTags.has(tag);
                 html += `<button class="btn filter-btn ${isActive ? 'active' : ''}" onclick="toggleTag('${tag}')">
@@ -436,8 +550,8 @@
                     <div class="d-flex flex-wrap justify-content-center">
                         <span class="active-filter-badge bg-primary text-white">Active Filters:</span>
                         ${Array.from(selectedTags).map(tag => `
-                            <span class="active-filter-badge">
-                                ${tag} <i class="fas fa-times ms-1 cursor-pointer" onclick="toggleTag('${tag}')"></i>
+                            <span class="active-filter-badge" onclick="toggleTag('${tag}')">
+                                ${tag} <i class="fas fa-times ms-1"></i>
                             </span>
                         `).join('')}
                         <button class="btn clear-filters-btn btn-outline-light" onclick="clearAllFilters()">Clear All</button>
@@ -454,13 +568,11 @@
             } else {
                 selectedTags.add(tag);
             }
-            currentFilter = 'multiple'; // Set to multiple when tags are selected
             filterAndRender();
         }
 
         function clearAllFilters() {
             selectedTags.clear();
-            currentFilter = 'all';
             document.getElementById('search-input').value = '';
             searchQuery = '';
             filterAndRender();
@@ -473,12 +585,8 @@
             if (selectedTags.size > 0) {
                 filtered = filtered.filter(a => {
                     const articleTags = a.meta.tags || [];
-                    // Article must contain ALL selected tags
                     return Array.from(selectedTags).every(tag => articleTags.includes(tag));
                 });
-            } else if (currentFilter !== 'all' && currentFilter !== 'multiple') {
-                // Single tag filter (legacy support)
-                filtered = filtered.filter(a => a.meta.tags?.includes(currentFilter));
             }
 
             // Search filter
@@ -492,8 +600,8 @@
             }
 
             renderArticles(filtered);
-            renderTags(Array.from(getAllTags())); // Update tag buttons
-            renderActiveFilters(); // Update active filters display
+            renderTags(Array.from(getAllTags()));
+            renderActiveFilters();
         }
 
         function getAllTags() {
@@ -528,7 +636,7 @@
                 const excerpt = plainText + (plainText.length >= 120 ? '…' : '');
                 const imageUrl = article.meta.image || 'https://via.placeholder.com/340x200/e2e8f0/64748b?text=Article+Image';
                 
-                // Enhanced tags display - show all tags and make them clickable
+                // Enhanced tags display
                 const tagsHtml = (article.meta.tags || [])
                     .map(tag => `<span class="badge bg-light text-dark me-1 small clickable-tag" onclick="toggleTag('${tag}')">${tag}</span>`).join('');
                 
