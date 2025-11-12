@@ -57,12 +57,17 @@
       transition: transform .3s, box-shadow .3s;
       border: none;
       overflow: hidden;
+      height: 100%;
     }
     .card:hover {
       transform: translateY(-8px);
       box-shadow: 0 12px 24px rgba(0,0,0,.12) !important;
     }
-    .card-img-top { height: 220px; object-fit: cover; }
+    .card-img-top { 
+      height: 220px; 
+      object-fit: cover;
+      width: 100%;
+    }
 
     /* ────── About Card (image + text) ────── */
     .about-card .img-wrapper { height: 100%; }
@@ -80,7 +85,7 @@
     @keyframes spin { to { transform: rotate(360deg); } }
 
     .card-placeholder {
-      height: 420px;
+      height: 380px;
       background: var(--color-light);
       border-radius: .75rem;
     }
@@ -113,17 +118,29 @@
       letter-spacing: -1px;
     }
     
-    .compact-card-group {
-      gap: 1.5rem;
+    .compact-row {
+      --bs-gutter-x: 1.5rem;
+      --bs-gutter-y: 1.5rem;
     }
     
-    .compact-card-group .card {
+    .compact-card {
       margin-bottom: 0;
     }
     
     .section-tight {
       padding-top: 2rem;
       padding-bottom: 2rem;
+    }
+
+    /* Fix for equal height cards */
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    
+    .card-text {
+      flex-grow: 1;
     }
   </style>
 </head>
@@ -215,11 +232,17 @@
           <p class="text-muted">Research findings, program updates, and stories of transformation</p>
         </header>
 
-        <div class="row compact-card-group" id="articles-container">
+        <div class="row compact-row" id="articles-container">
           <!-- Placeholders -->
-          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
-          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
-          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
         </div>
 
         <div class="text-center mt-4">
@@ -236,11 +259,17 @@
           <p class="text-muted">Dedicated professionals driving sustainable change</p>
         </header>
 
-        <div class="row compact-card-group" id="team-container">
+        <div class="row compact-row" id="team-container">
           <!-- Placeholders -->
-          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
-          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
-          <div class="col-12 col-md-6 col-lg-4 d-flex"><div class="card-placeholder"></div></div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
         </div>
 
         <div class="text-center mt-4">
@@ -323,8 +352,8 @@
             const meta = parseYAML(parts[1]);
             const excerpt = cleanExcerpt(parts.slice(2).join('---'), 22);
             return `
-              <div class="col-12 col-md-6 col-lg-4 d-flex">
-                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden compact-card">
                   <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article'}"
                        class="card-img-top" alt="${meta.title}" loading="lazy"
                        onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Image+Unavailable'">
@@ -356,8 +385,8 @@
             const meta = parseYAML(parts[1]);
             const bio = cleanExcerpt(parts.slice(2).join('---'), 18);
             return `
-              <div class="col-12 col-md-6 col-lg-4 d-flex">
-                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden compact-card">
                   <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Team'}"
                        class="card-img-top" alt="${meta.title}" loading="lazy"
                        onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Photo+Unavailable'">
