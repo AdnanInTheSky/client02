@@ -18,66 +18,246 @@
     /* ────── Color Palette ────── */
     :root {
       --color-primary:   #1a1a1a;   /* Deep charcoal */
-      --color-secondary:#2c3e50;   /* Navy slate */
-      --color-accent:    #e67e22;   /* Warm coral */
+      --color-secondary: #2c3e50;   /* Navy slate */
+      --color-accent:    #00c9a7;   /* Teal accent */
+      --color-accent-light: #4fd1c5; /* Light teal */
       --color-light:     #f8f9fa;
       --color-muted:     #6c757d;
       --color-bg-dark:   #111111;
       --color-bg-light:  #ffffff;
+      --gradient-primary: linear-gradient(135deg, #00c9a7 0%, #4fd1c5 50%, #2c3e50 100%);
+      --gradient-secondary: linear-gradient(135deg, #2c3e50 0%, #4fd1c5 100%);
+      --gradient-hero: linear-gradient(135deg, rgba(0,201,167,0.8) 0%, rgba(79,209,197,0.7) 50%, rgba(44,62,80,0.8) 100%);
     }
 
-    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    body { 
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+    }
 
     /* ────── Global Styles ────── */
     .section { padding: 3rem 0; }
-    .btn-dark { background: var(--color-primary); border: none; }
-    .btn-dark:hover { background: var(--color-secondary); transform: translateY(-2px); }
-    .btn-outline-dark { border-color: var(--color-primary); color: var(--color-primary); }
-    .btn-outline-dark:hover { background: var(--color-primary); color: #fff; }
+    .btn-primary { 
+      background: var(--gradient-primary);
+      border: none;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover { 
+      background: var(--gradient-secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,201,167,0.3);
+    }
+    .btn-outline-primary { 
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+    .btn-outline-primary:hover { 
+      background: var(--color-accent);
+      color: #fff;
+    }
+
+    /* ────── Glass Morphism ────── */
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .glass-dark {
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
 
     /* ────── Navbar ────── */
-    .navbar { transition: all 0.3s; }
-    .navbar.scrolled { background: rgba(255,255,255,0.95) !important; box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+    .navbar { 
+      transition: all 0.5s ease;
+      background: rgba(255,255,255,0.1) !important;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .navbar.scrolled { 
+      background: rgba(255,255,255,0.95) !important; 
+      box-shadow: 0 4px 12px rgba(0,0,0,.08); 
+    }
 
     /* ────── Hero ────── */
     .hero {
-      background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('content/images/tester.jpg') center/cover no-repeat;
+      background: var(--gradient-hero), url('content/images/tester.jpg') center/cover no-repeat;
       color: #fff;
       min-height: 100vh;
       display: flex;
       align-items: center;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero h1 { font-weight: 800; letter-spacing: -0.5px; }
-    .hero .lead { font-size: 1.25rem; opacity: .92; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: float 20s infinite linear;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 { 
+      font-weight: 800; 
+      letter-spacing: -0.5px;
+      text-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .hero .lead { 
+      font-size: 1.25rem; 
+      opacity: .92; 
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    /* ────── Floating Join Us Button ────── */
+    .floating-join-btn {
+      position: fixed;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 15px 25px;
+      font-weight: 600;
+      box-shadow: 0 8px 25px rgba(0,201,167,0.4);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: pulse 2s infinite;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .floating-join-btn:hover {
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 12px 30px rgba(0,201,167,0.6);
+      color: white;
+    }
+
+    /* ────── Stats Section ────── */
+    .stats-section {
+      background: var(--gradient-secondary);
+      color: white;
+      padding: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats-section::before {
+      content: '';
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: float 15s infinite linear;
+      z-index: 0;
+    }
+
+    .stats-container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 2rem 1rem;
+      border-radius: 20px;
+      transition: all 0.4s ease;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, #ffffff, #e0f7fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-label {
+      font-size: 1.2rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
 
     /* ────── Cards ────── */
     .card {
-      transition: transform .3s, box-shadow .3s;
+      transition: transform .4s, box-shadow .4s;
       border: none;
       overflow: hidden;
       height: 100%;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
     .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 24px rgba(0,0,0,.12) !important;
+      transform: translateY(-12px) rotate(1deg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
     }
     .card-img-top { 
       height: 220px; 
       object-fit: cover;
       width: 100%;
+      transition: transform 0.5s ease;
+    }
+    
+    .card:hover .card-img-top {
+      transform: scale(1.05);
     }
 
     /* ────── About Card (image + text) ────── */
-    .about-card .img-wrapper { height: 100%; }
-    .about-card img { object-fit: cover; height: 100%; width: 100%; }
+    .about-card .img-wrapper { 
+      height: 100%; 
+      overflow: hidden;
+      border-radius: 20px 0 0 20px;
+    }
+    .about-card img { 
+      object-fit: cover; 
+      height: 100%; 
+      width: 100%;
+      transition: transform 0.8s ease;
+    }
+    
+    .about-card:hover img {
+      transform: scale(1.05);
+    }
 
     /* ────── Loading Spinner ────── */
     .spinner {
       width: 44px; height: 44px;
       border: 4px solid rgba(0,0,0,.1);
-      border-left-color: var(--color-primary);
+      border-left-color: var(--color-accent);
       border-radius: 50%;
       animation: spin 1s linear infinite;
       margin: 2rem auto;
@@ -87,13 +267,58 @@
     .card-placeholder {
       height: 380px;
       background: var(--color-light);
-      border-radius: .75rem;
+      border-radius: 20px;
+      animation: pulse 2s infinite;
     }
 
     /* ────── Footer ────── */
-    footer { background: var(--color-bg-dark); }
-    footer a { color: #aaa; text-decoration: none; }
-    footer a:hover { color: #fff; }
+    footer { 
+      background: var(--color-bg-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0,201,167,0.1) 0%, transparent 70%);
+      animation: float 25s infinite linear;
+      z-index: 0;
+    }
+    
+    .footer-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    footer a { 
+      color: #aaa; 
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    footer a:hover { 
+      color: var(--color-accent);
+      transform: translateX(5px);
+    }
+    
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      margin: 0 5px;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icons a:hover {
+      background: var(--color-accent);
+      transform: translateY(-5px);
+    }
 
     /* ────── Focus Styles ────── */
     a:focus, button:focus, .btn:focus {
@@ -112,10 +337,13 @@
     .we-are-heading {
       font-size: 3.5rem;
       font-weight: 900;
-      color: var(--color-primary);
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       text-align: center;
       margin-bottom: 2rem;
       letter-spacing: -1px;
+      animation: textGlow 3s infinite alternate;
     }
     
     .compact-row {
@@ -142,6 +370,174 @@
     .card-text {
       flex-grow: 1;
     }
+
+    /* Animations */
+    @keyframes float {
+      0% {
+        transform: translate(0%, 0%) rotate(0deg);
+      }
+      33% {
+        transform: translate(3%, 3%) rotate(120deg);
+      }
+      66% {
+        transform: translate(-2%, 1%) rotate(240deg);
+      }
+      100% {
+        transform: translate(0%, 0%) rotate(360deg);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 8px 25px rgba(0,201,167,0.4);
+      }
+      50% {
+        box-shadow: 0 8px 30px rgba(0,201,167,0.7);
+      }
+      100% {
+        box-shadow: 0 8px 25px rgba(0,201,167,0.4);
+      }
+    }
+
+    @keyframes textGlow {
+      0% {
+        text-shadow: 0 0 10px rgba(0,201,167,0.5);
+      }
+      100% {
+        text-shadow: 0 0 20px rgba(0,201,167,0.8), 0 0 30px rgba(0,201,167,0.6);
+      }
+    }
+
+    /* Bubbles Animation */
+    .bubbles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+    }
+    
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      animation: rise 10s infinite ease-in;
+    }
+    
+    .bubble:nth-child(1) {
+      width: 40px;
+      height: 40px;
+      left: 10%;
+      animation-duration: 8s;
+    }
+    
+    .bubble:nth-child(2) {
+      width: 20px;
+      height: 20px;
+      left: 20%;
+      animation-duration: 5s;
+      animation-delay: 1s;
+    }
+    
+    .bubble:nth-child(3) {
+      width: 50px;
+      height: 50px;
+      left: 35%;
+      animation-duration: 7s;
+      animation-delay: 2s;
+    }
+    
+    .bubble:nth-child(4) {
+      width: 80px;
+      height: 80px;
+      left: 50%;
+      animation-duration: 11s;
+      animation-delay: 0s;
+    }
+    
+    .bubble:nth-child(5) {
+      width: 35px;
+      height: 35px;
+      left: 55%;
+      animation-duration: 6s;
+      animation-delay: 1s;
+    }
+    
+    .bubble:nth-child(6) {
+      width: 45px;
+      height: 45px;
+      left: 65%;
+      animation-duration: 8s;
+      animation-delay: 3s;
+    }
+    
+    .bubble:nth-child(7) {
+      width: 25px;
+      height: 25px;
+      left: 75%;
+      animation-duration: 7s;
+      animation-delay: 2s;
+    }
+    
+    .bubble:nth-child(8) {
+      width: 80px;
+      height: 80px;
+      left: 80%;
+      animation-duration: 6s;
+      animation-delay: 1s;
+    }
+    
+    .bubble:nth-child(9) {
+      width: 15px;
+      height: 15px;
+      left: 70%;
+      animation-duration: 9s;
+      animation-delay: 0s;
+    }
+    
+    .bubble:nth-child(10) {
+      width: 50px;
+      height: 50px;
+      left: 85%;
+      animation-duration: 5s;
+      animation-delay: 3s;
+    }
+    
+    @keyframes rise {
+      0% {
+        bottom: -100px;
+        transform: translateX(0);
+      }
+      50% {
+        transform: translate(100px, -100px);
+      }
+      100% {
+        bottom: 1080px;
+        transform: translateX(-200px);
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .floating-join-btn {
+        right: 15px;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+      }
+      
+      .we-are-heading {
+        font-size: 2.5rem;
+      }
+      
+      .stat-number {
+        font-size: 2.5rem;
+      }
+    }
   </style>
 </head>
 
@@ -149,9 +545,9 @@
 
   <!-- Navigation -->
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm" id="mainNav">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top glass" id="mainNav">
       <div class="container compact-section">
-        <a class="navbar-brand fw-bold text-primary" href="index.html">BioNova</a>
+        <a class="navbar-brand fw-bold" href="index.html" style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">BioNova</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -168,11 +564,28 @@
     </nav>
   </header>
 
+  <!-- Floating Join Us Button -->
+  <a href="contact.html" class="floating-join-btn">
+    <i class="fas fa-handshake"></i> Join Us
+  </a>
+
   <main id="main-content">
 
     <!-- Hero -->
     <section class="hero" aria-labelledby="hero-heading">
-      <div class="container compact-section">
+      <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+      </div>
+      <div class="container compact-section hero-content">
         <div class="row justify-content-center">
           <div class="col-lg-9 col-xl-8">
             <h1 id="hero-heading" class="display-4 fw-bold mb-4 animate__animated animate__fadeInUp">
@@ -182,8 +595,41 @@
               Empowering communities through innovative development programs and strategic partnerships
             </p>
             <div class="animate__animated animate__fadeInUp animate__delay-2s">
-              <a href="contact.html" class="btn btn-dark btn-lg me-3">Join Our Mission</a>
+              <a href="contact.html" class="btn btn-primary btn-lg me-3">Join Our Mission</a>
               <a href="services.html" class="btn btn-outline-light btn-lg">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" aria-labelledby="stats-heading">
+      <div class="container compact-section stats-container">
+        <h2 id="stats-heading" class="text-center mb-5" style="font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">Our Impact in Numbers</h2>
+        <div class="row">
+          <div class="col-md-3 col-6 mb-4">
+            <div class="stat-card">
+              <div class="stat-number" data-count="150">0</div>
+              <div class="stat-label">Projects Completed</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 mb-4">
+            <div class="stat-card">
+              <div class="stat-number" data-count="42">0</div>
+              <div class="stat-label">Team Members</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 mb-4">
+            <div class="stat-card">
+              <div class="stat-number" data-count="18">0</div>
+              <div class="stat-label">Active Teams</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 mb-4">
+            <div class="stat-card">
+              <div class="stat-number" data-count="27">0</div>
+              <div class="stat-label">Countries Reached</div>
             </div>
           </div>
         </div>
@@ -200,7 +646,7 @@
     <!-- About -->
     <section class="section bg-light section-tight" aria-labelledby="about-heading">
       <div class="container compact-section">
-        <div class="card about-card border-0 shadow-lg rounded-4 overflow-hidden">
+        <div class="card about-card border-0 shadow-lg rounded-4 overflow-hidden glass">
           <div class="row g-0 align-items-center">
             <div class="col-lg-6 order-lg-2">
               <div class="img-wrapper">
@@ -215,7 +661,7 @@
               <p class="mb-3">BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide.</p>
               <p class="mb-3">Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives.</p>
               <p class="mb-4">We prioritize local leadership and participatory approaches to ensure programs are culturally appropriate and sustainable.</p>
-              <a href="services.html" class="btn btn-dark">
+              <a href="services.html" class="btn btn-primary">
                 Explore Our Impact <i class="fas fa-arrow-right ms-2"></i>
               </a>
             </div>
@@ -233,7 +679,16 @@
         </header>
 
         <div class="row compact-row" id="articles-container">
-          <!-- Placeholders -->
+          <!-- Placeholders for 6 articles -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-placeholder h-100"></div>
+          </div>
           <div class="col-12 col-md-6 col-lg-4">
             <div class="card-placeholder h-100"></div>
           </div>
@@ -246,7 +701,7 @@
         </div>
 
         <div class="text-center mt-4">
-          <a href="articles.html" class="btn btn-outline-dark">View All Publications <i class="fas fa-arrow-right ms-2"></i></a>
+          <a href="articles.html" class="btn btn-outline-primary">View All Publications <i class="fas fa-arrow-right ms-2"></i></a>
         </div>
       </div>
     </section>
@@ -273,7 +728,7 @@
         </div>
 
         <div class="text-center mt-4">
-          <a href="team.html" class="btn btn-outline-dark">Meet Our Full Team <i class="fas fa-user ms-2"></i></a>
+          <a href="team.html" class="btn btn-outline-primary">Meet Our Full Team <i class="fas fa-user ms-2"></i></a>
         </div>
       </div>
     </section>
@@ -282,13 +737,47 @@
 
   <!-- Footer -->
   <footer class="py-5 text-white">
-    <div class="container compact-section text-center">
-      <p class="mb-2">&copy; 2025 BioNova. All rights reserved.</p>
-      <p class="small">
-        <a href="#" class="mx-2">Privacy</a> |
-        <a href="#" class="mx-2">Terms</a> |
-        <a href="contact.html" class="mx-2">Contact</a>
-      </p>
+    <div class="container compact-section text-center footer-content">
+      <div class="row">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5 class="fw-bold mb-3" style="color: var(--color-accent);">BioNova</h5>
+          <p>Creating sustainable solutions for global challenges through innovation and collaboration.</p>
+          <div class="social-icons mt-3">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5 class="fw-bold mb-3">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="services.html">About Us</a></li>
+            <li class="mb-2"><a href="articles.html">Publications</a></li>
+            <li class="mb-2"><a href="team.html">Our Team</a></li>
+            <li class="mb-2"><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-3">Contact Info</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Green Street, Eco City</li>
+            <li class="mb-2"><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</li>
+            <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@bionova.org</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-md-start">
+          <p class="mb-0">&copy; 2025 BioNova. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <a href="#" class="mx-2">Privacy</a> 
+          <a href="#" class="mx-2">Terms</a> 
+          <a href="contact.html" class="mx-2">Contact</a>
+        </div>
+      </div>
     </div>
   </footer>
 
@@ -301,6 +790,37 @@
     window.addEventListener('scroll', () => {
       document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
     });
+
+    // Animated counter for stats
+    function animateCounters() {
+      const counters = document.querySelectorAll('.stat-number');
+      const speed = 200;
+      
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-count');
+        const count = +counter.innerText;
+        const increment = target / speed;
+        
+        if(count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(() => animateCounters(), 1);
+        } else {
+          counter.innerText = target;
+        }
+      });
+    }
+    
+    // Initialize counters when stats section is in view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    observer.observe(document.querySelector('.stats-section'));
 
     // YAML parser (unchanged)
     function parseYAML(yamlStr) {
@@ -343,8 +863,8 @@
         if (!res.ok) throw new Error('index.json');
         const data = await res.json();
 
-        // Articles
-        const articleHTML = await Promise.all((data.articles?.slice(0,3) || []).map(async file => {
+        // Articles - now loading 6 instead of 3
+        const articleHTML = await Promise.all((data.articles?.slice(0,6) || []).map(async file => {
           try {
             const txt = await fetch(`/content/${file}`).then(r => r.ok ? r.text() : Promise.reject());
             const parts = txt.split('---');
@@ -353,7 +873,7 @@
             const excerpt = cleanExcerpt(parts.slice(2).join('---'), 22);
             return `
               <div class="col-12 col-md-6 col-lg-4">
-                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden compact-card">
+                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden compact-card glass">
                   <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article'}"
                        class="card-img-top" alt="${meta.title}" loading="lazy"
                        onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Image+Unavailable'">
@@ -361,7 +881,7 @@
                     <h5 class="card-title h5 mb-2">${meta.title || 'Untitled'}</h5>
                     ${meta.date ? `<p class="text-muted small mb-2"><i class="far fa-calendar-alt me-1"></i>${meta.date}</p>` : ''}
                     <p class="card-text flex-grow-1">${excerpt}</p>
-                    <a href="article.html" class="btn btn-outline-dark mt-3"
+                    <a href="article.html" class="btn btn-outline-primary mt-3"
                        onclick="openDetail('${file}','article');return false;">
                       Read More <i class="fas fa-arrow-right ms-1"></i>
                     </a>
@@ -386,7 +906,7 @@
             const bio = cleanExcerpt(parts.slice(2).join('---'), 18);
             return `
               <div class="col-12 col-md-6 col-lg-4">
-                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden compact-card">
+                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden compact-card glass">
                   <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Team'}"
                        class="card-img-top" alt="${meta.title}" loading="lazy"
                        onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Photo+Unavailable'">
@@ -394,7 +914,7 @@
                     <h5 class="card-title h5 mb-1">${meta.title || 'Name'}</h5>
                     <p class="text-primary fw-medium mb-2">${meta.role || 'Role'}</p>
                     <p class="text-muted small flex-grow-1">${bio}</p>
-                    <a href="team_detail.html" class="btn btn-outline-dark mt-3"
+                    <a href="team_detail.html" class="btn btn-outline-primary mt-3"
                        onclick="openDetail('${file}','team');return false;">
                       View Profile <i class="fas fa-user ms-1"></i>
                     </a>
