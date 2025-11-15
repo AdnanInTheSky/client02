@@ -4,369 +4,463 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BioNova – Sustainable Development NGO</title>
-
-  <!-- Bootstrap 5.3 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Animate.css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
-    :root {
-      --color-primary: #1a1a1a;
-      --color-secondary: #2c3e50;
-      --color-accent: #e67e22;
-      --color-light: #f8f9fa;
-      --color-muted: #6c757d;
-      --color-bg-dark: #000000;
-      --color-bg-body: #e6f4f1; /* Light blue-greenish */
-    }
-
-    body {
-      background-color: var(--color-bg-body);
+    * {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
-
-    /* Glass Navbar */
-    .navbar.glass {
-      background: rgba(255, 255, 255, 0.75);
+    
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Glassmorphism utility classes */
+    .glass {
+      background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.4);
     }
-    .navbar.glass.scrolled {
-      background: rgba(255, 255, 255, 0.92);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
-
-    /* Hero (untouched) */
-    .hero {
-      background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('content/images/tester.jpg') center/cover no-repeat;
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      text-align: center;
-    }
-
-    /* Glass Cards */
-    .card.glass-card {
-      background: rgba(255, 255, 255, 0.65);
+    
+    .glass-dark {
+      background: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-      transition: transform 0.4s ease, box-shadow 0.3s ease;
-      height: 100%;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .glass-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.9);
+    }
+    
+    /* Hero gradient overlay */
+    .hero-overlay {
+      background: linear-gradient(135deg, rgba(26, 35, 126, 0.85), rgba(13, 71, 161, 0.7), rgba(0, 150, 136, 0.6));
+    }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .animate-fadeInUp {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    
+    .animate-fadeIn {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    
+    .animate-slideInRight {
+      animation: slideInRight 0.8s ease-out forwards;
+    }
+    
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-500 { animation-delay: 0.5s; }
+    
+    /* Navbar scroll effect */
+    .navbar-scrolled {
+      background: rgba(255, 255, 255, 0.95) !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #1a237e, #0d47a1, #00897b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Floating button pulse */
+    @keyframes pulse-ring {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(239, 108, 0, 0.7);
+      }
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 12px rgba(239, 108, 0, 0);
+      }
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(239, 108, 0, 0);
+      }
+    }
+    
+    .floating-btn {
+      animation: pulse-ring 2s infinite;
+    }
+    
+    /* Card image overlay effect */
+    .card-image-wrapper {
+      position: relative;
       overflow: hidden;
     }
-    .card.glass-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    
+    .card-image-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.05) 100%);
+      transition: opacity 0.3s;
     }
-    .card-img-top {
-      height: 200px;
-      object-fit: cover;
+    
+    .glass-card:hover .card-image-wrapper::after {
+      opacity: 0;
     }
-    .card-title, .card-text, .card-body h5, .card-body p {
-      color: var(--color-primary);
-      font-weight: 500;
+    
+    .card-image-wrapper img {
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .text-muted, .card-subtitle {
-      color: var(--color-muted) !important;
+    
+    .glass-card:hover .card-image-wrapper img {
+      transform: scale(1.08);
     }
-
-    /* Team Banner */
-    .team-banner {
-      background: linear-gradient(135deg, #2c3e50, #1a5276);
-      color: white;
-      padding: 2.5rem 1.5rem;
-      text-align: center;
-      border-radius: 14px;
-      margin: 2.5rem auto;
-      max-width: 800px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    }
-    .team-banner h2 {
-      font-weight: 800;
-      font-size: 2rem;
-    }
-
-    /* Floating Button */
-    .floating-btn {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      z-index: 1030;
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: var(--color-accent);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
-      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      text-decoration: none;
-    }
-    .floating-btn:hover {
-      transform: scale(1.15) rotate(8deg);
-      box-shadow: 0 8px 30px rgba(230, 126, 34, 0.5);
-      color: white;
-    }
-
-    /* Footer */
-    footer {
-      background: var(--color-bg-dark);
-      color: #ccc;
-      padding-top: 3rem;
-      padding-bottom: 2rem;
-    }
-    footer a {
-      color: #aaa;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    footer a:hover {
-      color: white;
-    }
-    .footer-heading {
-      color: white;
-      font-weight: 600;
-      margin-bottom: 1.25rem;
-      font-size: 1.1rem;
-    }
-    .social-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 0.6rem;
-      transition: all 0.3s;
-    }
-    .social-icon:hover {
-      background: var(--color-accent);
-      transform: translateY(-3px);
-    }
-    .copyright {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 1.25rem;
-      margin-top: 2rem;
-    }
-
-    /* Section spacing */
-    .section { padding: 3rem 0; }
-    .section-tight { padding: 2rem 0; }
-
-    /* Animations */
-    .animate-delay-1 { animation-delay: 0.2s !important; }
-    .animate-delay-2 { animation-delay: 0.4s !important; }
   </style>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1a237e',
+            secondary: '#0d47a1',
+            accent: '#ef6c00',
+            success: '#00897b',
+          }
+        }
+      }
+    }
+  </script>
 </head>
 
-<body>
+<body class="bg-gradient-to-br from-cyan-50 via-blue-50 to-teal-50 min-h-screen">
 
-  <!-- Navigation (Glass) -->
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top glass" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand fw-bold text-dark" href="index.html">BioNova</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+  <!-- Navigation -->
+  <nav id="mainNav" class="fixed w-full top-0 z-50 glass transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16 md:h-20">
+        <a href="index.html" class="text-2xl md:text-3xl font-bold gradient-text">BioNova</a>
+        
+        <!-- Mobile menu button -->
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-white/50 transition-colors">
+          <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="services.html">About</a></li>
-            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="articles.html">Publications</a></li>
-            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="team.html">Team</a></li>
-            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="contact.html">Contact</a></li>
-          </ul>
+        
+        <!-- Desktop menu -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="services.html" class="text-gray-700 hover:text-primary font-medium transition-colors">About</a>
+          <a href="articles.html" class="text-gray-700 hover:text-primary font-medium transition-colors">Publications</a>
+          <a href="team.html" class="text-gray-700 hover:text-primary font-medium transition-colors">Team</a>
+          <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">Contact</a>
         </div>
       </div>
-    </nav>
-  </header>
+      
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2">
+        <div class="flex flex-col space-y-3">
+          <a href="services.html" class="text-gray-700 hover:text-primary font-medium transition-colors py-2">About</a>
+          <a href="articles.html" class="text-gray-700 hover:text-primary font-medium transition-colors py-2">Publications</a>
+          <a href="team.html" class="text-gray-700 hover:text-primary font-medium transition-colors py-2">Team</a>
+          <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium text-center">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-  <main id="main-content">
-
-    <!-- Hero (untouched) -->
-    <section class="hero" aria-labelledby="hero-heading">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-9 col-xl-8">
-            <h1 id="hero-heading" class="display-4 fw-bold mb-4 animate__animated animate__fadeInUp">
-              Sustainable Solutions for Global Challenges
-            </h1>
-            <p class="lead mb-5 animate__animated animate__fadeInUp animate__delay-1s">
-              Empowering communities through innovative development programs and strategic partnerships
-            </p>
-            <div class="animate__animated animate__fadeInUp animate__delay-2s">
-              <a href="contact.html" class="btn btn-dark btn-lg me-3">Join Our Mission</a>
-              <a href="services.html" class="btn btn-outline-light btn-lg">Learn More</a>
-            </div>
-          </div>
+  <main>
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <!-- Background Image -->
+      <div class="absolute inset-0 z-0">
+        <img src="content/images/tester.jpg" alt="Hero background" class="w-full h-full object-cover">
+        <div class="absolute inset-0 hero-overlay"></div>
+      </div>
+      
+      <!-- Content -->
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 opacity-0 animate-fadeInUp">
+          Sustainable Solutions for<br class="hidden sm:block">Global Challenges
+        </h1>
+        <p class="text-lg sm:text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-0 animate-fadeInUp delay-200 font-light">
+          Empowering communities through innovative development programs and strategic partnerships
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fadeInUp delay-400">
+          <a href="contact.html" class="px-8 py-4 bg-white text-primary rounded-full font-semibold hover:bg-opacity-90 hover:scale-105 transition-all duration-300 shadow-xl">
+            Join Our Mission
+          </a>
+          <a href="services.html" class="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-full font-semibold hover:bg-white hover:text-primary transition-all duration-300">
+            Learn More
+          </a>
+        </div>
+      </div>
+      
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 animate-fadeIn delay-500">
+        <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+          <div class="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
         </div>
       </div>
     </section>
 
-    <!-- WE ARE Heading -->
-    <section class="section bg-white">
-      <div class="container">
-        <h2 class="display-4 fw-bold text-center text-primary">WE ARE</h2>
+    <!-- We Are Section -->
+    <section class="py-16 md:py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold text-center gradient-text">WE ARE</h2>
       </div>
     </section>
 
-    <!-- About (Glass Card) -->
-    <section class="section bg-transparent" aria-labelledby="about-heading">
-      <div class="container">
-        <div class="card glass-card border-0 rounded-4 overflow-hidden">
-          <div class="row g-0 align-items-center">
-            <div class="col-lg-6 order-lg-2">
-              <img src="content/images/teamBio.jpeg" alt="BioNova team collaborating"
-                   class="img-fluid w-100" style="height: 100%; max-height: 420px; object-fit: cover;">
-            </div>
-            <div class="col-lg-6 order-lg-1 p-4 p-lg-5">
-              <h2 id="about-heading" class="h3 mb-3 fw-bold">Our Commitment to Sustainable Change</h2>
-              <p class="text-muted mb-4">Building resilient communities through evidence-based approaches and collaborative partnerships</p>
-              <p>BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide.</p>
-              <p>Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives.</p>
-              <p>We prioritize local leadership and participatory approaches to ensure programs are culturally appropriate and sustainable.</p>
-              <a href="services.html" class="btn btn-dark mt-3">
-                Explore Our Impact <i class="fas fa-arrow-right ms-2"></i>
+    <!-- About Section -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass-card rounded-3xl overflow-hidden shadow-2xl">
+          <div class="grid md:grid-cols-2 gap-0">
+            <div class="order-2 md:order-1 p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+              <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900">
+                Our Commitment to<br>Sustainable Change
+              </h2>
+              <p class="text-lg text-gray-600 mb-6 font-medium">
+                Building resilient communities through evidence-based approaches and collaborative partnerships
+              </p>
+              <div class="space-y-4 text-gray-700 mb-8">
+                <p>BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide.</p>
+                <p>Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives.</p>
+                <p>We prioritize local leadership and participatory approaches to ensure programs are culturally appropriate and sustainable.</p>
+              </div>
+              <a href="services.html" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300 self-start">
+                Explore Our Impact
+                <i class="fas fa-arrow-right ml-2"></i>
               </a>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Articles (Glass Cards — rendered dynamically) -->
-    <section class="section bg-transparent" aria-labelledby="articles-heading">
-      <div class="container">
-        <header class="text-center mb-5 animate__animated animate__fadeIn">
-          <h2 id="articles-heading" class="h2 fw-bold">Insights & Impact Stories</h2>
-          <p class="text-muted">Research findings, program updates, and stories of transformation</p>
-        </header>
-
-        <div class="row g-4" id="articles-container">
-          <!-- Dynamically populated by JS -->
-          <div class="col-12 text-center py-5">
-            <div class="spinner-border text-primary" role="status">
-              <span class="visually-hidden">Loading...</span>
+            <div class="order-1 md:order-2 relative h-64 md:h-auto min-h-[400px]">
+              <img src="content/images/teamBio.jpeg" alt="BioNova team" class="absolute inset-0 w-full h-full object-cover">
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="text-center mt-4">
-          <a href="articles.html" class="btn btn-outline-dark">View All Publications <i class="fas fa-arrow-right ms-2"></i></a>
+    <!-- Articles Section -->
+    <section class="py-16 md:py-24 bg-white/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 md:mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Insights & Impact Stories</h2>
+          <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+            Research findings, program updates, and stories of transformation
+          </p>
+        </div>
+
+        <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <!-- Loading state -->
+          <div class="col-span-full flex justify-center py-12">
+            <div class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <a href="articles.html" class="inline-flex items-center px-8 py-4 bg-gray-900 text-white rounded-full font-semibold hover:bg-gray-800 hover:scale-105 transition-all duration-300">
+            View All Publications
+            <i class="fas fa-arrow-right ml-2"></i>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Team Banner (replaces full team section) -->
-    <section class="container section-tight">
-      <div class="team-banner mx-auto animate__animated animate__zoomIn animate-delay-1">
-        <h2 class="mb-3">Meet Our Global Team</h2>
-        <p class="mb-4">Experts, field officers, and changemakers from over 20 countries.</p>
-        <a href="team.html" class="btn btn-light btn-lg px-4 animate-delay-2">
-          <i class="fas fa-users me-2"></i> View Full Team
-        </a>
+    <!-- Team Banner -->
+    <section class="py-16 md:py-20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-secondary to-success p-12 md:p-16 text-center text-white shadow-2xl">
+          <!-- Decorative elements -->
+          <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
+          <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full -ml-24 -mb-24"></div>
+          
+          <div class="relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Meet Our Global Team</h2>
+            <p class="text-xl md:text-2xl mb-8 opacity-90 font-light">
+              Experts, field officers, and changemakers from over 20 countries
+            </p>
+            <a href="team.html" class="inline-flex items-center px-8 py-4 bg-white text-primary rounded-full font-bold text-lg hover:bg-opacity-90 hover:scale-105 transition-all duration-300 shadow-xl">
+              <i class="fas fa-users mr-3"></i>
+              View Full Team
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <!-- Enhanced Footer -->
-  <footer>
-    <div class="container">
-      <div class="row g-4">
-        <div class="col-lg-3 col-md-6">
-          <h5 class="footer-heading">BioNova</h5>
-          <p class="small">
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+        <!-- Brand -->
+        <div>
+          <h3 class="text-2xl font-bold text-white mb-4">BioNova</h3>
+          <p class="text-sm mb-6 leading-relaxed">
             Building sustainable futures through innovation, equity, and community-led action.
           </p>
-          <div class="mt-3">
-            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <div class="flex space-x-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+              <i class="fab fa-instagram"></i>
+            </a>
           </div>
         </div>
 
-        <div class="col-lg-3 col-md-6">
-          <h5 class="footer-heading">Quick Links</h5>
-          <ul class="list-unstyled small">
-            <li class="mb-2"><a href="services.html"><i class="fas fa-chevron-right me-2 fa-xs"></i> About Us</a></li>
-            <li class="mb-2"><a href="articles.html"><i class="fas fa-chevron-right me-2 fa-xs"></i> Publications</a></li>
-            <li class="mb-2"><a href="team.html"><i class="fas fa-chevron-right me-2 fa-xs"></i> Our Team</a></li>
-            <li class="mb-2"><a href="contact.html"><i class="fas fa-chevron-right me-2 fa-xs"></i> Contact</a></li>
-            <li class="mb-2"><a href="#"><i class="fas fa-chevron-right me-2 fa-xs"></i> Careers</a></li>
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-white font-semibold text-lg mb-4">Quick Links</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="services.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
+            <li><a href="articles.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
+            <li><a href="team.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Our Team</a></li>
+            <li><a href="contact.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Contact</a></li>
+            <li><a href="#" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Careers</a></li>
           </ul>
         </div>
 
-        <div class="col-lg-3 col-md-6">
-          <h5 class="footer-heading">Contact</h5>
-          <ul class="list-unstyled small">
-            <li class="mb-2"><i class="fas fa-map-marker-alt me-2 text-muted"></i> Dhaka, Bangladesh</li>
-            <li class="mb-2"><i class="fas fa-envelope me-2 text-muted"></i> info@bionova.org</li>
-            <li class="mb-2"><i class="fas fa-phone me-2 text-muted"></i> +880 17XX-XXXXXX</li>
+        <!-- Contact -->
+        <div>
+          <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
+              <span>Dhaka, Bangladesh</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
+              <span>info@bionova.org</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
+              <span>+880 17XX-XXXXXX</span>
+            </li>
           </ul>
         </div>
 
-        <div class="col-lg-3 col-md-6">
-          <h5 class="footer-heading">Stay Updated</h5>
-          <p class="small">Subscribe to our monthly impact report.</p>
-          <form class="d-flex">
-            <input type="email" class="form-control form-control-sm me-2" placeholder="Email" required style="font-size:0.85rem;">
-            <button class="btn btn-sm" type="submit" style="background:#e67e22; color:white; padding:0.4rem 0.6rem;">
-              <i class="fas fa-paper-plane fa-xs"></i>
+        <!-- Newsletter -->
+        <div>
+          <h4 class="text-white font-semibold text-lg mb-4">Stay Updated</h4>
+          <p class="text-sm mb-4">Subscribe to our monthly impact report.</p>
+          <form class="flex gap-2 mb-3">
+            <input type="email" placeholder="Your email" required 
+                   class="flex-1 px-4 py-2.5 rounded-full bg-white/10 border border-white/20 text-sm focus:outline-none focus:ring-2 focus:ring-accent transition-all">
+            <button type="submit" class="w-12 h-12 rounded-full bg-accent hover:bg-opacity-90 transition-all duration-300 hover:scale-105 flex items-center justify-center">
+              <i class="fas fa-paper-plane"></i>
             </button>
           </form>
-          <p class="small text-muted mt-2">We respect your privacy.</p>
+          <p class="text-xs text-gray-400">We respect your privacy.</p>
         </div>
       </div>
 
-      <div class="copyright text-center text-muted small">
-        &copy; 2025 BioNova. All rights reserved.  
-        <span class="ms-3">
-          <a href="#" class="text-muted">Privacy</a> • 
-          <a href="#" class="text-muted">Terms</a> • 
-          <a href="contact.html" class="text-muted">Contact</a>
-        </span>
+      <!-- Copyright -->
+      <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
+        <p>&copy; 2025 BioNova. All rights reserved.</p>
+        <div class="mt-3 space-x-4">
+          <a href="#" class="hover:text-white transition-colors">Privacy</a>
+          <span class="text-gray-600">•</span>
+          <a href="#" class="hover:text-white transition-colors">Terms</a>
+          <span class="text-gray-600">•</span>
+          <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- Floating Join Us Button -->
-  <a href="contact.html" class="floating-btn" aria-label="Join Our Mission">
+  <!-- Floating Action Button -->
+  <a href="contact.html" 
+     class="floating-btn fixed bottom-6 right-6 md:bottom-8 md:right-8 w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-accent to-orange-600 text-white flex items-center justify-center text-2xl md:text-3xl shadow-2xl hover:scale-110 transition-all duration-300 z-40"
+     aria-label="Join Our Mission">
     <i class="fas fa-hand-holding-heart"></i>
   </a>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-      document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
+    // Mobile menu toggle
+    document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
     });
 
-    // YAML parser (unchanged)
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('mainNav');
+      if (window.scrollY > 50) {
+        nav.classList.add('navbar-scrolled');
+      } else {
+        nav.classList.remove('navbar-scrolled');
+      }
+    });
+
+    // YAML parser
     function parseYAML(yamlStr) {
       const result = {};
       yamlStr.trim().split('\n').forEach(line => {
         const idx = line.indexOf(':');
         if (idx === -1) return;
         let key = line.slice(0, idx).trim();
-        let val = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
+        let val = line.slice(idx + 1).trim().replace(/^[\"']|[\"']$/g, '');
         if (val === 'true') val = true;
         if (val === 'false') val = false;
         if (!isNaN(val) && val !== '') val = Number(val);
@@ -383,9 +477,11 @@
     }
 
     function animateCards(container, delay = 120) {
-      container.querySelectorAll('.card').forEach((c, i) => {
-        c.classList.add('animate__animated', 'animate__fadeInUp');
+      container.querySelectorAll('.article-card').forEach((c, i) => {
+        c.classList.add('animate-fadeInUp');
         c.style.animationDelay = `${i * delay}ms`;
+        c.style.opacity = '0';
+        setTimeout(() => c.style.opacity = '1', i * delay);
       });
     }
 
@@ -400,8 +496,8 @@
         if (!res.ok) throw new Error('index.json');
         const data = await res.json();
 
-        // Articles - now loading 6 instead of 3
-        const articleHTML = await Promise.all((data.articles?.slice(0,6) || []).map(async file => {
+        // Articles - loading 6
+        const articleHTML = await Promise.all((data.articles?.slice(0, 6) || []).map(async file => {
           try {
             const txt = await fetch(`/content/${file}`).then(r => r.ok ? r.text() : Promise.reject());
             const parts = txt.split('---');
@@ -409,18 +505,22 @@
             const meta = parseYAML(parts[1]);
             const excerpt = cleanExcerpt(parts.slice(2).join('---'), 22);
             return `
-              <div class="col-12 col-md-6 col-lg-4">
-                <div class="card glass-card h-100 border-0 rounded-3 overflow-hidden">
-                  <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article'}"
-                       class="card-img-top" alt="${meta.title}" loading="lazy"
-                       onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Image+Unavailable'">
-                  <div class="card-body d-flex flex-column p-4">
-                    <h5 class="card-title h5 mb-2">${meta.title || 'Untitled'}</h5>
-                    ${meta.date ? `<p class="text-muted small mb-2"><i class="far fa-calendar-alt me-1"></i>${meta.date}</p>` : ''}
-                    <p class="card-text flex-grow-1">${excerpt}</p>
-                    <a href="article.html" class="btn btn-outline-dark mt-3"
-                       onclick="openDetail('${file}','article');return false;">
-                      Read More <i class="fas fa-arrow-right ms-1"></i>
+              <div class="article-card opacity-0">
+                <div class="glass-card rounded-2xl overflow-hidden shadow-lg h-full flex flex-col">
+                  <div class="card-image-wrapper h-48 md:h-56 overflow-hidden">
+                    <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article'}"
+                         class="w-full h-full object-cover" alt="${meta.title}" loading="lazy"
+                         onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Image+Unavailable'">
+                  </div>
+                  <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl md:text-2xl font-bold mb-2 text-gray-900 line-clamp-2">${meta.title || 'Untitled'}</h3>
+                    ${meta.date ? `<p class="text-sm text-gray-500 mb-3 flex items-center"><i class="far fa-calendar-alt mr-2 text-accent"></i>${meta.date}</p>` : ''}
+                    <p class="text-gray-600 mb-6 flex-grow leading-relaxed">${excerpt}</p>
+                    <a href="article.html" 
+                       onclick="openDetail('${file}','article');return false;"
+                       class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 self-start">
+                      Read More
+                      <i class="fas fa-arrow-right ml-2 text-sm"></i>
                     </a>
                   </div>
                 </div>
@@ -429,18 +529,32 @@
         }));
 
         const articlesContainer = document.getElementById('articles-container');
-        articlesContainer.innerHTML = articleHTML.filter(Boolean).join('') ||
-          `<div class="col-12"><div class="alert alert-info text-center py-4">No recent publications available.</div></div>`;
-        animateCards(articlesContainer);
-
-        // ✅ TEAM RENDERING LOGIC REMOVED — as requested
+        const articles = articleHTML.filter(Boolean);
+        
+        if (articles.length > 0) {
+          articlesContainer.innerHTML = articles.join('');
+          animateCards(articlesContainer);
+        } else {
+          articlesContainer.innerHTML = `
+            <div class="col-span-full">
+              <div class="glass-card rounded-2xl p-12 text-center">
+                <i class="fas fa-newspaper text-5xl text-gray-300 mb-4"></i>
+                <p class="text-xl text-gray-600">No recent publications available.</p>
+              </div>
+            </div>`;
+        }
 
       } catch (err) {
         console.error(err);
         const articlesContainer = document.getElementById('articles-container');
         if (articlesContainer) {
-          articlesContainer.innerHTML =
-            `<div class="col-12"><div class="alert alert-danger text-center py-4">Failed to load articles.</div></div>`;
+          articlesContainer.innerHTML = `
+            <div class="col-span-full">
+              <div class="bg-red-50 border border-red-200 rounded-2xl p-12 text-center">
+                <i class="fas fa-exclamation-triangle text-5xl text-red-400 mb-4"></i>
+                <p class="text-xl text-red-600">Failed to load articles.</p>
+              </div>
+            </div>`;
         }
       }
     }
