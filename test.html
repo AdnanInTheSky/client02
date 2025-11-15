@@ -1,818 +1,365 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BioNova – Global Sustainable Leadership</title>
-  <!-- Google Fonts: Satoshi + Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>BioNova – Sustainable Development NGO</title>
+
   <!-- Bootstrap 5.3 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- AOS (Animate on Scroll) -->
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <!-- Particles.js -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <!-- GSAP + ScrollTrigger -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <style>
-    /* ────── GLASSMORPHISM + DUAL THEME (ENHANCED) ────── */
-    :root {
-      /* Light Mode */
-      --bg-body: #f8fafc;
-      --text-primary: #1e293b;
-      --text-secondary: #475569;
-      --text-muted: #64748b;
-      --glass-bg: rgba(255, 255, 255, 0.16);
-      --glass-bg-hover: rgba(255, 255, 255, 0.26);
-      --glass-border: rgba(255, 255, 255, 0.28);
-      --glass-shadow: 0 15px 45px -10px rgba(0, 0, 0, 0.14);
-      --glass-shadow-hover: 0 25px 60px -12px rgba(0, 0, 0, 0.22);
-      --emerald: #10b981;
-      --emerald-light: #34d399;
-      --gold: #f59e0b;
-      --gold-light: #fbbf24;
-      --gradient-primary: linear-gradient(135deg, var(--emerald), var(--emerald-light));
-      --gradient-accent: linear-gradient(135deg, var(--gold), var(--gold-light));
-      --gradient-subtle: linear-gradient(120deg, rgba(16, 185, 129, 0.08), rgba(245, 158, 11, 0.08));
-      --navbar-bg: rgba(255, 255, 255, 0.18);
-      --navbar-border: rgba(255, 255, 255, 0.32);
-    }
 
-    [data-theme="dark"] {
-      --bg-body: #0f172a;
-      --text-primary: #f1f5f9;
-      --text-secondary: #cbd5e1;
-      --text-muted: #94a3b8;
-      --glass-bg: rgba(15, 23, 42, 0.42);
-      --glass-bg-hover: rgba(15, 23, 42, 0.58);
-      --glass-border: rgba(255, 255, 255, 0.15);
-      --glass-shadow: 0 15px 45px -10px rgba(0, 0, 0, 0.35);
-      --glass-shadow-hover: 0 25px 60px -12px rgba(0, 0, 0, 0.45);
-      --navbar-bg: rgba(15, 23, 42, 0.48);
-      --navbar-border: rgba(255, 255, 255, 0.18);
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <style>
+    :root {
+      --color-primary: #1a1a1a;
+      --color-secondary: #2c3e50;
+      --color-accent: #e67e22;
+      --color-light: #f8f9fa;
+      --color-muted: #6c757d;
+      --color-bg-dark: #000000;
+      --color-bg-body: #e6f4f1; /* Light blue-greenish */
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-body);
-      color: var(--text-secondary);
-      transition: background-color 0.5s ease, color 0.5s ease;
-      overflow-x: hidden;
-      line-height: 1.7;
+      background-color: var(--color-bg-body);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
 
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Satoshi', sans-serif;
-      font-weight: 900;
-      letter-spacing: -0.6px;
-      color: var(--text-primary);
+    /* Glass Navbar */
+    .navbar.glass {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    }
+    .navbar.glass.scrolled {
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
-    /* ────── UNIVERSAL GLASS CARD (ENHANCED) ────── */
-    .glass {
-      background: var(--glass-bg);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
-      border-radius: 28px;
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--glass-shadow);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .glass::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--gradient-subtle);
-      opacity: 0;
-      transition: opacity 0.6s ease;
-      z-index: 0;
-    }
-
-    .glass:hover::before {
-      opacity: 1;
-    }
-
-    .glass:hover {
-      transform: translateY(-12px) scale(1.015);
-      box-shadow: var(--glass-shadow-hover), 0 0 40px rgba(16, 185, 129, 0.18);
-      border-color: var(--emerald);
-    }
-
-    .glass > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ────── DRAMATIC GLASS NAVBAR (GSAP POWERED) ────── */
-    .navbar-glass {
-      background: var(--navbar-bg);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-bottom: 1px solid var(--navbar-border);
-      padding: 1.4rem 0;
-      transition: all 0.6s ease;
-      position: fixed;
-      width: 100%;
-      z-index: 1030;
-    }
-
-    .navbar-glass.scrolled {
-      padding: 0.9rem 0;
-      background: var(--glass-bg);
-      box-shadow: var(--glass-shadow);
-    }
-
-    .navbar-glass .navbar-brand {
-      font-family: 'Satoshi', sans-serif;
-      font-weight: 900;
-      font-size: 1.9rem;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      position: relative;
-      z-index: 2;
-    }
-
-    .navbar-glass .nav-link {
-      font-weight: 700;
-      color: var(--text-primary) !important;
-      margin: 0 1.4rem;
-      position: relative;
-      font-size: 0.98rem;
-      letter-spacing: 0.6px;
-      transition: all 0.4s ease;
-      padding: 0.5rem 0;
-    }
-
-    .navbar-glass .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      width: 0;
-      height: 3.5px;
-      background: var(--emerald);
-      border-radius: 3px;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      transform: translateX(-50%);
-      box-shadow: 0 0 16px rgba(16, 185, 129, 0.6);
-    }
-
-    .navbar-glass .nav-link:hover::after,
-    .navbar-glass .nav-link.active::after {
-      width: 80%;
-    }
-
-    .navbar-glass .nav-link:hover {
-      color: var(--emerald) !important;
-      transform: translateY(-2px);
-    }
-
-    /* ────── HERO: CINEMATIC ENTRANCE (GSAP) ────── */
-    #particles-js {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0; left: 0;
-      z-index: 0;
-      opacity: 0.35;
-    }
-
+    /* Hero (untouched) */
     .hero {
+      background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('content/images/tester.jpg') center/cover no-repeat;
+      color: #fff;
       min-height: 100vh;
       display: flex;
       align-items: center;
-      position: relative;
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(30, 41, 59, 0.92)), url('content/images/tester.jpg') center/cover no-repeat;
-      color: white;
-      overflow: hidden;
+      text-align: center;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 25% 35%, rgba(16, 185, 129, 0.15), transparent 70%);
-      z-index: 1;
-      animation: pulse-glow 8s ease-in-out infinite alternate;
-    }
-
-    @keyframes pulse-glow {
-      0% { opacity: 0.15; transform: scale(1); }
-      100% { opacity: 0.25; transform: scale(1.05); }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 1100px;
-    }
-
-    .hero h1 {
-      font-size: 4.8rem;
-      line-height: 1.1;
-      background: linear-gradient(to right, white, var(--emerald-light), white);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
-      opacity: 0;
-      transform: translateY(60px);
-    }
-
-    .hero .lead {
-      font-size: 1.45rem;
-      opacity: 0;
-      transform: translateY(30px);
-      max-width: 800px;
-      margin: 0 auto 3rem;
-    }
-
-    .hero .btn {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    /* ────── FLOATING JOIN ORB (3D ROTATE + PULSE) ────── */
-    .floating-join {
-      position: fixed;
-      right: 36px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 1000;
-      width: 78px;
-      height: 78px;
-      border-radius: 50%;
-      background: var(--gradient-primary);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 15px 40px rgba(16, 185, 129, 0.45);
-      color: white;
-      font-size: 1.5rem;
-      text-decoration: none;
-      transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      border: 4px solid rgba(255, 255, 255, 0.4);
-      animation: float 6s ease-in-out infinite, rotate-3d 20s linear infinite;
+    /* Glass Cards */
+    .card.glass-card {
+      background: rgba(255, 255, 255, 0.65);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+      transition: transform 0.4s ease, box-shadow 0.3s ease;
+      height: 100%;
+      overflow: hidden;
+    }
+    .card.glass-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-title, .card-text, .card-body h5, .card-body p {
+      color: var(--color-primary);
+      font-weight: 500;
+    }
+    .text-muted, .card-subtitle {
+      color: var(--color-muted) !important;
     }
 
-    .floating-join span {
-      font-size: 0.7rem;
+    /* Team Banner */
+    .team-banner {
+      background: linear-gradient(135deg, #2c3e50, #1a5276);
+      color: white;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      border-radius: 14px;
+      margin: 2.5rem auto;
+      max-width: 800px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+    .team-banner h2 {
       font-weight: 800;
-      margin-top: 5px;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      font-size: 2rem;
     }
 
-    .floating-join:hover {
-      transform: translateY(-50%) scale(1.2) rotateY(15deg);
-      box-shadow: 0 25px 55px rgba(16, 185, 129, 0.65);
-      border-color: white;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(-50%) translateY(0) rotateX(0); }
-      50% { transform: translateY(-50%) translateY(-25px) rotateX(5deg); }
-    }
-
-    @keyframes rotate-3d {
-      from { transform: translateY(-50%) rotateY(0deg); }
-      to { transform: translateY(-50%) rotateY(360deg); }
-    }
-
-    /* ────── THEME TOGGLE (GLASS ORB + FLIP) ────── */
-    .theme-toggle {
+    /* Floating Button */
+    .floating-btn {
       position: fixed;
-      top: 120px;
-      right: 36px;
-      z-index: 1001;
-      width: 62px;
-      height: 62px;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1030;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
-      background: var(--glass-bg);
-      backdrop-filter: blur(14px);
-      border: 1px solid var(--glass-border);
+      background: var(--color-accent);
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-primary);
-      font-size: 1.4rem;
-      box-shadow: var(--glass-shadow);
-      transition: all 0.5s ease;
-      cursor: pointer;
-    }
-
-    .theme-toggle:hover {
-      transform: scale(1.15) rotate(15deg);
-      box-shadow: var(--glass-shadow-hover), 0 0 30px rgba(16, 185, 129, 0.2);
-    }
-
-    /* ────── STATS: EXPLODE IN + COUNTER DRAMA ────── */
-    .stats-section {
-      padding: 8rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card {
-      background: var(--glass-bg);
-      border-radius: 28px;
-      padding: 3rem 1.8rem;
-      text-align: center;
-      border: 1px solid var(--glass-border);
-      transition: all 0.6s ease;
-      opacity: 0;
-      transform: scale(0.8) translateY(40px);
-    }
-
-    .stat-card.visible {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-
-    .stat-card:hover {
-      transform: translateY(-15px) scale(1.04);
-      background: var(--glass-bg-hover);
-      border-color: var(--emerald);
-      box-shadow: var(--glass-shadow-hover), 0 0 50px rgba(16, 185, 129, 0.22);
-    }
-
-    .stat-number {
-      font-size: 4.2rem;
-      font-weight: 900;
-      font-family: 'Satoshi', sans-serif;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .stat-label {
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2.5px;
-      font-size: 0.95rem;
-      color: var(--emerald-light);
-      margin-top: 0.8rem;
-    }
-
-    /* ────── BUTTONS (PULSE + SHIMMER) ────── */
-    .btn {
-      font-weight: 700;
-      border-radius: 18px;
-      padding: 1rem 2.4rem;
-      letter-spacing: 0.6px;
-      transition: all 0.5s ease;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-    }
-
-    .btn-primary {
-      background: var(--gradient-primary);
-      border: none;
-      color: white;
-      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.35);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 16px 40px rgba(16, 185, 129, 0.5);
-    }
-
-    .btn-outline-emerald {
-      border: 2.5px solid var(--emerald);
-      color: var(--emerald);
-      background: transparent;
-    }
-
-    .btn-outline-emerald:hover {
-      background: var(--emerald);
-      color: white;
-      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
-      transform: translateY(-3px);
-    }
-
-    /* ────── TEAM BANNER (PARALLAX + SHIMMER) ────── */
-    .team-banner {
-      background: var(--glass-bg);
-      backdrop-filter: blur(24px);
-      border: 1px solid var(--glass-border);
-      border-radius: 36px;
-      padding: 6rem 3.5rem;
-      text-align: center;
-      margin: 6rem 0;
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--glass-shadow), 0 0 50px rgba(16, 185, 129, 0.15);
-      transform: translateY(50px);
-      opacity: 0;
-    }
-
-    .team-banner.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .team-banner::after {
-      content: '';
-      position: absolute;
-      top: -70%;
-      left: -70%;
-      width: 240%;
-      height: 240%;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
-      animation: rotate-slow 40s linear infinite;
-      z-index: 0;
-    }
-
-    @keyframes rotate-slow {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .team-banner h2 {
-      font-size: 3.4rem;
-      background: var(--gradient-accent);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1.8rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .team-banner p {
-      font-size: 1.28rem;
-      max-width: 860px;
-      margin: 0 auto 3rem;
-      color: var(--text-secondary);
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ────── FOOTER (GLASS + FADE IN) ────── */
-    footer {
-      background: var(--glass-bg);
-      backdrop-filter: blur(18px);
-      color: var(--text-secondary);
-      padding: 7rem 0 3.5rem;
-      border-top: 1px solid var(--glass-border);
-      margin-top: 6rem;
-      opacity: 0;
-      transform: translateY(40px);
-    }
-
-    footer.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    footer a {
-      color: var(--emerald-light);
+      font-size: 1.25rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       text-decoration: none;
-      transition: all 0.4s ease;
+    }
+    .floating-btn:hover {
+      transform: scale(1.15) rotate(8deg);
+      box-shadow: 0 8px 30px rgba(230, 126, 34, 0.5);
+      color: white;
     }
 
+    /* Footer */
+    footer {
+      background: var(--color-bg-dark);
+      color: #ccc;
+      padding-top: 3rem;
+      padding-bottom: 2rem;
+    }
+    footer a {
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
     footer a:hover {
       color: white;
-      transform: translateY(-2px);
     }
-
     .footer-heading {
-      color: var(--text-primary);
-      font-weight: 900;
-      font-family: 'Satoshi', sans-serif;
-      margin-bottom: 1.8rem;
+      color: white;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      font-size: 1.1rem;
+    }
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 0.6rem;
+      transition: all 0.3s;
+    }
+    .social-icon:hover {
+      background: var(--color-accent);
+      transform: translateY(-3px);
+    }
+    .copyright {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.25rem;
+      margin-top: 2rem;
     }
 
-    /* ────── SHIMMER LOADER (ENHANCED) ────── */
-    .shimmer {
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-      background-size: 200%;
-      animation: shimmer 2s infinite;
-    }
+    /* Section spacing */
+    .section { padding: 3rem 0; }
+    .section-tight { padding: 2rem 0; }
 
-    @keyframes shimmer {
-      0% { background-position: -200%; }
-      100% { background-position: 200%; }
-    }
+    /* Animations */
+    .animate-delay-1 { animation-delay: 0.2s !important; }
+    .animate-delay-2 { animation-delay: 0.4s !important; }
   </style>
 </head>
+
 <body>
-  <!-- Subtle Particles -->
-  <div id="particles-js"></div>
 
-  <!-- Theme Toggle -->
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
-    <i class="fas fa-moon"></i>
-  </button>
-
-  <!-- Floating Join Orb -->
-  <a href="contact.html" class="floating-join">
-    <i class="fas fa-handshake-angle"></i>
-    <span>JOIN</span>
-  </a>
-
-  <!-- Navigation -->
+  <!-- Navigation (Glass) -->
   <header>
-    <nav class="navbar-glass navbar navbar-expand-lg fixed-top" id="mainNav">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top glass" id="mainNav">
       <div class="container">
-        <a class="navbar-brand" href="index.html">BIONOVA</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav" aria-controls="navbarNav"
-                aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand fw-bold text-dark" href="index.html">BioNova</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="services.html">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="articles.html">Publications</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="services.html">About</a></li>
+            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="articles.html">Publications</a></li>
+            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="team.html">Team</a></li>
+            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="contact.html">Contact</a></li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
 
-  <main>
-    <!-- Hero -->
+  <main id="main-content">
+
+    <!-- Hero (untouched) -->
     <section class="hero" aria-labelledby="hero-heading">
-      <div class="container hero-content text-center">
+      <div class="container">
         <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <h1 id="hero-heading" class="display-3 mb-4">
-              Sustainable Leadership for a Resilient Future
+          <div class="col-lg-9 col-xl-8">
+            <h1 id="hero-heading" class="display-4 fw-bold mb-4 animate__animated animate__fadeInUp">
+              Sustainable Solutions for Global Challenges
             </h1>
-            <p class="lead mb-5">
-              Driving systemic change through evidence, innovation, and global collaboration.
+            <p class="lead mb-5 animate__animated animate__fadeInUp animate__delay-1s">
+              Empowering communities through innovative development programs and strategic partnerships
             </p>
-            <div class="d-flex justify-content-center flex-wrap gap-3">
-              <a href="contact.html" class="btn btn-primary btn-lg">Join Our Mission</a>
-              <a href="services.html" class="btn btn-outline-emerald btn-lg">Explore Our Work</a>
+            <div class="animate__animated animate__fadeInUp animate__delay-2s">
+              <a href="contact.html" class="btn btn-dark btn-lg me-3">Join Our Mission</a>
+              <a href="services.html" class="btn btn-outline-light btn-lg">Learn More</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Stats -->
-    <section class="stats-section container" aria-labelledby="stats-heading">
-      <h2 id="stats-heading" class="text-center mb-5 display-5" data-aos="fade-up">
-        Our Global Impact
-      </h2>
-      <div class="row g-4">
-        <div class="col-md-3 col-6">
-          <div class="stat-card glass">
-            <div class="stat-number" data-count="150">0</div>
-            <div class="stat-label">Projects</div>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="stat-card glass">
-            <div class="stat-number" data-count="42">0</div>
-            <div class="stat-label">Experts</div>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="stat-card glass">
-            <div class="stat-number" data-count="18">0</div>
-            <div class="stat-label">Teams</div>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="stat-card glass">
-            <div class="stat-number" data-count="27">0</div>
-            <div class="stat-label">Countries</div>
-          </div>
-        </div>
+    <!-- WE ARE Heading -->
+    <section class="section bg-white">
+      <div class="container">
+        <h2 class="display-4 fw-bold text-center text-primary">WE ARE</h2>
       </div>
     </section>
 
-    <!-- About -->
-    <section class="container py-5" aria-labelledby="about-heading">
-      <div class="row justify-content-center">
-        <div class="col-lg-11">
-          <div class="glass p-5" data-aos="fade-up">
-            <div class="row g-0 align-items-center">
-              <div class="col-md-5">
-                <img src="content/images/teamBio.jpeg" alt="BioNova team" class="img-fluid rounded-start w-100 h-100" style="object-fit: cover; min-height: 440px;" loading="lazy">
-              </div>
-              <div class="col-md-7 p-5">
-                <h2 id="about-heading" class="h3 mb-4">
-                  Building Tomorrow, Today
-                </h2>
-                <p class="mb-3">We deliver measurable, scalable, and sustainable impact through rigorous research and local empowerment.</p>
-                <p class="mb-3">Our interdisciplinary approach combines science, policy, and community leadership to solve complex global challenges.</p>
-                <p class="mb-4">Every initiative is designed for longevity, equity, and systemic transformation.</p>
-                <a href="services.html" class="btn btn-primary">Discover Our Approach <i class="fas fa-arrow-right ms-2"></i></a>
-              </div>
+    <!-- About (Glass Card) -->
+    <section class="section bg-transparent" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="card glass-card border-0 rounded-4 overflow-hidden">
+          <div class="row g-0 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+              <img src="content/images/teamBio.jpeg" alt="BioNova team collaborating"
+                   class="img-fluid w-100" style="height: 100%; max-height: 420px; object-fit: cover;">
+            </div>
+            <div class="col-lg-6 order-lg-1 p-4 p-lg-5">
+              <h2 id="about-heading" class="h3 mb-3 fw-bold">Our Commitment to Sustainable Change</h2>
+              <p class="text-muted mb-4">Building resilient communities through evidence-based approaches and collaborative partnerships</p>
+              <p>BioNova is an international non-governmental organization dedicated to creating lasting, sustainable change in communities worldwide.</p>
+              <p>Our mission focuses on empowering communities through capacity building, education, healthcare access, and economic development initiatives.</p>
+              <p>We prioritize local leadership and participatory approaches to ensure programs are culturally appropriate and sustainable.</p>
+              <a href="services.html" class="btn btn-dark mt-3">
+                Explore Our Impact <i class="fas fa-arrow-right ms-2"></i>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Articles -->
-    <section class="container py-5" aria-labelledby="articles-heading">
-      <header class="text-center mb-5" data-aos="fade-up">
-        <h2 id="articles-heading" class="display-5">Insights & Research</h2>
-        <p class="text-muted">Evidence-based analysis and field reports</p>
-      </header>
-      <div class="row g-4" id="articles-container">
-        <div class="col-12 text-center py-5">
-          <div class="spinner-border text-emerald" style="width: 3rem; height: 3rem;" role="status">
-            <span class="visually-hidden">Loading...</span>
+    <!-- Articles (Glass Cards — rendered dynamically) -->
+    <section class="section bg-transparent" aria-labelledby="articles-heading">
+      <div class="container">
+        <header class="text-center mb-5 animate__animated animate__fadeIn">
+          <h2 id="articles-heading" class="h2 fw-bold">Insights & Impact Stories</h2>
+          <p class="text-muted">Research findings, program updates, and stories of transformation</p>
+        </header>
+
+        <div class="row g-4" id="articles-container">
+          <!-- Dynamically populated by JS -->
+          <div class="col-12 text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
           </div>
-          <p class="mt-3 text-muted">Loading publications...</p>
         </div>
-      </div>
-      <div class="text-center mt-5">
-        <a href="articles.html" class="btn btn-outline-emerald">View All Publications <i class="fas fa-arrow-right ms-2"></i></a>
+
+        <div class="text-center mt-4">
+          <a href="articles.html" class="btn btn-outline-dark">View All Publications <i class="fas fa-arrow-right ms-2"></i></a>
+        </div>
       </div>
     </section>
 
-    <!-- Team Banner -->
-    <section class="container">
-      <div class="team-banner glass">
-        <h2>Meet Our Global Team</h2>
-        <p>
-          A diverse network of scientists, policymakers, field experts, and community leaders — 
-          united in purpose, driven by results.
-        </p>
-        <a href="team.html" class="btn btn-primary btn-lg">
-          <i class="fas fa-users me-2"></i> Explore the Team
+    <!-- Team Banner (replaces full team section) -->
+    <section class="container section-tight">
+      <div class="team-banner mx-auto animate__animated animate__zoomIn animate-delay-1">
+        <h2 class="mb-3">Meet Our Global Team</h2>
+        <p class="mb-4">Experts, field officers, and changemakers from over 20 countries.</p>
+        <a href="team.html" class="btn btn-light btn-lg px-4 animate-delay-2">
+          <i class="fas fa-users me-2"></i> View Full Team
         </a>
       </div>
     </section>
+
   </main>
 
-  <!-- Footer -->
+  <!-- Enhanced Footer -->
   <footer>
     <div class="container">
-      <div class="row">
-        <div class="col-md-4 mb-4 mb-md-0">
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
           <h5 class="footer-heading">BioNova</h5>
-          <p class="mb-0">Sustainable development through science, leadership, and partnership.</p>
+          <p class="small">
+            Building sustainable futures through innovation, equity, and community-led action.
+          </p>
+          <div class="mt-3">
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          </div>
         </div>
-        <div class="col-md-4 mb-4 mb-md-0">
+
+        <div class="col-lg-3 col-md-6">
           <h5 class="footer-heading">Quick Links</h5>
-          <ul class="list-unstyled">
-            <li class="mb-2"><a href="services.html">About Us</a></li>
-            <li class="mb-2"><a href="articles.html">Publications</a></li>
-            <li class="mb-2"><a href="team.html">Our Team</a></li>
-            <li class="mb-2"><a href="contact.html">Contact</a></li>
+          <ul class="list-unstyled small">
+            <li class="mb-2"><a href="services.html"><i class="fas fa-chevron-right me-2 fa-xs"></i> About Us</a></li>
+            <li class="mb-2"><a href="articles.html"><i class="fas fa-chevron-right me-2 fa-xs"></i> Publications</a></li>
+            <li class="mb-2"><a href="team.html"><i class="fas fa-chevron-right me-2 fa-xs"></i> Our Team</a></li>
+            <li class="mb-2"><a href="contact.html"><i class="fas fa-chevron-right me-2 fa-xs"></i> Contact</a></li>
+            <li class="mb-2"><a href="#"><i class="fas fa-chevron-right me-2 fa-xs"></i> Careers</a></li>
           </ul>
         </div>
-        <div class="col-md-4">
-          <h5 class="footer-heading">Connect</h5>
-          <ul class="list-unstyled">
-            <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Global Headquarters</li>
-            <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@bionova.org</li>
+
+        <div class="col-lg-3 col-md-6">
+          <h5 class="footer-heading">Contact</h5>
+          <ul class="list-unstyled small">
+            <li class="mb-2"><i class="fas fa-map-marker-alt me-2 text-muted"></i> Dhaka, Bangladesh</li>
+            <li class="mb-2"><i class="fas fa-envelope me-2 text-muted"></i> info@bionova.org</li>
+            <li class="mb-2"><i class="fas fa-phone me-2 text-muted"></i> +880 17XX-XXXXXX</li>
           </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h5 class="footer-heading">Stay Updated</h5>
+          <p class="small">Subscribe to our monthly impact report.</p>
+          <form class="d-flex">
+            <input type="email" class="form-control form-control-sm me-2" placeholder="Email" required style="font-size:0.85rem;">
+            <button class="btn btn-sm" type="submit" style="background:#e67e22; color:white; padding:0.4rem 0.6rem;">
+              <i class="fas fa-paper-plane fa-xs"></i>
+            </button>
+          </form>
+          <p class="small text-muted mt-2">We respect your privacy.</p>
         </div>
       </div>
-      <hr class="my-4" style="border-color: var(--glass-border);">
-      <div class="text-center">
-        <p class="mb-0">&copy; 2025 BioNova. All rights reserved.</p>
+
+      <div class="copyright text-center text-muted small">
+        &copy; 2025 BioNova. All rights reserved.  
+        <span class="ms-3">
+          <a href="#" class="text-muted">Privacy</a> • 
+          <a href="#" class="text-muted">Terms</a> • 
+          <a href="contact.html" class="text-muted">Contact</a>
+        </span>
       </div>
     </div>
   </footer>
 
+  <!-- Floating Join Us Button -->
+  <a href="contact.html" class="floating-btn" aria-label="Join Our Mission">
+    <i class="fas fa-hand-holding-heart"></i>
+  </a>
+
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 1200, once: true, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' });
-
-    // Particles
-    particlesJS('particles-js', {
-      particles: {
-        number: { value: 45, density: { enable: true, value_area: 800 } },
-        color: { value: '#10b981' },
-        shape: { type: 'circle' },
-        opacity: { value: 0.3, random: true },
-        size: { value: 3.5, random: true },
-        line_linked: { enable: false },
-        move: { enable: true, speed: 1.2, direction: 'none', random: false, straight: false, out_mode: 'out' }
-      },
-      interactivity: { detect_on: 'canvas', events: { onhover: { enable: false } } },
-      retina_detect: true
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Navbar Scroll
-    gsap.to("#mainNav", {
-      scrollTrigger: {
-        trigger: "body",
-        start: "top top",
-        end: "bottom top",
-        scrub: 1,
-        onUpdate: self => {
-          document.getElementById('mainNav').classList.toggle('scrolled', self.progress > 0.1);
-        }
-      }
-    });
-
-    // HERO: Cinematic Entrance
-    gsap.timeline()
-      .to(".hero h1", { opacity: 1, y: 0, duration: 1.4, ease: "power4.out" }, 0.4)
-      .to(".hero .lead", { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }, 0.8)
-      .to(".hero .btn", { opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: "back.out(1.7)" }, 1.2);
-
-    // STATS: Explode In
-    gsap.utils.toArray(".stat-card").forEach((card, i) => {
-      gsap.to(card, {
-        scrollTrigger: {
-          trigger: card,
-          start: "top 85%",
-          onEnter: () => card.classList.add("visible"),
-          once: true
-        },
-        scale: 1,
-        y: 0,
-        opacity: 1,
-        duration: 1.2,
-        ease: "elastic.out(1, 0.5)",
-        delay: i * 0.15
-      });
-    });
-
-    // TEAM BANNER: Parallax Fade
-    gsap.to(".team-banner", {
-      scrollTrigger: {
-        trigger: ".team-banner",
-        start: "top 90%",
-        onEnter: () => document.querySelector(".team-banner").classList.add("visible"),
-        once: true
-      },
-      y: 0,
-      opacity: 1,
-      duration: 1.8,
-      ease: "power4.out"
-    });
-
-    // FOOTER: Fade In
-    gsap.to("footer", {
-      scrollTrigger: {
-        trigger: "footer",
-        start: "top 95%",
-        onEnter: () => document.querySelector("footer").classList.add("visible"),
-        once: true
-      },
-      y: 0,
-      opacity: 1,
-      duration: 1.5,
-      ease: "power3.out"
-    });
-
-    // Theme Toggle
-    const themeToggle = document.getElementById('themeToggle');
-    const html = document.documentElement;
-    const icon = themeToggle.querySelector('i');
-
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    html.setAttribute('data-theme', savedTheme);
-    icon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-
-    themeToggle.addEventListener('click', () => {
-      const current = html.getAttribute('data-theme');
-      const newTheme = current === 'light' ? 'dark' : 'light';
-      html.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-    });
-
-    // Counter Animation
-    function animateCounters() {
-      const counters = document.querySelectorAll('.stat-number');
-      counters.forEach(counter => {
-        const target = +counter.getAttribute('data-count');
-        const count = +counter.innerText;
-        const inc = target / 180;
-        if (count < target) {
-          counter.innerText = Math.ceil(count + inc);
-          setTimeout(animateCounters, 15);
-        } else {
-          counter.innerText = target.toLocaleString();
-        }
-      });
-    }
-
-    const statsObserver = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        animateCounters();
-        statsObserver.unobserve(entries[0].target);
-      }
-    }, { threshold: 0.6 });
-    statsObserver.observe(document.querySelector('.stats-section'));
-
-    // Article Loader (unchanged)
+    // YAML parser (unchanged)
     function parseYAML(yamlStr) {
       const result = {};
       yamlStr.trim().split('\n').forEach(line => {
@@ -828,11 +375,18 @@
       return result;
     }
 
-    function cleanExcerpt(text, limit = 22) {
+    function cleanExcerpt(text, limit = 20) {
       return text.replace(/[#*_\-[\]()`>]/g, '')
         .split(/\s+/)
         .slice(0, limit)
-        .join(' ') + (text.split(/\s+/).length > limit ? '...' : '');
+        .join(' ') + (text.split(/\s+/).length > limit ? '…' : '');
+    }
+
+    function animateCards(container, delay = 120) {
+      container.querySelectorAll('.card').forEach((c, i) => {
+        c.classList.add('animate__animated', 'animate__fadeInUp');
+        c.style.animationDelay = `${i * delay}ms`;
+      });
     }
 
     function openDetail(id, type) {
@@ -841,18 +395,13 @@
     }
 
     async function loadIndexContent() {
-      const container = document.getElementById('articles-container');
-      container.innerHTML = Array(3).fill().map(() => `
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="glass content-card shimmer" style="height: 400px;"></div>
-        </div>
-      `).join('');
-
       try {
         const res = await fetch('/content/index.json');
-        if (!res.ok) throw new Error();
+        if (!res.ok) throw new Error('index.json');
         const data = await res.json();
-        const articleHTML = await Promise.all((data.articles?.slice(0,3) || []).map(async file => {
+
+        // Articles - now loading 6 instead of 3
+        const articleHTML = await Promise.all((data.articles?.slice(0,6) || []).map(async file => {
           try {
             const txt = await fetch(`/content/${file}`).then(r => r.ok ? r.text() : Promise.reject());
             const parts = txt.split('---');
@@ -860,15 +409,16 @@
             const meta = parseYAML(parts[1]);
             const excerpt = cleanExcerpt(parts.slice(2).join('---'), 22);
             return `
-              <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${Math.random()*300}">
-                <div class="glass content-card h-100">
-                  <img src="${meta.image || 'https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Report'}"
-                       class="card-img-top" alt="${meta.title}" loading="lazy">
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="card glass-card h-100 border-0 rounded-3 overflow-hidden">
+                  <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article'}"
+                       class="card-img-top" alt="${meta.title}" loading="lazy"
+                       onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Image+Unavailable'">
                   <div class="card-body d-flex flex-column p-4">
-                    <h5 class="card-title h5 mb-2" style="color: var(--text-primary);">${meta.title || 'Untitled'}</h5>
-                    ${meta.date ? `<p class="text-emerald small mb-2"><i class="far fa-calendar-alt me-1"></i> ${meta.date}</p>` : ''}
-                    <p class="card-text flex-grow-1" style="color: var(--text-muted);">${excerpt}</p>
-                    <a href="article.html" class="btn btn-outline-emerald mt-3"
+                    <h5 class="card-title h5 mb-2">${meta.title || 'Untitled'}</h5>
+                    ${meta.date ? `<p class="text-muted small mb-2"><i class="far fa-calendar-alt me-1"></i>${meta.date}</p>` : ''}
+                    <p class="card-text flex-grow-1">${excerpt}</p>
+                    <a href="article.html" class="btn btn-outline-dark mt-3"
                        onclick="openDetail('${file}','article');return false;">
                       Read More <i class="fas fa-arrow-right ms-1"></i>
                     </a>
@@ -877,17 +427,25 @@
               </div>`;
           } catch { return ''; }
         }));
-        container.innerHTML = articleHTML.filter(Boolean).join('') || 
-          `<div class="col-12"><div class="alert alert-info text-center py-4 glass">No publications available.</div></div>`;
-        AOS.refresh();
-      } catch {
-        container.innerHTML = `<div class="col-12"><div class="alert alert-warning text-center py-4 glass">Failed to load content.</div></div>`;
+
+        const articlesContainer = document.getElementById('articles-container');
+        articlesContainer.innerHTML = articleHTML.filter(Boolean).join('') ||
+          `<div class="col-12"><div class="alert alert-info text-center py-4">No recent publications available.</div></div>`;
+        animateCards(articlesContainer);
+
+        // ✅ TEAM RENDERING LOGIC REMOVED — as requested
+
+      } catch (err) {
+        console.error(err);
+        const articlesContainer = document.getElementById('articles-container');
+        if (articlesContainer) {
+          articlesContainer.innerHTML =
+            `<div class="col-12"><div class="alert alert-danger text-center py-4">Failed to load articles.</div></div>`;
+        }
       }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(loadIndexContent, 600);
-    });
+    document.addEventListener('DOMContentLoaded', () => setTimeout(loadIndexContent, 300));
   </script>
 </body>
 </html>
