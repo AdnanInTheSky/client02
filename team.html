@@ -3,285 +3,628 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Team - BioNova Franchising LLC</title>
-    <meta name="description" content="Meet the leadership and experts behind BioNova Franchising LLC — driving innovation for BioNova North America dealers.">
+    <title>Our Team - BioNova</title>
+    <meta name="description" content="Meet the leadership and experts behind BioNova — driving sustainable development and innovation.">
     
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Inter Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
+        * {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
-
-        .navbar-nav .nav-link {
-            font-weight: 600;
+        
+        /* Dark mode */
+        .dark {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        
+        .dark .bg-white {
+            background-color: #1e293b;
+        }
+        
+        .dark .bg-gradient-to-br {
+            background: linear-gradient(to bottom right, #0f172a, #1e293b, #334155);
+        }
+        
+        .dark .text-gray-900 {
+            color: #f1f5f9;
+        }
+        
+        .dark .text-gray-800 {
+            color: #e2e8f0;
+        }
+        
+        .dark .text-gray-700 {
+            color: #cbd5e1;
+        }
+        
+        .dark .text-gray-600 {
+            color: #94a3b8;
+        }
+        
+        .dark .text-gray-500 {
+            color: #64748b;
+        }
+        
+        .dark .text-gray-400 {
+            color: #475569;
+        }
+        
+        .dark .text-gray-300 {
+            color: #334155;
+        }
+        
+        .dark .glass {
+            background: rgba(30, 41, 59, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #f1f5f9;
+        }
+        
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #f1f5f9;
+        }
+        
+        .dark .glass-card:hover {
+            background: rgba(30, 41, 59, 0.95);
+        }
+        
+        .dark .bg-white\/50 {
+            background-color: rgba(30, 41, 59, 0.7);
+        }
+        
+        .dark .hover\:bg-white\/50:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .dark .hover\:text-primary:hover {
+            color: #60a5fa;
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Glassmorphism utility classes */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Solid card style for team */
+        .solid-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .solid-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .solid-card {
+            background: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #f1f5f9;
+        }
+        
+        .dark .solid-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Hero gradient overlay */
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(26, 35, 126, 0.85), rgba(13, 71, 161, 0.7), rgba(0, 150, 136, 0.6));
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .animate-slideInRight {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        
+        /* Navbar scroll effect */
+        .navbar-scrolled {
+            background: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+        
+        .dark .navbar-scrolled {
+            background: rgba(30, 41, 59, 0.95) !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #1a237e, #0d47a1, #00897b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .dark .gradient-text {
+            background: linear-gradient(135deg, #60a5fa, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Floating button pulse */
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 12px rgba(37, 99, 235, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+            }
+        }
+        
+        .floating-btn {
+            animation: pulse-ring 2s infinite;
+        }
+        
+        /* Card image overlay effect */
+        .card-image-wrapper {
             position: relative;
+            overflow: hidden;
         }
-
-        .navbar-nav .nav-link::after {
+        
+        .card-image-wrapper::after {
             content: '';
             position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
             bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background: black;
-            transition: width 0.3s ease;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.05) 100%);
+            transition: opacity 0.3s;
         }
-
-        .navbar-nav .nav-link:hover::after,
-        .navbar-nav .nav-link.active::after {
-            width: 70%;
+        
+        .solid-card:hover .card-image-wrapper::after {
+            opacity: 0;
         }
-
-        .card {
-            transition: all 0.3s ease;
-            border: 1px solid #dee2e6;
+        
+        .card-image-wrapper img {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: black;
+        
+        .solid-card:hover .card-image-wrapper img {
+            transform: scale(1.08);
         }
-
-        .card-img-top {
-            transition: transform 0.5s ease;
+        
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: #cbd5e1;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background 0.3s;
         }
-
-        .card:hover .card-img-top {
-            transform: scale(1.05);
+        
+        .dark-mode-toggle.active {
+            background: #1e293b;
         }
-
-        .search-icon {
+        
+        .dark-mode-toggle::before {
+            content: '';
             position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #6c757d;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: transform 0.3s;
         }
-
-        .filter-btn {
+        
+        .dark-mode-toggle.active::before {
+            transform: translateX(30px);
+            background: #fbbf24;
+        }
+        
+        /* Search Box */
+        .search-box {
+            border-radius: 50px;
+            padding: 0.75rem 1.5rem 0.75rem 3rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
             transition: all 0.3s ease;
         }
-
-        .filter-btn.active,
-        .filter-btn:hover {
-            background-color: black;
-            border-color: black;
+        
+        .search-box:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
             color: white;
         }
-
-        /* Ensure image covers container */
-        .object-fit-cover {
-            object-fit: cover;
+        
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.7);
         }
-
-        /* Hero Section with Background Image */
-        .hero-section {
-            background-image: url('content/images/tester.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 400px;
+        
+        .search-icon {
+            color: rgba(255, 255, 255, 0.7);
+            z-index: 5;
         }
-
-        /* Search bar styling */
-        .search-container {
-            position: relative;
-            max-width: 400px;
-            margin: 0 auto;
+        
+        /* Filter Buttons */
+        .filter-btn {
+            border-radius: 50px;
+            padding: 0.5rem 1.25rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+            margin: 0 5px 10px;
         }
-
-        .search-input {
-            padding-left: 45px;
-            border-radius: 25px;
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: white;
+            color: #1a237e;
+            border-color: white;
+        }
+        
+        /* Improved focus states for accessibility */
+        a:focus, button:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+        
+        .dark a:focus, .dark button:focus {
+            outline: 2px solid #60a5fa;
+        }
+        
+        /* Stats section */
+        .stats-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 1.5rem;
+        }
+        
+        .dark .stats-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a237e',
+                        secondary: '#0d47a1',
+                        accent: '#ef6c00',
+                        success: '#00897b',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
+
+<body class="bg-gradient-to-br from-cyan-50 via-blue-50 to-teal-50 min-h-screen">
+
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top py-3 shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">BioNova</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="articles.html">Articles</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="team.html">Team</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="services.html">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                </ul>
+    <nav id="mainNav" class="fixed w-full top-0 z-50 glass transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <a href="index.html" class="text-2xl md:text-3xl font-bold gradient-text">BioNova</a>
+                
+                <div class="flex items-center space-x-4">
+                    <!-- Dark mode toggle -->
+                    <div id="darkModeToggle" class="dark-mode-toggle" title="Toggle dark mode"></div>
+                    
+                    <!-- Mobile menu button -->
+                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-white/50 transition-colors">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Desktop menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">Home</a>
+                    <a href="articles.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">Publications</a>
+                    <a href="team.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">Team</a>
+                    <a href="services.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">About</a>
+                    <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">Contact</a>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">Home</a>
+                    <a href="articles.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">Publications</a>
+                    <a href="team.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">Team</a>
+                    <a href="services.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">About</a>
+                    <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium text-center">Contact</a>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section"></section>
+    <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden mt-16">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="content/images/tester.jpg" alt="Hero background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+        
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 opacity-0 animate-fadeInUp">
+                Meet Our Global Team
+            </h1>
+            <p class="text-lg sm:text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-0 animate-fadeInUp delay-200 font-light">
+                Experts, field officers, and changemakers from over 20 countries working together for sustainable development
+            </p>
 
-    <!-- Space after hero section -->
-    <div class="mb-5"></div>
+            <!-- Search -->
+            <div class="search-container max-w-2xl mx-auto mb-4 relative">
+                <i class="fas fa-search absolute top-1/2 left-4 transform -translate-y-1/2 search-icon"></i>
+                <input type="text" class="w-full search-box py-3 px-12" 
+                       id="team-search-input" placeholder="Search team members by name, role, or expertise...">
+            </div>
 
-    <!-- Stats Bar -->
-    <div class="container mb-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="bg-white rounded-3 p-4 shadow-sm border">
-                    <div class="row text-center">
-                        <div class="col-md-4 mb-3 mb-md-0">
-                            <div class="stat-item">
-                                <div class="stat-number fw-bold" id="team-count" style="font-size: 1.5rem">0</div>
-                                <div class="stat-label text-muted" style="font-size: 1.2rem;">Team Members</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3 mb-md-0">
-                            <div class="stat-item">
-                                <div class="stat-number fw-bold" style="font-size: 1.5rem">15+</div>
-                                <div class="stat-label text-muted" style="font-size: 1.2rem;">Years Experience</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="stat-item">
-                                <div class="stat-number fw-bold" style="font-size: 1.4rem">Bangladesh</div>
-                                <div class="stat-label text-muted" style="font-size: 1.2rem;">Location</div>
-                            </div>
-                        </div>
+            <!-- Filters -->
+            <div class="d-flex flex-wrap justify-center mb-4" id="team-tags-container">
+                <button class="filter-btn active" onclick="setFilter('all', event)">All Team</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="stats-card p-8 shadow-2xl">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="stat-item">
+                        <div class="text-4xl md:text-5xl font-bold text-primary mb-2" id="team-count">0</div>
+                        <div class="text-lg md:text-xl text-gray-600 dark:text-gray-400">Team Members</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="text-4xl md:text-5xl font-bold text-secondary mb-2">15+</div>
+                        <div class="text-lg md:text-xl text-gray-600 dark:text-gray-400">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="text-3xl md:text-4xl font-bold text-success mb-2">20+ Countries</div>
+                        <div class="text-lg md:text-xl text-gray-600 dark:text-gray-400">Global Reach</div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Main Content -->
-    <main class="py-5 bg-white">
-        <div class="container">
-            <!-- Search Bar -->
-            <div class="row mb-5">
-                <div class="col-12">
-                    <div class="search-container">
-                        <i class="fas fa-search search-icon"></i>
-                        <input type="text" 
-                               class="form-control search-input" 
-                               id="team-search-input" 
-                               placeholder="Search team members by name, role, or expertise...">
-                    </div>
+    <main class="py-12 bg-white/50 dark:bg-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="team-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Loading state -->
+                <div class="col-span-full flex justify-center py-12">
+                    <div class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
                 </div>
             </div>
 
-            <!-- Filters -->
-            <div class="d-flex flex-wrap justify-content-center gap-2 mb-5" id="team-tags-container">
-                <!-- Tags loaded dynamically -->
-            </div>
-
-            <!-- Team Grid -->
-            <div id="team-container" class="row g-4">
-                <div class="col-12">
-                    <div class="text-center py-5">
-                        <div class="spinner-border text-dark mb-3" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                        <p class="text-muted">Loading team members...</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pagination -->
-            <div class="d-flex justify-content-center mt-5" id="team-pagination-container" style="display:none;">
-                <button class="btn btn-dark btn-lg px-4 py-2 rounded-pill" id="team-load-more-btn">
+            <!-- Load More Button -->
+            <div class="text-center mt-12" id="team-load-more-container" style="display: none;">
+                <button id="team-load-more-btn" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300">
                     Load More Team Members
+                    <i class="fas fa-arrow-down ml-2"></i>
                 </button>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-light text-dark py-5 mt-5 border-top">
-        <div class="container text-center">
-            <p class="mb-0">
-                &copy; 2025 BioNova Franchising LLC. The future home of BioNova Franchising for BioNova North America dealers.<br>
-                For more information on franchising please contact us at 
-                <a href="mailto:info@bionova.org" class="text-dark">info@bionova.org</a>.
-            </p>
+    <footer class="bg-gray-900 text-gray-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+                <!-- Brand -->
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-4">BioNova</h3>
+                    <p class="text-sm mb-6 leading-relaxed">
+                        Building sustainable futures through innovation, equity, and community-led action.
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="services.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
+                        <li><a href="articles.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
+                        <li><a href="team.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Our Team</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Careers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
+                            <span>Dhaka, Bangladesh</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
+                            <span>info@bionova.org</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
+                            <span>+880 17XX-XXXXXX</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Annual Reports</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Research Papers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Case Studies</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Partnerships</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
+                <p>&copy; 2025 BioNova. All rights reserved.</p>
+                <div class="mt-3 space-x-4">
+                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                    <span class="text-gray-600">•</span>
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                    <span class="text-gray-600">•</span>
+                    <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Bootstrap JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Floating Action Button -->
+    <a href="contact.html" 
+       class="floating-btn fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40"
+       aria-label="Join Our Mission">
+        Join Us
+    </a>
 
-    <!-- Script -->
     <script>
-        // Scroll effect for header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                header.classList.add('shadow');
-            } else {
-                header.classList.remove('shadow');
-            }
-        });
-
-        // Debounce helper
-        function debounce(func, wait) {
-            let timeout;
-            return (...args) => {
-                clearTimeout(timeout);
-                timeout = setTimeout(() => func.apply(this, args), wait);
-            };
-        }
-
-        // YAML & Markdown helpers
+        // --- YAML Parser ---
         function parseYAML(yamlStr) {
             const result = {};
-            const lines = yamlStr.trim().split('\n');
-            for (const line of lines) {
-                const [key, ...valueParts] = line.split(':');
-                const trimmedKey = key.trim();
-                let value = valueParts.join(':').trim();
-                if (value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
-                else if (value.startsWith("'") && value.endsWith("'")) value = value.slice(1, -1);
-                else if (value.startsWith('[') && value.endsWith(']')) 
-                    value = value.slice(1, -1).split(',').map(v => v.trim().replace(/"/g, '').replace(/'/g, ''));
-                result[trimmedKey] = value;
-            }
+            yamlStr.trim().split('\n').forEach(line => {
+                const idx = line.indexOf(':');
+                if (idx === -1) return;
+                let key = line.slice(0, idx).trim();
+                let val = line.slice(idx + 1).trim().replace(/^[\"']|[\"']$/g, '');
+                if (val === 'true') val = true;
+                if (val === 'false') val = false;
+                if (!isNaN(val) && val !== '') val = Number(val);
+                result[key] = val;
+            });
             return result;
         }
 
-        function simpleMarkdownToHTML(md) {
-            let html = md;
-            html = html.replace(/^(\s*)## (.+)$/gm, '$1<h2>$2</h2>');
-            html = html.replace(/^(\s*)# (.+)$/gm, '$1<h1>$2</h1>');
-            html = html.replace(/^(\s*)### (.+)$/gm, '$1<h3>$2</h3>');
-            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-            html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
-            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
-            html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
-            html = html.replace(/(<li>.+<\/li>)+/g, '<ul>$&</ul>');
-            const paragraphs = html.split('\n\n');
-            html = paragraphs.map(p => p.trim() ? `<p>${p.replace(/\n/g, '<br>')}</p>` : '').join('');
-            return html;
+        function cleanExcerpt(text, limit = 20) {
+            return text.replace(/[#*_\-[\]()`>]/g, '')
+                .split(/\s+/)
+                .slice(0, limit)
+                .join(' ') + (text.split(/\s+/).length > limit ? '…' : '');
         }
 
-        // Team State
+        // --- Team State ---
         let allTeamMembers = [];
         let teamCurrentPage = 1;
         const teamItemsPerPage = 6;
@@ -292,42 +635,62 @@
         async function loadAllTeamMembers() {
             try {
                 const res = await fetch('/content/index.json');
+                if (!res.ok) throw new Error('Failed to load index');
+                
                 const indexData = await res.json();
                 const teamFiles = indexData.teams || [];
-                
-                const texts = await Promise.all(
-                    teamFiles.map(file => fetch(`/content/${file}`).then(r => r.text()))
-                );
 
-                allTeamMembers = [];
-                const tagsSet = new Set();
-                texts.forEach((text, i) => {
+                const teamPromises = teamFiles.map(file => 
+                    fetch(`/content/${file}`).then(r => r.ok ? r.text() : Promise.reject())
+                );
+                const teamTexts = await Promise.all(teamPromises);
+
+                const allTags = new Set();
+
+                for (let i = 0; i < teamTexts.length; i++) {
+                    const text = teamTexts[i];
                     const parts = text.split('---');
                     if (parts.length >= 3) {
-                        const meta = parseYAML(parts[1]);
-                        const body = simpleMarkdownToHTML(parts.slice(2).join('---'));
-                        allTeamMembers.push({ id: teamFiles[i], meta, htmlBody: body });
-                        if (Array.isArray(meta.tags)) meta.tags.forEach(t => tagsSet.add(t));
+                        const frontmatter = parts[1];
+                        const body = parts.slice(2).join('---');
+                        const meta = parseYAML(frontmatter);
+                        const excerpt = cleanExcerpt(body, 22);
+                        allTeamMembers.push({ 
+                            id: teamFiles[i], 
+                            meta, 
+                            excerpt 
+                        });
+                        
+                        // Extract tags
+                        if (meta.tags) {
+                            if (Array.isArray(meta.tags)) {
+                                meta.tags.forEach(tag => allTags.add(tag));
+                            } else if (typeof meta.tags === 'string') {
+                                meta.tags.split(',').map(tag => tag.trim()).forEach(tag => allTags.add(tag));
+                            }
+                        }
                     }
-                });
+                }
 
                 document.getElementById('team-count').textContent = allTeamMembers.length;
-                renderTeamTags([...tagsSet]);
+                renderTeamTags(Array.from(allTags));
                 applyFilters();
-            } catch (err) {
-                console.error('❌ Team load error:', err);
-                document.getElementById('team-container').innerHTML = 
-                    `<p class="text-center text-danger">Failed to load team. Check console.</p>`;
+            } catch (error) {
+                console.error('Error loading team members:', error);
+                renderError();
             }
         }
 
         function renderTeamTags(tags) {
-            const cont = document.getElementById('team-tags-container');
-            const allBtn = `<button class="filter-btn btn btn-outline-dark rounded-pill px-3 active" onclick="setFilter('all', event)">All</button>`;
-            const tagBtns = tags.map(t => 
-                `<button class="filter-btn btn btn-outline-dark rounded-pill px-3" onclick="setFilter('${t}', event)">${t}</button>`
-            ).join(' ');
-            cont.innerHTML = allBtn + tagBtns;
+            const container = document.getElementById('team-tags-container');
+            let html = `<button class="filter-btn ${teamCurrentFilter === 'all' ? 'active' : ''}" onclick="setFilter('all', event)">All Team</button>`;
+            tags.forEach(tag => {
+                const isActive = teamCurrentFilter === tag;
+                html += `<button class="filter-btn ${isActive ? 'active' : ''}" onclick="setFilter('${tag}', event)">
+                    ${tag} ${isActive ? '<i class="fas fa-times ms-1"></i>' : ''}
+                </button>`;
+            });
+            container.innerHTML = html;
         }
 
         function setFilter(tag, e) {
@@ -347,17 +710,17 @@
         function applyFilters() {
             let filtered = allTeamMembers;
 
-            // Tag
+            // Tag filter
             if (teamCurrentFilter !== 'all') {
                 filtered = filtered.filter(m => m.meta.tags?.includes(teamCurrentFilter));
             }
 
-            // Search
+            // Search filter
             if (teamCurrentSearch) {
                 filtered = filtered.filter(m => {
                     const name = (m.meta.title || '').toLowerCase();
                     const role = (m.meta.role || '').toLowerCase();
-                    const bio = (new DOMParser().parseFromString(m.htmlBody, 'text/html')).body.textContent.toLowerCase();
+                    const bio = m.excerpt.toLowerCase();
                     const q = teamCurrentSearch;
                     return name.includes(q) || role.includes(q) || bio.includes(q);
                 });
@@ -371,23 +734,26 @@
             const end = teamCurrentPage * teamItemsPerPage;
             const page = members.slice(0, end);
 
-            const html = page.map(m => {
-                const temp = document.createElement('div');
-                temp.innerHTML = m.htmlBody;
-                const excerpt = (temp.textContent || '').substring(0, 100) + '...';
+            const html = page.map((m, index) => {
+                const imageUrl = m.meta.image || 'https://via.placeholder.com/400x400/e2e8f0/64748b?text=Team+Member';
+                
                 return `
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card h-100 shadow-sm">
-                            <div class="ratio ratio-1x1">
-                                <img src="${m.meta.image || 'https://via.placeholder.com/300x300/E9ECEF/495057?text=Photo'}" 
-                                     class="card-img-top object-fit-cover" 
-                                     alt="${m.meta.title}" loading="lazy">
+                    <div class="team-card opacity-0">
+                        <div class="solid-card rounded-2xl overflow-hidden shadow-lg h-full flex flex-col">
+                            <div class="card-image-wrapper h-64 overflow-hidden">
+                                <img src="${imageUrl}" class="w-full h-full object-cover" alt="${m.meta.title}" loading="lazy"
+                                     onerror="this.onerror=null;this.src='https://via.placeholder.com/400x400/f1f5f9/94a3b8?text=Image+Unavailable'">
                             </div>
-                            <div class="card-body text-center d-flex flex-column">
-                                <h5 class="card-title">${m.meta.title}</h5>
-                                <p class="text-dark fw-bold mb-2">${m.meta.role || 'Team Member'}</p>
-                                <p class="card-text text-muted flex-grow-1">${excerpt}</p>
-                                <button class="btn btn-dark mt-auto" onclick="openDetail('${m.id}')">View Profile</button>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">${m.meta.title}</h3>
+                                <p class="text-accent font-semibold mb-3">${m.meta.role || 'Team Member'}</p>
+                                <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow leading-relaxed">${m.excerpt}</p>
+                                <a href="team_detail.html" 
+                                   onclick="openDetail('${m.id}');return false;"
+                                   class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 self-start">
+                                    View Profile
+                                    <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -395,7 +761,27 @@
             }).join('');
 
             document.getElementById('team-container').innerHTML = html;
-            document.getElementById('team-pagination-container').style.display = members.length > end ? 'flex' : 'none';
+            
+            // Show/hide load more button
+            const loadMoreContainer = document.getElementById('team-load-more-container');
+            if (members.length > end) {
+                loadMoreContainer.style.display = 'block';
+            } else {
+                loadMoreContainer.style.display = 'none';
+            }
+            
+            // Animate cards
+            animateTeamCards();
+        }
+
+        function animateTeamCards() {
+            const container = document.getElementById('team-container');
+            container.querySelectorAll('.team-card').forEach((c, i) => {
+                c.classList.add('animate-fadeInUp');
+                c.style.animationDelay = `${i * 120}ms`;
+                c.style.opacity = '0';
+                setTimeout(() => c.style.opacity = '1', i * 120);
+            });
         }
 
         function loadMore() {
@@ -403,20 +789,81 @@
             applyFilters();
         }
 
+        function renderError() {
+            const container = document.getElementById('team-container');
+            container.innerHTML = `
+                <div class="col-span-full">
+                    <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-12 text-center">
+                        <i class="fas fa-exclamation-triangle text-5xl text-red-400 mb-4"></i>
+                        <p class="text-xl text-red-600 dark:text-red-400">Failed to load team members.</p>
+                        <button class="mt-4 px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300" onclick="loadAllTeamMembers()">
+                            Try Again
+                        </button>
+                    </div>
+                </div>`;
+        }
+
         function openDetail(id) {
             sessionStorage.setItem('selectedFile', id);
             window.location.href = 'team_detail.html';
         }
 
-        // Init
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById('team-search-input');
-            if (searchInput) {
-                searchInput.addEventListener('input', debounce(e => setSearch(e.target.value), 300));
-            }
-            document.getElementById('team-load-more-btn')?.addEventListener('click', loadMore);
-            loadAllTeamMembers();
+        // Debounce helper
+        function debounce(func, wait) {
+            let timeout;
+            return (...args) => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
+        }
+
+        // Search
+        document.getElementById('team-search-input').addEventListener('input', debounce(e => {
+            setSearch(e.target.value);
+        }, 300));
+
+        // Load more button
+        document.getElementById('team-load-more-btn').addEventListener('click', loadMore);
+
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
         });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('navbar-scrolled');
+            } else {
+                nav.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Check for saved theme preference or respect OS preference
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDarkScheme.matches)) {
+            document.documentElement.classList.add('dark');
+            darkModeToggle.classList.add('active');
+        }
+        
+        darkModeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            darkModeToggle.classList.toggle('active');
+            
+            // Save user preference
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Init
+        document.addEventListener('DOMContentLoaded', loadAllTeamMembers);
     </script>
 </body>
 </html>
