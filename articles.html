@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading... - BioNova</title>
+    <title>Articles - BioNova</title>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -379,213 +379,6 @@
         .dark a:focus, .dark button:focus {
             outline: 2px solid #60a5fa;
         }
-        
-        /* Article specific styles */
-        .article-content {
-            line-height: 1.7;
-            font-size: 1.125rem;
-        }
-        
-        .article-content h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-        
-        .article-content h2 {
-            font-size: 1.875rem;
-            font-weight: 700;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .article-content h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-top: 2rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        .article-content p {
-            margin-bottom: 1.5rem;
-        }
-        
-        .article-content img {
-            border-radius: 0.75rem;
-            margin: 2rem 0;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .article-content blockquote {
-            border-left: 4px solid #3b82f6;
-            padding-left: 1.5rem;
-            margin: 2rem 0;
-            font-style: italic;
-            color: #64748b;
-        }
-        
-        .article-content code {
-            background-color: #f1f5f9;
-            padding: 0.125rem 0.375rem;
-            border-radius: 0.25rem;
-            font-size: 0.875rem;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-        }
-        
-        .dark .article-content code {
-            background-color: #334155;
-            color: #e2e8f0;
-        }
-        
-        .article-content pre {
-            background-color: #1e293b;
-            color: #e2e8f0;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            overflow-x: auto;
-            margin: 2rem 0;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .article-content pre code {
-            background: none;
-            padding: 0;
-            color: inherit;
-        }
-        
-        .article-content ul, .article-content ol {
-            margin: 1.5rem 0;
-            padding-left: 1.5rem;
-        }
-        
-        .article-content li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .article-content table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 2rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-        
-        .article-content th, .article-content td {
-            padding: 0.75rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        
-        .article-content th {
-            background-color: #f8fafc;
-            font-weight: 600;
-        }
-        
-        .dark .article-content th {
-            background-color: #334155;
-            color: #f1f5f9;
-        }
-        
-        .dark .article-content td {
-            border-color: #475569;
-        }
-        
-        .article-content a {
-            color: #3b82f6;
-            text-decoration: underline;
-            text-underline-offset: 2px;
-        }
-        
-        .article-content a:hover {
-            color: #1d4ed8;
-        }
-        
-        .dark .article-content a {
-            color: #60a5fa;
-        }
-        
-        .dark .article-content a:hover {
-            color: #93c5fd;
-        }
-        
-        /* Progress bar */
-        .reading-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 4px;
-            background: linear-gradient(to right, #1a237e, #0d47a1, #00897b);
-            z-index: 100;
-            transition: width 0.2s ease;
-        }
-        
-        /* Table of contents */
-        .toc-container {
-            position: sticky;
-            top: 6rem;
-            max-height: calc(100vh - 8rem);
-            overflow-y: auto;
-        }
-        
-        .toc-link {
-            display: block;
-            padding: 0.5rem 0.75rem;
-            border-radius: 0.375rem;
-            color: #64748b;
-            transition: all 0.2s ease;
-            border-left: 3px solid transparent;
-        }
-        
-        .toc-link:hover, .toc-link.active {
-            color: #3b82f6;
-            background-color: #f1f5f9;
-            border-left-color: #3b82f6;
-        }
-        
-        .dark .toc-link:hover, .dark .toc-link.active {
-            background-color: #334155;
-            color: #60a5fa;
-            border-left-color: #60a5fa;
-        }
-        
-        /* Share buttons */
-        .share-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
-            background-color: #f1f5f9;
-            color: #64748b;
-            transition: all 0.2s ease;
-        }
-        
-        .share-btn:hover {
-            background-color: #3b82f6;
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        .dark .share-btn {
-            background-color: #334155;
-            color: #94a3b8;
-        }
-        
-        /* Related articles */
-        .related-article-card {
-            transition: all 0.3s ease;
-        }
-        
-        .related-article-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .dark .related-article-card:hover {
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
     </style>
     
     <script>
@@ -605,10 +398,7 @@
     </script>
 </head>
 
-<body class="bg-gradient-to-br from-cyan-50 via-blue-50 to-teal-50 min-h-screen dark:bg-gray-900">
-
-    <!-- Reading Progress Bar -->
-    <div class="reading-progress"></div>
+<body class="bg-gradient-to-br from-cyan-50 via-blue-50 to-teal-50 min-h-screen">
 
     <!-- Navigation -->
     <nav id="mainNav" class="fixed w-full top-0 z-50 glass transition-all duration-300">
@@ -651,202 +441,150 @@
         </div>
     </nav>
 
+    <!-- Hero Section -->
+    <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden mt-16">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="content/images/tester.jpg" alt="Hero background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+        
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 opacity-0 animate-fadeInUp">
+                Insights & Impact Stories
+            </h1>
+            <p class="text-lg sm:text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-0 animate-fadeInUp delay-200 font-light">
+                Explore our research, program updates, and stories of transformation from communities around the world
+            </p>
+
+            <!-- Search -->
+            <div class="search-container max-w-2xl mx-auto mb-4 relative">
+                <i class="fas fa-search absolute top-1/2 left-4 transform -translate-y-1/2 search-icon"></i>
+                <input type="text" class="w-full search-box py-3 px-12" 
+                       id="search-input" placeholder="Search articles by title, content, or tags...">
+            </div>
+
+            <!-- Active Filters Display -->
+            <div id="active-filters" class="mb-3" style="min-height: 30px;">
+                <!-- Active filters will be displayed here -->
+            </div>
+
+            <!-- Filters -->
+            <div class="d-flex flex-wrap justify-center mb-4" id="tags-container">
+                <button class="filter-btn active" onclick="clearAllFilters()">All Articles</button>
+            </div>
+        </div>
+    </section>
+
     <!-- Main Content -->
-    <main class="pt-24 pb-16">
+    <main class="py-12 bg-white/50 dark:bg-gray-800/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Article Content -->
-                <div class="lg:w-2/3">
-                    <div class="solid-card rounded-2xl overflow-hidden shadow-lg animate-fadeInUp">
-                        <!-- Article Header -->
-                        <div class="card-image-wrapper h-64 md:h-80 overflow-hidden">
-                            <img id="article-image" src="" alt="Article Image" class="w-full h-full object-cover" loading="lazy">
-                        </div>
-                        
-                        <div class="p-6 md:p-8">
-                            <!-- Article Meta -->
-                            <div class="flex flex-wrap items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
-                                <span id="article-author" class="flex items-center mr-4 mb-2">
-                                    <i class="far fa-user mr-2 text-accent"></i>
-                                    <span>By Unknown</span>
-                                </span>
-                                <span id="article-date" class="flex items-center mr-4 mb-2">
-                                    <i class="far fa-calendar-alt mr-2 text-accent"></i>
-                                    <span>Date Unknown</span>
-                                </span>
-                                <span id="reading-time" class="flex items-center mb-2">
-                                    <i class="far fa-clock mr-2 text-accent"></i>
-                                    <span>Calculating...</span>
-                                </span>
-                            </div>
-                            
-                            <!-- Article Title -->
-                            <h1 id="article-title" class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                                Loading...
-                            </h1>
-                            
-                            <!-- Tags -->
-                            <div id="article-tags" class="flex flex-wrap gap-2 mb-6">
-                                <!-- Tags will be populated here -->
-                            </div>
-                            
-                            <!-- Share Buttons -->
-                            <div class="flex items-center mb-8 pt-4 border-t border-gray-200 dark:border-gray-700">
-                                <span class="text-sm text-gray-600 dark:text-gray-400 mr-4">Share:</span>
-                                <div class="flex space-x-2">
-                                    <a href="#" class="share-btn" title="Share on Twitter">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                    <a href="#" class="share-btn" title="Share on Facebook">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                    <a href="#" class="share-btn" title="Share on LinkedIn">
-                                        <i class="fab fa-linkedin-in"></i>
-                                    </a>
-                                    <a href="#" class="share-btn" title="Copy link">
-                                        <i class="fas fa-link"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <!-- Article Body -->
-                            <div id="article-body" class="article-content opacity-0 animate-fadeIn delay-300">
-                                <div class="flex justify-center py-12">
-                                    <div class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-                                </div>
-                            </div>
-                            
-                            <!-- Article Footer -->
-                            <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-                                <div class="flex flex-col md:flex-row justify-between items-center">
-                                    <div class="mb-4 md:mb-0">
-                                        <p class="text-sm text-gray-600 dark:text-gray-400">Published by BioNova</p>
-                                    </div>
-                                    <div class="flex space-x-2">
-                                        <button id="prev-article" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                                            <i class="fas fa-arrow-left mr-2"></i> Previous
-                                        </button>
-                                        <button id="next-article" class="px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-lg transition-all">
-                                            Next <i class="fas fa-arrow-right ml-2"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Related Articles -->
-                    <div id="related-articles" class="mt-12 opacity-0 animate-fadeIn delay-500">
-                        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Related Articles</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Related articles will be populated here -->
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Sidebar -->
-                <div class="lg:w-1/3">
-                    <!-- Table of Contents -->
-                    <div class="solid-card rounded-2xl p-6 mb-8 sticky top-24">
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Table of Contents</h3>
-                        <div id="table-of-contents" class="space-y-1">
-                            <!-- TOC will be populated here -->
-                        </div>
-                    </div>
+            <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Loading state -->
+                <div class="col-span-full flex justify-center py-12">
+                    <div class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-                <!-- Brand -->
-                <div>
-                    <h3 class="text-white font-bold mb-2">BioNova</h3>
-                    <p class="text-white mb-2">
-                        Building sustainable futures through innovation, equity, and community-led action.
-                    </p>
-                    <div class="flex space-x-3">
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="font-bold text-white dark:text-white mb-4">Quick Links</h4>
-                    <ul class="space-y-2.5 text-sm">
-                        <li><a href="services.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
-                        <li><a href="articles.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
-                        <li><a href="team.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Our Team</a></li>
-                        <li><a href="contact.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Contact</a></li>
-                        <li><a href="contact.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Careers</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact -->
-                <div>
-                    <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
-                            <span class="text-white mb-2">Dhaka, Bangladesh</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
-                            <span class="text-white mb-2">info@bionova.org</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
-                            <span class="text-white mb-2">+880 17XX-XXXXXX</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Resources -->
-                <div>
-                    <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
-                    <ul class="space-y-2.5 text-sm">
-                        <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Annual Reports</a></li>
-                        <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Research Papers</a></li>
-                        <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Case Studies</a></li>
-                        <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Partnerships</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Copyright -->
-            <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
-                <p>&copy; 2025 BioNova. All rights reserved.</p>
-                <div class="mt-3 space-x-4">
-                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
-                    <span class="text-gray-600">•</span>
-                    <a href="#" class="hover:text-white transition-colors">Terms</a>
-                    <span class="text-gray-600">•</span>
-                    <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
-                </div>
-            </div>
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+        <!-- Brand -->
+        <div>
+          <h3 class="text-white font-bold mb-2">BioNova</h3>
+          <p class="text-white mb-2">
+            Building sustainable futures through innovation, equity, and community-led action.
+          </p>
+          <div class="flex space-x-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
         </div>
-    </footer>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-bold text-white dark:text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="services.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
+            <li><a href="articles.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
+            <li><a href="team.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Our Team</a></li>
+            <li><a href="contact.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Contact</a></li>
+            <li><a href="contact.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Careers</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
+              <span class="text-white mb-2">Dhaka, Bangladesh</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
+              <span class="text-white mb-2">info@bionova.org</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
+              <span class="text-white mb-2">+880 17XX-XXXXXX</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Annual Reports</a></li>
+            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Research Papers</a></li>
+            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Case Studies</a></li>
+            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Partnerships</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
+        <p>&copy; 2025 BioNova. All rights reserved.</p>
+        <div class="mt-3 space-x-4">
+          <a href="#" class="hover:text-white transition-colors">Privacy</a>
+          <span class="text-gray-600">•</span>
+          <a href="#" class="hover:text-white transition-colors">Terms</a>
+          <span class="text-gray-600">•</span>
+          <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Action Button -->
+  <a href="contact.html" 
+     class="floating-btn fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40"
+     aria-label="Join Our Mission">
+    Join Us
+  </a>
 
     <!-- Floating Action Button -->
-    <a href="contact.html" 
-       class="floating-btn fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40"
-       aria-label="Join Our Mission">
-        Join Us
-    </a>
+  <a href="team.html" 
+     class="floating-btn fixed bottom-6 left-6 md:bottom-8 md:left-8 px-6 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40"
+     aria-label="Join Our Mission">
+    Our Team
+  </a>
 
     <script>
         // --- YAML Parser ---
@@ -865,335 +603,285 @@
             return result;
         }
 
-        // --- Markdown to HTML converter ---
-        function markdownToHTML(md) {
-            let html = md;
-
-            // Escape HTML
-            html = html.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-            // Code blocks
-            html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
-
-            // Headings
-            html = html.replace(/^### (.+)$/gm, '<h3 id="$1">$1</h3>');
-            html = html.replace(/^## (.+)$/gm, '<h2 id="$1">$1</h2>');
-            html = html.replace(/^# (.+)$/gm, '<h1 id="$1">$1</h1>');
-
-            // Bold / Italic
-            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-            html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
-
-            // Inline code
-            html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
-
-            // Links
-            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-
-            // Images
-            html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img alt="$1" src="$2" class="img-fluid my-3"/>');
-
-            // Blockquotes
-            html = html.replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>');
-
-            // Tables
-            html = html.replace(/^\|(.+)\|\n\|([\s:-]+)\|\n((\|.+\|\n)+)/gm, (match, header, divider, rows) => {
-                const headers = header.split('|').map(h => `<th>${h.trim()}</th>`).join('');
-                const body = rows.trim().split('\n').map(r => {
-                    const cols = r.split('|').map(c => `<td>${c.trim()}</td>`).join('');
-                    return `<tr>${cols}</tr>`;
-                }).join('');
-                return `<div class="table-responsive"><table class="table">${headers ? `<thead><tr>${headers}</tr></thead>` : ''}<tbody>${body}</tbody></table></div>`;
-            });
-
-            // Lists
-            html = html.replace(/^\s*[-*+] (.+)$/gm, '<li>$1</li>');
-            html = html.replace(/(<li>.*<\/li>)/gs, '<ul class="ms-3">$1</ul>');
-
-            html = html.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
-            html = html.replace(/(<li>.*<\/li>)/gs, '<ol class="ms-3">$1</ol>');
-
-            // Paragraphs
-            html = html.replace(/(^|\n)(?!<h|<ul|<ol|<pre|<img|<table|<blockquote|<p|<\/)([^\n]+)(?=\n|$)/g, '$1<p>$2</p>');
-
-            return html;
+        function cleanExcerpt(text, limit = 20) {
+            return text.replace(/[#*_\-[\]()`>]/g, '')
+                .split(/\s+/)
+                .slice(0, limit)
+                .join(' ') + (text.split(/\s+/).length > limit ? '…' : '');
         }
 
-        // --- Calculate reading time ---
-        function calculateReadingTime(text) {
-            const wordsPerMinute = 200;
-            const words = text.split(/\s+/).length;
-            return Math.ceil(words / wordsPerMinute);
-        }
+        // --- State & logic ---
+        let allArticles = [];
+        let searchQuery = '';
+        let selectedTags = new Set();
 
-        // --- Generate table of contents ---
-        function generateTableOfContents() {
-            const headings = document.querySelectorAll('.article-content h2, .article-content h3');
-            const tocContainer = document.getElementById('table-of-contents');
-            
-            if (headings.length === 0) {
-                tocContainer.innerHTML = '<p class="text-gray-500 dark:text-gray-400">No headings available</p>';
-                return;
-            }
-            
-            let tocHTML = '';
-            headings.forEach((heading, index) => {
-                // Ensure heading has an ID
-                if (!heading.id) {
-                    heading.id = `heading-${index}`;
-                }
-                
-                const level = heading.tagName.toLowerCase();
-                const indentClass = level === 'h3' ? 'ml-4' : '';
-                
-                tocHTML += `
-                    <a href="#${heading.id}" class="toc-link ${indentClass}" data-target="${heading.id}">
-                        ${heading.textContent}
-                    </a>
-                `;
-            });
-            
-            tocContainer.innerHTML = tocHTML;
-            
-            // Add scroll spy functionality
-            window.addEventListener('scroll', highlightTOC);
-        }
-
-        // --- Highlight active TOC item ---
-        function highlightTOC() {
-            const headings = document.querySelectorAll('.article-content h2, .article-content h3');
-            const tocLinks = document.querySelectorAll('.toc-link');
-            
-            let currentActive = null;
-            
-            headings.forEach(heading => {
-                const rect = heading.getBoundingClientRect();
-                if (rect.top <= 100) {
-                    currentActive = heading.id;
-                }
-            });
-            
-            tocLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-target') === currentActive) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // --- Update reading progress ---
-        function updateReadingProgress() {
-            const progressBar = document.querySelector('.reading-progress');
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight - windowHeight;
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const progress = (scrollTop / documentHeight) * 100;
-            
-            progressBar.style.width = `${progress}%`;
-        }
-
-        // --- Load related articles ---
-        async function loadRelatedArticles(currentArticleId) {
+        async function loadAllArticles() {
             try {
                 const indexResponse = await fetch('/content/index.json');
                 if (!indexResponse.ok) throw new Error('Failed to load index');
                 
                 const indexData = await indexResponse.json();
                 const articleFiles = indexData.articles || [];
-                
-                // Filter out current article and get 2 random articles
-                const otherArticles = articleFiles.filter(file => file !== currentArticleId);
-                const randomArticles = otherArticles
-                    .sort(() => 0.5 - Math.random())
-                    .slice(0, 2);
-                
-                const relatedContainer = document.getElementById('related-articles');
-                
-                if (randomArticles.length === 0) {
-                    relatedContainer.innerHTML = '<p class="text-gray-500 dark:text-gray-400">No related articles available</p>';
-                    return;
-                }
-                
-                let relatedHTML = '<h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Related Articles</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-6">';
-                
-                for (const file of randomArticles) {
-                    try {
-                        const response = await fetch(`/content/${file}`);
-                        if (!response.ok) continue;
-                        
-                        const text = await response.text();
-                        const parts = text.split('---');
-                        if (parts.length < 3) continue;
-                        
+
+                const articlePromises = articleFiles.map(file => 
+                    fetch(`/content/${file}`).then(r => r.ok ? r.text() : Promise.reject())
+                );
+                const articleTexts = await Promise.all(articlePromises);
+
+                const allTags = new Set();
+
+                for (let i = 0; i < articleTexts.length; i++) {
+                    const text = articleTexts[i];
+                    const parts = text.split('---');
+                    if (parts.length >= 3) {
                         const frontmatter = parts[1];
+                        const body = parts.slice(2).join('---');
                         const meta = parseYAML(frontmatter);
-                        const excerpt = meta.description || 'Read more about this topic...';
+                        const excerpt = cleanExcerpt(body, 22);
+                        allArticles.push({ 
+                            id: articleFiles[i], 
+                            meta, 
+                            excerpt 
+                        });
                         
-                        relatedHTML += `
-                            <div class="related-article-card solid-card rounded-2xl overflow-hidden">
-                                <div class="card-image-wrapper h-40 overflow-hidden">
-                                    <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article+Image'}" 
-                                         alt="${meta.title || 'Article'}" 
-                                         class="w-full h-full object-cover"
-                                         onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Image+Unavailable'">
-                                </div>
-                                <div class="p-4">
-                                    <h3 class="font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">${meta.title || 'Untitled'}</h3>
-                                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2">${excerpt}</p>
-                                    <a href="article.html" 
-                                       onclick="sessionStorage.setItem('selectedFile', '${file}');"
-                                       class="text-primary dark:text-blue-400 font-medium text-sm hover:underline">
-                                        Read More
-                                    </a>
-                                </div>
-                            </div>
-                        `;
-                    } catch (error) {
-                        console.error('Error loading related article:', error);
+                        // Extract tags
+                        if (meta.tags) {
+                            if (Array.isArray(meta.tags)) {
+                                meta.tags.forEach(tag => allTags.add(tag));
+                            } else if (typeof meta.tags === 'string') {
+                                meta.tags.split(',').map(tag => tag.trim()).forEach(tag => allTags.add(tag));
+                            }
+                        }
                     }
                 }
-                
-                relatedHTML += '</div>';
-                relatedContainer.innerHTML = relatedHTML;
-                relatedContainer.style.opacity = '1';
+
+                renderTags(Array.from(allTags));
+                filterAndRender();
             } catch (error) {
-                console.error('Error loading related articles:', error);
+                console.error('Error loading articles:', error);
+                renderError();
             }
         }
 
-        // --- Main article loading function ---
-        async function loadArticle() {
-            const id = sessionStorage.getItem('selectedFile');
-            if (!id || !id.startsWith('articles/')) {
-                document.getElementById('article-body').innerHTML = '<div class="alert alert-danger">Error: Article not found.</div>';
-                document.title = 'Article Not Found';
+        function renderTags(tags) {
+            const container = document.getElementById('tags-container');
+            let html = `<button class="filter-btn ${selectedTags.size === 0 ? 'active' : ''}" onclick="clearAllFilters()">All Articles</button>`;
+            tags.forEach(tag => {
+                const isActive = selectedTags.has(tag);
+                html += `<button class="filter-btn ${isActive ? 'active' : ''}" onclick="toggleTag('${tag}')">
+                    ${tag} ${isActive ? '<i class="fas fa-times ms-1"></i>' : ''}
+                </button>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function renderActiveFilters() {
+            const container = document.getElementById('active-filters');
+            if (selectedTags.size > 0) {
+                container.innerHTML = `
+                    <div class="flex flex-wrap justify-center">
+                        <span class="active-filter-badge bg-white text-gray-900">Active Filters:</span>
+                        ${Array.from(selectedTags).map(tag => `
+                            <span class="active-filter-badge" onclick="toggleTag('${tag}')">
+                                ${tag} <i class="fas fa-times ms-1"></i>
+                            </span>
+                        `).join('')}
+                        <button class="clear-filters-btn bg-white/10 text-white border border-white/30 hover:bg-white hover:text-gray-900" onclick="clearAllFilters()">Clear All</button>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = '';
+            }
+        }
+
+        function toggleTag(tag) {
+            if (selectedTags.has(tag)) {
+                selectedTags.delete(tag);
+            } else {
+                selectedTags.add(tag);
+            }
+            filterAndRender();
+        }
+
+        function clearAllFilters() {
+            selectedTags.clear();
+            document.getElementById('search-input').value = '';
+            searchQuery = '';
+            filterAndRender();
+        }
+
+        function filterAndRender() {
+            let filtered = allArticles;
+
+            // Tag filter (multiple tags - AND logic)
+            if (selectedTags.size > 0) {
+                filtered = filtered.filter(a => {
+                    const articleTags = a.meta.tags || [];
+                    return Array.from(selectedTags).every(tag => articleTags.includes(tag));
+                });
+            }
+
+            // Search filter
+            if (searchQuery) {
+                const q = searchQuery.toLowerCase();
+                filtered = filtered.filter(a =>
+                    a.meta.title.toLowerCase().includes(q) ||
+                    a.excerpt.toLowerCase().includes(q) ||
+                    (a.meta.tags && a.meta.tags.some(tag => tag.toLowerCase().includes(q)))
+                );
+            }
+
+            renderArticles(filtered);
+            renderTags(Array.from(getAllTags()));
+            renderActiveFilters();
+        }
+
+        function getAllTags() {
+            const allTags = new Set();
+            allArticles.forEach(article => {
+                if (article.meta.tags && Array.isArray(article.meta.tags)) {
+                    article.meta.tags.forEach(tag => allTags.add(tag));
+                }
+            });
+            return allTags;
+        }
+
+        function renderArticles(articles) {
+            const container = document.getElementById('articles-container');
+
+            if (articles.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full">
+                        <div class="solid-card rounded-2xl p-12 text-center">
+                            <i class="fas fa-search text-5xl text-gray-300 dark:text-gray-600 mb-4"></i>
+                            <h5 class="text-gray-900 dark:text-white">No Articles Found</h5>
+                            <p class="text-gray-600 dark:text-gray-400">Try adjusting your filters or search query</p>
+                            ${selectedTags.size > 0 ? `<button class="mt-4 px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300" onclick="clearAllFilters()">Clear All Filters</button>` : ''}
+                        </div>
+                    </div>
+                `;
                 return;
             }
 
-            try {
-                const response = await fetch(`/content/${id}`);
-                if (!response.ok) throw new Error('Network response was not ok');
-                const text = await response.text();
+            const cards = articles.map(article => {
+                const imageUrl = article.meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article+Image';
+                
+                // Enhanced tags display
+                const tagsHtml = (article.meta.tags || [])
+                    .map(tag => `<span class="inline-block bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-2 py-1 rounded-full mr-1 mb-1 cursor-pointer hover:bg-primary hover:text-white transition-colors" onclick="toggleTag('${tag}')">${tag}</span>`).join('');
+                
+                const date = article.meta.date 
+                    ? new Date(article.meta.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) 
+                    : '';
+                const author = article.meta.author || 'BioNova Team';
 
-                const parts = text.split('---');
-                if (parts.length < 3) throw new Error('Invalid Markdown format');
+                return `
+                    <div class="article-card opacity-0">
+                        <div class="solid-card rounded-2xl overflow-hidden shadow-lg h-full flex flex-col">
+                            <div class="card-image-wrapper h-48 overflow-hidden">
+                                <img src="${imageUrl}" class="w-full h-full object-cover" alt="${article.meta.title}" loading="lazy"
+                                     onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Image+Unavailable'">
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white line-clamp-2">${article.meta.title}</h3>
+                                <div class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center">
+                                    ${date ? `<i class="far fa-calendar-alt mr-2 text-accent"></i> ${date}` : ''}
+                                    ${date && author ? '<span class="mx-2">•</span>' : ''}
+                                    ${author ? `<i class="far fa-user mr-2 text-accent"></i> ${author}` : ''}
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow leading-relaxed">${article.excerpt}</p>
+                                <div class="mb-4 flex flex-wrap">${tagsHtml}</div>
+                                <a href="article.html" 
+                                   onclick="openDetail('${article.id}');return false;"
+                                   class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 self-start">
+                                    Read More
+                                    <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
 
-                const frontmatter = parts[1];
-                const body = parts.slice(2).join('---');
-                const meta = parseYAML(frontmatter);
-                const htmlBody = markdownToHTML(body);
-                const readingTime = calculateReadingTime(body);
+            container.innerHTML = cards;
+            
+            // Animate cards
+            animateCards(container);
+        }
 
-                // Update page content
-                document.getElementById('article-image').src = meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article+Image';
-                document.getElementById('article-image').alt = meta.title || 'Article Image';
-                document.getElementById('article-title').textContent = meta.title || 'Untitled';
-                document.getElementById('article-author').innerHTML = `<i class="far fa-user mr-2 text-accent"></i> By ${meta.author || 'BioNova Team'}`;
-                document.getElementById('article-date').innerHTML = `<i class="far fa-calendar-alt mr-2 text-accent"></i> ${meta.date ? new Date(meta.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Unknown'}`;
-                document.getElementById('reading-time').innerHTML = `<i class="far fa-clock mr-2 text-accent"></i> ${readingTime} min read`;
-                document.getElementById('article-body').innerHTML = htmlBody;
-                document.title = `${meta.title || 'Article'} - BioNova`;
+        function animateCards(container) {
+            container.querySelectorAll('.article-card').forEach((c, i) => {
+                c.classList.add('animate-fadeInUp');
+                c.style.animationDelay = `${i * 120}ms`;
+                c.style.opacity = '0';
+                setTimeout(() => c.style.opacity = '1', i * 120);
+            });
+        }
 
-                // Add tags if available
-                const tagsContainer = document.getElementById('article-tags');
-                if (meta.tags && Array.isArray(meta.tags) && meta.tags.length > 0) {
-                    tagsContainer.innerHTML = meta.tags.map(tag => 
-                        `<span class="inline-block bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">${tag}</span>`
-                    ).join('');
-                } else {
-                    tagsContainer.innerHTML = '';
-                }
-
-                // Generate table of contents
-                setTimeout(generateTableOfContents, 100);
-
-                // Load related articles
-                loadRelatedArticles(id);
-
-                // Fade in content
-                setTimeout(() => {
-                    document.getElementById('article-body').style.opacity = '1';
-                }, 500);
-
-            } catch (error) {
-                console.error('Error loading article:', error);
-                document.getElementById('article-body').innerHTML = `
-                    <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-8 text-center">
-                        <i class="fas fa-exclamation-triangle text-4xl text-red-400 mb-4"></i>
-                        <h3 class="text-xl text-red-600 dark:text-red-400 mb-2">Error Loading Article</h3>
-                        <p class="text-red-500 dark:text-red-300">We couldn't load the article content. Please try again later.</p>
-                        <button class="mt-4 px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300" onclick="loadArticle()">
+        function renderError() {
+            const container = document.getElementById('articles-container');
+            container.innerHTML = `
+                <div class="col-span-full">
+                    <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-12 text-center">
+                        <i class="fas fa-exclamation-triangle text-5xl text-red-400 mb-4"></i>
+                        <p class="text-xl text-red-600 dark:text-red-400">Failed to load articles.</p>
+                        <button class="mt-4 px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300" onclick="loadAllArticles()">
                             Try Again
                         </button>
                     </div>
-                `;
-                document.title = 'Error - BioNova';
-            }
+                </div>`;
         }
 
-        // --- Event Listeners ---
-        document.addEventListener('DOMContentLoaded', function() {
-            loadArticle();
-            
-            // Set up reading progress bar
-            window.addEventListener('scroll', updateReadingProgress);
-            
-            // Mobile menu toggle
-            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-                document.getElementById('mobileMenu').classList.toggle('hidden');
-            });
+        function openDetail(id) {
+            sessionStorage.setItem('selectedFile', id);
+            window.location.href = 'article.html';
+        }
 
-            // Navbar scroll effect
-            window.addEventListener('scroll', () => {
-                const nav = document.getElementById('mainNav');
-                if (window.scrollY > 50) {
-                    nav.classList.add('navbar-scrolled');
-                } else {
-                    nav.classList.remove('navbar-scrolled');
-                }
-            });
-
-            // Dark mode toggle
-            const darkModeToggle = document.getElementById('darkModeToggle');
-            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-            
-            // Check for saved theme preference or respect OS preference
-            if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDarkScheme.matches)) {
-                document.documentElement.classList.add('dark');
-                darkModeToggle.classList.add('active');
-            }
-            
-            darkModeToggle.addEventListener('click', () => {
-                document.documentElement.classList.toggle('dark');
-                darkModeToggle.classList.toggle('active');
-                
-                // Save user preference
-                if (document.documentElement.classList.contains('dark')) {
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-
-            // Share button functionality
-            document.addEventListener('click', function(e) {
-                if (e.target.closest('.share-btn')) {
-                    e.preventDefault();
-                    const btn = e.target.closest('.share-btn');
-                    
-                    if (btn.querySelector('.fa-link')) {
-                        // Copy link to clipboard
-                        navigator.clipboard.writeText(window.location.href).then(() => {
-                            const originalHTML = btn.innerHTML;
-                            btn.innerHTML = '<i class="fas fa-check"></i>';
-                            setTimeout(() => {
-                                btn.innerHTML = originalHTML;
-                            }, 2000);
-                        });
-                    }
-                }
-            });
+        // Search
+        document.getElementById('search-input').addEventListener('input', e => {
+            searchQuery = e.target.value.trim();
+            filterAndRender();
         });
+
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('navbar-scrolled');
+            } else {
+                nav.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Check for saved theme preference or respect OS preference
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDarkScheme.matches)) {
+            document.documentElement.classList.add('dark');
+            darkModeToggle.classList.add('active');
+        }
+        
+        darkModeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            darkModeToggle.classList.toggle('active');
+            
+            // Save user preference
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Init
+        document.addEventListener('DOMContentLoaded', loadAllArticles);
     </script>
 </body>
 </html>
