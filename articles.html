@@ -790,10 +790,10 @@
                             </div>
                             <div class="p-6 flex flex-col flex-grow">
                                 <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white line-clamp-2">${article.meta.title}</h3>
-                                <div class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center">
-                                    ${date ? `<i class="text-dark mb-4"></i> ${date}` : ''}
-                                    ${date && author ? '<span class="text-dark mb-4">•</span>' : ''}
-                                    ${author ? `<i class="text-dark mb-4"></i> ${author}` : ''}
+                                <div class="text-dark">
+                                    ${date ? `<i class="class="far fa-calendar-alt mr-1"></i> ${date}` : ''}
+                                    ${date && author ? '<span>•</span>' : ''}
+                                    ${author ? `<i class="far fa-user mr-1"></i> ${author}` : ''}
                                 </div>
                                 <p class="text-dark-600 dark:text-gray-300 mb-4 flex-grow leading-relaxed">${article.excerpt}</p>
                                 <div class="mb-4 flex flex-wrap">${tagsHtml}</div>
