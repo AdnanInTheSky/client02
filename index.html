@@ -23,22 +23,22 @@
     
     /* Light teal greenish blue background */
     body {
-      background: #e0f2f1; /* Light teal background */
+      background: linear-gradient(135deg, rgba(26, 35, 126, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
       min-height: 100vh;
     }
     
     /* Dark mode */
     .dark {
-      background-color: #0f172a;
+      background-color: #2e457c;
       color: #f8fafc;
     }
     
     .dark .bg-white {
-      background-color: #1e293b;
+      background-color: #315a9b;
     }
     
     .dark .bg-gradient-to-br {
-      background: linear-gradient(to bottom right, #0f172a, #1e293b, #334155);
+      background: linear-gradient(to bottom right, #526fb4, #324158, #334155);
     }
     
     .dark .text-gray-900 {
@@ -316,12 +316,12 @@
     
     /* Improved focus states for accessibility */
     a:focus, button:focus {
-      outline: 2px solid #3b82f6;
+      outline: 2px solid #153250;
       outline-offset: 2px;
     }
     
     .dark a:focus, .dark button:focus {
-      outline: 2px solid #60a5fa;
+      outline: 2px solid #588ac7;
     }
     
     /* Floating Logo Styles */
@@ -524,7 +524,7 @@
     </section>
 
     <!-- Articles Section -->
-    <section class="py-16 md:py-24 bg-white/50 dark:bg-gray-800/70">
+    <section class="py-16 md:py-24">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12 md:mb-16">
           <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">Insights & Impact Stories</h2>
@@ -579,7 +579,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
         <!-- Brand -->
         <div>
-          <h3 class="text-2xl font-bold text-white mb-4">BioNova</h3>
+          <h3 class="text-2xl font-bold text-white dark:text-white mb-4">BioNova</h3>
           <p class="text-sm mb-6 leading-relaxed">
             Building sustainable futures through innovation, equity, and community-led action.
           </p>
@@ -601,7 +601,7 @@
 
         <!-- Quick Links -->
         <div>
-          <h4 class="text-white font-semibold text-lg mb-4">Quick Links</h4>
+          <h4 class="font-bold text-white dark:text-white mb-4">Quick Links</h4>
           <ul class="space-y-2.5 text-sm">
             <li><a href="services.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
             <li><a href="articles.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
