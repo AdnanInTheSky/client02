@@ -21,6 +21,12 @@
         * {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
+
+        body {
+          background: linear-gradient(135deg, rgba(17, 23, 87, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
+          min-height: 100vh;
+        }
+    
         
         /* Dark mode */
         .dark {
@@ -394,7 +400,7 @@
     </script>
 </head>
 
-<body class="bg-gradient-to-br from-cyan-50 via-blue-50 to-teal-50 min-h-screen">
+<body>
 
     <!-- Navigation -->
     <nav id="mainNav" class="fixed w-full top-0 z-50 glass transition-all duration-300">
@@ -491,7 +497,7 @@
     </section>
 
     <!-- Main Content -->
-    <main class="py-12 bg-white/50 dark:bg-gray-800/50">
+    <main class="py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div id="team-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 <!-- Loading state -->
