@@ -244,18 +244,26 @@
 
     <!-- Articles -->
     <section class="py-16 md:py-24">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Insights & Impact Stories</h2>
-          <p class="text-gray-600 max-w-2xl mx-auto">Research findings and transformation stories</p>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 md:mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">Insights & Impact Stories</h2>
+          <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Research findings, program updates, and stories of transformation
+          </p>
         </div>
-        <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <!-- Loading state -->
           <div class="col-span-full flex justify-center py-12">
             <div class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
           </div>
         </div>
+
         <div class="text-center mt-12">
-          <a href="articles.html" class="px-8 py-4 bg-gray-900 text-white rounded-full font-semibold hover:bg-gray-800 hover:scale-105">View All Publications</a>
+          <a href="articles.html" class="inline-flex items-center px-8 py-4 bg-gray-900 dark:bg-gray-700 text-white rounded-full font-semibold hover:bg-gray-800 dark:hover:bg-gray-600 hover:scale-105 transition-all duration-300">
+            View All Publications
+            <i class="fas fa-arrow-right ml-2"></i>
+          </a>
         </div>
       </div>
     </section>
