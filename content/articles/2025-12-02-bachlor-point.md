@@ -1,7 +1,8 @@
 ---
-title: bachlor point
+title: placeholder
 date: 2025-12-02
-author: Raisa
-image: /content/images/Screenshot 2024-09-24 225107.png
+author: placeholder
+tags:
+  - placeholder
 ---
-hdioADBnioaDJBNInfijnujnaskFC nNfaioN FaN
+placeholder
