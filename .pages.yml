@@ -1,4 +1,5 @@
 # .pages.yml - Configuration for Pages CMS
+
 media:
   input: content/images
   output: /content/images
@@ -27,6 +28,23 @@ content:
       - name: tags
         type: string
         list: true
+      - name: body
+        type: rich-text
+        required: true
+
+  # Announcements Collection
+  - name: announcements
+    label: Announcements
+    type: collection
+    path: content/announcements
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        type: string
+        required: true
+      - name: date
+        type: date
+        required: true
       - name: body
         type: rich-text
         required: true

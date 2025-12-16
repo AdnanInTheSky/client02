@@ -1,13 +1,8 @@
 ---
-title: UIHP winners
+title: Placeholder
 date: 2025-10-28
 author: Syed Adnan Rahman
-image: /content/images/WhatsApp Image 2025-10-28 at 12.52.55.jpeg
 tags:
-  - Incubators
+  - placeholder
 ---
-BioNova is a sustainability-focused social enterprise transforming agricultural waste into clean bioethanol fuel for rural Bangladesh. Founded by BRAC University alumni, the venture addresses the twin challenges of crop residue burning and rural energy poverty by deploying decentralized micro-refineries that convert residues like rice husks and sugarcane bagasse into bioethanol through enzymatic hydrolysis and fermentation.
-
-Each BioNova mini-plant produces affordable, high-purity ethanol for clean cooking and local industry while creating jobs for rural youth and women through a micro-franchise model. The project aims to cut greenhouse gas emissions by up to 70%, reduce open burning of 1.2 million tons of waste, and create over 10,000 rural jobs by 2030.
-
-Key partnerships are being developed with BRAC and SREDA, and BioNova’s first pilot hub is being launched in Bogura District. The startup aligns directly with SDGs 7 (Affordable and Clean Energy), 8 (Decent Work and Economic Growth), 12 (Responsible Consumption and Production), and 13 (Climate Action).
+placeholder

@@ -1,8 +1,8 @@
 ---
 title: placeholder
-date: 2025-11-08
-author: adnan
+date: 2025-12-02
+author: placeholder
 tags:
   - placeholder
 ---
-Placeholder
+placeholder
