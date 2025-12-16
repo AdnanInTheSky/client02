@@ -593,7 +593,7 @@
         const res = await fetch('/content/index.json');
         if (!res.ok) throw new Error();
         const data = await res.json();
-        const paths = data.announcements || [];
+        const paths = data.announcement || [];
         const announcements = [];
 
         for (const path of paths) {
