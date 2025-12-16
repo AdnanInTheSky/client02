@@ -1,6 +1,5 @@
 ---
-title: "New Partnership with GreenFuture Initiative"
+title: 1st contact
 date: 2025-04-10
 ---
-
-BioNova is proud to announce a strategic partnership...
+YCI ...
