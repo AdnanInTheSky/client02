@@ -1,7 +1,8 @@
 ---
 title: Green Eid Initiative Honors Youth for Planting Trees Nationwide
 date: 2025-12-10
-author: Placeholder
+author: Adnan
+image: /content/images/Screenshot 2024-10-24 155810.png
 ---
 The prize-giving ceremony of the “Green Eid, Green Generation: Invest for a Better Future” initiative was held on 16 July at the head office of Ajker Patrika. The event was funded and supported by YCI Bangladesh, with implementation support from Pathokbondhu.
 
