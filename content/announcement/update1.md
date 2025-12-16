@@ -1,6 +1,5 @@
 ---
-title: "New Partnership with GreenFuture Initiative"
+title: JOY BANGLA
 date: 2025-04-10
 ---
-
-BioNova is proud to announce a strategic partnership...
+JITBE NOUKA
