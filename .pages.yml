@@ -33,10 +33,10 @@ content:
         required: true
 
   # Announcements Collection
-  - name: announcements
-    label: Announcements
+  - name: announcement
+    label: Announcement
     type: collection
-    path: content/announcements
+    path: content/announcement
     format: yaml-frontmatter
     fields:
       - name: title
