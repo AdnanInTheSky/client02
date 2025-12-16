@@ -3,239 +3,459 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YCI</title>
-  
+  <title>BioNova – Sustainable Development NGO</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Google Fonts: Inter -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
   <style>
     * {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
-    
+
+    /* Enhanced gradient with parallax effect */
     body {
-      background: linear-gradient(135deg, rgba(26, 35, 126, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
+      background: linear-gradient(135deg, 
+        #4FD1C5 0%,        /* Light teal at top */
+        #319795 25%,       /* Medium teal */
+        #2C5282 50%,       /* Medium blue */
+        #1A365D 75%,       /* Deep blue */
+        #0F1B2D 100%       /* Dark blue at bottom */
+      );
+      background-size: 100% 300%;
+      background-attachment: fixed;
+      animation: gradientBG 20s ease infinite;
+      overflow-x: hidden;
+      color: #ffffff;
+      position: relative;
       min-height: 100vh;
-      color: #1e293b;
     }
 
-    /* ✨ Pure Glass Cards */
-    .glass-card {
-      background: rgba(9, 0, 0, 0);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      border-radius: 1.5rem;
-      overflow: hidden;
-      color: #1e293b;
+    /* Subtle floating particles in background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 60% 70%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        radial-gradient(circle at 80% 40%, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 150px 150px, 200px 200px, 180px 180px;
+      z-index: -1;
+      animation: floatParticles 60s linear infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    @keyframes floatParticles {
+      0% { transform: translateY(0px) translateX(0px); }
+      25% { transform: translateY(-20px) translateX(10px); }
+      50% { transform: translateY(0px) translateX(20px); }
+      75% { transform: translateY(20px) translateX(10px); }
+      100% { transform: translateY(0px) translateX(0px); }
+    }
+
+    /* Enhanced glass effect with dynamic border */
+    .pure-glass {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(4px);
+      color: white;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .glass-card:hover {
-      background: rgba(0, 0, 0, 0);
-      transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    .pure-glass:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-4px);
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
-    /* Navbar Glass */
-    nav.glass {
-      background: rgba(0, 0, 0, 0);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    /* Navbar with enhanced glass effect */
+    .nav-glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     }
 
-    .navbar-scrolled {
-      background: rgba(255, 255, 255, 0.95) !important;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Gradient text */
-    .gradient-text {
-      background: linear-gradient(135deg, #1a237e, #0d47a1, #00897b);
+    /* Titles with gradient text */
+    h1, h2, h3, h4, h5, h6 { 
+      color: transparent;
+      background: linear-gradient(135deg, #4FD1C5 0%, #2C5282 50%, #1A365D 100%);
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
       background-clip: text;
+      background-size: 200% 200%;
+      animation: titleShimmer 3s ease-in-out infinite alternate;
     }
 
-    /* Animations */
+    @keyframes titleShimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    /* Stats with pulse animation */
+    .stat-number { 
+      color: white;
+      text-shadow: 0 0 20px rgba(79, 209, 197, 0.5);
+    }
+
+    .stat-title { 
+      color: #4FD1C5;
+      font-weight: 600;
+    }
+
+    /* Page load animations */
+    .page-load {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fadeInUp {
-      animation: fadeInUp 0.8s ease-out forwards;
-    }
-    .delay-200 { animation-delay: 0.2s; }
-    .delay-400 { animation-delay: 0.4s; }
-    .delay-500 { animation-delay: 0.5s; }
-
-    /* Floating logo */
-    .floating-logo {
-      position: fixed;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 40;
-      animation: float 6s ease-in-out infinite;
-    }
-    .floating-logo:hover {
-      transform: translateY(-50%) scale(1.1);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-    }
-    .floating-logo img {
-      width: 70%;
-      height: 70%;
-      object-fit: contain;
-      border-radius: 50%;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(-50%); }
-      50% { transform: translateY(-55%); }
-    }
-
-    @media (max-width: 768px) {
-      .floating-logo {
-        width: 60px;
-        height: 60px;
-        left: 15px;
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
-  </style>
 
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Button glow effect */
+    .glow-button {
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .glow-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent);
+      transition: left 0.7s ease;
+      z-index: -1;
+    }
+
+    .glow-button:hover::before {
+      left: 100%;
+    }
+
+    /* Article card image hover effect */
+    .article-image {
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .article-card:hover .article-image {
+      transform: scale(1.05);
+    }
+
+    /* Scroll progress indicator */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #4FD1C5, #2C5282);
+      z-index: 100;
+      transition: width 0.3s ease;
+    }
+
+    /* Typewriter effect for hero */
+    .typewriter {
+      overflow: hidden;
+      border-right: 3px solid #4FD1C5;
+      white-space: nowrap;
+      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: #4FD1C5; }
+    }
+
+    /* Floating elements animation */
+    .floating-element {
+      animation: floatElement 6s ease-in-out infinite;
+    }
+
+    @keyframes floatElement {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+    
+    /* Article title color - ORANGE */
+    .article-title {
+      color: #f97316 !important;
+      font-weight: 700;
+    }
+    
+    .article-title:hover {
+      color: #fb923c !important;
+    }
+    
+    /* Improved article card structure */
+    .article-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    
+    .article-image-container {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 12px 12px 0 0;
+    }
+    
+    .article-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    
+    .article-card:hover .article-image-container img {
+      transform: scale(1.08);
+    }
+    
+    .article-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+    }
+    
+    .article-excerpt {
+      flex: 1;
+      margin-bottom: 1rem;
+    }
+
+    /* FAQ Accordion */
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-answer > div {
+      padding: 0 1.25rem 1.25rem 1.25rem;
+    }
+    .rotate-180 {
+      transform: rotate(180deg);
+    }
+  </style>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            primary: '#1a237e',
-            secondary: '#0d47a1',
-            accent: '#ef6c00',
-            success: '#00897b',
+            primary: '#4FD1C5',
+            secondary: '#2C5282',
           }
         }
       }
     }
   </script>
 </head>
-
 <body class="min-h-screen">
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- Floating Logo -->
-  <div class="floating-logo">
-    <img src="content/images/IMG_5811.png" alt="YCI Logo" onerror="this.style.display='none'">
-  </div>
-
-  <!-- Navigation -->
-  <nav id="mainNav" class="fixed w-full top-0 z-50 glass transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Glass Navbar -->
+  <nav id="mainNav" class="fixed w-full top-0 z-50 nav-glass">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16 md:h-20">
-        <a href="index.html" class="text-2xl md:text-5xl font-bold gradient-text italic">YCI</a>
-        <div class="hidden md:flex items-center space-x-8">
-          <a href="index.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105">Home</a>
-          <a href="services.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105">About</a>
-          <a href="articles.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105">Publications</a>
-          <a href="team.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105">Team</a>
-          <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105">Contact</a>
+        <a href="index.html" class="flex items-center page-load">
+          <img src="content/images/IMG_5811.png" alt="BioNova Logo"
+               class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20"
+               onerror="this.src=''; this.parentElement.innerHTML='BioNova';">
+        </a>
+
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass page-load delay-1">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+        <div class="hidden md:flex space-x-2">
+          <a href="index.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-1">Home</a>
+          <a href="services.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-2">blogs</a>
+          <a href="articles.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-3">Events</a>
+          <a href="team.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-4">Team</a>
+          <a href="contact.html" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:scale-105 transition glow-button page-load delay-5">
+            Contact
+          </a>
         </div>
       </div>
-      <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2">
-        <div class="flex flex-col space-y-3">
-          <a href="index.html" class="text-gray-800 hover:text-primary font-medium py-2">Home</a>
-          <a href="services.html" class="text-gray-800 hover:text-primary font-medium py-2">About</a>
-          <a href="articles.html" class="text-gray-800 hover:text-primary font-medium py-2">Publications</a>
-          <a href="team.html" class="text-gray-800 hover:text-primary font-medium py-2">Team</a>
-          <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium text-center">Contact</a>
-        </div>
+      <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 space-y-2">
+        <a href="index.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Home</a>
+        <a href="services.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">blogs</a>
+        <a href="articles.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Events</a>
+        <a href="team.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Team</a>
+        <a href="contact.html" class="mt-2 block px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full text-center glow-button">Contact</a>
       </div>
     </div>
   </nav>
 
-  <main>
-    <!-- Hero -->
+  <main class="pt-20">
+    <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div class="absolute inset-0 z-0">
-        <img src="content/images/tester.jpg" alt="Hero background" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-black/30"></div>
+        <img src="content/images/tester.jpg" alt="Hero background" class="w-full h-full object-cover opacity-60">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40"></div>
       </div>
-      <div class="relative z-10 max-w-7xl mx-auto px-4 text-center text-white">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 opacity-0 animate-fadeInUp">
-          Sustainable Solutions for<br class="hidden sm:block">Global Challenges
+      
+      <div class="absolute top-1/4 left-10 w-4 h-4 bg-teal-400 rounded-full opacity-20 floating-element"></div>
+      <div class="absolute top-1/3 right-20 w-6 h-6 bg-primary rounded-full opacity-15 floating-element" style="animation-delay: -2s;"></div>
+      <div class="absolute bottom-1/4 left-1/4 w-8 h-8 bg-secondary rounded-full opacity-10 floating-element" style="animation-delay: -4s;"></div>
+      
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 page-load">
+          YCI placeholder
         </h1>
-        <p class="text-lg sm:text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-0 animate-fadeInUp delay-200 font-light">
-          Empowering communities through innovative development programs and strategic partnerships
+        <p class="text-lg md:text-xl mb-10 page-load delay-1">
+          Client ja bolbe
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fadeInUp delay-400">
-          <a href="contact.html" class="inline-flex items-center px-8 py-4 bg-white text-primary rounded-full font-bold text-lg hover:bg-opacity-90 hover:scale-105 shadow-xl">Join Our Mission</a>
-          <a href="services.html" class="inline-flex items-center px-8 py-4 bg-white text-primary rounded-full font-bold text-lg hover:bg-opacity-90 hover:scale-105 shadow-xl">Learn More</a>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="contact.html" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition glow-button page-load delay-2">
+            Join Our Mission
+          </a>
+          <a href="articles.html" class="px-8 py-4 pure-glass text-white rounded-full font-semibold hover:scale-105 transition page-load delay-3">
+            Learn More
+          </a>
+        </div>
+      </div>
+      
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+          <div class="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-secondary to-success p-12 md:p-16 text-center text-white shadow-2xl">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    <div class="stat-item">
-                        <div class="text-4xl md:text-5xl font-bold text-white mb-2">0</div>
-                        <div class="text-lg md:text-xl text-white">Team Members</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="text-4xl md:text-5xl font-bold text-white mb-2">15+</div>
-                        <div class="text-lg md:text-xl text-white">Years Experience</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="text-3xl md:text-4xl font-bold text-white mb-2">20+ Countries</div>
-                        <div class="text-lg md:text-xl text-white">Global Reach</div>
-                    </div>
-                </div>
+    <!-- Stats Section - STATIC -->
+    <section class="py-12 page-load delay-1" id="statsSection">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="pure-glass rounded-3xl p-8 text-center">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <div class="text-4xl md:text-5xl font-bold stat-number">50+</div>
+              <div class="text-lg md:text-xl stat-title">Team Members</div>
             </div>
+            <div>
+              <div class="text-4xl md:text-5xl font-bold stat-number">15+</div>
+              <div class="text-lg md:text-xl stat-title">Events</div>
+            </div>
+            <div>
+              <div class="text-3xl md:text-4xl font-bold stat-number">20+</div>
+              <div class="text-lg md:text-xl stat-title">Campus Reached</div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- About -->
-    <section class="py-16 md:py-24">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-secondary to-success p-12 md:p-16 text-center text-white shadow-2xl">
-          <div class="grid md:grid-cols-2 gap-0">
-            <div class="p-8 md:p-12 lg:p-16 flex flex-col justify-center order-2 md:order-1">
-              <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
-                Our Commitment to<br>Sustainable Change
-              </h2>
-              <p class="text-lg text-white">
-                Building resilient communities through evidence-based approaches.
-              </p>
-              <div class="space-y-4 text-white mb-8">
-                <p>BioNova is an international NGO dedicated to lasting, sustainable change.</p>
-                <p>We focus on education, healthcare, and economic development with local leadership.</p>
+    <!-- Announcements -->
+    <section class="py-12 page-load delay-2">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-teal-300">Announcements</h2>
+        <div id="announcements-container" class="space-y-6">
+          <div class="text-center py-6 text-white">Loading announcements...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us -->
+    <section class="py-16 page-load delay-3">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="pure-glass rounded-3xl overflow-hidden group">
+          <img src="content/images/teamBio.jpeg" alt="About Us" class="w-full h-64 sm:h-96 object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="p-6 md:p-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Commitment to bring Change</h2>
+            <p class="text-white mb-4">placeholder</p>
+            <p class="text-white mb-4">Our mission  placeholder</p>
+            <p class="text-white">placeholder</p>
+            <a href="articles.html" class="mt-6 inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition glow-button">
+              Explore Our Impact
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 page-load delay-4">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+        <div id="faq-accordion" class="space-y-4">
+          <div class="pure-glass rounded-xl overflow-hidden">
+            <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition">
+              <span>placeholder</span>
+              <i class="fas fa-chevron-down transition-transform"></i>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+              <div class="p-5 pt-0 text-white">
+                placeholder
               </div>
-              <a href="services.html" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:shadow-xl hover:scale-105 self-start">
-                Explore Our Impact <i class="fas fa-arrow-right ml-2"></i>
-              </a>
             </div>
-            <div class="order-1 md:order-2 relative h-64 md:h-auto min-h-[400px]">
-              <img src="content/images/teamBio.jpeg" alt="Team" class="w-full h-full object-cover">
+          </div>
+
+          <div class="pure-glass rounded-xl overflow-hidden">
+            <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition">
+              <span>placeholder</span>
+              <i class="fas fa-chevron-down transition-transform"></i>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+              <div class="p-5 pt-0 text-white">
+                placeholder <a href="contact.html" class="text-teal-300 hover:underline">Contact</a> page to get involved.
+              </div>
+            </div>
+          </div>
+
+          <div class="pure-glass rounded-xl overflow-hidden">
+            <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition">
+              <span>placeholder</span>
+              <i class="fas fa-chevron-down transition-transform"></i>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+              <div class="p-5 pt-0 text-white">
+                placeholder
+              </div>
             </div>
           </div>
         </div>
@@ -243,262 +463,308 @@
     </section>
 
     <!-- Articles -->
-    <section class="py-16 md:py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12 md:mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">Insights & Impact Stories</h2>
-          <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Research findings, program updates, and stories of transformation
-          </p>
+    <section class="py-16 page-load delay-5">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">Our Events</h2>
+          <p class="text-white max-w-2xl mx-auto">placeholder</p>
         </div>
-
-        <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          <!-- Loading state -->
-          <div class="col-span-full flex justify-center py-12">
-            <div class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-          </div>
+        <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="text-center py-8 text-white">Loading articles...</div>
         </div>
-
         <div class="text-center mt-12">
-          <a href="articles.html" class="inline-flex items-center px-8 py-4 bg-gray-900 dark:bg-gray-700 text-white rounded-full font-semibold hover:bg-gray-800 dark:hover:bg-gray-600 hover:scale-105 transition-all duration-300">
-            View All Publications
-            <i class="fas fa-arrow-right ml-2"></i>
+          <a href="articles.html" class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition glow-button inline-block">
+            More Articles
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Team Banner -->
-    <section class="py-16 md:py-20">
-      <div class="max-w-4xl mx-auto px-4">
-        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-secondary to-success p-12 md:p-16 text-center text-white shadow-2xl">
-          <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
-          <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full -ml-24 -mb-24"></div>
-          <div class="relative z-10">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4">Meet Our Global Team</h2>
-            <p class="text-xl mb-8 opacity-90">Experts from over 20 countries</p>
-            <a href="team.html" class="inline-flex items-center px-8 py-4 bg-white text-primary rounded-full font-bold text-lg hover:bg-opacity-90 hover:scale-105 shadow-xl">
-              <i class="fas fa-users mr-3"></i> View Full Team
-            </a>
-          </div>
+    <!-- Meet the Team -->
+    <section class="py-16 page-load delay-6">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="pure-glass rounded-3xl p-12 text-center text-white group hover:scale-[1.02] transition-all duration-500">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">Meet Our entire Team</h2>
+          <p class="text-xl mb-8">placeholder</p>
+          <a href="team.html" class="px-8 py-4 bg-white text-primary rounded-full font-bold text-lg hover:bg-opacity-90 hover:scale-105 transition glow-button inline-block">
+            View Full Team
+          </a>
         </div>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
- <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-                <!-- Brand -->
-                <div>
-                    <h3 class="text-2xl font-bold text-white mb-4">BioNova</h3>
-                    <p class="text-sm mb-6 leading-relaxed">
-                        Building sustainable futures through innovation, equity, and community-led action.
-                    </p>
-                    <div class="flex space-x-3">
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-white font-semibold text-lg mb-4">Quick Links</h4>
-                    <ul class="space-y-2.5 text-sm">
-                        <li><a href="services.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
-                        <li><a href="articles.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
-                        <li><a href="team.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Our Team</a></li>
-                        <li><a href="contact.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Contact</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Careers</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact -->
-                <div>
-                    <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
-                            <span>Dhaka, Bangladesh</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
-                            <span>info@bionova.org</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
-                            <span>+880 17XX-XXXXXX</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Resources -->
-                <div>
-                    <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
-                    <ul class="space-y-2.5 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Annual Reports</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Research Papers</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Case Studies</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Partnerships</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Copyright -->
-            <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
-                <p>&copy; 2025 BioNova. All rights reserved.</p>
-                <div class="mt-3 space-x-4">
-                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
-                    <span class="text-gray-600">•</span>
-                    <a href="#" class="hover:text-white transition-colors">Terms</a>
-                    <span class="text-gray-600">•</span>
-                    <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
-                </div>
-            </div>
+  <footer class="bg-gray-900/90 text-white backdrop-blur-lg">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div><h3 class="font-bold mb-4 text-xl">YCI</h3><p class="text-gray-400 mb-6">Building sustainable futures through innovation, equity, and community-led action.</p></div>
+        <div>
+          <h4 class="font-bold mb-4 text-lg">Quick Links</h4>
+          <ul class="space-y-3 text-gray-400">
+            <li><a href="services.html" class="hover:text-white hover:translate-x-1 transition inline-block">About Us</a></li>
+            <li><a href="articles.html" class="hover:text-white hover:translate-x-1 transition inline-block">Publications</a></li>
+            <li><a href="team.html" class="hover:text-white hover:translate-x-1 transition inline-block">Our Team</a></li>
+            <li><a href="contact.html" class="hover:text-white hover:translate-x-1 transition inline-block">Contact</a></li>
+          </ul>
         </div>
-    </footer>
+        <div>
+          <h4 class="font-semibold text-lg mb-4">Contact</h4>
+          <ul class="space-y-4 text-gray-400">
+            <li class="hover:text-white transition cursor-default">Dhaka, Bangladesh</li>
+            <li><a href="mailto:info@bionova.org" class="hover:text-white transition">info@bionova.org</a></li>
+            <li class="hover:text-white transition cursor-default">+880 17XX-XXXXXX</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-lg mb-4">Resources</h4>
+          <ul class="space-y-3 text-gray-400">
+            <li><a href="#" class="hover:text-white hover:translate-x-1 transition inline-block">Annual Reports</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 transition inline-block">Research Papers</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 transition inline-block">Case Studies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10 mt-12 pt-8 text-center text-gray-500">
+        <p>&copy; 2025 YCI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
-
-  <!-- Floating Buttons -->
-  <a href="contact.html" class="fixed bottom-6 right-6 px-6 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold shadow-xl hover:scale-105 z-40">Join Us</a>
-  <a href="team.html" class="fixed bottom-6 left-6 px-6 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold shadow-xl hover:scale-105 z-40">Our Team</a>
-
-  <!-- ✅ FULL SCRIPT RESTORED -->
+  <!-- Scripts -->
   <script>
-    // Mobile menu toggle
-    document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-      document.getElementById('mobileMenu').classList.toggle('hidden');
+    // Mobile menu
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
     });
 
-    // Navbar scroll effect
+    // Scroll progress indicator
     window.addEventListener('scroll', () => {
-      const nav = document.getElementById('mainNav');
-      if (window.scrollY > 50) {
-        nav.classList.add('navbar-scrolled');
-      } else {
-        nav.classList.remove('navbar-scrolled');
-      }
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('scrollProgress').style.width = scrolled + '%';
     });
 
-    // YAML parser
-    function parseYAML(yamlStr) {
-      const result = {};
-      yamlStr.trim().split('\n').forEach(line => {
-        const idx = line.indexOf(':');
-        if (idx === -1) return;
-        let key = line.slice(0, idx).trim();
-        let val = line.slice(idx + 1).trim().replace(/^[\"']|[\"']$/g, '');
-        if (val === 'true') val = true;
-        if (val === 'false') val = false;
-        if (!isNaN(val) && val !== '') val = Number(val);
-        result[key] = val;
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('page-load');
+        }
       });
-      return result;
-    }
+    }, observerOptions);
+    document.querySelectorAll('section').forEach(section => observer.observe(section));
 
-    function cleanExcerpt(text, limit = 20) {
-      return text.replace(/[#*_\-[\]()`>]/g, '')
-        .split(/\s+/)
-        .slice(0, limit)
-        .join(' ') + (text.split(/\s+/).length > limit ? '…' : '');
-    }
-
-    function animateCards(container, delay = 120) {
-      container.querySelectorAll('.article-card').forEach((c, i) => {
-        c.classList.add('animate-fadeInUp');
-        c.style.animationDelay = `${i * delay}ms`;
-        c.style.opacity = '0';
-        setTimeout(() => c.style.opacity = '1', i * delay);
+    // Simple YAML parser (supports title, date)
+    function parseFrontmatter(str) {
+      const parts = str.split('---', 3);
+      if (parts.length < 3) return null;
+      const yaml = parts[1].trim();
+      const body = parts[2].trim();
+      const meta = {};
+      yaml.split('\n').forEach(line => {
+        const i = line.indexOf(':');
+        if (i > 0) {
+          const key = line.slice(0, i).trim();
+          let val = line.slice(i + 1).trim();
+          if (val.startsWith('"') && val.endsWith('"')) val = val.slice(1, -1);
+          if (val.startsWith("'") && val.endsWith("'")) val = val.slice(1, -1);
+          if (key === 'date') {
+            const d = new Date(val);
+            if (!isNaN(d)) meta.date = d;
+          } else {
+            meta[key] = val;
+          }
+        }
       });
+      return { meta, body };
     }
 
-    function openDetail(id, type) {
-      sessionStorage.setItem('selectedFile', id);
-      window.location.href = type === 'article' ? 'article.html' : 'team_detail.html';
-    }
-
-    async function loadIndexContent() {
+    // Load announcements with YAML frontmatter
+    async function loadAnnouncements() {
+      const container = document.getElementById('announcements-container');
       try {
         const res = await fetch('/content/index.json');
-        if (!res.ok) throw new Error('index.json');
+        if (!res.ok) throw new Error();
         const data = await res.json();
+        const paths = data.announcements || [];
+        const announcements = [];
 
-        // Articles - loading 6
-        const articleHTML = await Promise.all((data.articles?.slice(0, 6) || []).map(async file => {
-          try {
-            const txt = await fetch(`/content/${file}`).then(r => r.ok ? r.text() : Promise.reject());
-            const parts = txt.split('---');
-            if (parts.length < 3) return '';
-            const meta = parseYAML(parts[1]);
-            const excerpt = cleanExcerpt(parts.slice(2).join('---'), 22);
-            return `
-              <div class="article-card opacity-0">
-                <div class="glass-card rounded-2xl overflow-hidden shadow-lg h-full flex flex-col">
-                  <div class="card-image-wrapper h-48 md:h-56 overflow-hidden">
-                    <img src="${meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article'}"
-                         class="w-full h-full object-cover" alt="${meta.title}" loading="lazy"
-                         onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Image+Unavailable'">
-                  </div>
-                  <div class="p-6 flex flex-col flex-grow">
-                    <h3 class="text-xl md:text-2xl font-bold mb-2 text-white line-clamp-2">${meta.title || 'Untitled'}</h3>
-                    ${meta.date ? `<p class="text-sm text-white mb-3 flex items-center"><i class="far fa-calendar-alt mr-2 text-accent"></i>${meta.date}</p>` : ''}
-                    <p class="text-white mb-6 flex-grow leading-relaxed">${excerpt}</p>
-                    <a href="article.html" 
-                       onclick="openDetail('${file}','article');return false;"
-                       class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 self-start">
-                      Read More
-                      <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>`;
-          } catch { return ''; }
-        }));
-
-        const articlesContainer = document.getElementById('articles-container');
-        const articles = articleHTML.filter(Boolean);
-        
-        if (articles.length > 0) {
-          articlesContainer.innerHTML = articles.join('');
-          animateCards(articlesContainer);
-        } else {
-          articlesContainer.innerHTML = `
-            <div class="col-span-full">
-              <div class="solid-card rounded-2xl p-12 text-center">
-                <i class="fas fa-newspaper text-5xl text-white mb-4"></i>
-                <p class="text-xl text-white">No recent publications available.</p>
-              </div>
-            </div>`;
+        for (const path of paths) {
+          const text = await fetch(`/content/${path}`).then(r => r.text());
+          const parsed = parseFrontmatter(text);
+          if (!parsed) continue;
+          const { meta, body } = parsed;
+          const formattedDate = meta.date 
+            ? meta.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+            : '';
+          announcements.push({ title: meta.title || 'Untitled', date: formattedDate, body });
         }
 
-      } catch (err) {
-        console.error(err);
-        const articlesContainer = document.getElementById('articles-container');
-        if (articlesContainer) {
-          articlesContainer.innerHTML = `
-            <div class="col-span-full">
-              <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-12 text-center">
-                <i class="fas fa-exclamation-triangle text-5xl text-red-400 mb-4"></i>
-                <p class="text-xl text-red-600 dark:text-red-400">Failed to load articles.</p>
-              </div>
-            </div>`;
-        }
+        // Sort newest first
+        announcements.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        const html = announcements.slice(0, 3).map(a => `
+          <div class="pure-glass p-6 rounded-xl hover:scale-[1.02] transition-transform">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-bold text-orange-400">${a.title}</h3>
+              ${a.date ? `<span class="text-gray-400 text-sm">${a.date}</span>` : ''}
+            </div>
+            <p class="text-white">${a.body.substring(0, 150)}${a.body.length > 150 ? '…' : ''}</p>
+          </div>
+        `).join('');
+
+        container.innerHTML = html || '<p class="text-white text-center">No announcements.</p>';
+      } catch (e) {
+        container.innerHTML = '<p class="text-white text-center">Failed to load announcements.</p>';
       }
     }
 
-    document.addEventListener('DOMContentLoaded', () => setTimeout(loadIndexContent, 300));
+    // Load articles (max 6)
+    async function loadArticles() {
+      const container = document.getElementById('articles-container');
+      try {
+        const res = await fetch('/content/index.json');
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        const cards = [];
+        for (const fullPath of (data.articles || []).slice(0, 6)) {
+          const txt = await fetch(`/content/${fullPath}`).then(r => r.text());
+          const parts = txt.split('---');
+          if (parts.length < 3) continue;
+
+          const meta = {};
+          parts[1].split('\n').forEach(line => {
+            const i = line.indexOf(':');
+            if (i > 0) {
+              const key = line.slice(0, i).trim();
+              let val = line.slice(i + 1).trim().replace(/^['"]|['"]$/g, '');
+              if (val === 'true') val = true;
+              else if (val === 'false') val = false;
+              else if (!isNaN(val) && val !== '') val = Number(val);
+              meta[key] = val;
+            }
+          });
+          const excerpt = parts.slice(2).join('---').replace(/[#*_\-[\]()`>]/g, ' ')
+            .split(/\s+/)
+            .slice(0, 20)
+            .join(' ') + '…';
+          const tags = Array.isArray(meta.tags) ? meta.tags : (meta.tags ? [meta.tags] : []);
+
+          cards.push(`
+            <div class="article-card pure-glass rounded-xl overflow-hidden group">
+              <div class="article-image-container">
+                <img src="${meta.image || 'https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'}"
+                     alt="${meta.title || 'Article'}"
+                     class="article-image"
+                     onerror="this.src='https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'"
+                     loading="lazy">
+              </div>
+              <div class="article-content">
+                ${tags.length > 0 ? `
+                  <div class="flex flex-wrap gap-2 mb-3">
+                    ${tags.slice(0, 3).map(tag => `
+                      <span class="px-3 py-1 bg-teal-500/20 text-teal-300 text-xs font-medium rounded-full">
+                        ${tag}
+                      </span>
+                    `).join('')}
+                  </div>
+                ` : ''}
+                <h3 class="article-title text-xl font-bold mb-3 group-hover:text-orange-400 transition-colors">${meta.title || 'Untitled'}</h3>
+                <p class="article-excerpt text-white text-opacity-90">${excerpt}</p>
+                <a href="article.html"
+                   onclick="sessionStorage.setItem('selectedFile','${fullPath}'); return true;"
+                   class="mt-auto text-teal-300 hover:text-teal-400 hover:underline flex items-center gap-2 font-medium">
+                  Read More
+                  <i class="fas fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                </a>
+              </div>
+            </div>
+          `);
+        }
+        container.innerHTML = cards.length ? cards.join('') : '<p class="col-span-full text-white text-center">No articles available.</p>';
+      } catch (err) {
+        console.error('Article loading error:', err);
+        container.innerHTML = '<p class="col-span-full text-red-400 text-center">Failed to load articles.</p>';
+      }
+    }
+
+    // FAQ Toggle
+    function toggleFAQ(button) {
+      const answer = button.nextElementSibling;
+      const icon = button.querySelector('i');
+      const isOpen = answer.classList.contains('max-h-0') || answer.scrollHeight === 0;
+
+      document.querySelectorAll('.faq-answer').forEach(el => {
+        if (el !== answer) {
+          el.classList.add('max-h-0');
+          el.previousElementSibling.querySelector('i').classList.remove('rotate-180');
+        }
+      });
+
+      if (isOpen) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        setTimeout(() => answer.classList.remove('max-h-0'), 10);
+        icon.classList.add('rotate-180');
+      } else {
+        answer.classList.add('max-h-0');
+        icon.classList.remove('rotate-180');
+      }
+    }
+
+    // On page load
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.page-load').forEach((el, index) => {
+        el.style.animationDelay = `${index * 0.1}s`;
+      });
+
+      setTimeout(() => {
+        loadAnnouncements();
+        loadArticles();
+      }, 400);
+
+      // Ripple effect
+      document.querySelectorAll('.glow-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+          const ripple = document.createElement('span');
+          const rect = this.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          const x = e.clientX - rect.left - size / 2;
+          const y = e.clientY - rect.top - size / 2;
+          
+          ripple.style.cssText = `
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+          `;
+          this.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 600);
+        });
+      });
+
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes ripple {
+          to {
+            transform: scale(4);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    });
   </script>
 </body>
 </html>

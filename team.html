@@ -27,77 +27,6 @@
           min-height: 100vh;
         }
     
-        
-        /* Dark mode */
-        .dark {
-            background-color: #0f172a;
-            color: #f8fafc;
-        }
-        
-        .dark .bg-white {
-            background-color: #1e293b;
-        }
-        
-        .dark .bg-gradient-to-br {
-            background: linear-gradient(to bottom right, #0f172a, #1e293b, #334155);
-        }
-        
-        .dark .text-gray-900 {
-            color: #f1f5f9;
-        }
-        
-        .dark .text-gray-800 {
-            color: #e2e8f0;
-        }
-        
-        .dark .text-gray-700 {
-            color: #cbd5e1;
-        }
-        
-        .dark .text-gray-600 {
-            color: #94a3b8;
-        }
-        
-        .dark .text-gray-500 {
-            color: #64748b;
-        }
-        
-        .dark .text-gray-400 {
-            color: #475569;
-        }
-        
-        .dark .text-gray-300 {
-            color: #334155;
-        }
-        
-        .dark .glass {
-            background: rgba(30, 41, 59, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #f1f5f9;
-        }
-        
-        .dark .glass-card {
-            background: rgba(30, 41, 59, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #f1f5f9;
-        }
-        
-        .dark .glass-card:hover {
-            background: rgba(30, 41, 59, 0.95);
-        }
-        
-        .dark .bg-white\/50 {
-            background-color: rgba(30, 41, 59, 0.7);
-        }
-        
-        .dark .hover\:bg-white\/50:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .dark .hover\:text-primary:hover {
-            color: #60a5fa;
-        }
-        
         /* Smooth scroll */
         html {
             scroll-behavior: smooth;
@@ -105,56 +34,25 @@
         
         /* Glassmorphism utility classes */
         .glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-        
-        .glass-dark {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .glass-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            background: rgba(255, 255, 255, 0.9);
-        }
-        
-        /* Solid card style for team */
-        .solid-card {
-            background: white;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .solid-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .dark .solid-card {
-            background: #1e293b;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #f1f5f9;
-        }
-        
-        .dark .solid-card:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.35);
         }
         
         /* Hero gradient overlay */
@@ -210,25 +108,14 @@
         
         /* Navbar scroll effect */
         .navbar-scrolled {
-            background: rgba(255, 255, 255, 0.95) !important;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-        }
-        
-        .dark .navbar-scrolled {
-            background: rgba(30, 41, 59, 0.95) !important;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.25) !important;
+            backdrop-filter: blur(25px) !important;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
         
         /* Gradient text */
         .gradient-text {
-            background: linear-gradient(135deg, #1a237e, #0d47a1, #00897b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .dark .gradient-text {
-            background: linear-gradient(135deg, #60a5fa, #3b82f6, #10b981);
+            background: linear-gradient(135deg, #ffffff, #e0f7fa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -238,15 +125,15 @@
         @keyframes pulse-ring {
             0% {
                 transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
             }
             70% {
                 transform: scale(1);
-                box-shadow: 0 0 0 12px rgba(37, 99, 235, 0);
+                box-shadow: 0 0 0 12px rgba(255, 255, 255, 0);
             }
             100% {
                 transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
             }
         }
         
@@ -258,6 +145,7 @@
         .card-image-wrapper {
             position: relative;
             overflow: hidden;
+            border-radius: 1rem 1rem 0 0;
         }
         
         .card-image-wrapper::after {
@@ -267,11 +155,11 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.05) 100%);
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
             transition: opacity 0.3s;
         }
         
-        .solid-card:hover .card-image-wrapper::after {
+        .glass-card:hover .card-image-wrapper::after {
             opacity: 0;
         }
         
@@ -279,66 +167,34 @@
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .solid-card:hover .card-image-wrapper img {
+        .glass-card:hover .card-image-wrapper img {
             transform: scale(1.08);
-        }
-        
-        /* Dark mode toggle */
-        .dark-mode-toggle {
-            position: relative;
-            width: 60px;
-            height: 30px;
-            background: #cbd5e1;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .dark-mode-toggle.active {
-            background: #1e293b;
-        }
-        
-        .dark-mode-toggle::before {
-            content: '';
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            background: white;
-            border-radius: 50%;
-            top: 3px;
-            left: 3px;
-            transition: transform 0.3s;
-        }
-        
-        .dark-mode-toggle.active::before {
-            transform: translateX(30px);
-            background: #fbbf24;
         }
         
         /* Search Box */
         .search-box {
             border-radius: 50px;
             padding: 0.75rem 1.5rem 0.75rem 3rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            background-color: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
             color: white;
             transition: all 0.3s ease;
         }
         
         .search-box:focus {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.6);
             box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
             color: white;
         }
         
         .search-box::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
         }
         
         .search-icon {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             z-index: 5;
         }
         
@@ -346,52 +202,95 @@
         .filter-btn {
             border-radius: 50px;
             padding: 0.5rem 1.25rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            background-color: rgba(255, 255, 255, 0.15);
             color: white;
             transition: all 0.3s ease;
             margin: 0 5px 10px;
         }
         
         .filter-btn:hover, .filter-btn.active {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.9);
             color: #1a237e;
-            border-color: white;
+            border-color: rgba(255, 255, 255, 0.9);
         }
         
         /* Improved focus states for accessibility */
         a:focus, button:focus {
-            outline: 2px solid #3b82f6;
+            outline: 2px solid rgba(255, 255, 255, 0.6);
             outline-offset: 2px;
-        }
-        
-        .dark a:focus, .dark button:focus {
-            outline: 2px solid #60a5fa;
         }
         
         /* Stats section */
         .stats-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             border-radius: 1.5rem;
         }
         
-        .dark .stats-card {
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        /* Logo styling */
+        .nav-logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Navbar brand container */
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        /* Team card content styling */
+        .team-card-content {
+            color: white;
+        }
+        
+        .team-card-content h3 {
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .team-card-content p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Navbar link styling */
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: white;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Contact button in navbar */
+        .nav-contact-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .nav-contact-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
         }
     </style>
     
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         primary: '#1a237e',
                         secondary: '#0d47a1',
-                        accent: '#ef6c00',
+                        accent: '#ff9800',
                         success: '#00897b',
                     }
                 }
@@ -406,15 +305,16 @@
     <nav id="mainNav" class="fixed w-full top-0 z-50 glass transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
-                <a href="index.html" class="text-2xl md:text-3xl font-bold gradient-text">BioNova</a>
+                <!-- Logo and Brand -->
+                <div class="nav-brand">
+                    <img src="content/images/IMG_5811.png" alt="BioNova Logo" class="nav-logo">
+                    <a href="index.html" class="text-2xl md:text-3xl font-bold gradient-text">BioNova</a>
+                </div>
                 
                 <div class="flex items-center space-x-4">
-                    <!-- Dark mode toggle -->
-                    <div id="darkModeToggle" class="dark-mode-toggle" title="Toggle dark mode"></div>
-                    
                     <!-- Mobile menu button -->
-                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-white/50 transition-colors">
-                        <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-white/20 transition-colors">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
@@ -422,22 +322,22 @@
                 
                 <!-- Desktop menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">Home</a>
-                    <a href="articles.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">Publications</a>
-                    <a href="team.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">Team</a>
-                    <a href="services.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">About</a>
-                    <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">Contact</a>
+                    <a href="index.html" class="nav-link font-medium">Home</a>
+                    <a href="articles.html" class="nav-link font-medium">Publications</a>
+                    <a href="team.html" class="nav-link font-medium">Team</a>
+                    <a href="services.html" class="nav-link font-medium">About</a>
+                    <a href="contact.html" class="px-6 py-2.5 nav-contact-btn text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">Contact</a>
                 </div>
             </div>
             
             <!-- Mobile menu -->
-            <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2">
-                <div class="flex flex-col space-y-3">
-                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">Home</a>
-                    <a href="articles.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">Publications</a>
-                    <a href="team.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">Team</a>
-                    <a href="services.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">About</a>
-                    <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium text-center">Contact</a>
+            <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 glass rounded-lg mt-2">
+                <div class="flex flex-col space-y-3 px-4 py-2">
+                    <a href="index.html" class="nav-link font-medium py-2">Home</a>
+                    <a href="articles.html" class="nav-link font-medium py-2">Publications</a>
+                    <a href="team.html" class="nav-link font-medium py-2">Team</a>
+                    <a href="services.html" class="nav-link font-medium py-2">About</a>
+                    <a href="contact.html" class="px-6 py-2.5 nav-contact-btn text-white rounded-full font-medium text-center">Contact</a>
                 </div>
             </div>
         </div>
@@ -480,16 +380,16 @@
             <div class="stats-card p-8 shadow-2xl">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                     <div class="stat-item">
-                        <div class="text-4xl md:text-5xl font-bold text-primary mb-2" id="team-count">0</div>
-                        <div class="text-lg md:text-xl text-gray-600 dark:text-gray-400">Team Members</div>
+                        <div class="text-4xl md:text-5xl font-bold text-white mb-2" id="team-count">0</div>
+                        <div class="text-lg md:text-xl text-white/80">Team Members</div>
                     </div>
                     <div class="stat-item">
-                        <div class="text-4xl md:text-5xl font-bold text-secondary mb-2">15+</div>
-                        <div class="text-lg md:text-xl text-gray-600 dark:text-gray-400">Years Experience</div>
+                        <div class="text-4xl md:text-5xl font-bold text-white mb-2">15+</div>
+                        <div class="text-lg md:text-xl text-white/80">Years Experience</div>
                     </div>
                     <div class="stat-item">
-                        <div class="text-3xl md:text-4xl font-bold text-success mb-2">20+ Countries</div>
-                        <div class="text-lg md:text-xl text-gray-600 dark:text-gray-400">Global Reach</div>
+                        <div class="text-3xl md:text-4xl font-bold text-white mb-2">20+ Countries</div>
+                        <div class="text-lg md:text-xl text-white/80">Global Reach</div>
                     </div>
                 </div>
             </div>
@@ -502,13 +402,13 @@
             <div id="team-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 <!-- Loading state -->
                 <div class="col-span-full flex justify-center py-12">
-                    <div class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                    <div class="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
                 </div>
             </div>
 
             <!-- Load More Button -->
             <div class="text-center mt-12" id="team-load-more-container" style="display: none;">
-                <button id="team-load-more-btn" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300">
+                <button id="team-load-more-btn" class="px-8 py-4 glass text-white rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300 border border-white/30">
                     Load More Team Members
                     <i class="fas fa-arrow-down ml-2"></i>
                 </button>
@@ -522,7 +422,10 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
                 <!-- Brand -->
                 <div>
-                    <h3 class="text-2xl font-bold text-white mb-4">BioNova</h3>
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="content/images/IMG_5811.png" alt="BioNova Logo" class="w-12 h-12 rounded-lg">
+                        <h3 class="text-2xl font-bold text-white">BioNova</h3>
+                    </div>
                     <p class="text-sm mb-6 leading-relaxed">
                         Building sustainable futures through innovation, equity, and community-led action.
                     </p>
@@ -601,7 +504,7 @@
 
     <!-- Floating Action Button -->
     <a href="contact.html" 
-       class="floating-btn fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40"
+       class="floating-btn fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full glass text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
        aria-label="Join Our Mission">
         Join Us
     </a>
@@ -741,22 +644,22 @@
             const page = members.slice(0, end);
 
             const html = page.map((m, index) => {
-                const imageUrl = m.meta.image || 'https://via.placeholder.com/400x400/e2e8f0/64748b?text=Team+Member';
+                const imageUrl = m.meta.image || 'https://via.placeholder.com/400x400/ffffff/1a237e?text=Team+Member';
                 
                 return `
                     <div class="team-card opacity-0">
-                        <div class="solid-card rounded-2xl overflow-hidden shadow-lg h-full flex flex-col">
+                        <div class="glass-card rounded-2xl overflow-hidden shadow-lg h-full flex flex-col">
                             <div class="card-image-wrapper h-64 overflow-hidden">
                                 <img src="${imageUrl}" class="w-full h-full object-cover" alt="${m.meta.title}" loading="lazy"
-                                     onerror="this.onerror=null;this.src='https://via.placeholder.com/400x400/f1f5f9/94a3b8?text=Image+Unavailable'">
+                                     onerror="this.onerror=null;this.src='https://via.placeholder.com/400x400/ffffff/0d47a1?text=Team+Member'">
                             </div>
-                            <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">${m.meta.title}</h3>
+                            <div class="p-6 flex flex-col flex-grow team-card-content">
+                                <h3 class="text-xl font-bold mb-2">${m.meta.title}</h3>
                                 <p class="text-accent font-semibold mb-3">${m.meta.role || 'Team Member'}</p>
-                                <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow leading-relaxed">${m.excerpt}</p>
+                                <p class="mb-4 flex-grow leading-relaxed">${m.excerpt}</p>
                                 <a href="team_detail.html" 
                                    onclick="openDetail('${m.id}');return false;"
-                                   class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 self-start">
+                                   class="inline-flex items-center px-6 py-3 glass text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 self-start border border-white/30">
                                     View Profile
                                     <i class="fas fa-arrow-right ml-2 text-sm"></i>
                                 </a>
@@ -799,10 +702,10 @@
             const container = document.getElementById('team-container');
             container.innerHTML = `
                 <div class="col-span-full">
-                    <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-12 text-center">
-                        <i class="fas fa-exclamation-triangle text-5xl text-red-400 mb-4"></i>
-                        <p class="text-xl text-red-600 dark:text-red-400">Failed to load team members.</p>
-                        <button class="mt-4 px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300" onclick="loadAllTeamMembers()">
+                    <div class="glass border border-red-300/30 rounded-2xl p-12 text-center">
+                        <i class="fas fa-exclamation-triangle text-5xl text-red-300 mb-4"></i>
+                        <p class="text-xl text-white">Failed to load team members.</p>
+                        <button class="mt-4 px-6 py-2 glass text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 border border-white/30" onclick="loadAllTeamMembers()">
                             Try Again
                         </button>
                     </div>
@@ -843,28 +746,6 @@
                 nav.classList.add('navbar-scrolled');
             } else {
                 nav.classList.remove('navbar-scrolled');
-            }
-        });
-
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        
-        // Check for saved theme preference or respect OS preference
-        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDarkScheme.matches)) {
-            document.documentElement.classList.add('dark');
-            darkModeToggle.classList.add('active');
-        }
-        
-        darkModeToggle.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            darkModeToggle.classList.toggle('active');
-            
-            // Save user preference
-            if (document.documentElement.classList.contains('dark')) {
-                localStorage.setItem('theme', 'dark');
-            } else {
-                localStorage.setItem('theme', 'light');
             }
         });
 

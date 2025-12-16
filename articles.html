@@ -26,77 +26,6 @@
           min-height: 100vh;
         }
     
-        
-        /* Dark mode */
-        .dark {
-            background-color: linear-gradient(135deg, rgba(26, 35, 126, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
-            color: #f8fafc;
-        }
-        
-        .dark .bg-white {
-            background-color: #1e293b;
-        }
-        
-        .dark .bg-gradient-to-br {
-            background: linear-gradient(to bottom right, #0f172a, #1e293b, #334155);
-        }
-        
-        .dark .text-gray-900 {
-            color: #f1f5f9;
-        }
-        
-        .dark .text-gray-800 {
-            color: #e2e8f0;
-        }
-        
-        .dark .text-gray-700 {
-            color: #cbd5e1;
-        }
-        
-        .dark .text-gray-600 {
-            color: #94a3b8;
-        }
-        
-        .dark .text-gray-500 {
-            color: #64748b;
-        }
-        
-        .dark .text-gray-400 {
-            color: #475569;
-        }
-        
-        .dark .text-gray-300 {
-            color: #334155;
-        }
-        
-        .dark .glass {
-            background: rgba(30, 41, 59, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #f1f5f9;
-        }
-        
-        .dark .glass-card {
-            background: rgba(30, 41, 59, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #f1f5f9;
-        }
-        
-        .dark .glass-card:hover {
-            background: rgba(30, 41, 59, 0.95);
-        }
-        
-        .dark .bg-white\/50 {
-            background-color: rgba(30, 41, 59, 0.7);
-        }
-        
-        .dark .hover\:bg-white\/50:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .dark .hover\:text-primary:hover {
-            color: #60a5fa;
-        }
-        
         /* Smooth scroll */
         html {
             scroll-behavior: smooth;
@@ -104,17 +33,17 @@
         
         /* Glassmorphism utility classes */
         .glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        .glass-dark {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .pure-glass-nav {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
         
         .glass-card {
@@ -144,16 +73,6 @@
         .solid-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .dark .solid-card {
-            background: #1e293b;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #f1f5f9;
-        }
-        
-        .dark .solid-card:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         
         /* Hero gradient overlay */
@@ -209,25 +128,16 @@
         
         /* Navbar scroll effect */
         .navbar-scrolled {
-            background: rgba(255, 255, 255, 0.95) !important;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-        }
-        
-        .dark .navbar-scrolled {
-            background: rgba(30, 41, 59, 0.95) !important;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.2) !important;
+            backdrop-filter: blur(30px) !important;
+            -webkit-backdrop-filter: blur(30px) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
         
         /* Gradient text */
         .gradient-text {
-            background: linear-gradient(135deg, #1a237e, #0d47a1, #00897b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .dark .gradient-text {
-            background: linear-gradient(135deg, #60a5fa, #3b82f6, #10b981);
+            background: linear-gradient(135deg, #ffffff, #e0f7fa, #ffffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -237,15 +147,15 @@
         @keyframes pulse-ring {
             0% {
                 transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
             }
             70% {
                 transform: scale(1);
-                box-shadow: 0 0 0 12px rgba(37, 99, 235, 0);
+                box-shadow: 0 0 0 12px rgba(255, 255, 255, 0);
             }
             100% {
                 transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
             }
         }
         
@@ -282,62 +192,31 @@
             transform: scale(1.08);
         }
         
-        /* Dark mode toggle */
-        .dark-mode-toggle {
-            position: relative;
-            width: 60px;
-            height: 30px;
-            background: #cbd5e1;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .dark-mode-toggle.active {
-            background: #1e293b;
-        }
-        
-        .dark-mode-toggle::before {
-            content: '';
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            background: white;
-            border-radius: 50%;
-            top: 3px;
-            left: 3px;
-            transition: transform 0.3s;
-        }
-        
-        .dark-mode-toggle.active::before {
-            transform: translateX(30px);
-            background: #fbbf24;
-        }
-        
         /* Search Box */
         .search-box {
             border-radius: 50px;
             padding: 0.75rem 1.5rem 0.75rem 3rem;
             border: 2px solid rgba(255, 255, 255, 0.3);
-            background-color: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             color: white;
             transition: all 0.3s ease;
         }
         
         .search-box:focus {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.6);
             box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
             color: white;
         }
         
         .search-box::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
         }
         
         .search-icon {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             z-index: 5;
         }
         
@@ -345,28 +224,32 @@
         .filter-btn {
             border-radius: 50px;
             padding: 0.5rem 1.25rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             color: white;
             transition: all 0.3s ease;
             margin: 0 5px 10px;
         }
         
         .filter-btn:hover, .filter-btn.active {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.9);
             color: #1a237e;
-            border-color: white;
+            border-color: rgba(255, 255, 255, 0.9);
         }
         
         /* Active Filters */
         .active-filter-badge {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.9);
             color: #1e293b;
             border-radius: 20px;
             padding: 0.4rem 0.8rem;
             font-size: 0.85rem;
             margin: 0 3px 5px;
             cursor: pointer;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
         
         .clear-filters-btn {
@@ -374,22 +257,19 @@
             padding: 0.4rem 0.8rem;
             font-size: 0.85rem;
             margin: 0 3px 5px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
         
         /* Improved focus states for accessibility */
         a:focus, button:focus {
-            outline: 2px solid #3b82f6;
+            outline: 2px solid rgba(255, 255, 255, 0.6);
             outline-offset: 2px;
-        }
-        
-        .dark a:focus, .dark button:focus {
-            outline: 2px solid #60a5fa;
         }
     </style>
     
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -407,18 +287,15 @@
 <body>
 
     <!-- Navigation -->
-    <nav id="mainNav" class="fixed w-full top-0 z-50 glass transition-all duration-300">
+    <nav id="mainNav" class="fixed w-full top-0 z-50 pure-glass-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
                 <a href="index.html" class="text-2xl md:text-3xl font-bold gradient-text">BioNova</a>
                 
                 <div class="flex items-center space-x-4">
-                    <!-- Dark mode toggle -->
-                    <div id="darkModeToggle" class="dark-mode-toggle" title="Toggle dark mode"></div>
-                    
                     <!-- Mobile menu button -->
-                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-white/50 transition-colors">
-                        <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-white/20 transition-colors">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
@@ -426,22 +303,22 @@
                 
                 <!-- Desktop menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">Home</a>
-                    <a href="articles.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">Publications</a>
-                    <a href="team.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">Team</a>
-                    <a href="services.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">About</a>
-                    <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">Contact</a>
+                    <a href="index.html" class="text-white hover:text-white/90 font-medium transition-colors">Home</a>
+                    <a href="articles.html" class="text-white hover:text-white/90 font-medium transition-colors">Publications</a>
+                    <a href="team.html" class="text-white hover:text-white/90 font-medium transition-colors">Team</a>
+                    <a href="services.html" class="text-white hover:text-white/90 font-medium transition-colors">About</a>
+                    <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-white/20 to-white/10 text-white rounded-full font-medium hover:bg-white/30 hover:shadow-lg hover:scale-105 transition-all duration-300 border border-white/30">Contact</a>
                 </div>
             </div>
             
             <!-- Mobile menu -->
             <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2">
                 <div class="flex flex-col space-y-3">
-                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">Home</a>
-                    <a href="articles.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">Publications</a>
-                    <a href="team.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">Team</a>
-                    <a href="services.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">About</a>
-                    <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium text-center">Contact</a>
+                    <a href="index.html" class="text-white hover:text-white/90 font-medium transition-colors py-2">Home</a>
+                    <a href="articles.html" class="text-white hover:text-white/90 font-medium transition-colors py-2">Publications</a>
+                    <a href="team.html" class="text-white hover:text-white/90 font-medium transition-colors py-2">Team</a>
+                    <a href="services.html" class="text-white hover:text-white/90 font-medium transition-colors py-2">About</a>
+                    <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-white/20 to-white/10 text-white rounded-full font-medium text-center border border-white/30">Contact</a>
                 </div>
             </div>
         </div>
@@ -489,7 +366,7 @@
             <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 <!-- Loading state -->
                 <div class="col-span-full flex justify-center py-12">
-                    <div class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                    <div class="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
                 </div>
             </div>
         </div>
@@ -523,7 +400,7 @@
 
         <!-- Quick Links -->
         <div>
-          <h4 class="font-bold text-white dark:text-white mb-4">Quick Links</h4>
+          <h4 class="font-bold text-white mb-4">Quick Links</h4>
           <ul class="space-y-2.5 text-sm">
             <li><a href="services.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
             <li><a href="articles.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
@@ -580,14 +457,14 @@
 
   <!-- Floating Action Button -->
   <a href="contact.html" 
-     class="floating-btn fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40"
+     class="floating-btn fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
      aria-label="Join Our Mission">
     Join Us
   </a>
 
     <!-- Floating Action Button -->
   <a href="team.html" 
-     class="floating-btn fixed bottom-6 left-6 md:bottom-8 md:left-8 px-6 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40"
+     class="floating-btn fixed bottom-6 left-6 md:bottom-8 md:left-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
      aria-label="Join Our Mission">
     Our Team
   </a>
@@ -686,7 +563,7 @@
             if (selectedTags.size > 0) {
                 container.innerHTML = `
                     <div class="flex flex-wrap justify-center">
-                        <span class="active-filter-badge bg-white text-gray-900">Active Filters:</span>
+                        <span class="active-filter-badge">Active Filters:</span>
                         ${Array.from(selectedTags).map(tag => `
                             <span class="active-filter-badge" onclick="toggleTag('${tag}')">
                                 ${tag} <i class="fas fa-times ms-1"></i>
@@ -759,9 +636,9 @@
                 container.innerHTML = `
                     <div class="col-span-full">
                         <div class="solid-card rounded-2xl p-12 text-center">
-                            <i class="fas fa-search text-5xl text-gray-300 dark:text-gray-600 mb-4"></i>
-                            <h5 class="text-gray-900 dark:text-white">No Articles Found</h5>
-                            <p class="text-gray-600 dark:text-gray-400">Try adjusting your filters or search query</p>
+                            <i class="fas fa-search text-5xl text-gray-300 mb-4"></i>
+                            <h5 class="text-gray-900">No Articles Found</h5>
+                            <p class="text-gray-600">Try adjusting your filters or search query</p>
                             ${selectedTags.size > 0 ? `<button class="mt-4 px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300" onclick="clearAllFilters()">Clear All Filters</button>` : ''}
                         </div>
                     </div>
@@ -774,7 +651,7 @@
                 
                 // Enhanced tags display
                 const tagsHtml = (article.meta.tags || [])
-                    .map(tag => `<span class="inline-block bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-2 py-1 rounded-full mr-1 mb-1 cursor-pointer hover:bg-primary hover:text-white transition-colors" onclick="toggleTag('${tag}')">${tag}</span>`).join('');
+                    .map(tag => `<span class="inline-block bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full mr-1 mb-1 cursor-pointer hover:bg-primary hover:text-white transition-colors" onclick="toggleTag('${tag}')">${tag}</span>`).join('');
                 
                 const date = article.meta.date 
                     ? new Date(article.meta.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) 
@@ -789,13 +666,13 @@
                                      onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Image+Unavailable'">
                             </div>
                             <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white line-clamp-2">${article.meta.title}</h3>
+                                <h3 class="text-xl font-bold mb-2 text-gray-900 line-clamp-2">${article.meta.title}</h3>
                                 <div class="text-dark font-bold">
                                     ${date ? `<i class="class="far fa-calendar-alt mr-1"></i> ${date}` : ''}
                                     ${date && author ? '<span>•</span>' : ''}
                                     ${author ? `<i class="far fa-user mr-1"></i> ${author}` : ''}
                                 </div>
-                                <p class="text-dark-600 dark:text-gray-300 mb-4 flex-grow leading-relaxed">${article.excerpt}</p>
+                                <p class="text-dark-600 mb-4 flex-grow leading-relaxed">${article.excerpt}</p>
                                 <div class="mb-4 flex flex-wrap">${tagsHtml}</div>
                                 <a href="article.html" 
                                    onclick="openDetail('${article.id}');return false;"
@@ -828,9 +705,9 @@
             const container = document.getElementById('articles-container');
             container.innerHTML = `
                 <div class="col-span-full">
-                    <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-12 text-center">
+                    <div class="bg-red-50 border border-red-200 rounded-2xl p-12 text-center">
                         <i class="fas fa-exclamation-triangle text-5xl text-red-400 mb-4"></i>
-                        <p class="text-xl text-red-600 dark:text-red-400">Failed to load articles.</p>
+                        <p class="text-xl text-red-600">Failed to load articles.</p>
                         <button class="mt-4 px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300" onclick="loadAllArticles()">
                             Try Again
                         </button>
@@ -861,28 +738,6 @@
                 nav.classList.add('navbar-scrolled');
             } else {
                 nav.classList.remove('navbar-scrolled');
-            }
-        });
-
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        
-        // Check for saved theme preference or respect OS preference
-        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDarkScheme.matches)) {
-            document.documentElement.classList.add('dark');
-            darkModeToggle.classList.add('active');
-        }
-        
-        darkModeToggle.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            darkModeToggle.classList.toggle('active');
-            
-            // Save user preference
-            if (document.documentElement.classList.contains('dark')) {
-                localStorage.setItem('theme', 'dark');
-            } else {
-                localStorage.setItem('theme', 'light');
             }
         });
 

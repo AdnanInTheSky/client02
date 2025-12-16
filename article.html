@@ -1,922 +1,404 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading... - BioNova</title>
+  <meta charset="UTF-8" />
+  <meta name="ervisor" content="width=device-width, initial-scale=1.0" />
+  <title>Loading... - BioNova</title>
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        * {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        }
-        
-        /* Dark mode */
-        .dark {
-            background-color: #0f172a;
-            color: #f8fafc;
-        }
-        
-        .dark .bg-white {
-            background-color: #1e293b;
-        }
-        
-        .dark .bg-gradient-to-br {
-            background: linear-gradient(to bottom right, #0f172a, #1e293b, #334155);
-        }
-        
-        .dark .text-gray-900 {
-            color: #f1f5f9;
-        }
-        
-        .dark .text-gray-800 {
-            color: #e2e8f0;
-        }
-        
-        .dark .text-gray-700 {
-            color: #cbd5e1;
-        }
-        
-        .dark .text-gray-600 {
-            color: #94a3b8;
-        }
-        
-        .dark .text-gray-500 {
-            color: #64748b;
-        }
-        
-        .dark .text-gray-400 {
-            color: #475569;
-        }
-        
-        .dark .text-gray-300 {
-            color: #334155;
-        }
-        
-        .dark .glass {
-            background: rgba(30, 41, 59, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #f1f5f9;
-        }
-        
-        .dark .glass-card {
-            background: rgba(30, 41, 59, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #f1f5f9;
-        }
-        
-        .dark .glass-card:hover {
-            background: rgba(30, 41, 59, 0.95);
-        }
-        
-        .dark .bg-white\/50 {
-            background-color: rgba(30, 41, 59, 0.7);
-        }
-        
-        .dark .hover\:bg-white\/50:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .dark .hover\:text-primary:hover {
-            color: #60a5fa;
-        }
-        
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* Glassmorphism utility classes */
-        .glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-        
-        .glass-dark {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .glass-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            background: rgba(255, 255, 255, 0.9);
-        }
-        
-        /* Solid card style for articles */
-        .solid-card {
-            background: white;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .solid-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .dark .solid-card {
-            background: #1e293b;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #f1f5f9;
-        }
-        
-        .dark .solid-card:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Hero gradient overlay */
-        .hero-overlay {
-            background: linear-gradient(135deg, rgba(26, 35, 126, 0.85), rgba(13, 71, 161, 0.7), rgba(0, 150, 136, 0.6));
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .animate-fadeInUp {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-        
-        .animate-fadeIn {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-        
-        .animate-slideInRight {
-            animation: slideInRight 0.8s ease-out forwards;
-        }
-        
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
-        .delay-500 { animation-delay: 0.5s; }
-        
-        /* Navbar scroll effect */
-        .navbar-scrolled {
-            background: rgba(255, 255, 255, 0.95) !important;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-        }
-        
-        .dark .navbar-scrolled {
-            background: rgba(30, 41, 59, 0.95) !important;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Gradient text */
-        .gradient-text {
-            background: linear-gradient(135deg, #1a237e, #0d47a1, #00897b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .dark .gradient-text {
-            background: linear-gradient(135deg, #60a5fa, #3b82f6, #10b981);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Card image overlay effect */
-        .card-image-wrapper {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .card-image-wrapper::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.05) 100%);
-            transition: opacity 0.3s;
-        }
-        
-        .solid-card:hover .card-image-wrapper::after {
-            opacity: 0;
-        }
-        
-        .card-image-wrapper img {
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .solid-card:hover .card-image-wrapper img {
-            transform: scale(1.08);
-        }
-        
-        /* Dark mode toggle */
-        .dark-mode-toggle {
-            position: relative;
-            width: 60px;
-            height: 30px;
-            background: #cbd5e1;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .dark-mode-toggle.active {
-            background: #1e293b;
-        }
-        
-        .dark-mode-toggle::before {
-            content: '';
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            background: white;
-            border-radius: 50%;
-            top: 3px;
-            left: 3px;
-            transition: transform 0.3s;
-        }
-        
-        .dark-mode-toggle.active::before {
-            transform: translateX(30px);
-            background: #fbbf24;
-        }
-        
-        /* Improved focus states for accessibility */
-        a:focus, button:focus {
-            outline: 2px solid #3b82f6;
-            outline-offset: 2px;
-        }
-        
-        .dark a:focus, .dark button:focus {
-            outline: 2px solid #60a5fa;
-        }
-        
-        /* Article specific styles */
-        .article-content {
-            line-height: 1.7;
-            font-size: 1.125rem;
-        }
-        
-        .article-content h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-        
-        .article-content h2 {
-            font-size: 1.875rem;
-            font-weight: 700;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .article-content h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-top: 2rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        .article-content p {
-            margin-bottom: 1.5rem;
-        }
-        
-        .article-content img {
-            border-radius: 0.75rem;
-            margin: 2rem 0;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .article-content blockquote {
-            border-left: 4px solid #3b82f6;
-            padding-left: 1.5rem;
-            margin: 2rem 0;
-            font-style: italic;
-            color: #64748b;
-        }
-        
-        .article-content code {
-            background-color: #f1f5f9;
-            padding: 0.125rem 0.375rem;
-            border-radius: 0.25rem;
-            font-size: 0.875rem;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-        }
-        
-        .dark .article-content code {
-            background-color: #334155;
-            color: #e2e8f0;
-        }
-        
-        .article-content pre {
-            background-color: #1e293b;
-            color: #e2e8f0;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            overflow-x: auto;
-            margin: 2rem 0;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .article-content pre code {
-            background: none;
-            padding: 0;
-            color: inherit;
-        }
-        
-        .article-content ul, .article-content ol {
-            margin: 1.5rem 0;
-            padding-left: 1.5rem;
-        }
-        
-        .article-content li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .article-content table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 2rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-        
-        .article-content th, .article-content td {
-            padding: 0.75rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        
-        .article-content th {
-            background-color: #f8fafc;
-            font-weight: 600;
-        }
-        
-        .dark .article-content th {
-            background-color: #334155;
-            color: #f1f5f9;
-        }
-        
-        .dark .article-content td {
-            border-color: #475569;
-        }
-        
-        .article-content a {
-            color: #3b82f6;
-            text-decoration: underline;
-            text-underline-offset: 2px;
-        }
-        
-        .article-content a:hover {
-            color: #1d4ed8;
-        }
-        
-        .dark .article-content a {
-            color: #60a5fa;
-        }
-        
-        .dark .article-content a:hover {
-            color: #93c5fd;
-        }
-        
-        /* Progress bar */
-        .reading-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 4px;
-            background: linear-gradient(to right, #1a237e, #0d47a1, #00897b);
-            z-index: 100;
-            transition: width 0.2s ease;
-        }
-        
-        /* Table of contents */
-        .toc-container {
-            max-height: calc(100vh - 8rem);
-            overflow-y: auto;
-        }
-        
-        .toc-link {
-            display: block;
-            padding: 0.5rem 0.75rem;
-            border-radius: 0.375rem;
-            color: #64748b;
-            transition: all 0.2s ease;
-            border-left: 3px solid transparent;
-        }
-        
-        .toc-link:hover, .toc-link.active {
-            color: #3b82f6;
-            background-color: #f1f5f9;
-            border-left-color: #3b82f6;
-        }
-        
-        .dark .toc-link:hover, .dark .toc-link.active {
-            background-color: #334155;
-            color: #60a5fa;
-            border-left-color: #60a5fa;
-        }
-    </style>
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1a237e',
-                        secondary: '#0d47a1',
-                        accent: '#ef6c00',
-                        success: '#00897b',
-                    }
-                }
-            }
-        }
-    </script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    * {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 1.25rem;
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+
+    .article-content {
+      line-height: 1.7;
+      font-size: 1.125rem;
+      color: #f8fafc;
+    }
+
+    .article-content h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin: 1.5rem 0 1.25rem;
+      line-height: 1.2;
+      color: #ffffff;
+    }
+
+    .article-content h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      color: #e2e8f0;
+    }
+
+    .article-content h3 {
+      font-size: 1.375rem;
+      font-weight: 600;
+      margin: 1.75rem 0 0.75rem;
+      color: #cbd5e1;
+    }
+
+    .article-content h4 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+      color: #94a3b8;
+    }
+
+    .article-content p,
+    .article-content ul,
+    .article-content ol,
+    .article-content blockquote,
+    .article-content pre,
+    .article-content table {
+      margin-bottom: 1.5rem;
+    }
+
+    .article-content img {
+      border-radius: 0.875rem;
+      margin: 2rem 0;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+      max-width: 100%;
+      height: auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .article-content blockquote {
+      border-left: 3px solid #60a5fa;
+      padding-left: 1.25rem;
+      color: #dbeafe;
+      font-style: italic;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .article-content code {
+      background-color: rgba(15, 23, 42, 0.7);
+      padding: 0.15rem 0.4rem;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      font-family: 'Menlo', 'Monaco', monospace;
+      color: #93c5fd;
+    }
+
+    .article-content pre {
+      background-color: rgba(15, 23, 42, 0.85);
+      color: #e0f2fe;
+      padding: 1.25rem;
+      border-radius: 0.875rem;
+      overflow-x: auto;
+      margin: 2rem 0;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+
+    .article-content pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+      font-size: 0.875rem;
+    }
+
+    .article-content ul,
+    .article-content ol {
+      padding-left: 1.5rem;
+    }
+
+    .article-content li {
+      margin-bottom: 0.5rem;
+      color: #f1f5f9;
+    }
+
+    .article-content a {
+      color: #93c5fd;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+
+    .article-content a:hover {
+      color: #bfdbfe;
+    }
+
+    /* Table styling for rich Markdown tables */
+    .article-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 0.75rem;
+      overflow: hidden;
+    }
+
+    .article-content th,
+    .article-content td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      color: #f1f5f9;
+    }
+
+    .article-content th {
+      background-color: rgba(30, 41, 59, 0.75);
+      font-weight: 600;
+    }
+
+    .article-content tr:last-child td {
+      border-bottom: none;
+    }
+  </style>
 </head>
 
-<body class="bg-gradient-to-br from-cyan-50 via-blue-50 to-teal-50 min-h-screen dark:bg-gray-900">
-
-    <!-- Reading Progress Bar -->
-    <div class="reading-progress"></div>
-
-    <!-- Navigation -->
-    <nav id="mainNav" class="fixed w-full top-0 z-50 glass transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16 md:h-20">
-                <a href="index.html" class="text-2xl md:text-3xl font-bold gradient-text">BioNova</a>
-                
-                <div class="flex items-center space-x-4">
-                    <!-- Dark mode toggle -->
-                    <div id="darkModeToggle" class="dark-mode-toggle" title="Toggle dark mode"></div>
-                    
-                    <!-- Mobile menu button -->
-                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-white/50 transition-colors">
-                        <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-                
-                <!-- Desktop menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">Home</a>
-                    <a href="articles.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">Publications</a>
-                    <a href="team.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">Team</a>
-                    <a href="services.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">About</a>
-                    <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">Contact</a>
-                </div>
-            </div>
-            
-            <!-- Mobile menu -->
-            <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2">
-                <div class="flex flex-col space-y-3">
-                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">Home</a>
-                    <a href="articles.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">Publications</a>
-                    <a href="team.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">Team</a>
-                    <a href="services.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">About</a>
-                    <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium text-center">Contact</a>
-                </div>
-            </div>
+<body class="min-h-screen text-white" style="background: linear-gradient(to bottom left, #0057b8, #a8e6cf);">
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    <div class="glass-card p-6 md:p-8">
+      <header class="mb-10 text-center">
+        <img id="article-image" class="w-full h-auto object-cover rounded-xl mb-6" alt="Article Image" />
+        <h1 id="article-title" class="text-2xl md:text-3xl font-bold mb-3 text-white">Loading...</h1>
+        <div class="text-blue-200 text-sm opacity-90">
+          <span id="article-author">By Unknown</span> •
+          <span id="article-date">Date Unknown</span>
         </div>
-    </nav>
+      </header>
 
-    <!-- Main Content -->
-    <main class="pt-24 pb-16">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Article Card -->
-            <div class="solid-card rounded-2xl overflow-hidden shadow-lg animate-fadeInUp">
-                <!-- Article Header -->
-                <div class="card-image-wrapper h-64 md:h-80 overflow-hidden">
-                    <img id="article-image" src="" alt="Article Image" class="w-full h-full object-cover" loading="lazy">
-                </div>
-                
-                <div class="p-6 md:p-8">
-                    <!-- Article Meta -->
-                    <div class="flex flex-wrap items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
-                        <span id="article-author" class="flex items-center mr-4 mb-2">
-                            <i class="far fa-user mr-2 text-accent"></i>
-                            <span>By Unknown</span>
-                        </span>
-                        <span id="article-date" class="flex items-center mr-4 mb-2">
-                            <i class="far fa-calendar-alt mr-2 text-accent"></i>
-                            <span>Date Unknown</span>
-                        </span>
-                        <span id="reading-time" class="flex items-center mb-2">
-                            <i class="far fa-clock mr-2 text-accent"></i>
-                            <span>Calculating...</span>
-                        </span>
-                    </div>
-                    
-                    <!-- Article Title -->
-                    <h1 id="article-title" class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                        Loading...
-                    </h1>
-                    
-                    <!-- Tags -->
-                    <div id="article-tags" class="flex flex-wrap gap-2 mb-6">
-                        <!-- Tags will be populated here -->
-                    </div>
-                    
-                    <!-- Table of Contents - Now inside article card -->
-                    <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 mb-8 border border-gray-200 dark:border-gray-700">
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
-                            <i class="fas fa-list mr-2 text-accent"></i>
-                            Table of Contents
-                        </h3>
-                        <div id="table-of-contents" class="space-y-1">
-                            <!-- TOC will be populated here -->
-                        </div>
-                    </div>
-                    
-                    <!-- Article Body -->
-                    <div id="article-body" class="article-content opacity-0 animate-fadeIn delay-300">
-                        <div class="flex justify-center py-12">
-                            <div class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Article Footer -->
-                    <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-                        <div class="flex justify-center">
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Published by BioNova</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <article id="article-body" class="article-content">
+        <div class="flex justify-center py-10">
+          <div class="w-10 h-10 border-4 border-blue-300 border-t-transparent rounded-full animate-spin"></div>
         </div>
-    </main>
+      </article>
+    </div>
+  </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300">
+  <div class="text-center mt-10">
+    <button
+      type="button"
+      onclick="window.history.back()"
+      class="px-5 py-2.5 text-white bg-white/15 hover:bg-white/25 backdrop-blur-sm rounded-lg font-medium transition-all duration-200"
+    >
+      ← Back
+    </button>
+  </div>
+
+   <!-- Footer -->
+   <footer class="bg-gray-900 text-gray-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
                 <!-- Brand -->
                 <div>
-                    <h3 class="text-white font-bold mb-2">BioNova</h3>
-                    <p class="text-white mb-2">
+                    <h3 class="glass-text-primary font-bold text-xl mb-4">BioNova</h3>
+                    <p class="glass-text-secondary mb-4">
                         Building sustainable futures through innovation, equity, and community-led action.
                     </p>
                 </div>
 
                 <!-- Quick Links -->
                 <div>
-                    <h4 class="font-bold text-white dark:text-white mb-4">Quick Links</h4>
-                    <ul class="space-y-2.5 text-sm">
-                        <li><a href="services.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
-                        <li><a href="articles.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
-                        <li><a href="team.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Our Team</a></li>
-                        <li><a href="contact.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Contact</a></li>
+                    <h4 class="font-bold glass-text-primary mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="services.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>About Us</a></li>
+                        <li><a href="articles.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Publications</a></li>
+                        <li><a href="team.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Our Team</a></li>
+                        <li><a href="contact.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Contact</a></li>
                     </ul>
                 </div>
 
                 <!-- Contact -->
                 <div>
-                    <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
-                    <ul class="space-y-3 text-sm">
+                    <h4 class="glass-text-primary font-semibold text-lg mb-6">Contact</h4>
+                    <ul class="space-y-4">
                         <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
-                            <span class="text-white mb-2">Dhaka, Bangladesh</span>
+                            <i class="fas fa-map-marker-alt mt-1 mr-4 text-white/80"></i>
+                            <span class="glass-text-secondary">Dhaka, Bangladesh</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
-                            <span class="text-white mb-2">info@bionova.org</span>
+                            <i class="fas fa-envelope mt-1 mr-4 text-white/80"></i>
+                            <span class="glass-text-secondary">info@bionova.org</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
-                            <span class="text-white mb-2">+880 17XX-XXXXXX</span>
+                            <i class="fas fa-phone mt-1 mr-4 text-white/80"></i>
+                            <span class="glass-text-secondary">+880 17XX-XXXXXX</span>
                         </li>
                     </ul>
                 </div>
 
                 <!-- Resources -->
                 <div>
-                    <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
-                    <ul class="space-y-2.5 text-sm">
-                        <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Annual Reports</a></li>
-                        <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Research Papers</a></li>
-                        <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Case Studies</a></li>
+                    <h4 class="glass-text-primary font-semibold text-lg mb-6">Resources</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Annual Reports</a></li>
+                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Research Papers</a></li>
+                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Case Studies</a></li>
                     </ul>
                 </div>
             </div>
 
             <!-- Copyright -->
-            <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
-                <p>&copy; 2025 BioNova. All rights reserved.</p>
-                <div class="mt-3 space-x-4">
-                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
-                    <span class="text-gray-600">•</span>
-                    <a href="#" class="hover:text-white transition-colors">Terms</a>
-                    <span class="text-gray-600">•</span>
-                    <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+            <div class="border-t border-white/20 mt-12 pt-8 text-center">
+                <p class="glass-text-muted">&copy; 2025 BioNova. All rights reserved.</p>
+                <div class="mt-4 space-x-6">
+                    <a href="#" class="glass-text-muted hover:text-white transition-colors">Privacy</a>
+                    <span class="glass-text-muted">•</span>
+                    <a href="#" class="glass-text-muted hover:text-white transition-colors">Terms</a>
+                    <span class="glass-text-muted">•</span>
+                    <a href="contact.html" class="glass-text-muted hover:text-white transition-colors">Contact</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // --- YAML Parser ---
-        function parseYAML(yamlStr) {
-            const result = {};
-            yamlStr.trim().split('\n').forEach(line => {
-                const idx = line.indexOf(':');
-                if (idx === -1) return;
-                let key = line.slice(0, idx).trim();
-                let val = line.slice(idx + 1).trim().replace(/^[\"']|[\"']$/g, '');
-                if (val === 'true') val = true;
-                if (val === 'false') val = false;
-                if (!isNaN(val) && val !== '') val = Number(val);
-                result[key] = val;
-            });
-            return result;
+ 
+  <script>
+    // --- YAML Parser ---
+    function parseYAML(yamlStr) {
+      const result = {};
+      yamlStr.trim().split('\n').forEach(line => {
+        const idx = line.indexOf(':');
+        if (idx === -1) return;
+        let key = line.slice(0, idx).trim();
+        let val = line.slice(idx + 1).trim().replace(/^[\"']|[\"']$/g, '');
+        if (val === 'true') val = true;
+        if (val === 'false') val = false;
+        if (!isNaN(val) && val !== '') val = Number(val);
+        result[key] = val;
+      });
+      return result;
+    }
+
+    // --- Enhanced Markdown to HTML (supports tables, all block elements) ---
+    function markdownToHTML(md) {
+      let html = md
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+
+      // Code blocks
+      html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+
+      // Headings
+      html = html.replace(/^###### (.+)$/gm, '<h6>$1</h6>');
+      html = html.replace(/^##### (.+)$/gm, '<h5>$1</h5>');
+      html = html.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
+      html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+      html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+      html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+
+      // Bold / Italic
+      html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+      // Inline code
+      html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+      // Links & Images
+      html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+      html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img alt="$1" src="$2" />');
+
+      // Blockquotes
+      html = html.replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>');
+
+      // Tables (GitHub-style)
+      html = html.replace(/^\|(.+)\|\s*$/gm, (match, header) => {
+        if (!match.includes('\n')) {
+          const cells = header.split('|').map(c => c.trim()).filter(c => c);
+          if (cells.length === 0) return match;
+          const ths = cells.map(c => `<th>${c}</th>`).join('');
+          return `<table><thead><tr>${ths}</tr></thead><tbody>`;
         }
+        return match;
+      });
 
-        // --- Markdown to HTML converter ---
-        function markdownToHTML(md) {
-            let html = md;
+      // Table separator row (e.g. |---|---|) → ignore
+      html = html.replace(/^\|(\s*[-:]+\s*\|)+\s*$/gm, '');
 
-            // Escape HTML
-            html = html.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      // Table data rows
+      html = html.replace(/^\|(.+)\|\s*$/gm, (match, row) => {
+        const cells = row.split('|').map(c => c.trim()).filter(c => c);
+        if (cells.length === 0) return '';
+        const tds = cells.map(c => `<td>${c}</td>`).join('');
+        return `<tr>${tds}</tr>`;
+      });
 
-            // Code blocks
-            html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+      // Close table
+      html = html.replace(/(<tbody>.*<\/tbody>)/gs, '<tbody>$1</tbody></table>');
 
-            // Headings
-            html = html.replace(/^### (.+)$/gm, '<h3 id="$1">$1</h3>');
-            html = html.replace(/^## (.+)$/gm, '<h2 id="$1">$1</h2>');
-            html = html.replace(/^# (.+)$/gm, '<h1 id="$1">$1</h1>');
+      // Lists
+      html = html.replace(/^(\s*)[-*+]\s+(.+)$/gm, '<li>$2</li>');
+      html = html.replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>');
+      html = html.replace(/^(\s*)\d+\.\s+(.+)$/gm, '<li>$2</li>');
+      html = html.replace(/(<ul>.*?<\/ul>|<li>.*<\/li>)/gs, match => {
+        if (match.startsWith('<li>') && !match.includes('<ul>')) return `<ol>${match}</ol>`;
+        return match;
+      });
 
-            // Bold / Italic
-            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-            html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      // Paragraphs
+      html = html
+        .split('\n\n')
+        .map(paragraph => {
+          paragraph = paragraph.trim();
+          if (!paragraph || /^<(h[1-6]|ul|ol|pre|blockquote|img|table|tr|th|td|tbody|thead)/.test(paragraph)) {
+            return paragraph;
+          }
+          return `<p>${paragraph}</p>`;
+        })
+        .join('\n');
 
-            // Inline code
-            html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+      return html;
+    }
 
-            // Links
-            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+    // --- Load Article ---
+    async function loadArticle() {
+      const id = sessionStorage.getItem('selectedFile');
+      if (!id || !id.startsWith('articles/')) {
+        document.getElementById('article-body').innerHTML = '<p class="text-center text-red-300 mt-6">Article not found.</p>';
+        return;
+      }
 
-            // Images
-            html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img alt="$1" src="$2" class="img-fluid my-3"/>');
+      try {
+        const response = await fetch(`/content/${id}`);
+        const text = await response.text();
 
-            // Blockquotes
-            html = html.replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>');
+        const parts = text.split('---');
+        if (parts.length < 3) throw new Error('Invalid Markdown format');
 
-            // Tables
-            html = html.replace(/^\|(.+)\|\n\|([\s:-]+)\|\n((\|.+\|\n)+)/gm, (match, header, divider, rows) => {
-                const headers = header.split('|').map(h => `<th>${h.trim()}</th>`).join('');
-                const body = rows.trim().split('\n').map(r => {
-                    const cols = r.split('|').map(c => `<td>${c.trim()}</td>`).join('');
-                    return `<tr>${cols}</tr>`;
-                }).join('');
-                return `<div class="table-responsive"><table class="table">${headers ? `<thead><tr>${headers}</tr></thead>` : ''}<tbody>${body}</tbody></table></div>`;
-            });
+        const frontmatter = parts[1];
+        const body = parts.slice(2).join('---');
+        const meta = parseYAML(frontmatter);
+        const htmlBody = markdownToHTML(body);
 
-            // Lists
-            html = html.replace(/^\s*[-*+] (.+)$/gm, '<li>$1</li>');
-            html = html.replace(/(<li>.*<\/li>)/gs, '<ul class="ms-3">$1</ul>');
+        document.getElementById('article-image').src = meta.image || 'https://via.placeholder.com/800x400/e2e8f0/64748b?text=Article+Image';
+        document.getElementById('article-title').textContent = meta.title || 'Untitled';
+        document.getElementById('article-author').textContent = `By ${meta.author || 'BioNova Team'}`;
+        document.getElementById('article-date').textContent = meta.date
+          ? new Date(meta.date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })
+          : 'Date Unknown';
+        document.getElementById('article-body').innerHTML = htmlBody;
+        document.title = `${meta.title || 'Article'} - BioNova`;
+      } catch (error) {
+        console.error('Failed to load article:', error);
+        document.getElementById('article-body').innerHTML = '<p class="text-center text-red-300 mt-6">Failed to load article.</p>';
+      }
+    }
 
-            html = html.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
-            html = html.replace(/(<li>.*<\/li>)/gs, '<ol class="ms-3">$1</ol>');
-
-            // Paragraphs
-            html = html.replace(/(^|\n)(?!<h|<ul|<ol|<pre|<img|<table|<blockquote|<p|<\/)([^\n]+)(?=\n|$)/g, '$1<p>$2</p>');
-
-            return html;
-        }
-
-        // --- Calculate reading time ---
-        function calculateReadingTime(text) {
-            const wordsPerMinute = 200;
-            const words = text.split(/\s+/).length;
-            return Math.ceil(words / wordsPerMinute);
-        }
-
-        // --- Generate table of contents ---
-        function generateTableOfContents() {
-            const headings = document.querySelectorAll('.article-content h2, .article-content h3');
-            const tocContainer = document.getElementById('table-of-contents');
-            
-            if (headings.length === 0) {
-                tocContainer.innerHTML = '<p class="text-gray-500 dark:text-gray-400">No headings available</p>';
-                return;
-            }
-            
-            let tocHTML = '';
-            headings.forEach((heading, index) => {
-                // Ensure heading has an ID
-                if (!heading.id) {
-                    heading.id = `heading-${index}`;
-                }
-                
-                const level = heading.tagName.toLowerCase();
-                const indentClass = level === 'h3' ? 'ml-4' : '';
-                
-                tocHTML += `
-                    <a href="#${heading.id}" class="toc-link ${indentClass}" data-target="${heading.id}">
-                        ${heading.textContent}
-                    </a>
-                `;
-            });
-            
-            tocContainer.innerHTML = tocHTML;
-            
-            // Add scroll spy functionality
-            window.addEventListener('scroll', highlightTOC);
-        }
-
-        // --- Highlight active TOC item ---
-        function highlightTOC() {
-            const headings = document.querySelectorAll('.article-content h2, .article-content h3');
-            const tocLinks = document.querySelectorAll('.toc-link');
-            
-            let currentActive = null;
-            
-            headings.forEach(heading => {
-                const rect = heading.getBoundingClientRect();
-                if (rect.top <= 100) {
-                    currentActive = heading.id;
-                }
-            });
-            
-            tocLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-target') === currentActive) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // --- Update reading progress ---
-        function updateReadingProgress() {
-            const progressBar = document.querySelector('.reading-progress');
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight - windowHeight;
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const progress = (scrollTop / documentHeight) * 100;
-            
-            progressBar.style.width = `${progress}%`;
-        }
-
-        // --- Main article loading function ---
-        async function loadArticle() {
-            const id = sessionStorage.getItem('selectedFile');
-            if (!id || !id.startsWith('articles/')) {
-                document.getElementById('article-body').innerHTML = '<div class="alert alert-danger">Error: Article not found.</div>';
-                document.title = 'Article Not Found';
-                return;
-            }
-
-            try {
-                const response = await fetch(`/content/${id}`);
-                if (!response.ok) throw new Error('Network response was not ok');
-                const text = await response.text();
-
-                const parts = text.split('---');
-                if (parts.length < 3) throw new Error('Invalid Markdown format');
-
-                const frontmatter = parts[1];
-                const body = parts.slice(2).join('---');
-                const meta = parseYAML(frontmatter);
-                const htmlBody = markdownToHTML(body);
-                const readingTime = calculateReadingTime(body);
-
-                // Update page content
-                document.getElementById('article-image').src = meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article+Image';
-                document.getElementById('article-image').alt = meta.title || 'Article Image';
-                document.getElementById('article-title').textContent = meta.title || 'Untitled';
-                document.getElementById('article-author').innerHTML = `<i class="far fa-user mr-2 text-accent"></i> By ${meta.author || 'BioNova Team'}`;
-                document.getElementById('article-date').innerHTML = `<i class="far fa-calendar-alt mr-2 text-accent"></i> ${meta.date ? new Date(meta.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Unknown'}`;
-                document.getElementById('reading-time').innerHTML = `<i class="far fa-clock mr-2 text-accent"></i> ${readingTime} min read`;
-                document.getElementById('article-body').innerHTML = htmlBody;
-                document.title = `${meta.title || 'Article'} - BioNova`;
-
-                // Add tags if available
-                const tagsContainer = document.getElementById('article-tags');
-                if (meta.tags && Array.isArray(meta.tags) && meta.tags.length > 0) {
-                    tagsContainer.innerHTML = meta.tags.map(tag => 
-                        `<span class="inline-block bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">${tag}</span>`
-                    ).join('');
-                } else {
-                    tagsContainer.innerHTML = '';
-                }
-
-                // Generate table of contents
-                setTimeout(generateTableOfContents, 100);
-
-                // Fade in content
-                setTimeout(() => {
-                    document.getElementById('article-body').style.opacity = '1';
-                }, 500);
-
-            } catch (error) {
-                console.error('Error loading article:', error);
-                document.getElementById('article-body').innerHTML = `
-                    <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-8 text-center">
-                        <i class="fas fa-exclamation-triangle text-4xl text-red-400 mb-4"></i>
-                        <h3 class="text-xl text-red-600 dark:text-red-400 mb-2">Error Loading Article</h3>
-                        <p class="text-red-500 dark:text-red-300">We couldn't load the article content. Please try again later.</p>
-                        <button class="mt-4 px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300" onclick="loadArticle()">
-                            Try Again
-                        </button>
-                    </div>
-                `;
-                document.title = 'Error - BioNova';
-            }
-        }
-
-        // --- Event Listeners ---
-        document.addEventListener('DOMContentLoaded', function() {
-            loadArticle();
-            
-            // Set up reading progress bar
-            window.addEventListener('scroll', updateReadingProgress);
-            
-            // Mobile menu toggle
-            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-                document.getElementById('mobileMenu').classList.toggle('hidden');
-            });
-
-            // Navbar scroll effect
-            window.addEventListener('scroll', () => {
-                const nav = document.getElementById('mainNav');
-                if (window.scrollY > 50) {
-                    nav.classList.add('navbar-scrolled');
-                } else {
-                    nav.classList.remove('navbar-scrolled');
-                }
-            });
-
-            // Dark mode toggle
-            const darkModeToggle = document.getElementById('darkModeToggle');
-            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-            
-            // Check for saved theme preference or respect OS preference
-            if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDarkScheme.matches)) {
-                document.documentElement.classList.add('dark');
-                darkModeToggle.classList.add('active');
-            }
-            
-            darkModeToggle.addEventListener('click', () => {
-                document.documentElement.classList.toggle('dark');
-                darkModeToggle.classList.toggle('active');
-                
-                // Save user preference
-                if (document.documentElement.classList.contains('dark')) {
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-        });
-    </script>
+    document.addEventListener('DOMContentLoaded', loadArticle);
+  </script>
 </body>
 </html>

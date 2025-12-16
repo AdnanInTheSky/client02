@@ -1,11 +1,6 @@
 {
-  "articles": [
-    "articles/dummy_article.md"
-  ],
-  "teams": [
-    "teams/dummy_member.md"
-  ],
-  "services": [
-    "services/dummy_service.md"
-  ]
+  "articles": ["articles/2025-10-28-prototype-2.md"],
+  "teams": ["teams/2025-10-26-adnan.md"],
+  "services": ["services/2025-10-27-student.md"],
+  "announcements": ["announcement/update1.md"]
 }

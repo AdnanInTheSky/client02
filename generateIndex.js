@@ -30,7 +30,7 @@ async function scanFolder(folderPath) {
 async function generateIndex() {
   console.log("📦 Generating content index...");
 
-  const collections = ["articles", "teams", "services"];
+  const collections = ["articles", "teams", "services", "announcements"];
   const indexData = {};
 
   for (const name of collections) {

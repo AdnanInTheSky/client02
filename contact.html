@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Us - Your NGO Name</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
         :root {
             --primary: #14b8a6;
             --primary-dark: #0d9488;
             --accent: #f97316;
-            --light-bg: #f8fafc;
             --text: #1e293b;
             --text-light: #64748b;
-            --card-bg: #ffffff;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            --radius: 16px;
+            --card-bg: rgba(255, 255, 255, 0.92);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --radius: 20px;
             --transition: all 0.3s ease;
         }
 
@@ -27,28 +27,43 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #fff;
             color: var(--text);
             line-height: 1.7;
-            overflow-x: hidden;
+            min-height: 100vh;
+            /* Beautiful diagonal gradient background */
+            background: linear-gradient(135deg, rgba(17, 23, 87, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
+            background-attachment: fixed;
         }
 
-        /* Header */
+        /* Subtle overlay pattern (optional elegance) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(120, 219, 226, 0.15), transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.15), transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Header - Semi-transparent on colored bg */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 1000;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            padding: 1.2rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         nav {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 2.5rem;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1.5rem;
@@ -58,7 +73,7 @@
             color: var(--text);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 1.05rem;
             position: relative;
             padding: 0.5rem 0;
             transition: var(--transition);
@@ -84,86 +99,119 @@
             width: 100%;
         }
 
-        /* Main */
+        /* Main Content */
         main {
-            margin-top: 80px;
-            padding: 4rem 2rem;
+            margin-top: 100px;
+            padding: 5rem 2rem;
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
+            position: relative;
+            z-index: 1;
         }
 
         .page-header {
             text-align: center;
-            margin-bottom: 3.5rem;
-            max-width: 700px;
+            margin-bottom: 4rem;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .page-header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
+            font-size: 3.2rem;
             font-weight: 700;
-            color: var(--text);
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             margin-bottom: 1rem;
         }
 
         .page-header p {
-            color: var(--text-light);
-            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.2rem;
+            font-weight: 400;
         }
 
         .page-header::after {
             content: '';
             display: block;
-            width: 60px;
-            height: 4px;
+            width: 80px;
+            height: 5px;
             background: var(--accent);
-            margin: 1.25rem auto 0;
-            border-radius: 2px;
+            margin: 1.5rem auto 0;
+            border-radius: 3px;
         }
 
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 3.5rem;
+            margin-top: 2rem;
         }
 
         @media (max-width: 768px) {
             .contact-container {
                 grid-template-columns: 1fr;
-                gap: 2.5rem;
+                gap: 3rem;
             }
+            .page-header h1 { font-size: 2.7rem; }
         }
 
-        /* Contact Info */
-        .contact-info h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+        /* Cards with glassmorphism effect */
+        .contact-info,
+        .google-form-placeholder {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-info h2,
+        .google-form-placeholder h2 {
+            font-size: 1.7rem;
+            margin-bottom: 1.8rem;
             color: var(--text);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .contact-info h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
         }
 
         .info-item {
             display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            gap: 1.2rem;
+            margin-bottom: 1.8rem;
             align-items: flex-start;
         }
 
         .info-item i {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: var(--primary);
-            flex-shrink: 0;
+            margin-top: 0.2rem;
         }
 
         .info-text h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.25rem;
+            font-size: 1.15rem;
+            margin-bottom: 0.4rem;
             font-weight: 600;
+            color: var(--text);
         }
 
-        .info-text p, .info-text a {
+        .info-text p,
+        .info-text a {
             color: var(--text-light);
             text-decoration: none;
             transition: var(--transition);
@@ -173,62 +221,49 @@
             color: var(--primary);
         }
 
-        /* Placeholder for Google Form */
+        /* Form Placeholder */
         .google-form-placeholder {
-            background: var(--light-bg);
-            border-radius: var(--radius);
-            padding: 2.5rem;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100%;
-        }
-
-        .google-form-placeholder h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text);
         }
 
         .google-form-placeholder p {
             color: var(--text-light);
-            margin-bottom: 1.5rem;
-            max-width: 500px;
+            margin-bottom: 1.8rem;
+            max-width: 400px;
+            font-size: 1.05rem;
         }
 
         .coming-soon {
             display: inline-block;
             background: var(--accent);
             color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
+            padding: 0.6rem 1.6rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
         }
 
         /* Footer */
         footer {
-            background: var(--text);
-            color: #cbd5e1;
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            color: #e2e8f0;
             text-align: center;
-            padding: 2.5rem 2rem;
-            font-size: 0.95rem;
-            margin-top: 4rem;
-        }
-
-        .icon {
-            font-size: 1.4rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 28px;
-            height: 28px;
+            padding: 3rem 2rem;
+            font-size: 1rem;
+            margin-top: 6rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
 <body>
+
     <header id="header">
         <nav>
             <a href="index.html">Home</a>
@@ -249,24 +284,28 @@
             <div class="contact-info">
                 <h2>Contact Information</h2>
                 <div class="info-item">
+                    <i class="fas fa-envelope"></i>
                     <div class="info-text">
                         <h3>Email</h3>
                         <a href="mailto:info@yourngo.org">info@yourngo.org</a>
                     </div>
                 </div>
                 <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
                     <div class="info-text">
                         <h3>Headquarters</h3>
                         <p>123 Hope Street, Suite 100<br>San Francisco, CA 94107, USA</p>
                     </div>
                 </div>
                 <div class="info-item">
+                    <i class="fas fa-globe"></i>
                     <div class="info-text">
                         <h3>Global Reach</h3>
                         <p>Operating in 25+ countries across Africa, Asia, and Latin America.</p>
                     </div>
                 </div>
                 <div class="info-item">
+                    <i class="fas fa-clock"></i>
                     <div class="info-text">
                         <h3>Office Hours</h3>
                         <p>Monday–Friday, 9:00 AM – 5:00 PM PST</p>
@@ -283,7 +322,8 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Your NGO Name. All rights reserved.</p>
+        <p>© 2025 Your NGO Name. All rights reserved.</p>
     </footer>
+
 </body>
 </html>

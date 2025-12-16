@@ -21,74 +21,10 @@
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
         
-        /* Dark mode */
-        .dark {
-            background-color: #0f172a;
-            color: #f8fafc;
-        }
-        
-        .dark .bg-white {
-            background-color: #1e293b;
-        }
-        
-        .dark .bg-gradient-to-br {
-            background: linear-gradient(to bottom right, #0f172a, #1e293b, #334155);
-        }
-        
-        .dark .text-gray-900 {
-            color: #f1f5f9;
-        }
-        
-        .dark .text-gray-800 {
-            color: #e2e8f0;
-        }
-        
-        .dark .text-gray-700 {
-            color: #cbd5e1;
-        }
-        
-        .dark .text-gray-600 {
-            color: #94a3b8;
-        }
-        
-        .dark .text-gray-500 {
-            color: #64748b;
-        }
-        
-        .dark .text-gray-400 {
-            color: #475569;
-        }
-        
-        .dark .text-gray-300 {
-            color: #334155;
-        }
-        
-        .dark .glass {
-            background: rgba(30, 41, 59, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #f1f5f9;
-        }
-        
-        .dark .glass-card {
-            background: rgba(30, 41, 59, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #f1f5f9;
-        }
-        
-        .dark .glass-card:hover {
-            background: rgba(30, 41, 59, 0.95);
-        }
-        
-        .dark .bg-white\/50 {
-            background-color: rgba(30, 41, 59, 0.7);
-        }
-        
-        .dark .hover\:bg-white\/50:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .dark .hover\:text-primary:hover {
-            color: #60a5fa;
+        /* Blue to green gradient background */
+        body {
+          background: linear-gradient(135deg, rgba(17, 23, 87, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
+          min-height: 100vh;
         }
         
         /* Smooth scroll */
@@ -96,58 +32,35 @@
             scroll-behavior: smooth;
         }
         
-        /* Glassmorphism utility classes */
-        .glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+        /* Pure Glass Effects */
+        .pure-glass {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
         
-        .glass-dark {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+        .pure-glass-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .glass-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            background: rgba(255, 255, 255, 0.9);
+        .pure-glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.25);
         }
         
-        /* Solid card style */
-        .solid-card {
-            background: white;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .solid-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .dark .solid-card {
-            background: #1e293b;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #f1f5f9;
-        }
-        
-        .dark .solid-card:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        .pure-glass-light {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         /* Animations */
@@ -167,6 +80,11 @@
             to { opacity: 1; }
         }
         
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
         .animate-fadeInUp {
             animation: fadeInUp 0.8s ease-out forwards;
         }
@@ -175,66 +93,22 @@
             animation: fadeIn 0.8s ease-out forwards;
         }
         
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
         .delay-100 { animation-delay: 0.1s; }
         .delay-200 { animation-delay: 0.2s; }
         .delay-300 { animation-delay: 0.3s; }
-        
-        /* Navbar scroll effect */
-        .navbar-scrolled {
-            background: rgba(255, 255, 255, 0.95) !important;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-        }
-        
-        .dark .navbar-scrolled {
-            background: rgba(30, 41, 59, 0.95) !important;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-        }
+        .delay-400 { animation-delay: 0.4s; }
         
         /* Gradient text */
         .gradient-text {
-            background: linear-gradient(135deg, #1a237e, #0d47a1, #00897b);
+            background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-        }
-        
-        .dark .gradient-text {
-            background: linear-gradient(135deg, #60a5fa, #3b82f6, #10b981);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Dark mode toggle */
-        .dark-mode-toggle {
-            position: relative;
-            width: 60px;
-            height: 30px;
-            background: #cbd5e1;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .dark-mode-toggle.active {
-            background: #1e293b;
-        }
-        
-        .dark-mode-toggle::before {
-            content: '';
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            background: white;
-            border-radius: 50%;
-            top: 3px;
-            left: 3px;
-            transition: transform 0.3s;
-        }
-        
-        .dark-mode-toggle.active::before {
-            transform: translateX(30px);
-            background: #fbbf24;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
         }
         
         /* Team member specific styles */
@@ -275,24 +149,19 @@
         }
         
         .team-content blockquote {
-            border-left: 4px solid #3b82f6;
+            border-left: 4px solid rgba(255, 255, 255, 0.5);
             padding-left: 1.5rem;
             margin: 1.5rem 0;
             font-style: italic;
-            color: #64748b;
+            color: rgba(255, 255, 255, 0.9);
         }
         
         .team-content code {
-            background-color: #f1f5f9;
+            background-color: rgba(255, 255, 255, 0.2);
             padding: 0.125rem 0.375rem;
             border-radius: 0.25rem;
             font-size: 0.875rem;
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-        }
-        
-        .dark .team-content code {
-            background-color: #334155;
-            color: #e2e8f0;
         }
         
         .team-content ul, .team-content ol {
@@ -314,21 +183,12 @@
         .team-content th, .team-content td {
             padding: 0.75rem 1rem;
             text-align: left;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .team-content th {
-            background-color: #f8fafc;
+            background-color: rgba(255, 255, 255, 0.3);
             font-weight: 600;
-        }
-        
-        .dark .team-content th {
-            background-color: #334155;
-            color: #f1f5f9;
-        }
-        
-        .dark .team-content td {
-            border-color: #475569;
         }
         
         /* Profile image styling */
@@ -336,28 +196,28 @@
             position: relative;
             overflow: hidden;
             border-radius: 50%;
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 220px;
             margin: 0 auto;
-            border: 4px solid #e2e8f0;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .dark .profile-image-wrapper {
-            border-color: #475569;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .profile-image-wrapper:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: scale(1.08) rotate(5deg);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.7);
         }
         
         .profile-image-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .profile-image-wrapper:hover img {
@@ -367,36 +227,50 @@
         /* Role badge */
         .role-badge {
             display: inline-block;
-            background: linear-gradient(135deg, #1a237e, #0d47a1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
             color: white;
-            padding: 0.5rem 1.5rem;
+            padding: 0.75rem 2rem;
             border-radius: 50px;
             font-weight: 600;
             font-size: 1.1rem;
             margin: 1rem 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
         
-        .dark .role-badge {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        .role-badge:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
         }
         
         /* Contact info styling */
         .contact-info {
-            background: #f8fafc;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .dark .contact-info {
-            background: #334155;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin: 2.5rem 0;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
         
         .contact-item {
             display: flex;
             align-items: center;
-            margin-bottom: 1rem;
-            padding: 0.5rem 0;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(10px);
         }
         
         .contact-item:last-child {
@@ -404,31 +278,77 @@
         }
         
         .contact-icon {
-            width: 40px;
-            height: 40px;
-            background: #3b82f6;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(16, 185, 129, 0.8) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 1rem;
+            margin-right: 1.5rem;
             color: white;
+            font-size: 1.2rem;
         }
         
         /* Improved focus states for accessibility */
         a:focus, button:focus {
-            outline: 2px solid #3b82f6;
-            outline-offset: 2px;
+            outline: 2px solid rgba(255, 255, 255, 0.5);
+            outline-offset: 4px;
+            border-radius: 8px;
         }
         
-        .dark a:focus, .dark button:focus {
-            outline: 2px solid #60a5fa;
+        /* Back button styles */
+        .back-button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(15px);
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 
+                0 10px 20px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            letter-spacing: 1px;
+        }
+        
+        /* Text colors for glass theme */
+        .glass-text-primary {
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .glass-text-secondary {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .glass-text-muted {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Floating orbs decoration */
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+            filter: blur(20px);
+            z-index: -1;
         }
     </style>
     
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -443,85 +363,59 @@
     </script>
 </head>
 
-<body class="bg-gradient-to-br from-cyan-50 via-blue-50 to-teal-50 min-h-screen dark:bg-gray-900">
+<body class="relative overflow-x-hidden">
 
-    <!-- Navigation -->
-    <nav id="mainNav" class="fixed w-full top-0 z-50 glass transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16 md:h-20">
-                <a href="index.html" class="text-2xl md:text-3xl font-bold gradient-text">BioNova</a>
-                
-                <div class="flex items-center space-x-4">
-                    <!-- Dark mode toggle -->
-                    <div id="darkModeToggle" class="dark-mode-toggle" title="Toggle dark mode"></div>
-                    
-                    <!-- Mobile menu button -->
-                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-white/50 transition-colors">
-                        <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-                
-                <!-- Desktop menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">Home</a>
-                    <a href="articles.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">Publications</a>
-                    <a href="team.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">Team</a>
-                    <a href="services.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors">About</a>
-                    <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">Contact</a>
-                </div>
-            </div>
-            
-            <!-- Mobile menu -->
-            <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2">
-                <div class="flex flex-col space-y-3">
-                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">Home</a>
-                    <a href="articles.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">Publications</a>
-                    <a href="team.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">Team</a>
-                    <a href="services.html" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors py-2">About</a>
-                    <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium text-center">Contact</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <!-- Floating orbs decoration -->
+    <div class="floating-orb animate-float" style="width: 300px; height: 300px; top: 10%; left: 5%;"></div>
+    <div class="floating-orb animate-float" style="width: 200px; height: 200px; top: 70%; right: 10%; animation-delay: 1s;"></div>
+    <div class="floating-orb animate-float" style="width: 150px; height: 150px; bottom: 20%; left: 15%; animation-delay: 2s;"></div>
 
     <!-- Main Content -->
-    <main class="pt-24 pb-16">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="solid-card rounded-2xl overflow-hidden shadow-lg animate-fadeInUp">
+    <main class="pt-8 pb-16 px-4 relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <div class="pure-glass-card rounded-3xl overflow-hidden animate-fadeInUp">
                 <div class="p-8 md:p-12">
                     <!-- Team Member Header -->
-                    <div class="text-center mb-8">
-                        <div class="profile-image-wrapper mb-6">
+                    <div class="text-center mb-12">
+                        <div class="profile-image-wrapper mb-8">
                             <img id="team-image" src="" alt="Team Member" class="w-full h-full object-cover" loading="lazy"
-                                 onerror="this.src='https://via.placeholder.com/400x400/e2e8f0/64748b?text=Team+Member'">
+                                 onerror="this.src='https://via.placeholder.com/400x400/ffffff/10b981?text=BioNova+Team'">
                         </div>
                         
-                        <h1 id="team-name" class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                        <h1 id="team-name" class="text-4xl md:text-5xl font-bold glass-text-primary mb-6">
                             Loading...
                         </h1>
                         
-                        <div id="team-role" class="role-badge animate-fadeIn delay-100">
+                        <div id="team-role" class="role-badge animate-fadeIn delay-100 inline-block">
                             <!-- Role will be populated here -->
                         </div>
                     </div>
 
                     <!-- Contact Information -->
                     <div id="contact-info" class="contact-info animate-fadeIn delay-200 hidden">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
-                            <i class="fas fa-envelope mr-3 text-accent"></i>
+                        <h3 class="text-xl font-bold glass-text-primary mb-6 flex items-center justify-center">
+                            <i class="fas fa-envelope mr-3 text-white"></i>
                             Contact Information
                         </h3>
-                        <div id="contact-details">
+                        <div id="contact-details" class="max-w-2xl mx-auto">
                             <!-- Contact details will be populated here -->
                         </div>
                     </div>
 
                     <!-- Team Member Bio -->
-                    <div id="team-bio" class="team-content opacity-0 animate-fadeIn delay-300">
+                    <div id="team-bio" class="team-content opacity-0 animate-fadeIn delay-300 glass-text-secondary">
                         <div class="flex justify-center py-12">
-                            <div class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                            <div class="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Back Button at Bottom -->
+                    <div class="mt-16 pt-10 border-t border-white/20 animate-fadeIn delay-400">
+                        <div class="flex justify-center">
+                            <a href="team.html" class="back-button inline-flex items-center px-10 py-4">
+                                <i class="fas fa-arrow-left mr-4 text-lg"></i>
+                                Back to Team Page
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -529,73 +423,75 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300">
+ <!-- Footer -->
+   <footer class="bg-gray-900 text-gray-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
                 <!-- Brand -->
                 <div>
-                    <h3 class="text-white font-bold mb-2">BioNova</h3>
-                    <p class="text-white mb-2">
+                    <h3 class="glass-text-primary font-bold text-xl mb-4">BioNova</h3>
+                    <p class="glass-text-secondary mb-4">
                         Building sustainable futures through innovation, equity, and community-led action.
                     </p>
                 </div>
 
                 <!-- Quick Links -->
                 <div>
-                    <h4 class="font-bold text-white dark:text-white mb-4">Quick Links</h4>
-                    <ul class="space-y-2.5 text-sm">
-                        <li><a href="services.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
-                        <li><a href="articles.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
-                        <li><a href="team.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Our Team</a></li>
-                        <li><a href="contact.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Contact</a></li>
+                    <h4 class="font-bold glass-text-primary mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="services.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>About Us</a></li>
+                        <li><a href="articles.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Publications</a></li>
+                        <li><a href="team.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Our Team</a></li>
+                        <li><a href="contact.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Contact</a></li>
                     </ul>
                 </div>
 
                 <!-- Contact -->
                 <div>
-                    <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
-                    <ul class="space-y-3 text-sm">
+                    <h4 class="glass-text-primary font-semibold text-lg mb-6">Contact</h4>
+                    <ul class="space-y-4">
                         <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
-                            <span class="text-white mb-2">Dhaka, Bangladesh</span>
+                            <i class="fas fa-map-marker-alt mt-1 mr-4 text-white/80"></i>
+                            <span class="glass-text-secondary">Dhaka, Bangladesh</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
-                            <span class="text-white mb-2">info@bionova.org</span>
+                            <i class="fas fa-envelope mt-1 mr-4 text-white/80"></i>
+                            <span class="glass-text-secondary">info@bionova.org</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
-                            <span class="text-white mb-2">+880 17XX-XXXXXX</span>
+                            <i class="fas fa-phone mt-1 mr-4 text-white/80"></i>
+                            <span class="glass-text-secondary">+880 17XX-XXXXXX</span>
                         </li>
                     </ul>
                 </div>
 
                 <!-- Resources -->
                 <div>
-                    <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
-                    <ul class="space-y-2.5 text-sm">
-                        <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Annual Reports</a></li>
-                        <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Research Papers</a></li>
-                        <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Case Studies</a></li>
+                    <h4 class="glass-text-primary font-semibold text-lg mb-6">Resources</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Annual Reports</a></li>
+                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Research Papers</a></li>
+                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Case Studies</a></li>
                     </ul>
                 </div>
             </div>
 
             <!-- Copyright -->
-            <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
-                <p>&copy; 2025 BioNova. All rights reserved.</p>
-                <div class="mt-3 space-x-4">
-                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
-                    <span class="text-gray-600">•</span>
-                    <a href="#" class="hover:text-white transition-colors">Terms</a>
-                    <span class="text-gray-600">•</span>
-                    <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+            <div class="border-t border-white/20 mt-12 pt-8 text-center">
+                <p class="glass-text-muted">&copy; 2025 BioNova. All rights reserved.</p>
+                <div class="mt-4 space-x-6">
+                    <a href="#" class="glass-text-muted hover:text-white transition-colors">Privacy</a>
+                    <span class="glass-text-muted">•</span>
+                    <a href="#" class="glass-text-muted hover:text-white transition-colors">Terms</a>
+                    <span class="glass-text-muted">•</span>
+                    <a href="contact.html" class="glass-text-muted hover:text-white transition-colors">Contact</a>
                 </div>
             </div>
         </div>
     </footer>
 
+ 
+ 
     <script>
         // --- YAML Parser ---
         function parseYAML(yamlStr) {
@@ -618,36 +514,36 @@
             let html = md;
 
             // Headings
-            html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
-            html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
-            html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+            html = html.replace(/^### (.*$)/gim, '<h3 class="glass-text-primary">$1</h3>');
+            html = html.replace(/^## (.*$)/gim, '<h2 class="glass-text-primary">$1</h2>');
+            html = html.replace(/^# (.*$)/gim, '<h1 class="glass-text-primary">$1</h1>');
 
             // Bold, Italic
-            html = html.replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>');
-            html = html.replace(/\*(.*?)\*/gim, '<em>$1</em>');
+            html = html.replace(/\*\*(.*?)\*\*/gim, '<strong class="glass-text-primary">$1</strong>');
+            html = html.replace(/\*(.*?)\*/gim, '<em class="glass-text-secondary">$1</em>');
 
             // Links, Images
-            html = html.replace(/!\[([^\]]*)\]\((.*?)\)/gim, '<img src="$2" alt="$1" class="rounded-lg shadow-lg my-4 w-full">');
-            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank" class="text-primary dark:text-blue-400 hover:underline">$1</a>');
+            html = html.replace(/!\[([^\]]*)\]\((.*?)\)/gim, '<img src="$2" alt="$1" class="rounded-xl shadow-2xl my-6 w-full pure-glass-light">');
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank" class="text-white hover:underline font-medium">$1</a>');
 
             // Lists
-            html = html.replace(/^- (.*)$/gim, '<li>$1</li>');
-            html = html.replace(/(<li>.*<\/li>)/gims, '<ul class="my-4 space-y-2">$1</ul>');
+            html = html.replace(/^- (.*)$/gim, '<li class="glass-text-secondary">$1</li>');
+            html = html.replace(/(<li>.*<\/li>)/gims, '<ul class="my-6 space-y-3">$1</ul>');
 
             // Tables
             html = html.replace(/^\|(.+)\|\s*\n\|([-:\s|]+)\|\s*\n((\|.*\|\s*\n)*)/gm, match => {
                 const rows = match.trim().split('\n');
-                const headers = rows[0].split('|').filter(Boolean).map(h => `<th class="px-4 py-2">${h.trim()}</th>`).join('');
+                const headers = rows[0].split('|').filter(Boolean).map(h => `<th class="px-4 py-3 glass-text-primary bg-white/20">${h.trim()}</th>`).join('');
                 const bodyRows = rows.slice(2).map(r => {
-                    const cols = r.split('|').filter(Boolean).map(c => `<td class="px-4 py-2">${c.trim()}</td>`).join('');
+                    const cols = r.split('|').filter(Boolean).map(c => `<td class="px-4 py-3 glass-text-secondary border-t border-white/10">${c.trim()}</td>`).join('');
                     return `<tr>${cols}</tr>`;
                 }).join('');
-                return `<div class="overflow-x-auto my-6"><table class="min-w-full border-collapse border border-gray-300 dark:border-gray-600"><thead class="bg-gray-50 dark:bg-gray-700"><tr>${headers}</tr></thead><tbody>${bodyRows}</tbody></table></div>`;
+                return `<div class="overflow-x-auto my-8"><table class="min-w-full border-collapse rounded-xl overflow-hidden pure-glass-light">${headers}${bodyRows}</table></div>`;
             });
 
             // Paragraphs
-            html = html.replace(/\n{2,}/g, '</p><p class="my-4">');
-            html = `<div class="space-y-4">${html}</div>`;
+            html = html.replace(/\n{2,}/g, '</p><p class="my-6 glass-text-secondary">');
+            html = `<div class="space-y-6">${html}</div>`;
             return html;
         }
 
@@ -657,11 +553,11 @@
 
             if (!id || !id.startsWith('teams/')) {
                 document.getElementById('team-bio').innerHTML = `
-                    <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-8 text-center">
-                        <i class="fas fa-exclamation-triangle text-4xl text-red-400 mb-4"></i>
-                        <h3 class="text-xl text-red-600 dark:text-red-400 mb-2">Team Member Not Found</h3>
-                        <p class="text-red-500 dark:text-red-300">The requested team member could not be found.</p>
-                        <a href="team.html" class="mt-4 inline-block px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">
+                    <div class="bg-red-500/20 border border-red-400/30 rounded-2xl p-10 text-center pure-glass">
+                        <i class="fas fa-exclamation-triangle text-5xl text-white mb-6"></i>
+                        <h3 class="text-2xl glass-text-primary mb-4">Team Member Not Found</h3>
+                        <p class="glass-text-secondary mb-8">The requested team member could not be found.</p>
+                        <a href="team.html" class="inline-flex items-center px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-red-500/30 to-pink-500/30 border border-red-400/30 hover:from-red-500/40 hover:to-pink-500/40 transition-all duration-300">
                             Back to Team
                         </a>
                     </div>
@@ -684,7 +580,7 @@
                 const htmlBody = markdownToHTML(body);
 
                 // Update page content
-                document.getElementById('team-image').src = meta.image || 'https://via.placeholder.com/400x400/e2e8f0/64748b?text=Team+Member';
+                document.getElementById('team-image').src = meta.image || 'https://via.placeholder.com/400x400/ffffff/10b981?text=BioNova+Team';
                 document.getElementById('team-name').textContent = meta.title || 'Unnamed';
                 document.getElementById('team-role').textContent = meta.role || 'Team Member';
                 document.getElementById('team-bio').innerHTML = htmlBody;
@@ -705,8 +601,8 @@
                                     <i class="fas fa-envelope"></i>
                                 </div>
                                 <div>
-                                    <p class="font-semibold text-gray-900 dark:text-white">Email</p>
-                                    <a href="mailto:${meta.email}" class="text-primary dark:text-blue-400 hover:underline">${meta.email}</a>
+                                    <p class="font-semibold glass-text-primary mb-1">Email</p>
+                                    <a href="mailto:${meta.email}" class="glass-text-secondary hover:text-white transition-colors">${meta.email}</a>
                                 </div>
                             </div>
                         `;
@@ -719,8 +615,8 @@
                                     <i class="fas fa-phone"></i>
                                 </div>
                                 <div>
-                                    <p class="font-semibold text-gray-900 dark:text-white">Phone</p>
-                                    <a href="tel:${meta.phone}" class="text-primary dark:text-blue-400 hover:underline">${meta.phone}</a>
+                                    <p class="font-semibold glass-text-primary mb-1">Phone</p>
+                                    <a href="tel:${meta.phone}" class="glass-text-secondary hover:text-white transition-colors">${meta.phone}</a>
                                 </div>
                             </div>
                         `;
@@ -733,8 +629,8 @@
                                     <i class="fab fa-linkedin"></i>
                                 </div>
                                 <div>
-                                    <p class="font-semibold text-gray-900 dark:text-white">LinkedIn</p>
-                                    <a href="${meta.linkedin}" target="_blank" class="text-primary dark:text-blue-400 hover:underline">View Profile</a>
+                                    <p class="font-semibold glass-text-primary mb-1">LinkedIn</p>
+                                    <a href="${meta.linkedin}" target="_blank" class="glass-text-secondary hover:text-white transition-colors">View Profile</a>
                                 </div>
                             </div>
                         `;
@@ -751,11 +647,11 @@
             } catch (error) {
                 console.error('Error loading team member:', error);
                 document.getElementById('team-bio').innerHTML = `
-                    <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-8 text-center">
-                        <i class="fas fa-exclamation-triangle text-4xl text-red-400 mb-4"></i>
-                        <h3 class="text-xl text-red-600 dark:text-red-400 mb-2">Error Loading Team Member</h3>
-                        <p class="text-red-500 dark:text-red-300">We couldn't load the team member information. Please try again later.</p>
-                        <button class="mt-4 px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300" onclick="loadTeamMember()">
+                    <div class="bg-red-500/20 border border-red-400/30 rounded-2xl p-10 text-center pure-glass">
+                        <i class="fas fa-exclamation-triangle text-5xl text-white mb-6"></i>
+                        <h3 class="text-2xl glass-text-primary mb-4">Error Loading Team Member</h3>
+                        <p class="glass-text-secondary mb-8">We couldn't load the team member information. Please try again later.</p>
+                        <button class="inline-flex items-center px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-blue-500/30 to-green-500/30 border border-blue-400/30 hover:from-blue-500/40 hover:to-green-500/40 transition-all duration-300" onclick="loadTeamMember()">
                             Try Again
                         </button>
                     </div>
@@ -767,43 +663,6 @@
         // --- Event Listeners ---
         document.addEventListener('DOMContentLoaded', function() {
             loadTeamMember();
-            
-            // Mobile menu toggle
-            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-                document.getElementById('mobileMenu').classList.toggle('hidden');
-            });
-
-            // Navbar scroll effect
-            window.addEventListener('scroll', () => {
-                const nav = document.getElementById('mainNav');
-                if (window.scrollY > 50) {
-                    nav.classList.add('navbar-scrolled');
-                } else {
-                    nav.classList.remove('navbar-scrolled');
-                }
-            });
-
-            // Dark mode toggle
-            const darkModeToggle = document.getElementById('darkModeToggle');
-            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-            
-            // Check for saved theme preference or respect OS preference
-            if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDarkScheme.matches)) {
-                document.documentElement.classList.add('dark');
-                darkModeToggle.classList.add('active');
-            }
-            
-            darkModeToggle.addEventListener('click', () => {
-                document.documentElement.classList.toggle('dark');
-                darkModeToggle.classList.toggle('active');
-                
-                // Save user preference
-                if (document.documentElement.classList.contains('dark')) {
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    localStorage.setItem('theme', 'light');
-                }
-            });
         });
     </script>
 </body>
