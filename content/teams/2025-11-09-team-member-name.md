@@ -1,10 +1,6 @@
 ---
-title: Team member name
-role: Member
-image: /content/images/IMG_0811.jpeg
+title: "Md. Sayedur Rahman "
+role: Founder, Head of Operations and Administration
+image: /content/images/IMG-20250626-WA0050.jpg
 ---
-Atiq Ul Alam
-
-Id no 23304113
-
-BBA Department 8th semester
+Md. Sayedur Rahman is a debater, columnist, and student of Institute of Disaster Management and Vulnerability Studies  at the University of Dhaka and founder of YCI Bangladesh. With strong research interests and experience in idea development, he actively engages in academic and social initiatives. His work reflects a commitment to critical thinking, community resilience, and innovative approaches to disaster preparedness and awareness.
