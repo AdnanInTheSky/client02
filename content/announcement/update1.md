@@ -1,5 +1,5 @@
 ---
-title: JOY BANGLA
+title: BANGLA
 date: 2025-04-10
 ---
-JITBE NOUKA
+Bangladesh
