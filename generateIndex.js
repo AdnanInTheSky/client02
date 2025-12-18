@@ -28,7 +28,7 @@ async function scanFolder(folderPath) {
 }
 
 async function generateIndex() {
-  console.log("📦 Generating content index...");
+  console.log(" Generating content index...");
 
   const collections = ["articles", "teams", "services", "announcement"];
   const indexData = {};
@@ -45,12 +45,12 @@ async function generateIndex() {
   // Write index.json
   await fs.writeFile(OUTPUT_FILE, JSON.stringify(indexData, null, 2));
 
-  console.log("✅ content/index.json created successfully!");
+  console.log("content/index.json created successfully!");
   console.log(JSON.stringify(indexData, null, 2));
 }
 
 // Run script
 generateIndex().catch((err) => {
-  console.error("❌ Failed to generate content index:", err);
+  console.error("Failed to generate content index:", err);
   process.exit(1);
 });

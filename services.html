@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Announcements - BioNova</title>
+  <title>Blog-YCI</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -23,67 +23,176 @@
     html {
       scroll-behavior: smooth;
     }
+
+    /* Pure Glass Effect */
+    .pure-glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-[#003f87] to-[#a8e6cf] min-h-screen">
 
-  <!-- Navigation -->
-  <nav id="mainNav" class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Glass Navbar -->
+  <nav id="mainNav" class="fixed w-full top-0 z-50 nav-glass">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16 md:h-20">
-        <a href="index.html" class="text-2xl md:text-3xl font-bold text-blue-800">YCI</a>
-        <div class="hidden md:flex items-center space-x-8">
-          <a href="index.html" class="text-gray-700 hover:text-blue-700 font-medium">Home</a>
-          <a href="articles.html" class="text-gray-700 hover:text-blue-700 font-medium">Events</a>
-          <a href="services.html" class="text-gray-700 hover:text-blue-700 font-medium">Blogs</a>
-          <a href="team.html" class="text-gray-700 hover:text-blue-700 font-medium">Team</a>
-          <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all">Contact</a>
-        </div>
-        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-gray-100">
-          <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <a href="index.html" class="flex items-center page-load">
+          <img src="content/images/IMG_5811.png" alt="BioNova Logo"
+               class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20"
+               onerror="this.src=''; this.parentElement.innerHTML='BioNova';">
+        </a>
+
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass page-load delay-1">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
+        <div class="hidden md:flex space-x-2">
+          <a href="index.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-1">Home</a>
+          <a href="services.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-2">blogs</a>
+          <a href="articles.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-3">Events</a>
+          <a href="team.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-4">Team</a>
+          <a href="contact.html" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium hover:scale-105 transition glow-button page-load delay-5">
+            Contact
+          </a>
+        </div>
       </div>
-      <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 flex flex-col space-y-3">
-        <a href="index.html" class="text-gray-700 hover:text-blue-700 font-medium py-2">Home</a>
-        <a href="articles.html" class="text-gray-700 hover:text-blue-700 font-medium py-2">Events</a>
-        <a href="services.html" class="text-gray-700 hover:text-blue-700 font-medium py-2">Blogs</a>
-        <a href="team.html" class="text-gray-700 hover:text-blue-700 font-medium py-2">Team</a>
-        <a href="contact.html" class="px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium text-center">Contact</a>
+      <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 space-y-2">
+        <a href="index.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Home</a>
+        <a href="services.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">blogs</a>
+        <a href="articles.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Events</a>
+        <a href="team.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Team</a>
+        <a href="contact.html" class="mt-2 block px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full text-center glow-button">Contact</a>
       </div>
     </div>
   </nav>
 
   <!-- Main Content -->
   <main class="pt-24 pb-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Content card with backdrop for readability -->
-      <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8">
-        <div class="text-center mb-12">
-          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Announcements</h1>
-          <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-            blog
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Glass Content Card -->
+      <div class="pure-glass rounded-2xl p-6 md:p-8 mb-10">
+        <div class="text-center mb-10">
+          <h1 class="text-3xl md:text-4xl font-bold text-white mb-3">Blogs</h1>
+          <p class="text-lg text-white/90 max-w-2xl mx-auto">
+            Latest Blog by yci
           </p>
         </div>
 
-        <div id="services-container" class="grid grid-cols-1 gap-8">
+        <div id="services-container" class="space-y-6">
           <div class="flex justify-center py-12">
-            <div class="w-12 h-12 border-4 border-blue-700 border-t-transparent rounded-full animate-spin"></div>
+            <div class="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
           </div>
         </div>
       </div>
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900/90 backdrop-blur text-gray-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="text-center">
+   <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+        <!-- Brand -->
+        <div>
+          <h3 class="text-white font-bold mb-2">YCI</h3>
+          <p class="text-white mb-2">
+            Building sustainable futures through innovation, equity, and community-led action.
+          </p>
+          <div class="flex space-x-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-bold text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="services.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
+            <li><a href="articles.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
+            <li><a href="team.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Our Team</a></li>
+            <li><a href="contact.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Contact</a></li>
+            <li><a href="contact.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Careers</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
+              <span class="text-white mb-2">Dhaka, Bangladesh</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
+              <span class="text-white mb-2">info@bionova.org</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
+              <span class="text-white mb-2">+880 17XX-XXXXXX</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Annual Reports</a></li>
+            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Research Papers</a></li>
+            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Case Studies</a></li>
+            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Partnerships</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
         <p>&copy; 2025 BioNova. All rights reserved.</p>
+        <div class="mt-3 space-x-4">
+          <a href="#" class="hover:text-white transition-colors">Privacy</a>
+          <span class="text-gray-600">•</span>
+          <a href="#" class="hover:text-white transition-colors">Terms</a>
+          <span class="text-gray-600">•</span>
+          <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+        </div>
       </div>
     </div>
   </footer>
+  
+  <!-- Floating Action Button -->
+  <a href="contact.html" 
+     class="floating-btn fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
+     aria-label="Join Our Mission">
+    Join Us
+  </a>
+
+    <!-- Floating Action Button -->
+  <a href="team.html" 
+     class="floating-btn fixed bottom-6 left-6 md:bottom-8 md:left-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
+     aria-label="Join Our Mission">
+    Our Team
+  </a>
 
   <script>
     // --- YAML Parser ---
@@ -105,19 +214,18 @@
     // Markdown to HTML (minimal)
     function simpleMarkdownToHTML(md) {
       let html = md.trim();
-      html = html.replace(/^### (.*$)/gm, '<h3 class="text-lg font-semibold mt-4 mb-2 text-gray-800">$1</h3>');
-      html = html.replace(/^## (.*$)/gm, '<h2 class="text-xl font-bold mt-6 mb-3 text-gray-900">$1</h2>');
-      html = html.replace(/^# (.*$)/gm, '<h1 class="text-2xl font-bold mt-8 mb-4 text-gray-900">$1</h1>');
-      html = html.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>');
-      html = html.replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
-      html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener" class="text-blue-600 hover:underline">$1</a>');
-      html = html.replace(/^-\s+(.*$)/gm, '<li class="ml-4 list-disc text-gray-700">$1</li>');
-      html = html.replace(/(<li>.*<\/li>+)/g, '<ul class="my-2">$1</ul>');
+      html = html.replace(/^### (.*$)/gm, '<h3 class="text-base font-semibold mt-3 mb-2 text-white">$1</h3>');
+      html = html.replace(/^## (.*$)/gm, '<h2 class="text-lg font-bold mt-5 mb-2 text-white">$1</h2>');
+      html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+      html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener" class="text-teal-300 hover:underline">$1</a>');
+      html = html.replace(/^-\s+(.*$)/gm, '<li class="ml-4 list-disc">$1</li>');
+      html = html.replace(/(<li>.*<\/li>+)/g, '<ul class="my-2 pl-4">$1</ul>');
       html = html
         .split('\n\n')
         .map(p => p.trim())
         .filter(p => p)
-        .map(p => `<p class="text-gray-700 leading-relaxed mb-4">${p}</p>`)
+        .map(p => `<p class="text-white/90 leading-relaxed mb-3">${p}</p>`)
         .join('');
       html = html.replace(/<\/?p>\s*<(ul|ol|h[1-3]|strong|em|a)/g, '<$1');
       html = html.replace(/(ul|ol|h[1-3]|strong|em|a)>\s*<\/p>/g, '$1>');
@@ -160,32 +268,28 @@
       } catch (error) {
         console.error('Error loading services:', error);
         document.getElementById('services-container').innerHTML =
-          `<p class="text-center text-red-600 col-span-full">Failed to load announcements.</p>`;
+          `<p class="text-center text-red-300">Failed to load announcements.</p>`;
       }
     }
 
     function renderServices(services) {
       const container = document.getElementById('services-container');
       if (services.length === 0) {
-        container.innerHTML = `<p class="text-center text-gray-600 col-span-full">No announcements available.</p>`;
+        container.innerHTML = `<p class="text-center text-white/70">No announcements available.</p>`;
         return;
       }
 
-      container.innerHTML = services.map((service) => {
-        return `
-<div class="w-full p-4">
-  <div class="p-6">
-    <h3 class="text-xl font-bold text-gray-900 mb-3">${service.meta.title}</h3>
-    <div class="text-gray-700 space-y-4">
-      <div id="full-${service.id}" class="hidden">${service.htmlBody}</div>
-      <button id="btn-${service.id}" class="text-blue-600 font-medium hover:underline" onclick="toggleReadMore('${service.id}')">
-        Read more
-      </button>
-    </div>
-  </div>
-</div>
-        `;
-      }).join('');
+      container.innerHTML = services.map((service) => `
+        <div class="pure-glass rounded-xl p-5">
+          <h3 class="text-xl font-bold text-white mb-3">${service.meta.title}</h3>
+          <div id="full-${service.id}" class="hidden text-white/90 space-y-3">${service.htmlBody}</div>
+          <button id="btn-${service.id}" 
+                  class="mt-2 text-teal-300 font-medium hover:underline" 
+                  onclick="toggleReadMore('${service.id}')">
+            Read more
+          </button>
+        </div>
+      `).join('');
     }
 
     document.getElementById('mobileMenuBtn').addEventListener('click', () => {

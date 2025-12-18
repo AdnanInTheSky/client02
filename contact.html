@@ -1,329 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us - Your NGO Name</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <style>
-        :root {
-            --primary: #14b8a6;
-            --primary-dark: #0d9488;
-            --accent: #f97316;
-            --text: #1e293b;
-            --text-light: #64748b;
-            --card-bg: rgba(255, 255, 255, 0.92);
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            --radius: 20px;
-            --transition: all 0.3s ease;
-        }
+  <meta charset="UTF-8" />
+  <meta name="webtoken" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - yci</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text);
-            line-height: 1.7;
-            min-height: 100vh;
-            /* Beautiful diagonal gradient background */
-            background: linear-gradient(135deg, rgba(17, 23, 87, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
-            background-attachment: fixed;
-        }
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-        /* Subtle overlay pattern (optional elegance) */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 20% 80%, rgba(120, 219, 226, 0.15), transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.15), transparent 50%);
-            pointer-events: none;
-            z-index: 0;
-        }
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-        /* Header - Semi-transparent on colored bg */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 1000;
-            padding: 1.2rem 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-        }
+  <style>
+    * {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
+    /* Pure Glass Effect */
+    .pure-glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
 
-        nav a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.05rem;
-            position: relative;
-            padding: 0.5rem 0;
-            transition: var(--transition);
-        }
+    /* Navbar Glass */
+    .nav-glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
 
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 2px;
-            transition: var(--transition);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Main Content */
-        main {
-            margin-top: 100px;
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 4rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .page-header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.2rem;
-            font-weight: 700;
-            color: white;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            margin-bottom: 1rem;
-        }
-
-        .page-header p {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1.2rem;
-            font-weight: 400;
-        }
-
-        .page-header::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 5px;
-            background: var(--accent);
-            margin: 1.5rem auto 0;
-            border-radius: 3px;
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3.5rem;
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            .page-header h1 { font-size: 2.7rem; }
-        }
-
-        /* Cards with glassmorphism effect */
-        .contact-info,
-        .google-form-placeholder {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: var(--radius);
-            padding: 2.5rem;
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .contact-info h2,
-        .google-form-placeholder h2 {
-            font-size: 1.7rem;
-            margin-bottom: 1.8rem;
-            color: var(--text);
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .contact-info h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 2px;
-        }
-
-        .info-item {
-            display: flex;
-            gap: 1.2rem;
-            margin-bottom: 1.8rem;
-            align-items: flex-start;
-        }
-
-        .info-item i {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-top: 0.2rem;
-        }
-
-        .info-text h3 {
-            font-size: 1.15rem;
-            margin-bottom: 0.4rem;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .info-text p,
-        .info-text a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .info-text a:hover {
-            color: var(--primary);
-        }
-
-        /* Form Placeholder */
-        .google-form-placeholder {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .google-form-placeholder p {
-            color: var(--text-light);
-            margin-bottom: 1.8rem;
-            max-width: 400px;
-            font-size: 1.05rem;
-        }
-
-        .coming-soon {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 0.6rem 1.6rem;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(30, 41, 59, 0.95);
-            backdrop-filter: blur(10px);
-            color: #e2e8f0;
-            text-align: center;
-            padding: 3rem 2rem;
-            font-size: 1rem;
-            margin-top: 6rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-    </style>
+    /* Input placeholder styling */
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+  </style>
 </head>
-<body>
+<body class="bg-gradient-to-br from-[#003f87] to-[#a8e6cf] min-h-screen">
 
-    <header id="header">
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="articles.html">Articles</a>
-            <a href="team.html">Team</a>
-            <a href="services.html">Services</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
+  <!-- Glass Navbar -->
+  <nav id="mainNav" class="fixed w-full top-0 z-50 nav-glass">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16 md:h-20">
+        <a href="index.html" class="flex items-center page-load">
+          <img src="content/images/IMG_5811.png" alt="BioNova Logo"
+               class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20"
+               onerror="this.src=''; this.parentElement.innerHTML='BioNova';">
+        </a>
 
-    <main>
-        <div class="page-header">
-            <h1>Get in Touch</h1>
-            <p>We’d love to hear from you. Reach out with questions, partnership ideas, or to support our mission.</p>
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass page-load delay-1">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+        <div class="hidden md:flex space-x-2">
+          <a href="index.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-1">Home</a>
+          <a href="services.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-2">blogs</a>
+          <a href="articles.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-3">Events</a>
+          <a href="team.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-4">Team</a>
+          <a href="contact.html" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium hover:scale-105 transition glow-button page-load delay-5">
+            Contact
+          </a>
+        </div>
+      </div>
+      <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 space-y-2">
+        <a href="index.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Home</a>
+        <a href="services.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">blogs</a>
+        <a href="articles.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Events</a>
+        <a href="team.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Team</a>
+        <a href="contact.html" class="mt-2 block px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full text-center glow-button">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="pt-24 pb-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="pure-glass rounded-2xl p-6 md:p-8">
+        <div class="text-center mb-10">
+          <h1 class="text-3xl md:text-4xl font-bold text-white mb-3">Get In Touch</h1>
+          <p class="text-lg text-white/90 max-w-2xl mx-auto">
+            Have questions or want to collaborate? Reach out to us!
+          </p>
         </div>
 
-        <div class="contact-container">
-            <div class="contact-info">
-                <h2>Contact Information</h2>
-                <div class="info-item">
-                    <i class="fas fa-envelope"></i>
-                    <div class="info-text">
-                        <h3>Email</h3>
-                        <a href="mailto:info@yourngo.org">info@yourngo.org</a>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div class="info-text">
-                        <h3>Headquarters</h3>
-                        <p>123 Hope Street, Suite 100<br>San Francisco, CA 94107, USA</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-globe"></i>
-                    <div class="info-text">
-                        <h3>Global Reach</h3>
-                        <p>Operating in 25+ countries across Africa, Asia, and Latin America.</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-clock"></i>
-                    <div class="info-text">
-                        <h3>Office Hours</h3>
-                        <p>Monday–Friday, 9:00 AM – 5:00 PM PST</p>
-                    </div>
-                </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Contact Info -->
+          <div class="space-y-6">
+            <div class="flex items-start space-x-4">
+              <div class="mt-1 text-teal-300">
+                <i class="fas fa-envelope text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-white font-semibold">Email</h3>
+                <p class="text-white/80">jitbe@nouka.com</p>
+              </div>
             </div>
 
-            <div class="google-form-placeholder">
-                <h2>Send a Message</h2>
-                <p>A Google Form will be embedded here soon to make it easy for you to reach out.</p>
-                <span class="coming-soon">Coming Soon</span>
+            <div class="flex items-start space-x-4">
+              <div class="mt-1 text-teal-300">
+                <i class="fas fa-map-marker-alt text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-white font-semibold">Location</h3>
+                <p class="text-white/80">Dhaka, Bangladesh</p>
+              </div>
             </div>
+
+            <div class="flex items-start space-x-4">
+              <div class="mt-1 text-teal-300">
+                <i class="fas fa-clock text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-white font-semibold">Working Hours</h3>
+                <p class="text-white/80">24/7</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <form id="contactForm" class="space-y-5">
+            <div>
+              <label for="name" class="block text-white mb-1">Name</label>
+              <input type="text" id="name" required
+                class="w-full pure-glass rounded-lg px-4 py-2.5 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-teal-400/50" />
+            </div>
+            <div>
+              <label for="email" class="block text-white mb-1">Email</label>
+              <input type="email" id="email" required
+                class="w-full pure-glass rounded-lg px-4 py-2.5 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-teal-400/50" />
+            </div>
+            <div>
+              <label for="message" class="block text-white mb-1">Message</label>
+              <textarea id="message" rows="4" required
+                class="w-full pure-glass rounded-lg px-4 py-2.5 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-teal-400/50"></textarea>
+            </div>
+            <button type="submit"
+              class="w-full px-6 py-3 bg-gradient-to-r from-blue-800 to-teal-600 text-white font-medium rounded-lg hover:scale-[1.02] transition transform">
+              Send Message
+            </button>
+          </form>
         </div>
-    </main>
+      </div>
+    </div>
+  </main>
 
-    <footer>
-        <p>© 2025 Your NGO Name. All rights reserved.</p>
-    </footer>
+<!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+        <!-- Brand -->
+        <div>
+          <h3 class="text-white font-bold mb-2">YCI</h3>
+          <p class="text-white mb-2">
+            Building sustainable futures through innovation, equity, and community-led action.
+          </p>
+          <div class="flex space-x-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
 
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-bold text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="services.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
+            <li><a href="articles.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
+            <li><a href="team.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Our Team</a></li>
+            <li><a href="contact.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Contact</a></li>
+            <li><a href="contact.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Careers</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
+              <span class="text-white mb-2">Dhaka, Bangladesh</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
+              <span class="text-white mb-2">info@bionova.org</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
+              <span class="text-white mb-2">+880 17XX-XXXXXX</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Annual Reports</a></li>
+            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Research Papers</a></li>
+            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Case Studies</a></li>
+            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Partnerships</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
+        <p>&copy; 2025 BioNova. All rights reserved.</p>
+        <div class="mt-3 space-x-4">
+          <a href="#" class="hover:text-white transition-colors">Privacy</a>
+          <span class="text-gray-600">•</span>
+          <a href="#" class="hover:text-white transition-colors">Terms</a>
+          <span class="text-gray-600">•</span>
+          <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Floating Action Button -->
+  <a href="articles.html" 
+     class="floating-btn fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
+     aria-label="Join Our Mission">
+    Our events
+  </a>
+
+    <!-- Floating Action Button -->
+  <a href="team.html" 
+     class="floating-btn fixed bottom-6 left-6 md:bottom-8 md:left-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
+     aria-label="Join Our Mission">
+    Our Team
+  </a>
+
+ 
+
+  <script>
+    // Mobile menu toggle
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+
+    // Mailto handler on form submit
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      // Construct the mailto link
+      const subject = encodeURIComponent(`Message from ${name}`);
+      const body = encodeURIComponent(`From: ${name} <${email}>\n\n${message}`);
+      const recipient = 'contact@bionova.org';
+      const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
+
+      // Open email client
+      window.location.href = mailtoLink;
+    });
+  </script>
 </body>
 </html>
