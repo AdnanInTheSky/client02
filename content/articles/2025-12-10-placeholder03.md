@@ -1,6 +1,6 @@
 ---
 title: '"Green Roots" Event Spurs Community Climate Action in Dhaka '
-date: 2025-12-10
+date: 2025-06-22
 author: YCI
 image: /content/images/WhatsApp Image 2025-12-16 at 23.58.58.jpeg
 ---
