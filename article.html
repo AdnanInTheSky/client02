@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="ervisor" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Loading... - BioNova</title>
 
   <!-- Tailwind CSS CDN -->
@@ -35,6 +35,33 @@
       line-height: 1.7;
       font-size: 1.125rem;
       color: #f8fafc;
+    }
+
+    @media (max-width: 640px) {
+      .article-content {
+        font-size: 1rem;
+      }
+      .article-content h1 {
+        font-size: 1.75rem;
+      }
+      .article-content h2 {
+        font-size: 1.5rem;
+      }
+      .article-content h3 {
+        font-size: 1.25rem;
+      }
+      .article-content img {
+        margin: 1.5rem 0;
+      }
+      .article-content pre {
+        padding: 1rem;
+        margin: 1.5rem 0;
+      }
+      .article-content table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
     }
 
     .article-content h1 {
@@ -139,7 +166,7 @@
       color: #bfdbfe;
     }
 
-    /* Table styling for rich Markdown tables */
+    /* Table styling */
     .article-content table {
       width: 100%;
       border-collapse: collapse;
@@ -169,103 +196,102 @@
 </head>
 
 <body class="min-h-screen text-white" style="background: linear-gradient(to bottom left, #0057b8, #a8e6cf);">
-  <main class="max-w-3xl mx-auto px-4 py-12">
-    <div class="glass-card p-6 md:p-8">
-      <header class="mb-10 text-center">
-        <img id="article-image" class="w-full h-auto object-cover rounded-xl mb-6" alt="Article Image" />
-        <h1 id="article-title" class="text-2xl md:text-3xl font-bold mb-3 text-white">Loading...</h1>
-        <div class="text-blue-200 text-sm opacity-90">
+  <main class="max-w-3xl mx-auto px-4 py-8 sm:py-12">
+    <div class="glass-card p-4 sm:p-6 md:p-8">
+      <header class="mb-8 text-center">
+        <img id="article-image" class="w-full h-auto object-cover rounded-xl mb-4 sm:mb-6" alt="Article Image" />
+        <h1 id="article-title" class="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3 text-white">Loading...</h1>
+        <div class="text-blue-200 text-xs sm:text-sm opacity-90">
           <span id="article-author">By Unknown</span> •
           <span id="article-date">Date Unknown</span>
         </div>
       </header>
 
       <article id="article-body" class="article-content">
-        <div class="flex justify-center py-10">
-          <div class="w-10 h-10 border-4 border-blue-300 border-t-transparent rounded-full animate-spin"></div>
+        <div class="flex justify-center py-8">
+          <div class="w-8 h-8 sm:w-10 sm:h-10 border-4 border-blue-300 border-t-transparent rounded-full animate-spin"></div>
         </div>
       </article>
     </div>
   </main>
 
-  <div class="text-center mt-10">
+  <div class="text-center mt-8 pb-8">
     <button
       type="button"
       onclick="window.history.back()"
-      class="px-5 py-2.5 text-white bg-white/15 hover:bg-white/25 backdrop-blur-sm rounded-lg font-medium transition-all duration-200"
+      class="px-4 py-2 sm:px-5 sm:py-2.5 text-white bg-white/15 hover:bg-white/25 backdrop-blur-sm rounded-lg font-medium transition-all duration-200 text-sm sm:text-base"
     >
       ← Back
     </button>
   </div>
 
-   <!-- Footer -->
-   <footer class="bg-gray-900 text-gray-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-                <!-- Brand -->
-                <div>
-                    <h3 class="glass-text-primary font-bold text-xl mb-4">BioNova</h3>
-                    <p class="glass-text-secondary mb-4">
-                        Building sustainable futures through innovation, equity, and community-led action.
-                    </p>
-                </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="font-bold glass-text-primary mb-6">Quick Links</h4>
-                    <ul class="space-y-3">
-                        <li><a href="services.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>About Us</a></li>
-                        <li><a href="articles.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Publications</a></li>
-                        <li><a href="team.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Our Team</a></li>
-                        <li><a href="contact.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Contact</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact -->
-                <div>
-                    <h4 class="glass-text-primary font-semibold text-lg mb-6">Contact</h4>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-4 text-white/80"></i>
-                            <span class="glass-text-secondary">Dhaka, Bangladesh</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-envelope mt-1 mr-4 text-white/80"></i>
-                            <span class="glass-text-secondary">info@bionova.org</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-phone mt-1 mr-4 text-white/80"></i>
-                            <span class="glass-text-secondary">+880 17XX-XXXXXX</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Resources -->
-                <div>
-                    <h4 class="glass-text-primary font-semibold text-lg mb-6">Resources</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Annual Reports</a></li>
-                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Research Papers</a></li>
-                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Case Studies</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Copyright -->
-            <div class="border-t border-white/20 mt-12 pt-8 text-center">
-                <p class="glass-text-muted">&copy; 2025 BioNova. All rights reserved.</p>
-                <div class="mt-4 space-x-6">
-                    <a href="#" class="glass-text-muted hover:text-white transition-colors">Privacy</a>
-                    <span class="glass-text-muted">•</span>
-                    <a href="#" class="glass-text-muted hover:text-white transition-colors">Terms</a>
-                    <span class="glass-text-muted">•</span>
-                    <a href="contact.html" class="glass-text-muted hover:text-white transition-colors">Contact</a>
-                </div>
-            </div>
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-12">
+        <!-- Brand -->
+        <div>
+          <h3 class="font-bold text-lg sm:text-xl mb-3 sm:mb-4">BioNova</h3>
+          <p class="text-sm sm:text-base mb-4">
+            Building sustainable futures through innovation, equity, and community-led action.
+          </p>
         </div>
-    </footer>
 
- 
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-bold mb-4 sm:mb-6">Quick Links</h4>
+          <ul class="space-y-2 sm:space-y-3 text-sm sm:text-base">
+            <li><a href="services.html" class="hover:text-white transition-colors">About Us</a></li>
+            <li><a href="articles.html" class="hover:text-white transition-colors">Publications</a></li>
+            <li><a href="team.html" class="hover:text-white transition-colors">Our Team</a></li>
+            <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="font-semibold text-lg mb-4 sm:mb-6">Contact</h4>
+          <ul class="space-y-3 text-sm sm:text-base">
+            <li class="flex items-start">
+              <span class="mr-3">📍</span>
+              <span>Dhaka, Bangladesh</span>
+            </li>
+            <li class="flex items-start">
+              <span class="mr-3">✉️</span>
+              <span>info@bionova.org</span>
+            </li>
+            <li class="flex items-start">
+              <span class="mr-3">📞</span>
+              <span>+880 17XX-XXXXXX</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="font-semibold text-lg mb-4 sm:mb-6">Resources</h4>
+          <ul class="space-y-2 sm:space-y-3 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-white transition-colors">Annual Reports</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Research Papers</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Case Studies</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-white/20 mt-8 pt-6 text-center text-sm">
+        <p>&copy; 2025 BioNova. All rights reserved.</p>
+        <div class="mt-3 space-x-4">
+          <a href="#" class="hover:text-white transition-colors">Privacy</a>
+          <span>•</span>
+          <a href="#" class="hover:text-white transition-colors">Terms</a>
+          <span>•</span>
+          <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   <script>
     // --- YAML Parser ---
     function parseYAML(yamlStr) {
@@ -326,7 +352,7 @@
         return match;
       });
 
-      // Table separator row (e.g. |---|---|) → ignore
+      // Table separator row → ignore
       html = html.replace(/^\|(\s*[-:]+\s*\|)+\s*$/gm, '');
 
       // Table data rows
@@ -338,7 +364,7 @@
       });
 
       // Close table
-      html = html.replace(/(<tbody>.*<\/tbody>)/gs, '<tbody>$1</tbody></table>');
+      html = html.replace(/(<tbody>.*<\/tbody>)/gs, '</tbody></table>');
 
       // Lists
       html = html.replace(/^(\s*)[-*+]\s+(.+)$/gm, '<li>$2</li>');
@@ -364,7 +390,6 @@
       return html;
     }
 
-    // --- Load Article ---
     async function loadArticle() {
       const id = sessionStorage.getItem('selectedFile');
       if (!id || !id.startsWith('articles/')) {

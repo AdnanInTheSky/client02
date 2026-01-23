@@ -2,769 +2,403 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BioNova – Sustainable Development NGO</title>
+  <meta name="ervisor" content="width=device-width, initial-scale=1.0" />
+  <title>Loading... - BioNova</title>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
     * {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
 
-    /* Enhanced gradient with parallax effect */
-    body {
-      background: linear-gradient(135deg, 
-        #4FD1C5 0%,        /* Light teal at top */
-        #319795 25%,       /* Medium teal */
-        #2C5282 50%,       /* Medium blue */
-        #1A365D 75%,       /* Deep blue */
-        #0F1B2D 100%       /* Dark blue at bottom */
-      );
-      background-size: 100% 300%;
-      background-attachment: fixed;
-      animation: gradientBG 20s ease infinite;
-      overflow-x: hidden;
-      color: #ffffff;
-      position: relative;
-      min-height: 100vh;
-    }
-
-    /* Subtle floating particles in background */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-        radial-gradient(circle at 60% 70%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-        radial-gradient(circle at 80% 40%, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-      background-size: 150px 150px, 200px 200px, 180px 180px;
-      z-index: -1;
-      animation: floatParticles 60s linear infinite;
-    }
-
-    @keyframes gradientBG {
-      0% { background-position: 0% 0%; }
-      50% { background-position: 100% 100%; }
-      100% { background-position: 0% 0%; }
-    }
-
-    @keyframes floatParticles {
-      0% { transform: translateY(0px) translateX(0px); }
-      25% { transform: translateY(-20px) translateX(10px); }
-      50% { transform: translateY(0px) translateX(20px); }
-      75% { transform: translateY(20px) translateX(10px); }
-      100% { transform: translateY(0px) translateX(0px); }
-    }
-
-    /* Enhanced glass effect with dynamic border */
-    .pure-glass {
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(4px);
-      color: white;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .pure-glass:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.25);
-      transform: translateY(-4px);
-      box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    }
-
-    /* Navbar with enhanced glass effect */
-    .nav-glass {
+    .glass-card {
       background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 1.25rem;
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
     }
 
-    /* Titles with gradient text */
-    h1, h2, h3, h4, h5, h6 { 
-      color: transparent;
-      background: linear-gradient(135deg, #4FD1C5 0%, #2C5282 50%, #1A365D 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      background-size: 200% 200%;
-      animation: titleShimmer 3s ease-in-out infinite alternate;
+    .article-content {
+      line-height: 1.7;
+      font-size: 1.125rem;
+      color: #f8fafc;
     }
 
-    @keyframes titleShimmer {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
+    .article-content h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin: 1.5rem 0 1.25rem;
+      line-height: 1.2;
+      color: #ffffff;
     }
 
-    /* Stats with pulse animation */
-    .stat-number { 
-      color: white;
-      text-shadow: 0 0 20px rgba(79, 209, 197, 0.5);
+    .article-content h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      color: #e2e8f0;
     }
 
-    .stat-title { 
-      color: #4FD1C5;
+    .article-content h3 {
+      font-size: 1.375rem;
+      font-weight: 600;
+      margin: 1.75rem 0 0.75rem;
+      color: #cbd5e1;
+    }
+
+    .article-content h4 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+      color: #94a3b8;
+    }
+
+    .article-content p,
+    .article-content ul,
+    .article-content ol,
+    .article-content blockquote,
+    .article-content pre,
+    .article-content table {
+      margin-bottom: 1.5rem;
+    }
+
+    .article-content img {
+      border-radius: 0.875rem;
+      margin: 2rem 0;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+      max-width: 100%;
+      height: auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .article-content blockquote {
+      border-left: 3px solid #60a5fa;
+      padding-left: 1.25rem;
+      color: #dbeafe;
+      font-style: italic;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .article-content code {
+      background-color: rgba(15, 23, 42, 0.7);
+      padding: 0.15rem 0.4rem;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      font-family: 'Menlo', 'Monaco', monospace;
+      color: #93c5fd;
+    }
+
+    .article-content pre {
+      background-color: rgba(15, 23, 42, 0.85);
+      color: #e0f2fe;
+      padding: 1.25rem;
+      border-radius: 0.875rem;
+      overflow-x: auto;
+      margin: 2rem 0;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+
+    .article-content pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+      font-size: 0.875rem;
+    }
+
+    .article-content ul,
+    .article-content ol {
+      padding-left: 1.5rem;
+    }
+
+    .article-content li {
+      margin-bottom: 0.5rem;
+      color: #f1f5f9;
+    }
+
+    .article-content a {
+      color: #93c5fd;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+
+    .article-content a:hover {
+      color: #bfdbfe;
+    }
+
+    /* Table styling for rich Markdown tables */
+    .article-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 0.75rem;
+      overflow: hidden;
+    }
+
+    .article-content th,
+    .article-content td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      color: #f1f5f9;
+    }
+
+    .article-content th {
+      background-color: rgba(30, 41, 59, 0.75);
       font-weight: 600;
     }
 
-    /* Page load animations */
-    .page-load {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Smooth scroll behavior */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Button glow effect */
-    .glow-button {
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-
-    .glow-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 255, 255, 0.2), 
-        transparent);
-      transition: left 0.7s ease;
-      z-index: -1;
-    }
-
-    .glow-button:hover::before {
-      left: 100%;
-    }
-
-    /* Article card image hover effect */
-    .article-image {
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .article-card:hover .article-image {
-      transform: scale(1.05);
-    }
-
-    /* Scroll progress indicator */
-    .scroll-progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 3px;
-      background: linear-gradient(90deg, #4FD1C5, #2C5282);
-      z-index: 100;
-      transition: width 0.3s ease;
-    }
-
-    /* Typewriter effect for hero */
-    .typewriter {
-      overflow: hidden;
-      border-right: 3px solid #4FD1C5;
-      white-space: nowrap;
-      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink-caret {
-      from, to { border-color: transparent; }
-      50% { border-color: #4FD1C5; }
-    }
-
-    /* Floating elements animation */
-    .floating-element {
-      animation: floatElement 6s ease-in-out infinite;
-    }
-
-    @keyframes floatElement {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-    }
-    
-    /* Article title color - ORANGE */
-    .article-title {
-      color: #f97316 !important;
-      font-weight: 700;
-    }
-    
-    .article-title:hover {
-      color: #fb923c !important;
-    }
-    
-    /* Improved article card structure */
-    .article-card {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-    
-    .article-image-container {
-      position: relative;
-      width: 100%;
-      height: 200px;
-      overflow: hidden;
-      border-radius: 12px 12px 0 0;
-    }
-    
-    .article-image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-    
-    .article-card:hover .article-image-container img {
-      transform: scale(1.08);
-    }
-    
-    .article-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      padding: 1.5rem;
-    }
-    
-    .article-excerpt {
-      flex: 1;
-      margin-bottom: 1rem;
-    }
-
-    /* FAQ Accordion */
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-    }
-    .faq-answer > div {
-      padding: 0 1.25rem 1.25rem 1.25rem;
-    }
-    .rotate-180 {
-      transform: rotate(180deg);
+    .article-content tr:last-child td {
+      border-bottom: none;
     }
   </style>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#4FD1C5',
-            secondary: '#2C5282',
-          }
-        }
-      }
-    }
-  </script>
 </head>
-<body class="min-h-screen">
-  <!-- Scroll Progress -->
-  <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- Glass Navbar -->
-  <nav id="mainNav" class="fixed w-full top-0 z-50 nav-glass">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16 md:h-20">
-        <a href="index.html" class="flex items-center page-load">
-          <img src="content/images/IMG_5811.png" alt="BioNova Logo"
-               class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20"
-               onerror="this.src=''; this.parentElement.innerHTML='BioNova';">
-        </a>
-
-        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass page-load delay-1">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-        <div class="hidden md:flex space-x-2">
-          <a href="index.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-1">Home</a>
-          <a href="services.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-2">blogs</a>
-          <a href="articles.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-3">Events</a>
-          <a href="team.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-4">Team</a>
-          <a href="contact.html" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:scale-105 transition glow-button page-load delay-5">
-            Contact
-          </a>
+<body class="min-h-screen text-white" style="background: linear-gradient(to bottom left, #0057b8, #a8e6cf);">
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    <div class="glass-card p-6 md:p-8">
+      <header class="mb-10 text-center">
+        <img id="article-image" class="w-full h-auto object-cover rounded-xl mb-6" alt="Article Image" />
+        <h1 id="article-title" class="text-2xl md:text-3xl font-bold mb-3 text-white">Loading...</h1>
+        <div class="text-blue-200 text-sm opacity-90">
+          <span id="article-author">By Unknown</span> •
+          <span id="article-date">Date Unknown</span>
         </div>
-      </div>
-      <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 space-y-2">
-        <a href="index.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Home</a>
-        <a href="services.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">blogs</a>
-        <a href="articles.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Events</a>
-        <a href="team.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Team</a>
-        <a href="contact.html" class="mt-2 block px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full text-center glow-button">Contact</a>
-      </div>
+      </header>
+
+      <article id="article-body" class="article-content">
+        <div class="flex justify-center py-10">
+          <div class="w-10 h-10 border-4 border-blue-300 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      </article>
     </div>
-  </nav>
-
-  <main class="pt-20">
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <img src="content/images/tester.jpg" alt="Hero background" class="w-full h-full object-cover opacity-60">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40"></div>
-      </div>
-      
-      <div class="absolute top-1/4 left-10 w-4 h-4 bg-teal-400 rounded-full opacity-20 floating-element"></div>
-      <div class="absolute top-1/3 right-20 w-6 h-6 bg-primary rounded-full opacity-15 floating-element" style="animation-delay: -2s;"></div>
-      <div class="absolute bottom-1/4 left-1/4 w-8 h-8 bg-secondary rounded-full opacity-10 floating-element" style="animation-delay: -4s;"></div>
-      
-      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 page-load">
-          YCI placeholder
-        </h1>
-        <p class="text-lg md:text-xl mb-10 page-load delay-1">
-          Client ja bolbe
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="contact.html" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition glow-button page-load delay-2">
-            Join Our Mission
-          </a>
-          <a href="articles.html" class="px-8 py-4 pure-glass text-white rounded-full font-semibold hover:scale-105 transition page-load delay-3">
-            Learn More
-          </a>
-        </div>
-      </div>
-      
-      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-          <div class="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Stats Section - STATIC -->
-    <section class="py-12 page-load delay-1" id="statsSection">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="pure-glass rounded-3xl p-8 text-center">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <div class="text-4xl md:text-5xl font-bold stat-number">50+</div>
-              <div class="text-lg md:text-xl stat-title">Team Members</div>
-            </div>
-            <div>
-              <div class="text-4xl md:text-5xl font-bold stat-number">15+</div>
-              <div class="text-lg md:text-xl stat-title">Events</div>
-            </div>
-            <div>
-              <div class="text-3xl md:text-4xl font-bold stat-number">20+</div>
-              <div class="text-lg md:text-xl stat-title">Campus Reached</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Announcements -->
-    <section class="py-12 page-load delay-2">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-teal-300">Announcements</h2>
-        <div id="announcements-container" class="space-y-6">
-          <div class="text-center py-6 text-white">Loading announcements...</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Us -->
-    <section class="py-16 page-load delay-3">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="pure-glass rounded-3xl overflow-hidden group">
-          <img src="content/images/Screenshot 2025-12-16 222947.png" alt="About Us" class="w-full h-64 sm:h-96 object-cover transition-transform duration-700 group-hover:scale-105">
-          <div class="p-6 md:p-8">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Commitment to bring Change</h2>
-            <p class="text-white mb-4">placeholder</p>
-            <p class="text-white mb-4">Our mission  placeholder</p>
-            <p class="text-white">placeholder</p>
-            <a href="articles.html" class="mt-6 inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition glow-button">
-              Explore Our Impact
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="py-16 page-load delay-4">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">Frequently Asked Questions</h2>
-        <div id="faq-accordion" class="space-y-4">
-          <div class="pure-glass rounded-xl overflow-hidden">
-            <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition">
-              <span>placeholder</span>
-              <i class="fas fa-chevron-down transition-transform"></i>
-            </button>
-            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
-              <div class="p-5 pt-0 text-white">
-                placeholder
-              </div>
-            </div>
-          </div>
-
-          <div class="pure-glass rounded-xl overflow-hidden">
-            <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition">
-              <span>placeholder</span>
-              <i class="fas fa-chevron-down transition-transform"></i>
-            </button>
-            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
-              <div class="p-5 pt-0 text-white">
-                placeholder <a href="contact.html" class="text-teal-300 hover:underline">Contact</a> page to get involved.
-              </div>
-            </div>
-          </div>
-
-          <div class="pure-glass rounded-xl overflow-hidden">
-            <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition">
-              <span>placeholder</span>
-              <i class="fas fa-chevron-down transition-transform"></i>
-            </button>
-            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
-              <div class="p-5 pt-0 text-white">
-                placeholder
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Articles -->
-    <section class="py-16 page-load delay-5">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4">Our Events</h2>
-          <p class="text-white max-w-2xl mx-auto">placeholder</p>
-        </div>
-        <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="text-center py-8 text-white">Loading articles...</div>
-        </div>
-        <div class="text-center mt-12">
-          <a href="articles.html" class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition glow-button inline-block">
-            More Articles
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Meet the Team -->
-    <section class="py-16 page-load delay-6">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="pure-glass rounded-3xl p-12 text-center text-white group hover:scale-[1.02] transition-all duration-500">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4">Meet Our entire Team</h2>
-          <p class="text-xl mb-8">placeholder</p>
-          <a href="team.html" class="px-8 py-4 bg-white text-primary rounded-full font-bold text-lg hover:bg-opacity-90 hover:scale-105 transition glow-button inline-block">
-            View Full Team
-          </a>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900/90 text-white backdrop-blur-lg">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div><h3 class="font-bold mb-4 text-xl">YCI</h3><p class="text-gray-400 mb-6">Building sustainable futures through innovation, equity, and community-led action.</p></div>
-        <div>
-          <h4 class="font-bold mb-4 text-lg">Quick Links</h4>
-          <ul class="space-y-3 text-gray-400">
-            <li><a href="services.html" class="hover:text-white hover:translate-x-1 transition inline-block">About Us</a></li>
-            <li><a href="articles.html" class="hover:text-white hover:translate-x-1 transition inline-block">Publications</a></li>
-            <li><a href="team.html" class="hover:text-white hover:translate-x-1 transition inline-block">Our Team</a></li>
-            <li><a href="contact.html" class="hover:text-white hover:translate-x-1 transition inline-block">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-semibold text-lg mb-4">Contact</h4>
-          <ul class="space-y-4 text-gray-400">
-            <li class="hover:text-white transition cursor-default">Dhaka, Bangladesh</li>
-            <li><a href="mailto:info@bionova.org" class="hover:text-white transition">info@bionova.org</a></li>
-            <li class="hover:text-white transition cursor-default">+880 17XX-XXXXXX</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-semibold text-lg mb-4">Resources</h4>
-          <ul class="space-y-3 text-gray-400">
-            <li><a href="#" class="hover:text-white hover:translate-x-1 transition inline-block">Annual Reports</a></li>
-            <li><a href="#" class="hover:text-white hover:translate-x-1 transition inline-block">Research Papers</a></li>
-            <li><a href="#" class="hover:text-white hover:translate-x-1 transition inline-block">Case Studies</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="border-t border-white/10 mt-12 pt-8 text-center text-gray-500">
-        <p>&copy; 2025 YCI. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+  <div class="text-center mt-10">
+    <button
+      type="button"
+      onclick="window.history.back()"
+      class="px-5 py-2.5 text-white bg-white/15 hover:bg-white/25 backdrop-blur-sm rounded-lg font-medium transition-all duration-200"
+    >
+      ← Back
+    </button>
+  </div>
 
-  <!-- Scripts -->
+   <!-- Footer -->
+   <footer class="bg-gray-900 text-gray-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+                <!-- Brand -->
+                <div>
+                    <h3 class="glass-text-primary font-bold text-xl mb-4">BioNova</h3>
+                    <p class="glass-text-secondary mb-4">
+                        Building sustainable futures through innovation, equity, and community-led action.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-bold glass-text-primary mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="services.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>About Us</a></li>
+                        <li><a href="articles.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Publications</a></li>
+                        <li><a href="team.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Our Team</a></li>
+                        <li><a href="contact.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="glass-text-primary font-semibold text-lg mb-6">Contact</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-4 text-white/80"></i>
+                            <span class="glass-text-secondary">Dhaka, Bangladesh</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-4 text-white/80"></i>
+                            <span class="glass-text-secondary">info@bionova.org</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone mt-1 mr-4 text-white/80"></i>
+                            <span class="glass-text-secondary">+880 17XX-XXXXXX</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h4 class="glass-text-primary font-semibold text-lg mb-6">Resources</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Annual Reports</a></li>
+                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Research Papers</a></li>
+                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Case Studies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-white/20 mt-12 pt-8 text-center">
+                <p class="glass-text-muted">&copy; 2025 BioNova. All rights reserved.</p>
+                <div class="mt-4 space-x-6">
+                    <a href="#" class="glass-text-muted hover:text-white transition-colors">Privacy</a>
+                    <span class="glass-text-muted">•</span>
+                    <a href="#" class="glass-text-muted hover:text-white transition-colors">Terms</a>
+                    <span class="glass-text-muted">•</span>
+                    <a href="contact.html" class="glass-text-muted hover:text-white transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+ 
   <script>
-    // Mobile menu
-    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-      const menu = document.getElementById('mobileMenu');
-      menu.classList.toggle('hidden');
-    });
-
-    // Scroll progress indicator
-    window.addEventListener('scroll', () => {
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      document.getElementById('scrollProgress').style.width = scrolled + '%';
-    });
-
-    // Intersection Observer for animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('page-load');
-        }
+    // --- YAML Parser ---
+    function parseYAML(yamlStr) {
+      const result = {};
+      yamlStr.trim().split('\n').forEach(line => {
+        const idx = line.indexOf(':');
+        if (idx === -1) return;
+        let key = line.slice(0, idx).trim();
+        let val = line.slice(idx + 1).trim().replace(/^[\"']|[\"']$/g, '');
+        if (val === 'true') val = true;
+        if (val === 'false') val = false;
+        if (!isNaN(val) && val !== '') val = Number(val);
+        result[key] = val;
       });
-    }, observerOptions);
-    document.querySelectorAll('section').forEach(section => observer.observe(section));
+      return result;
+    }
 
-    // Simple YAML parser (supports title, date)
-    function parseFrontmatter(str) {
-      const parts = str.split('---', 3);
-      if (parts.length < 3) return null;
-      const yaml = parts[1].trim();
-      const body = parts[2].trim();
-      const meta = {};
-      yaml.split('\n').forEach(line => {
-        const i = line.indexOf(':');
-        if (i > 0) {
-          const key = line.slice(0, i).trim();
-          let val = line.slice(i + 1).trim();
-          if (val.startsWith('"') && val.endsWith('"')) val = val.slice(1, -1);
-          if (val.startsWith("'") && val.endsWith("'")) val = val.slice(1, -1);
-          if (key === 'date') {
-            const d = new Date(val);
-            if (!isNaN(d)) meta.date = d;
-          } else {
-            meta[key] = val;
+    // --- Enhanced Markdown to HTML (supports tables, all block elements) ---
+    function markdownToHTML(md) {
+      let html = md
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+
+      // Code blocks
+      html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+
+      // Headings
+      html = html.replace(/^###### (.+)$/gm, '<h6>$1</h6>');
+      html = html.replace(/^##### (.+)$/gm, '<h5>$1</h5>');
+      html = html.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
+      html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+      html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+      html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+
+      // Bold / Italic
+      html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+      // Inline code
+      html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+      // Links & Images
+      html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+      html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img alt="$1" src="$2" />');
+
+      // Blockquotes
+      html = html.replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>');
+
+      // Tables (GitHub-style)
+      html = html.replace(/^\|(.+)\|\s*$/gm, (match, header) => {
+        if (!match.includes('\n')) {
+          const cells = header.split('|').map(c => c.trim()).filter(c => c);
+          if (cells.length === 0) return match;
+          const ths = cells.map(c => `<th>${c}</th>`).join('');
+          return `<table><thead><tr>${ths}</tr></thead><tbody>`;
+        }
+        return match;
+      });
+
+      // Table separator row (e.g. |---|---|) → ignore
+      html = html.replace(/^\|(\s*[-:]+\s*\|)+\s*$/gm, '');
+
+      // Table data rows
+      html = html.replace(/^\|(.+)\|\s*$/gm, (match, row) => {
+        const cells = row.split('|').map(c => c.trim()).filter(c => c);
+        if (cells.length === 0) return '';
+        const tds = cells.map(c => `<td>${c}</td>`).join('');
+        return `<tr>${tds}</tr>`;
+      });
+
+      // Close table
+      html = html.replace(/(<tbody>.*<\/tbody>)/gs, '<tbody>$1</tbody></table>');
+
+      // Lists
+      html = html.replace(/^(\s*)[-*+]\s+(.+)$/gm, '<li>$2</li>');
+      html = html.replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>');
+      html = html.replace(/^(\s*)\d+\.\s+(.+)$/gm, '<li>$2</li>');
+      html = html.replace(/(<ul>.*?<\/ul>|<li>.*<\/li>)/gs, match => {
+        if (match.startsWith('<li>') && !match.includes('<ul>')) return `<ol>${match}</ol>`;
+        return match;
+      });
+
+      // Paragraphs
+      html = html
+        .split('\n\n')
+        .map(paragraph => {
+          paragraph = paragraph.trim();
+          if (!paragraph || /^<(h[1-6]|ul|ol|pre|blockquote|img|table|tr|th|td|tbody|thead)/.test(paragraph)) {
+            return paragraph;
           }
-        }
-      });
-      return { meta, body };
+          return `<p>${paragraph}</p>`;
+        })
+        .join('\n');
+
+      return html;
     }
 
-    // Load announcements with YAML frontmatter
-    async function loadAnnouncements() {
-      const container = document.getElementById('announcements-container');
+    // --- Load Article ---
+    async function loadArticle() {
+      const id = sessionStorage.getItem('selectedFile');
+      if (!id || !id.startsWith('articles/')) {
+        document.getElementById('article-body').innerHTML = '<p class="text-center text-red-300 mt-6">Article not found.</p>';
+        return;
+      }
+
       try {
-        const res = await fetch('/content/index.json');
-        if (!res.ok) throw new Error();
-        const data = await res.json();
-        const paths = data.announcement || [];
-        const announcements = [];
+        const response = await fetch(`/content/${id}`);
+        const text = await response.text();
 
-        for (const path of paths) {
-          const text = await fetch(`/content/${path}`).then(r => r.text());
-          const parsed = parseFrontmatter(text);
-          if (!parsed) continue;
-          const { meta, body } = parsed;
-          const formattedDate = meta.date 
-            ? meta.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-            : '';
-          announcements.push({ title: meta.title || 'Untitled', date: formattedDate, body });
-        }
+        const parts = text.split('---');
+        if (parts.length < 3) throw new Error('Invalid Markdown format');
 
-        // Sort newest first
-        announcements.sort((a, b) => new Date(b.date) - new Date(a.date));
+        const frontmatter = parts[1];
+        const body = parts.slice(2).join('---');
+        const meta = parseYAML(frontmatter);
+        const htmlBody = markdownToHTML(body);
 
-        const html = announcements.slice(0, 3).map(a => `
-          <div class="pure-glass p-6 rounded-xl hover:scale-[1.02] transition-transform">
-            <div class="flex justify-between items-start mb-2">
-              <h3 class="text-xl font-bold text-orange-400">${a.title}</h3>
-              ${a.date ? `<span class="text-gray-400 text-sm">${a.date}</span>` : ''}
-            </div>
-            <p class="text-white">${a.body.substring(0, 150)}${a.body.length > 150 ? '…' : ''}</p>
-          </div>
-        `).join('');
-
-        container.innerHTML = html || '<p class="text-white text-center">No announcements.</p>';
-      } catch (e) {
-        container.innerHTML = '<p class="text-white text-center">Failed to load announcements.</p>';
+        document.getElementById('article-image').src = meta.image || 'https://via.placeholder.com/800x400/e2e8f0/64748b?text=Article+Image';
+        document.getElementById('article-title').textContent = meta.title || 'Untitled';
+        document.getElementById('article-author').textContent = `By ${meta.author || 'BioNova Team'}`;
+        document.getElementById('article-date').textContent = meta.date
+          ? new Date(meta.date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })
+          : 'Date Unknown';
+        document.getElementById('article-body').innerHTML = htmlBody;
+        document.title = `${meta.title || 'Article'} - BioNova`;
+      } catch (error) {
+        console.error('Failed to load article:', error);
+        document.getElementById('article-body').innerHTML = '<p class="text-center text-red-300 mt-6">Failed to load article.</p>';
       }
     }
 
-    // Load articles (max 6)
-    async function loadArticles() {
-      const container = document.getElementById('articles-container');
-      try {
-        const res = await fetch('/content/index.json');
-        if (!res.ok) throw new Error();
-        const data = await res.json();
-        const cards = [];
-        for (const fullPath of (data.articles || []).slice(0, 6)) {
-          const txt = await fetch(`/content/${fullPath}`).then(r => r.text());
-          const parts = txt.split('---');
-          if (parts.length < 3) continue;
-
-          const meta = {};
-          parts[1].split('\n').forEach(line => {
-            const i = line.indexOf(':');
-            if (i > 0) {
-              const key = line.slice(0, i).trim();
-              let val = line.slice(i + 1).trim().replace(/^['"]|['"]$/g, '');
-              if (val === 'true') val = true;
-              else if (val === 'false') val = false;
-              else if (!isNaN(val) && val !== '') val = Number(val);
-              meta[key] = val;
-            }
-          });
-          const excerpt = parts.slice(2).join('---').replace(/[#*_\-[\]()`>]/g, ' ')
-            .split(/\s+/)
-            .slice(0, 20)
-            .join(' ') + '…';
-          const tags = Array.isArray(meta.tags) ? meta.tags : (meta.tags ? [meta.tags] : []);
-
-          cards.push(`
-            <div class="article-card pure-glass rounded-xl overflow-hidden group">
-              <div class="article-image-container">
-                <img src="${meta.image || 'https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'}"
-                     alt="${meta.title || 'Article'}"
-                     class="article-image"
-                     onerror="this.src='https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'"
-                     loading="lazy">
-              </div>
-              <div class="article-content">
-                ${tags.length > 0 ? `
-                  <div class="flex flex-wrap gap-2 mb-3">
-                    ${tags.slice(0, 3).map(tag => `
-                      <span class="px-3 py-1 bg-teal-500/20 text-teal-300 text-xs font-medium rounded-full">
-                        ${tag}
-                      </span>
-                    `).join('')}
-                  </div>
-                ` : ''}
-                <h3 class="article-title text-xl font-bold mb-3 group-hover:text-orange-400 transition-colors">${meta.title || 'Untitled'}</h3>
-                <p class="article-excerpt text-white text-opacity-90">${excerpt}</p>
-                <a href="article.html"
-                   onclick="sessionStorage.setItem('selectedFile','${fullPath}'); return true;"
-                   class="mt-auto text-teal-300 hover:text-teal-400 hover:underline flex items-center gap-2 font-medium">
-                  Read More
-                  <i class="fas fa-arrow-right transition-transform group-hover:translate-x-1"></i>
-                </a>
-              </div>
-            </div>
-          `);
-        }
-        container.innerHTML = cards.length ? cards.join('') : '<p class="col-span-full text-white text-center">No articles available.</p>';
-      } catch (err) {
-        console.error('Article loading error:', err);
-        container.innerHTML = '<p class="col-span-full text-red-400 text-center">Failed to load articles.</p>';
-      }
-    }
-
-    // FAQ Toggle
-    function toggleFAQ(button) {
-      const answer = button.nextElementSibling;
-      const icon = button.querySelector('i');
-      const isOpen = answer.classList.contains('max-h-0') || answer.scrollHeight === 0;
-
-      document.querySelectorAll('.faq-answer').forEach(el => {
-        if (el !== answer) {
-          el.classList.add('max-h-0');
-          el.previousElementSibling.querySelector('i').classList.remove('rotate-180');
-        }
-      });
-
-      if (isOpen) {
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-        setTimeout(() => answer.classList.remove('max-h-0'), 10);
-        icon.classList.add('rotate-180');
-      } else {
-        answer.classList.add('max-h-0');
-        icon.classList.remove('rotate-180');
-      }
-    }
-
-    // On page load
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.page-load').forEach((el, index) => {
-        el.style.animationDelay = `${index * 0.1}s`;
-      });
-
-      setTimeout(() => {
-        loadAnnouncements();
-        loadArticles();
-      }, 400);
-
-      // Ripple effect
-      document.querySelectorAll('.glow-button').forEach(button => {
-        button.addEventListener('click', function(e) {
-          const ripple = document.createElement('span');
-          const rect = this.getBoundingClientRect();
-          const size = Math.max(rect.width, rect.height);
-          const x = e.clientX - rect.left - size / 2;
-          const y = e.clientY - rect.top - size / 2;
-          
-          ripple.style.cssText = `
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            width: ${size}px;
-            height: ${size}px;
-            left: ${x}px;
-            top: ${y}px;
-          `;
-          this.appendChild(ripple);
-          setTimeout(() => ripple.remove(), 600);
-        });
-      });
-
-      const style = document.createElement('style');
-      style.textContent = `
-        @keyframes ripple {
-          to {
-            transform: scale(4);
-            opacity: 0;
-          }
-        }
-      `;
-      document.head.appendChild(style);
-    });
+    document.addEventListener('DOMContentLoaded', loadArticle);
   </script>
 </body>
 </html>
