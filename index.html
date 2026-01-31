@@ -403,12 +403,7 @@
 <section class="py-16 page-load delay-3">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="pure-glass rounded-3xl overflow-hidden group">
-      <img 
-        src="content/images/IMG_5811.png" 
-        alt="Youth leading climate action in Bangladesh" 
-        class="w-full h-64 sm:h-96 object-cover transition-transform duration-700 group-hover:scale-105"
-        loading="lazy"
-      >
+ 
       <div class="p-6 md:p-8">
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
           Our Commitment to Bring Change
@@ -433,74 +428,49 @@
 <!-- FAQ Section -->
 <section class="py-16 page-load delay-4">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-white text-3xl md:text-4xl font-bold text-center mb-8">Frequently Asked Questions</h2>
-    <div id="faq-accordion" class="space-y-4">
-      <!-- FAQ 1 -->
-      <div class="pure-glass rounded-xl overflow-hidden">
-        <button onclick="toggleFAQ(this)" aria-expanded="false" class="w-full flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition" aria-controls="faq1">
+  <h2 class="text-white text-3xl md:text-4xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+  
+  <div class="space-y-4">
+    <!-- FAQ 1 -->
+    <div class="pure-glass rounded-xl overflow-hidden">
+      <details class="group" open>
+        <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none">
           <span>What is YCI Bangladesh?</span>
-          <i class="fas fa-chevron-down transition-transform"></i>
-        </button>
-        <div id="faq1" class="faq-answer max-h-0 overflow-hidden transition-all duration-300" role="region" aria-hidden="true">
-          <div class="p-5 pt-0 text-white">
-            YCI Bangladesh is a youth-led initiative working to strengthen climate resilience, environmental awareness, and sustainable development across Bangladesh through education, advocacy, and community-based action.
-          </div>
+          <i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i>
+        </summary>
+        <div class="p-5 pt-0 text-white border-t border-white/10">
+          YCI Bangladesh is a youth-led initiative working to strengthen climate resilience, environmental awareness, and sustainable development across Bangladesh through education, advocacy, and community-based action.
         </div>
-      </div>
+      </details>
+    </div>
 
-      <!-- FAQ 2 -->
-      <div class="pure-glass rounded-xl overflow-hidden">
-        <button onclick="toggleFAQ(this)" aria-expanded="false" class="w-full flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition" aria-controls="faq2">
-          <span>Who can join YCI Bangladesh?</span>
-          <i class="fas fa-chevron-down transition-transform"></i>
-        </button>
-        <div id="faq2" class="faq-answer max-h-0 overflow-hidden transition-all duration-300" role="region" aria-hidden="true">
-          <div class="p-5 pt-0 text-white">
-            Students, young professionals, volunteers, and climate enthusiasts can join and participate in campaigns, training programs, and research-based activities.
-          </div>
+    <!-- FAQ 2 -->
+    <div class="pure-glass rounded-xl overflow-hidden">
+      <details class="group">
+        <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none">
+          <span>How can I volunteer with YCI?</span>
+          <i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i>
+        </summary>
+        <div class="p-5 pt-0 text-white border-t border-white/10">
+          Join our volunteer network by filling out the form on our Contact page. We welcome students, professionals, and community leaders passionate about climate action.
         </div>
-      </div>
+      </details>
+    </div>
 
-      <!-- FAQ 3 -->
-      <div class="pure-glass rounded-xl overflow-hidden">
-        <button onclick="toggleFAQ(this)" aria-expanded="false" class="w-full flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition" aria-controls="faq3">
-          <span>What types of activities does YCI Bangladesh conduct?</span>
-          <i class="fas fa-chevron-down transition-transform"></i>
-        </button>
-        <div id="faq3" class="faq-answer max-h-0 overflow-hidden transition-all duration-300" role="region" aria-hidden="true">
-          <div class="p-5 pt-0 text-white">
-            We run awareness campaigns, capacity-building workshops, community-led projects, research initiatives, school climate programs, and environmental volunteering events.
-          </div>
+    <!-- FAQ 3 -->
+    <div class="pure-glass rounded-xl overflow-hidden">
+      <details class="group">
+        <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none">
+          <span>Do you work only in Dhaka?</span>
+          <i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i>
+        </summary>
+        <div class="p-5 pt-0 text-white border-t border-white/10">
+          No—we operate nationwide with active chapters in Chittagong, Sylhet, Khulna, and Rajshahi, focusing on locally relevant climate challenges.
         </div>
-      </div>
-
-      <!-- FAQ 4 -->
-      <div class="pure-glass rounded-xl overflow-hidden">
-        <button onclick="toggleFAQ(this)" aria-expanded="false" class="w-full flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition" aria-controls="faq4">
-          <span>Does YCI Bangladesh collaborate with institutions?</span>
-          <i class="fas fa-chevron-down transition-transform"></i>
-        </button>
-        <div id="faq4" class="faq-answer max-h-0 overflow-hidden transition-all duration-300" role="region" aria-hidden="true">
-          <div class="p-5 pt-0 text-white">
-            Yes. We collaborate with universities, schools, youth networks, NGOs, local government bodies, and climate-focused organizations to expand impact and reach.
-          </div>
-        </div>
-      </div>
-
-      <!-- FAQ 5 -->
-      <div class="pure-glass rounded-xl overflow-hidden">
-        <button onclick="toggleFAQ(this)" aria-expanded="false" class="w-full flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition" aria-controls="faq5">
-          <span>How can I participate in YCI Bangladesh's climate projects?</span>
-          <i class="fas fa-chevron-down transition-transform"></i>
-        </button>
-        <div id="faq5" class="faq-answer max-h-0 overflow-hidden transition-all duration-300" role="region" aria-hidden="true">
-          <div class="p-5 pt-0 text-white">
-            You can join by signing up as a volunteer, applying to our programs, attending workshops, or partnering with us through institutional collaborations.
-          </div>
-        </div>
-      </div>
+      </details>
     </div>
   </div>
+</div>
 </section>
 
  
@@ -528,7 +498,7 @@
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="pure-glass rounded-3xl p-12 text-center text-white group hover:scale-[1.02] transition-all duration-500">
           <h2 class="text-white text-4xl md:text-5xl font-bold mb-4">Meet Our entire Team</h2>
-          <p class="text-xl mb-8">placeholder</p>
+          <p class="text-xl mb-8">Bringing change</p>
           <a href="team.html" class="px-8 py-4 bg-white text-primary rounded-full font-bold text-lg hover:bg-opacity-90 hover:scale-105 transition glow-button inline-block">
             View Full Team
           </a>
@@ -796,28 +766,7 @@
       }
     }
 
-    // FAQ Toggle
-    function toggleFAQ(button) {
-      const answer = button.nextElementSibling;
-      const icon = button.querySelector('i');
-      const isOpen = answer.classList.contains('max-h-0') || answer.scrollHeight === 0;
-
-      document.querySelectorAll('.faq-answer').forEach(el => {
-        if (el !== answer) {
-          el.classList.add('max-h-0');
-          el.previousElementSibling.querySelector('i').classList.remove('rotate-180');
-        }
-      });
-
-      if (isOpen) {
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-        setTimeout(() => answer.classList.remove('max-h-0'), 10);
-        icon.classList.add('rotate-180');
-      } else {
-        answer.classList.add('max-h-0');
-        icon.classList.remove('rotate-180');
-      }
-    }
+    
 
     // On page load
     document.addEventListener('DOMContentLoaded', () => {
