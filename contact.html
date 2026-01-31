@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="webtoken" content="width=device-width, initial-scale=1.0" />
-  <title>Contact - yci</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - YCI Bangladesh</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
@@ -31,6 +31,7 @@
     .pure-glass {
       background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     }
@@ -39,6 +40,7 @@
     .nav-glass {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     }
 
@@ -47,6 +49,51 @@
     textarea::placeholder {
       color: rgba(255, 255, 255, 0.6);
     }
+    
+    /* Smooth page transitions */
+    .page-load {
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    
+    .page-load:hover {
+      opacity: 0.95;
+    }
+    
+    /* Glow effect for buttons */
+    .glow-button {
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+      transition: all 0.3s ease;
+    }
+    
+    .glow-button:hover {
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.7);
+      transform: translateY(-2px);
+    }
+    
+    /* Mobile menu animation */
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .mobile-menu-open {
+      animation: slideDown 0.3s ease forwards;
+    }
+    
+    /* Floating button adjustments for mobile */
+    @media (max-width: 768px) {
+      .floating-btn {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+        padding-top: 0.625rem !important;
+        padding-bottom: 0.625rem !important;
+        font-size: 0.875rem !important;
+      }
+      
+      .floating-btn i {
+        margin-right: 0.25rem;
+      }
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-[#003f87] to-[#a8e6cf] min-h-screen">
@@ -54,102 +101,103 @@
   <!-- Glass Navbar -->
   <nav id="mainNav" class="fixed w-full top-0 z-50 nav-glass">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16 md:h-20">
+      <div class="flex justify-between items-center h-16">
         <a href="index.html" class="flex items-center page-load">
-          <img src="content/images/IMG_5811.png" alt="BioNova Logo"
-               class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20"
-               onerror="this.src=''; this.parentElement.innerHTML='BioNova';">
+          <img src="https://via.placeholder.com/40/003f87/FFFFFF?text=YCI" alt="YCI Bangladesh Logo"
+               class="w-10 h-10 rounded-full object-cover border-2 border-white/20"
+               onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 viewBox=%220 0 40 40%22><rect width=%2240%22 height=%2240%22 fill=%22%23003f87%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22Inter%22 font-size=%2216%22 fill=%22white%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>YCI</text></svg>'; this.parentElement.innerHTML='<div class=\'w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center text-white font-bold\'>YCI</div>';">
+          <span class="ml-2 text-white font-bold text-xl hidden sm:block">YCI Bangladesh</span>
         </a>
 
-        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass page-load delay-1">
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass page-load">
           <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
-        <div class="hidden md:flex space-x-2">
-          <a href="index.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-1">Home</a>
-          <a href="services.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-2">blogs</a>
-          <a href="articles.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-3">Events</a>
-          <a href="team.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-4">Team</a>
-          <a href="contact.html" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium hover:scale-105 transition glow-button page-load delay-5">
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="index.html" class="px-3 py-2 text-white hover:text-teal-300 transition rounded-lg page-load">Home</a>
+          <a href="services.html" class="px-3 py-2 text-white hover:text-teal-300 transition rounded-lg page-load">Blogs</a>
+          <a href="articles.html" class="px-3 py-2 text-white hover:text-teal-300 transition rounded-lg page-load">Events</a>
+          <a href="team.html" class="px-3 py-2 text-white hover:text-teal-300 transition rounded-lg page-load">Team</a>
+          <a href="contact.html" class="ml-2 px-4 py-2 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium hover:scale-105 transition glow-button page-load">
             Contact
           </a>
         </div>
       </div>
       <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 space-y-2">
-        <a href="index.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Home</a>
-        <a href="services.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">blogs</a>
-        <a href="articles.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Events</a>
-        <a href="team.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Team</a>
-        <a href="contact.html" class="mt-2 block px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full text-center glow-button">Contact</a>
+        <a href="index.html" class="block px-4 py-3 text-white hover:text-teal-300 hover:pl-6 transition rounded-lg">Home</a>
+        <a href="services.html" class="block px-4 py-3 text-white hover:text-teal-300 hover:pl-6 transition rounded-lg">Blogs</a>
+        <a href="articles.html" class="block px-4 py-3 text-white hover:text-teal-300 hover:pl-6 transition rounded-lg">Events</a>
+        <a href="team.html" class="block px-4 py-3 text-white hover:text-teal-300 hover:pl-6 transition rounded-lg">Team</a>
+        <a href="contact.html" class="mt-2 block px-4 py-3 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-lg text-center font-medium glow-button">Contact</a>
       </div>
     </div>
   </nav>
 
   <!-- Main Content -->
-  <main class="pt-24 pb-16">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="pure-glass rounded-2xl p-6 md:p-8">
-        <div class="text-center mb-10">
-          <h1 class="text-3xl md:text-4xl font-bold text-white mb-3">Get In Touch</h1>
-          <p class="text-lg text-white/90 max-w-2xl mx-auto">
+  <main class="pt-28 pb-16 px-4 sm:px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="pure-glass rounded-2xl p-5 sm:p-6 md:p-8">
+        <div class="text-center mb-8 sm:mb-10">
+          <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 sm:mb-3">Get In Touch</h1>
+          <p class="text-base sm:text-lg text-white/90 max-w-2xl mx-auto px-2">
             Have questions or want to collaborate? Reach out to us!
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           <!-- Contact Info -->
-          <div class="space-y-6">
-            <div class="flex items-start space-x-4">
-              <div class="mt-1 text-teal-300">
-                <i class="fas fa-envelope text-xl"></i>
+          <div class="space-y-5 sm:space-y-6">
+            <div class="flex items-start space-x-3 sm:space-x-4">
+              <div class="mt-1 text-teal-300 flex-shrink-0">
+                <i class="fas fa-envelope text-xl sm:text-2xl"></i>
               </div>
               <div>
-                <h3 class="text-white font-semibold">Email</h3>
+                <h3 class="text-white font-semibold text-lg">Email</h3>
                 <p class="text-white/80">ycibangladesh@gmail.com</p>
               </div>
             </div>
 
-            <div class="flex items-start space-x-4">
-              <div class="mt-1 text-teal-300">
-                <i class="fas fa-map-marker-alt text-xl"></i>
+            <div class="flex items-start space-x-3 sm:space-x-4">
+              <div class="mt-1 text-teal-300 flex-shrink-0">
+                <i class="fas fa-map-marker-alt text-xl sm:text-2xl"></i>
               </div>
               <div>
-                <h3 class="text-white font-semibold">Location</h3>
+                <h3 class="text-white font-semibold text-lg">Location</h3>
                 <p class="text-white/80">Dhaka, Bangladesh</p>
               </div>
             </div>
 
-            <div class="flex items-start space-x-4">
-              <div class="mt-1 text-teal-300">
-                <i class="fas fa-clock text-xl"></i>
+            <div class="flex items-start space-x-3 sm:space-x-4">
+              <div class="mt-1 text-teal-300 flex-shrink-0">
+                <i class="fas fa-clock text-xl sm:text-2xl"></i>
               </div>
               <div>
-                <h3 class="text-white font-semibold">Working Hours</h3>
+                <h3 class="text-white font-semibold text-lg">Working Hours</h3>
                 <p class="text-white/80">24/7</p>
               </div>
             </div>
           </div>
 
           <!-- Contact Form -->
-          <form id="contactForm" class="space-y-5">
+          <form id="contactForm" class="space-y-4 sm:space-y-5">
             <div>
-              <label for="name" class="block text-white mb-1">Name</label>
+              <label for="name" class="block text-white mb-1 text-sm sm:text-base">Name</label>
               <input type="text" id="name" required
-                class="w-full pure-glass rounded-lg px-4 py-2.5 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-teal-400/50" />
+                class="w-full pure-glass rounded-xl sm:rounded-lg px-4 py-3 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-teal-400/50 transition" />
             </div>
             <div>
-              <label for="email" class="block text-white mb-1">Email</label>
+              <label for="email" class="block text-white mb-1 text-sm sm:text-base">Email</label>
               <input type="email" id="email" required
-                class="w-full pure-glass rounded-lg px-4 py-2.5 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-teal-400/50" />
+                class="w-full pure-glass rounded-xl sm:rounded-lg px-4 py-3 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-teal-400/50 transition" />
             </div>
             <div>
-              <label for="message" class="block text-white mb-1">Message</label>
+              <label for="message" class="block text-white mb-1 text-sm sm:text-base">Message</label>
               <textarea id="message" rows="4" required
-                class="w-full pure-glass rounded-lg px-4 py-2.5 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-teal-400/50"></textarea>
+                class="w-full pure-glass rounded-xl sm:rounded-lg px-4 py-3 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-teal-400/50 transition"></textarea>
             </div>
             <button type="submit"
-              class="w-full px-6 py-3 bg-gradient-to-r from-blue-800 to-teal-600 text-white font-medium rounded-lg hover:scale-[1.02] transition transform">
+              class="w-full px-6 py-3 sm:py-3.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white font-medium rounded-xl sm:rounded-lg hover:scale-[1.02] transition transform active:scale-[0.98]">
               Send Message
             </button>
           </form>
@@ -159,109 +207,121 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+  <footer class="bg-gray-900/90 backdrop-blur-sm text-gray-300 pt-12 pb-8 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
         <!-- Brand -->
-        <div>
-          <h3 class="text-white font-bold mb-2">ycibangladesh</h3>
-          <p class="text-white mb-2">
-             To build a climate resilient Bangladesh where youth leads toward sustainable Change
-          </p>
-          <div class="flex space-x-3">
-            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
-              <i class="fab fa-twitter"></i>
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-white font-bold text-xl mb-2">YCI Bangladesh</h3>
+            <p class="text-white/85 text-sm sm:text-base">
+              To build a climate resilient Bangladesh where youth leads toward sustainable Change
+            </p>
+          </div>
+          <div class="flex space-x-3 pt-2">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-teal-500/20 transition-all duration-300 hover:scale-110">
+              <i class="fab fa-twitter text-white"></i>
             </a>
-            <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
-              <i class="fab fa-facebook-f"></i>
+            <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-teal-500/20 transition-all duration-300 hover:scale-110">
+              <i class="fab fa-facebook-f text-white"></i>
             </a>
-            <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
-              <i class="fab fa-linkedin-in"></i>
+            <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-teal-500/20 transition-all duration-300 hover:scale-110">
+              <i class="fab fa-linkedin-in text-white"></i>
             </a>
-            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
-              <i class="fab fa-instagram"></i>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-teal-500/20 transition-all duration-300 hover:scale-110">
+              <i class="fab fa-instagram text-white"></i>
             </a>
           </div>
         </div>
 
-
         <!-- Quick Links -->
-        <div>
-          <h4 class="font-bold text-white mb-4">Quick Links</h4>
-          <ul class="space-y-2.5 text-sm">
-            <li><a href="services.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
-            <li><a href="articles.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
-            <li><a href="team.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Our Team</a></li>
-            <li><a href="contact.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Contact</a></li>
-            <li><a href="contact.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Careers</a></li>
+        <div class="space-y-3">
+          <h4 class="font-bold text-white text-lg mb-3">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="services.html" class="flex items-center text-white/85 hover:text-white transition py-1"><i class="fas fa-chevron-right text-xs mr-2 text-teal-400"></i> About Us</a></li>
+            <li><a href="articles.html" class="flex items-center text-white/85 hover:text-white transition py-1"><i class="fas fa-chevron-right text-xs mr-2 text-teal-400"></i> Publications</a></li>
+            <li><a href="team.html" class="flex items-center text-white/85 hover:text-white transition py-1"><i class="fas fa-chevron-right text-xs mr-2 text-teal-400"></i> Our Team</a></li>
+            <li><a href="contact.html" class="flex items-center text-white/85 hover:text-white transition py-1"><i class="fas fa-chevron-right text-xs mr-2 text-teal-400"></i> Contact</a></li>
+            <li><a href="contact.html" class="flex items-center text-white/85 hover:text-white transition py-1"><i class="fas fa-chevron-right text-xs mr-2 text-teal-400"></i> Careers</a></li>
           </ul>
         </div>
 
         <!-- Contact -->
-        <div>
-          <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
-          <ul class="space-y-3 text-sm">
+        <div class="space-y-3">
+          <h4 class="text-white font-semibold text-lg mb-3">Contact</h4>
+          <ul class="space-y-3 text-sm sm:text-base">
             <li class="flex items-start">
-              <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
-              <span class="text-white mb-2">Dhaka, Bangladesh</span>
+              <i class="fas fa-map-marker-alt mt-1 mr-3 text-teal-400 flex-shrink-0"></i>
+              <span class="text-white/85">Dhaka, Bangladesh</span>
             </li>
             <li class="flex items-start">
-              <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
-              <span class="text-white mb-2">ycibangladesh@gmail.com</span>
+              <i class="fas fa-envelope mt-1 mr-3 text-teal-400 flex-shrink-0"></i>
+              <span class="text-white/85">ycibangladesh@gmail.com</span>
             </li>
             <li class="flex items-start">
-              <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
-              <span class="text-white mb-2">01919403296 / 01980632583</span>
+              <i class="fas fa-phone mt-1 mr-3 text-teal-400 flex-shrink-0"></i>
+              <span class="text-white/85">01919403296 / 01980632583</span>
             </li>
           </ul>
         </div>
 
         <!-- Resources -->
-        <div>
-          <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
-          <ul class="space-y-2.5 text-sm">
-            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Annual Reports</a></li>
-            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Research Papers</a></li>
-            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Case Studies</a></li>
-            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Partnerships</a></li>
+        <div class="space-y-3">
+          <h4 class="text-white font-semibold text-lg mb-3">Resources</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="flex items-center text-white/85 hover:text-white transition py-1"><i class="fas fa-chevron-right text-xs mr-2 text-teal-400"></i> Annual Reports</a></li>
+            <li><a href="#" class="flex items-center text-white/85 hover:text-white transition py-1"><i class="fas fa-chevron-right text-xs mr-2 text-teal-400"></i> Research Papers</a></li>
+            <li><a href="#" class="flex items-center text-white/85 hover:text-white transition py-1"><i class="fas fa-chevron-right text-xs mr-2 text-teal-400"></i> Case Studies</a></li>
+            <li><a href="#" class="flex items-center text-white/85 hover:text-white transition py-1"><i class="fas fa-chevron-right text-xs mr-2 text-teal-400"></i> Partnerships</a></li>
           </ul>
         </div>
       </div>
 
       <!-- Copyright -->
-      <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
-        <p>&copy; 2025 yci. All rights reserved.</p>
-        <div class="mt-3 space-x-4">
-          <a href="#" class="hover:text-white transition-colors">Privacy</a>
-          <span class="text-gray-600">•</span>
-          <a href="#" class="hover:text-white transition-colors">Terms</a>
-          <span class="text-gray-600">•</span>
-          <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+      <div class="border-t border-white/10 mt-10 pt-8 text-center text-sm">
+        <p class="text-white/70">&copy; 2025 YCI Bangladesh. All rights reserved.</p>
+        <div class="mt-4 flex flex-wrap justify-center gap-3 sm:gap-6">
+          <a href="#" class="text-white/85 hover:text-white transition-colors py-1 px-2">Privacy Policy</a>
+          <a href="#" class="text-white/85 hover:text-white transition-colors py-1 px-2">Terms of Service</a>
+          <a href="contact.html" class="text-white/85 hover:text-white transition-colors py-1 px-2">Contact Us</a>
         </div>
       </div>
     </div>
   </footer>
   
-  <!-- Floating Action Button -->
+  <!-- Floating Action Buttons -->
   <a href="articles.html" 
-     class="floating-btn fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
-     aria-label="Join Our Mission">
-    Our events
+     class="floating-btn fixed bottom-4 right-4 md:bottom-6 md:right-6 lg:bottom-8 lg:right-8 px-4 py-3 md:px-5 md:py-3.5 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-base md:text-lg shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 z-40 border border-white/30"
+     aria-label="View Our Events">
+    <i class="fas fa-calendar-alt mr-2 md:mr-3"></i>
+    <span class="hidden xs:inline">Our Events</span>
+    <i class="fas fa-arrow-right ml-1 md:ml-2"></i>
   </a>
 
-    <!-- Floating Action Button -->
   <a href="team.html" 
-     class="floating-btn fixed bottom-6 left-6 md:bottom-8 md:left-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
-     aria-label="Join Our Mission">
-    Our Team
+     class="floating-btn fixed bottom-4 left-4 md:bottom-6 md:left-6 lg:bottom-8 lg:left-8 px-4 py-3 md:px-5 md:py-3.5 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-base md:text-lg shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 z-40 border border-white/30"
+     aria-label="Meet Our Team">
+    <i class="fas fa-users mr-2 md:mr-3"></i>
+    <span class="hidden xs:inline">Our Team</span>
+    <i class="fas fa-arrow-right ml-1 md:ml-2"></i>
   </a>
-
- 
 
   <script>
-    // Mobile menu toggle
+    // Mobile menu toggle with animation
     document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-      document.getElementById('mobileMenu').classList.toggle('hidden');
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileMenu.classList.toggle('hidden');
+      
+      if (!mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('mobile-menu-open');
+      }
+    });
+
+    // Close mobile menu when clicking a link (on mobile)
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.add('hidden');
+      });
     });
 
     // Mailto handler on form submit
@@ -278,8 +338,56 @@
       const recipient = 'ycibangladesh@gmail.com';
       const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
 
-      // Open email client
-      window.location.href = mailtoLink;
+      // Show success message
+      const button = document.querySelector('#contactForm button[type="submit"]');
+      const originalText = button.innerHTML;
+      
+      button.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Sending...';
+      button.disabled = true;
+      
+      // Simulate sending delay
+      setTimeout(() => {
+        // Open email client
+        window.location.href = mailtoLink;
+        
+        // Reset button after opening email client
+        setTimeout(() => {
+          button.innerHTML = originalText;
+          button.disabled = false;
+          
+          // Show success feedback
+          alert('Email client opened successfully! Please send your message from there.');
+        }, 500);
+      }, 800);
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const menuBtn = document.getElementById('mobileMenuBtn');
+      
+      if (!mobileMenu.classList.contains('hidden') && 
+          !mobileMenu.contains(e.target) && 
+          !menuBtn.contains(e.target)) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if(targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
     });
   </script>
 </body>
