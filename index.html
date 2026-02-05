@@ -393,7 +393,7 @@
     <!-- Announcements -->
     <section class="py-12 page-load delay-2">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-accent">Announcements</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-primary">Announcements</h2>
         <div id="announcements-container" class="space-y-6">
           <div class="text-center py-6 text-white">Loading announcements...</div>
         </div>
@@ -686,7 +686,7 @@
         const html = announcements.slice(0, 3).map(a => `
           <div class="pure-glass p-6 rounded-xl hover:scale-[1.02] transition-transform">
             <div class="flex justify-between items-start mb-2">
-              <h3 class="text-xl font-bold text-accent">${a.title}</h3>
+              <h3 class="text-xl font-bold text-primary">${a.title}</h3>
               ${a.date ? `<span class="text-gray-400 text-sm">${a.date}</span>` : ''}
             </div>
             <p class="text-white">${a.body.substring(0, 150)}${a.body.length > 150 ? '…' : ''}</p>
