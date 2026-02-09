@@ -83,10 +83,6 @@ content:
       - name: title
         type: string
         required: true
-      - name: image
-        type: image
-        required: false
-        description: "Icon or image representing the service"
       - name: body
         type: rich-text
         required: true
