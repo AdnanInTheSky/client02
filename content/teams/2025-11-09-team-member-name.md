@@ -1,6 +1,7 @@
 ---
-title: "Md. Sayedur Rahman "
-role: Founder, Head of Operations and Administration
-image: /content/images/Screenshot 2025-12-17 140906.png
+title: Ahmed Irtiza Rafid
+role: "Co-Founder, Head of Technology & Innovation "
+image: /content/images/Screenshot 2025-12-18 113139.png
 ---
-Md. Sayedur Rahman is a debater, columnist, and student of Institute of Disaster Management and Vulnerability Studies  at the University of Dhaka and founder of YCI Bangladesh. With strong research interests and experience in idea development, he actively engages in academic and social initiatives. His work reflects a commitment to critical thinking, community resilience, and innovative approaches to disaster preparedness and awareness.
+Ahmed Irtiza Rafid is a student of Institute of Disaster Management Vulnerability Studies at the University of Dhaka and the Co-Founder of Youth Climate Insight Bangladesh. He leverages digital strategies to drive environmental stewardship and build public awareness. By merging technology with advocacy, he develops innovative platforms that empower the community to take meaningful climate action and adopt sustainable practices.
+
