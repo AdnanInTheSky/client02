@@ -10,8 +10,6 @@
     <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
 
     <!-- ⚠️ IMPORTANT: Open Graph Tags for Facebook Preview -->
-    <!-- These will be updated by JavaScript when article loads -->
-    <!-- For best Facebook results, use absolute image URLs in your article frontmatter -->
     <meta property="og:type" content="article" id="og-type">
     <meta property="og:url" content="" id="og-url">
     <meta property="og:title" content="YCI Bangladesh Article" id="og-title">
@@ -37,6 +35,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- ✅ marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- ✅ DOMPurify for XSS sanitization (security) -->
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
     
     <style>
         * { 
@@ -103,6 +107,12 @@
         .article-content img { max-width: 100%; height: auto; border-radius: 0.75rem; margin: 1.5rem 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
         .article-content blockquote { border-left: 4px solid #1a237e; padding: 1.25rem 1.5rem; background: rgba(26, 35, 126, 0.05); border-radius: 0 0.5rem 0.5rem 0; margin: 1.5rem 0; font-style: italic; }
         .article-content code { background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-family: monospace; font-size: 0.9em; color: #dc2626; }
+        .article-content pre { background: #1e293b; color: #f1f5f9; padding: 1.25rem; border-radius: 0.5rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; color: inherit; font-size: 0.95em; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid #e2e8f0; text-align: left; }
+        .article-content th { background: #f1f5f9; font-weight: 600; }
+        .article-content input[type="checkbox"] { margin-right: 0.5rem; accent-color: #1a237e; }
 
         .copy-btn {
             position: relative;
@@ -393,7 +403,7 @@
     </a>
 
     <script>
-        // --- YAML Parser ---
+        // === YAML Parser (unchanged) ===
         function parseYAML(yamlStr) {
             const result = {};
             yamlStr.trim().split('\n').forEach(line => {
@@ -409,7 +419,46 @@
             return result;
         }
 
-        // --- Copy Link Function ---
+        // === marked.js Configuration ===
+        if (typeof marked !== 'undefined') {
+            marked.setOptions({
+                breaks: true,           // Convert \n to <br>
+                gfm: true,              // GitHub Flavored Markdown
+                headerIds: true,        // Add id attributes to headers
+                mangle: false,          // Don't escape email addresses
+                sanitize: false,        // We use DOMPurify instead
+                silent: false           // Throw errors on failure
+            });
+
+            // Custom renderer for images with Tailwind classes
+            const renderer = new marked.Renderer();
+            renderer.image = function(href, title, text) {
+                return `<img src="${href}" alt="${text || ''}" title="${title || ''}" class="my-4 rounded-lg shadow-md max-w-full h-auto">`;
+            };
+            marked.use({ renderer });
+        }
+
+        // === Sanitized Markdown Parser using marked.js + DOMPurify ===
+        function markdownToHtml(text) {
+            if (typeof marked === 'undefined') {
+                console.error('marked.js not loaded');
+                return '<p class="text-red-500">Error: Markdown parser not available.</p>';
+            }
+            const rawHtml = marked.parse(text);
+            // Sanitize to prevent XSS attacks
+            if (typeof DOMPurify !== 'undefined') {
+                return DOMPurify.sanitize(rawHtml, { ADD_ATTR: ['target'] });
+            }
+            return rawHtml;
+        }
+
+        // === Read Time Calculator ===
+        function calculateReadTime(text) {
+            const words = text.trim().split(/\s+/).length;
+            return `${Math.ceil(words / 200)} min read`;
+        }
+
+        // === Copy Link Function ===
         function copyArticleLink() {
             const url = window.location.href;
             
@@ -469,12 +518,11 @@
             }, 2000);
         }
 
-        // --- Update Open Graph Tags ---
+        // === Update Open Graph Tags ===
         function updateOpenGraphTags(article) {
             const baseUrl = window.location.origin + window.location.pathname;
             const fullUrl = `${baseUrl}?file=${encodeURIComponent(article.id)}`;
             
-            // Build absolute image URL
             let imageUrl = 'https://ycibangladesh.org/content/images/IMG_5811.png';
             if (article.meta.image) {
                 if (article.meta.image.startsWith('http')) {
@@ -512,37 +560,23 @@
             if (article.meta.title) document.title = `${article.meta.title} | YCI Bangladesh`;
         }
 
-        // --- Markdown to HTML ---
-        function markdownToHtml(text) {
-            let html = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-            html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
-            html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
-            html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
-            html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
-            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-            html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="my-4 rounded-lg">');
-            html = html.replace(/(?<!^#.+)\n(?!\n)/g, '<br>');
-            html = html.replace(/^&gt; (.*$)/gim, '<blockquote>$1</blockquote>');
-            return html;
-        }
-
-        function calculateReadTime(text) {
-            const words = text.trim().split(/\s+/).length;
-            return `${Math.ceil(words / 200)} min read`;
-        }
-
+        // === Progress Bar ===
         function updateProgressBar() {
             const article = document.getElementById('article-content');
             const progressBar = document.getElementById('progress-bar');
             if (!article || article.classList.contains('hidden')) return;
+            const articleTop = article.offsetTop;
+            const articleHeight = article.offsetHeight;
+            const windowHeight = window.innerHeight;
+            const scrollTop = window.pageYOffset;
+            
             const progress = Math.min(100, Math.max(0, 
-                ((window.pageYOffset - article.offsetTop + window.innerHeight) / article.offsetHeight) * 100
+                ((scrollTop - articleTop + windowHeight) / articleHeight) * 100
             ));
             progressBar.style.width = `${progress}%`;
         }
 
-        // --- Load Article ---
+        // === Load Article ===
         async function loadArticle() {
             const params = new URLSearchParams(window.location.search);
             const file = params.get('file');
@@ -596,7 +630,7 @@
                 const imageContainer = document.getElementById('article-image-container');
                 const imageEl = document.getElementById('article-image');
                 if (meta.image) {
-                    imageEl.src = meta.image.startsWith('http') ? meta.image : meta.image;
+                    imageEl.src = meta.image.startsWith('http') ? meta.image : `/content/${meta.image}`;
                     imageEl.alt = meta.title || 'Article image';
                     imageEl.onerror = function() {
                         this.src = 'https://via.placeholder.com/1200x630/f1f5f9/94a3b8?text=Image+Unavailable';
@@ -606,7 +640,9 @@
                     imageContainer.classList.add('hidden');
                 }
                 
+                // ✅ Parse Markdown with marked.js
                 document.getElementById('article-body').innerHTML = markdownToHtml(body);
+                
                 updateOpenGraphTags({ id: file, meta, excerpt });
                 
                 document.getElementById('loading').classList.add('hidden');
@@ -622,15 +658,20 @@
             }
         }
 
+        // === Mobile Menu Toggle ===
         document.getElementById('mobileMenuBtn')?.addEventListener('click', function() {
             document.getElementById('mobileMenu').classList.toggle('hidden');
         });
 
+        // === Navbar Scroll Effect ===
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('mainNav');
-            nav.classList.toggle('navbar-scrolled', window.scrollY > 50);
+            if (nav) {
+                nav.classList.toggle('navbar-scrolled', window.scrollY > 50);
+            }
         });
 
+        // === Initialize on DOM Ready ===
         document.addEventListener('DOMContentLoaded', loadArticle);
     </script>
 </body>
