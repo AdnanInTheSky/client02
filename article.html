@@ -22,13 +22,18 @@
     rel="stylesheet"
   />
 
-  <!-- Open Graph / Social Sharing Meta Tags -->
-  <meta property="og:title" content="Article - YCI">
-  <meta property="og:description" content="Read more on YCI Bangladesh">
+  <!-- ✅ Open Graph / Social Sharing Meta Tags (ADDED FOR FACEBOOK) -->
+  <meta property="og:title" content="YCI Bangladesh - Article">
+  <meta property="og:description" content="Read insights and impact stories from YCI Bangladesh">
   <meta property="og:image" content="/content/images/IMG_5811.png">
-  <meta property="og:url" content="">
+  <meta property="og:url" content="https://yoursite.com/article.html">
   <meta property="og:type" content="article">
+  <meta property="og:site_name" content="YCI Bangladesh">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="YCI Bangladesh - Article">
+  <meta name="twitter:description" content="Read insights and impact stories from YCI Bangladesh">
+  <meta name="twitter:image" content="/content/images/IMG_5811.png">
+  <!-- ✅ END Open Graph Tags -->
 
   <style>
     * { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
@@ -152,6 +157,7 @@
             <i class="fab fa-twitter"></i> Tweet
           </button>
         </div>
+ 
       </header>
 
       <article id="article-body" class="article-content">
@@ -172,7 +178,7 @@
     </button>
   </div>
 
-  <!-- Footer (simplified - reuse your full footer if needed) -->
+  <!-- Footer -->
   <footer class="bg-gray-900 text-gray-300 mt-12">
     <div class="max-w-7xl mx-auto px-4 py-8 text-center text-sm">
       <p>&copy; 2025 YCI Bangladesh. All rights reserved.</p>
@@ -180,6 +186,8 @@
         <a href="contact.html" class="hover:text-white transition">Contact</a>
         <span class="text-gray-600">•</span>
         <a href="#" class="hover:text-white transition">Privacy</a>
+        <span class="text-gray-600">•</span>
+        <a href="articles.html" class="hover:text-white transition">Articles</a>
       </div>
     </div>
   </footer>
@@ -285,7 +293,7 @@
       return html;
     }
 
-    // ✅ Share Functions
+    // ✅ Share Functions (UPDATED FOR FACEBOOK)
     function copyArticleLink() {
       navigator.clipboard.writeText(window.location.href).then(() => {
         const btn = event.currentTarget;
@@ -296,23 +304,24 @@
     }
 
     function shareToWhatsApp() {
-      const text = encodeURIComponent(document.title.replace(' - YCI', ''));
+      const title = encodeURIComponent(document.getElementById('article-title').textContent);
       const url = encodeURIComponent(window.location.href);
-      window.open(`https://wa.me/?text=${text}%20${url}`, '_blank', 'width=600,height=400');
+      window.open(`https://wa.me/?text=${title}%20${url}`, '_blank', 'width=600,height=400');
     }
 
     function shareToFacebook() {
       const url = encodeURIComponent(window.location.href);
-      window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+      const quote = encodeURIComponent(document.getElementById('article-title').textContent);
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`, '_blank', 'width=600,height=400');
     }
 
     function shareToTwitter() {
-      const text = encodeURIComponent(document.title.replace(' - YCI', ''));
+      const title = encodeURIComponent(document.getElementById('article-title').textContent);
       const url = encodeURIComponent(window.location.href);
-      window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'width=600,height=400');
+      window.open(`https://twitter.com/intent/tweet?text=${title}&url=${url}`, '_blank', 'width=600,height=400');
     }
 
-    // ✅ Update Open Graph tags for social sharing
+    // ✅ Update Open Graph tags dynamically (for platforms that support it)
     function updateOpenGraphTags(meta, body, url) {
       const description = body.replace(/[#*_\[\]`>]/g, '').substring(0, 160) + '...';
       
@@ -336,6 +345,15 @@
       setMeta('twitter:title', meta.title || 'YCI Article', true);
       setMeta('twitter:description', description, true);
       if (meta.image) setMeta('twitter:image', meta.image, true);
+      
+      // Update canonical link
+      let canonical = document.querySelector('link[rel="canonical"]');
+      if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonical);
+      }
+      canonical.setAttribute('href', url);
     }
 
     // ✅ Main: Load Article from URL Parameter
@@ -402,7 +420,7 @@
         const pageTitle = `${meta.title || 'Article'} - YCI`;
         document.title = pageTitle;
         
-        // Update Open Graph tags for social sharing
+        // Update Open Graph tags dynamically
         updateOpenGraphTags(meta, body, window.location.href);
         
       } catch (error) {
