@@ -73,20 +73,40 @@ content:
         type: rich-text
         required: true
 
-  # Services Collection
+  #  Services/Blogs Collection
   - name: services
-    label: Services
+    label: Blog
     type: collection
     path: content/services
     format: yaml-frontmatter
     fields:
       - name: title
         type: string
+        label: Title
         required: true
+        description: "Blog post title"
+      
       - name: image
         type: image
+        label: Featured Image
         required: false
-        description: "Icon or image representing the service"
+        description: "Upload a featured image (recommended: 1200x675px, 16:9 ratio)"
+        upload: /content/images/
+      
+      - name: date
+        type: date
+        label: Published Date
+        required: false
+        default: "{{now}}"
+      
+      - name: author
+        type: string
+        label: Author
+        required: false
+        default: "YCI Team"
+      
       - name: body
         type: rich-text
+        label: Content
         required: true
+        description: "Main blog content (supports Markdown)"
