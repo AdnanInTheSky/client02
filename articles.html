@@ -36,29 +36,11 @@
         }
         html { scroll-behavior: smooth; }
         
-        .glass {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
         .pure-glass-nav {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-        }
-        .solid-card {
-            background: white;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        .solid-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
         .hero-overlay {
             background: linear-gradient(135deg, rgba(26, 35, 126, 0.85), rgba(13, 71, 161, 0.7), rgba(0, 150, 136, 0.6));
@@ -140,7 +122,6 @@
             background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.05) 100%);
             transition: opacity 0.3s;
         }
-        .solid-card:hover .card-image-wrapper::after { opacity: 0; }
         .card-image-wrapper img { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         .solid-card:hover .card-image-wrapper img { transform: scale(1.08); }
         
@@ -496,7 +477,7 @@
             if (articles.length === 0) {
                 container.innerHTML = `
                     <div class="col-span-full">
-                        <div class="solid-card rounded-2xl p-12 text-center">
+                        <div class="solid-card rounded-2xl p-12 text-center bg-white/95 backdrop-blur-xl">
                             <i class="fas fa-search text-5xl text-gray-300 mb-4"></i>
                             <h5 class="text-gray-900">No Articles Found</h5>
                             <p class="text-gray-600">Try adjusting your filters or search query</p>
@@ -518,7 +499,6 @@
                     : '';
                 const author = article.meta.author || 'YCI Team';
 
-                // ✅ SHAREABLE LINK: Using query parameter
                 const articleUrl = `article.html?file=${encodeURIComponent(article.id)}`;
 
                 return `
@@ -538,7 +518,6 @@
                                 <p class="text-gray-600 mb-4 flex-grow leading-relaxed">${article.excerpt}</p>
                                 <div class="mb-4 flex flex-wrap">${tagsHtml}</div>
                                 
-                                <!-- Read More Button (Share Removed) -->
                                 <div class="mt-auto">
                                     <a href="${articleUrl}" 
                                        class="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">
@@ -553,8 +532,6 @@
             }).join('');
 
             container.innerHTML = cards;
-            
-            // Animate cards
             animateCards(container);
         }
 
@@ -581,18 +558,15 @@
                 </div>`;
         }
 
-        // Search
         document.getElementById('search-input').addEventListener('input', e => {
             searchQuery = e.target.value.trim();
             filterAndRender();
         });
 
-        // Mobile menu toggle
         document.getElementById('mobileMenuBtn').addEventListener('click', function() {
             document.getElementById('mobileMenu').classList.toggle('hidden');
         });
 
-        // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('mainNav');
             if (window.scrollY > 50) {
@@ -602,7 +576,6 @@
             }
         });
 
-        // Init
         document.addEventListener('DOMContentLoaded', loadAllArticles);
     </script>
 </body>

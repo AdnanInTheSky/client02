@@ -9,12 +9,14 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
 
-    <!-- Open Graph / Facebook Meta Tags (Dynamic - Updated via JS) -->
-    <meta property="og:type" content="article">
+    <!-- ⚠️ IMPORTANT: Open Graph Tags for Facebook Preview -->
+    <!-- These will be updated by JavaScript when article loads -->
+    <!-- For best Facebook results, use absolute image URLs in your article frontmatter -->
+    <meta property="og:type" content="article" id="og-type">
     <meta property="og:url" content="" id="og-url">
-    <meta property="og:title" content="" id="og-title">
-    <meta property="og:description" content="" id="og-description">
-    <meta property="og:image" content="" id="og-image">
+    <meta property="og:title" content="YCI Bangladesh Article" id="og-title">
+    <meta property="og:description" content="Read insights from Youth Climate Initiative Bangladesh" id="og-description">
+    <meta property="og:image" content="https://ycibangladesh.org/content/images/IMG_5811.png" id="og-image">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="YCI Bangladesh">
@@ -69,13 +71,7 @@
             50% { opacity: 0.5; }
         }
         
-        .animate-fadeInUp { 
-            animation: fadeInUp 0.8s ease-out forwards; 
-        }
-        
-        .animate-pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
+        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
         
         .navbar-scrolled {
             background: rgba(255, 255, 255, 0.2) !important;
@@ -95,142 +91,27 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        /* Article Content Styling */
-        .article-content {
-            line-height: 1.8;
-            color: #334155;
-        }
-        
-        .article-content h1 { 
-            font-size: 2rem; 
-            font-weight: 700; 
-            margin: 2rem 0 1rem; 
-            color: #1e293b;
-            line-height: 1.3;
-        }
-        
-        .article-content h2 { 
-            font-size: 1.5rem; 
-            font-weight: 600; 
-            margin: 1.5rem 0 0.75rem; 
-            color: #1e293b;
-            line-height: 1.4;
-        }
-        
-        .article-content h3 { 
-            font-size: 1.25rem; 
-            font-weight: 600; 
-            margin: 1.25rem 0 0.5rem; 
-            color: #334155;
-            line-height: 1.4;
-        }
-        
-        .article-content p { 
-            margin: 1.25rem 0;
-            font-size: 1.05rem;
-        }
-        
-        .article-content ul, 
-        .article-content ol { 
-            margin: 1.25rem 0; 
-            padding-left: 1.5rem; 
-        }
-        
-        .article-content li { 
-            margin: 0.75rem 0;
-            font-size: 1.05rem;
-        }
-        
-        .article-content a { 
-            color: #1a237e; 
-            text-decoration: none; 
-            border-bottom: 2px solid rgba(26, 35, 126, 0.3); 
-            transition: all 0.2s ease;
-            font-weight: 500;
-        }
-        
-        .article-content a:hover { 
-            border-color: #1a237e;
-            color: #0d47a1;
-        }
-        
-        .article-content img { 
-            max-width: 100%; 
-            height: auto; 
-            border-radius: 0.75rem; 
-            margin: 1.5rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .article-content blockquote {
-            border-left: 4px solid #1a237e;
-            padding: 1.25rem 1.5rem;
-            background: rgba(26, 35, 126, 0.05);
-            border-radius: 0 0.5rem 0.5rem 0;
-            margin: 1.5rem 0;
-            font-style: italic;
-            color: #475569;
-        }
-        
-        .article-content code {
-            background: #f1f5f9;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            color: #dc2626;
-        }
-        
-        .article-content pre {
-            background: #1e293b;
-            color: #f8fafc;
-            padding: 1.25rem;
-            border-radius: 0.5rem;
-            overflow-x: auto;
-            margin: 1.5rem 0;
-        }
-        
-        .article-content pre code {
-            background: transparent;
-            color: inherit;
-            padding: 0;
-        }
+        .article-content { line-height: 1.8; color: #334155; }
+        .article-content h1 { font-size: 2rem; font-weight: 700; margin: 2rem 0 1rem; color: #1e293b; }
+        .article-content h2 { font-size: 1.5rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: #1e293b; }
+        .article-content h3 { font-size: 1.25rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: #334155; }
+        .article-content p { margin: 1.25rem 0; font-size: 1.05rem; }
+        .article-content ul, .article-content ol { margin: 1.25rem 0; padding-left: 1.5rem; }
+        .article-content li { margin: 0.75rem 0; }
+        .article-content a { color: #1a237e; text-decoration: none; border-bottom: 2px solid rgba(26, 35, 126, 0.3); transition: all 0.2s; }
+        .article-content a:hover { border-color: #1a237e; color: #0d47a1; }
+        .article-content img { max-width: 100%; height: auto; border-radius: 0.75rem; margin: 1.5rem 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+        .article-content blockquote { border-left: 4px solid #1a237e; padding: 1.25rem 1.5rem; background: rgba(26, 35, 126, 0.05); border-radius: 0 0.5rem 0.5rem 0; margin: 1.5rem 0; font-style: italic; }
+        .article-content code { background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-family: monospace; font-size: 0.9em; color: #dc2626; }
 
-        /* Copy Button Styles */
         .copy-btn {
             position: relative;
             overflow: hidden;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        .copy-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .copy-btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        .copy-btn.copied {
-            background: #10b981 !important;
-            border-color: #10b981 !important;
-        }
-        
-        .copy-btn.copied i::before {
-            content: '\f00c';
-        }
+        .copy-btn.copied { background: #10b981 !important; border-color: #10b981 !important; }
+        .copy-btn.copied i::before { content: '\f00c'; }
 
-        /* Toast Notification */
         .toast {
             position: fixed;
             bottom: 100px;
@@ -242,19 +123,14 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             transform: translateY(100px);
             opacity: 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s;
             z-index: 1000;
             display: flex;
             align-items: center;
             gap: 0.75rem;
         }
-        
-        .toast.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
+        .toast.show { transform: translateY(0); opacity: 1; }
 
-        /* Reading Progress Bar */
         .progress-bar {
             position: fixed;
             top: 0;
@@ -266,64 +142,36 @@
             transition: width 0.1s ease;
         }
 
-        /* Smooth image loading */
-        .image-container {
-            position: relative;
-            overflow: hidden;
-        }
-        
+        .image-container { position: relative; overflow: hidden; }
         .image-container::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
             z-index: 1;
         }
-        
-        .image-container.loaded::before {
-            display: none;
-        }
+        .image-container.loaded::before { display: none; }
         
         @keyframes shimmer {
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
 
-        /* Tag styles */
-        .tag {
-            transition: all 0.2s ease;
-        }
-        
-        .tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
+        .tag { transition: all 0.2s ease; }
+        .tag:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
 
-        /* Back button hover */
-        .back-btn {
-            position: relative;
-            overflow: hidden;
-        }
-        
+        .back-btn { position: relative; overflow: hidden; }
         .back-btn::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
             background: currentColor;
             transition: width 0.3s ease;
         }
-        
-        .back-btn:hover::after {
-            width: 100%;
-        }
+        .back-btn:hover::after { width: 100%; }
     </style>
     
     <script>
@@ -373,9 +221,7 @@
                     <a href="services.html" class="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition">Blogs</a>
                     <a href="articles.html" class="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition">Articles</a>
                     <a href="team.html" class="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition">Team</a>
-                    <a href="contact.html" class="ml-2 px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">
-                        Contact
-                    </a>
+                    <a href="contact.html" class="ml-2 px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">Contact</a>
                 </div>
             </div>
             
@@ -404,11 +250,10 @@
         </div>
     </div>
 
-    <!-- Article Content (Hidden until loaded) -->
+    <!-- Article Content -->
     <article id="article-content" class="hidden pt-24 pb-16">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <!-- Breadcrumb / Back -->
             <div class="mb-8">
                 <a href="articles.html" class="back-btn inline-flex items-center text-white/80 hover:text-white transition group">
                     <i class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform"></i>
@@ -416,15 +261,10 @@
                 </a>
             </div>
 
-            <!-- Article Header Card -->
             <header class="bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 mb-8 border border-white/20 shadow-xl">
-                <!-- Tags -->
                 <div id="article-tags" class="flex flex-wrap gap-2 mb-4"></div>
-                
-                <!-- Title -->
                 <h1 id="article-title" class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"></h1>
                 
-                <!-- Meta Info -->
                 <div class="flex flex-wrap items-center gap-4 text-white/80 text-sm pb-6 border-b border-white/20">
                     <span id="article-date" class="flex items-center">
                         <i class="far fa-calendar-alt mr-2 text-white/60"></i>
@@ -440,7 +280,6 @@
                     </span>
                 </div>
                 
-                <!-- Copy Link Button -->
                 <div class="pt-6 mt-2">
                     <button onclick="copyArticleLink()"
                             id="copy-link-btn"
@@ -451,17 +290,12 @@
                 </div>
             </header>
 
-            <!-- Featured Image -->
             <div id="article-image-container" class="image-container mb-8 rounded-2xl overflow-hidden shadow-2xl border border-white/20">
                 <img id="article-image" src="" alt="" class="w-full h-auto object-cover" onload="this.parentElement.classList.add('loaded')">
             </div>
 
-            <!-- Article Body -->
-            <div id="article-body" class="article-content bg-white/95 backdrop-blur-xl rounded-2xl p-6 md:p-10 shadow-xl text-gray-800 border border-white/50">
-                <!-- Content injected via JavaScript -->
-            </div>
+            <div id="article-body" class="article-content bg-white/95 backdrop-blur-xl rounded-2xl p-6 md:p-10 shadow-xl text-gray-800 border border-white/50"></div>
 
-            <!-- Bottom Section -->
             <div class="mt-10 pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <a href="articles.html" class="inline-flex items-center px-6 py-3 bg-white/20 hover:bg-white/30 text-white rounded-full font-medium transition-all duration-300 border border-white/30">
                     <i class="fas fa-arrow-left mr-2"></i>
@@ -485,9 +319,7 @@
                 <i class="fas fa-exclamation-triangle text-4xl text-red-300"></i>
             </div>
             <h2 class="text-2xl font-bold mb-3">Article Not Found</h2>
-            <p class="text-white/70 mb-8 leading-relaxed">
-                The article you're looking for doesn't exist or has been moved. Please check the URL or browse our articles.
-            </p>
+            <p class="text-white/70 mb-8 leading-relaxed">The article you're looking for doesn't exist or has been moved.</p>
             <a href="articles.html" class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">
                 <i class="fas fa-arrow-left mr-2"></i>
                 <span>Browse All Articles</span>
@@ -501,9 +333,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
                 <div>
                     <h3 class="text-white font-bold mb-3 text-lg">YCI Bangladesh</h3>
-                    <p class="text-white/70 mb-4 text-sm leading-relaxed">
-                        To build a climate resilient Bangladesh where youth leads toward sustainable Change
-                    </p>
+                    <p class="text-white/70 mb-4 text-sm">To build a climate resilient Bangladesh where youth leads toward sustainable Change</p>
                     <div class="flex space-x-3">
                         <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition hover:scale-110">
                             <i class="fab fa-twitter text-white"></i>
@@ -516,7 +346,6 @@
                         </a>
                     </div>
                 </div>
-
                 <div>
                     <h4 class="font-bold text-white mb-4">Quick Links</h4>
                     <ul class="space-y-2.5 text-sm">
@@ -526,7 +355,6 @@
                         <li><a href="contact.html" class="text-white/70 hover:text-white transition">Contact</a></li>
                     </ul>
                 </div>
-
                 <div>
                     <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
                     <ul class="space-y-3 text-sm">
@@ -544,7 +372,6 @@
                         </li>
                     </ul>
                 </div>
-
                 <div>
                     <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
                     <ul class="space-y-2.5 text-sm">
@@ -554,24 +381,13 @@
                     </ul>
                 </div>
             </div>
-
             <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
                 <p class="text-white/60">&copy; 2025 YCI Bangladesh. All rights reserved.</p>
-                <div class="mt-3 space-x-4">
-                    <a href="#" class="text-white/60 hover:text-white transition-colors">Privacy Policy</a>
-                    <span class="text-white/30">•</span>
-                    <a href="#" class="text-white/60 hover:text-white transition-colors">Terms of Service</a>
-                    <span class="text-white/30">•</span>
-                    <a href="contact.html" class="text-white/60 hover:text-white transition-colors">Contact</a>
-                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Floating Action Button -->
-    <a href="contact.html" 
-       class="fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30 backdrop-blur-sm hover:from-white/30 hover:to-white/20"
-       aria-label="Join Our Mission">
+    <a href="contact.html" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30 backdrop-blur-sm">
         <i class="fas fa-handshake mr-2"></i>
         <span class="hidden sm:inline">Join Us</span>
     </a>
@@ -593,66 +409,42 @@
             return result;
         }
 
-        // --- Copy Link Function (FIXED) ---
+        // --- Copy Link Function ---
         function copyArticleLink() {
             const url = window.location.href;
             
-            // Try modern clipboard API first
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(url).then(() => {
-                    showCopySuccess();
-                }).catch(err => {
-                    console.error('Clipboard API failed:', err);
-                    fallbackCopy(url);
-                });
+                navigator.clipboard.writeText(url).then(() => showCopySuccess()).catch(() => fallbackCopy(url));
             } else {
-                // Fallback for older browsers
                 fallbackCopy(url);
             }
         }
 
-        // Fallback copy method
         function fallbackCopy(text) {
             const textarea = document.createElement('textarea');
             textarea.value = text;
             textarea.style.position = 'fixed';
             textarea.style.left = '-9999px';
-            textarea.style.top = '0';
             document.body.appendChild(textarea);
-            textarea.focus();
             textarea.select();
-            
             try {
-                const successful = document.execCommand('copy');
-                if (successful) {
-                    showCopySuccess();
-                } else {
-                    showError('Failed to copy link');
-                }
+                document.execCommand('copy');
+                showCopySuccess();
             } catch (err) {
-                console.error('Fallback copy failed:', err);
-                showError('Failed to copy link');
+                showError('Failed to copy');
             }
-            
             document.body.removeChild(textarea);
         }
 
-        // Show success toast
         function showCopySuccess() {
             const toast = document.getElementById('toast');
             const buttons = document.querySelectorAll('.copy-btn');
-            
-            // Show toast
             toast.classList.add('show');
-            
-            // Update button states
             buttons.forEach(btn => {
                 btn.classList.add('copied');
                 const span = btn.querySelector('span');
                 if (span) span.textContent = 'Copied!';
             });
-            
-            // Reset after 2 seconds
             setTimeout(() => {
                 toast.classList.remove('show');
                 buttons.forEach(btn => {
@@ -663,119 +455,90 @@
             }, 2000);
         }
 
-        // Show error toast
-        function showError(message) {
+        function showError(msg) {
             const toast = document.getElementById('toast');
-            toast.innerHTML = `
-                <i class="fas fa-exclamation-circle text-xl"></i>
-                <span>${message}</span>
-            `;
+            toast.innerHTML = `<i class="fas fa-exclamation-circle text-xl"></i><span>${msg}</span>`;
             toast.style.background = '#ef4444';
             toast.classList.add('show');
-            
             setTimeout(() => {
                 toast.classList.remove('show');
-                // Reset toast
                 setTimeout(() => {
-                    toast.innerHTML = `
-                        <i class="fas fa-check-circle text-xl"></i>
-                        <span>Link copied to clipboard!</span>
-                    `;
+                    toast.innerHTML = `<i class="fas fa-check-circle text-xl"></i><span>Link copied!</span>`;
                     toast.style.background = '#10b981';
                 }, 300);
             }, 2000);
         }
 
-        // --- Update Open Graph Tags Dynamically ---
+        // --- Update Open Graph Tags ---
         function updateOpenGraphTags(article) {
             const baseUrl = window.location.origin + window.location.pathname;
             const fullUrl = `${baseUrl}?file=${encodeURIComponent(article.id)}`;
-            const imageUrl = article.meta.image?.startsWith('http') 
-                ? article.meta.image 
-                : (article.meta.image ? window.location.origin + article.meta.image : 'https://via.placeholder.com/1200x630?text=YCI+Bangladesh');
             
-            const setMeta = (id, content) => {
-                const el = document.getElementById(id);
-                if (el && content) el.setAttribute('content', content);
+            // Build absolute image URL
+            let imageUrl = 'https://ycibangladesh.org/content/images/IMG_5811.png';
+            if (article.meta.image) {
+                if (article.meta.image.startsWith('http')) {
+                    imageUrl = article.meta.image;
+                } else if (article.meta.image.startsWith('/')) {
+                    imageUrl = 'https://ycibangladesh.org' + article.meta.image;
+                } else {
+                    imageUrl = 'https://ycibangladesh.org/content/' + article.meta.image;
+                }
+            }
+            
+            const updateMeta = (property, content) => {
+                let meta = document.querySelector(`meta[property="${property}"]`);
+                if (meta && content) meta.setAttribute('content', content);
+                const idMap = {
+                    'og:url': 'og-url', 'og:title': 'og-title',
+                    'og:description': 'og-description', 'og:image': 'og-image',
+                    'twitter:title': 'twitter-title', 'twitter:description': 'twitter-description',
+                    'twitter:image': 'twitter-image'
+                };
+                if (idMap[property]) {
+                    const el = document.getElementById(idMap[property]);
+                    if (el && content) el.setAttribute('content', content);
+                }
             };
             
-            setMeta('og-url', fullUrl);
-            setMeta('og-title', article.meta.title || 'YCI Article');
-            setMeta('og-description', article.excerpt || article.meta.description || '');
-            setMeta('og-image', imageUrl);
+            updateMeta('og:url', fullUrl);
+            updateMeta('og:title', article.meta.title || 'YCI Article');
+            updateMeta('og:description', article.excerpt || '');
+            updateMeta('og:image', imageUrl);
+            updateMeta('twitter:title', article.meta.title || 'YCI Article');
+            updateMeta('twitter:description', article.excerpt || '');
+            updateMeta('twitter:image', imageUrl);
             
-            setMeta('twitter-title', article.meta.title || 'YCI Article');
-            setMeta('twitter-description', article.excerpt || article.meta.description || '');
-            setMeta('twitter-image', imageUrl);
-            
-            if (article.meta.title) {
-                document.title = `${article.meta.title} | YCI Bangladesh`;
-            }
+            if (article.meta.title) document.title = `${article.meta.title} | YCI Bangladesh`;
         }
 
-        // --- Convert Markdown-like text to HTML ---
+        // --- Markdown to HTML ---
         function markdownToHtml(text) {
-            // Escape HTML first
             let html = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-            
-            // Headers
             html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
             html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
             html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
-            
-            // Bold & Italic
             html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
             html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
-            
-            // Links
             html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-            
-            // Images
             html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="my-4 rounded-lg">');
-            
-            // Line breaks (but not in headers)
             html = html.replace(/(?<!^#.+)\n(?!\n)/g, '<br>');
-            
-            // Blockquotes
             html = html.replace(/^&gt; (.*$)/gim, '<blockquote>$1</blockquote>');
-            
-            // Unordered lists
-            html = html.replace(/^[*-] (.*$)/gim, '<li>$1</li>');
-            html = html.replace(/(<li>.*<\/li>\n?)+/g, '<ul class="list-disc pl-6 my-4">$&</ul>');
-            
-            // Ordered lists
-            html = html.replace(/^\d+\. (.*$)/gim, '<li>$1</li>');
-            
-            // Horizontal rules
-            html = html.replace(/^---$/gim, '<hr class="my-6 border-white/20">');
-            
             return html;
         }
 
-        // --- Calculate Read Time ---
         function calculateReadTime(text) {
-            const wordsPerMinute = 200;
-            const wordCount = text.trim().split(/\s+/).length;
-            const minutes = Math.ceil(wordCount / wordsPerMinute);
-            return `${minutes} min read`;
+            const words = text.trim().split(/\s+/).length;
+            return `${Math.ceil(words / 200)} min read`;
         }
 
-        // --- Reading Progress Bar ---
         function updateProgressBar() {
             const article = document.getElementById('article-content');
             const progressBar = document.getElementById('progress-bar');
-            
             if (!article || article.classList.contains('hidden')) return;
-            
-            const articleTop = article.offsetTop;
-            const articleHeight = article.offsetHeight;
-            const windowHeight = window.innerHeight;
-            const scrollTop = window.pageYOffset;
-            
             const progress = Math.min(100, Math.max(0, 
-                ((scrollTop - articleTop + windowHeight) / articleHeight) * 100
+                ((window.pageYOffset - article.offsetTop + window.innerHeight) / article.offsetHeight) * 100
             ));
-            
             progressBar.style.width = `${progress}%`;
         }
 
@@ -792,24 +555,20 @@
             
             try {
                 const response = await fetch(`/content/${file}`);
-                if (!response.ok) throw new Error('Article not found');
+                if (!response.ok) throw new Error('Not found');
                 
                 const text = await response.text();
                 const parts = text.split('---');
-                
-                if (parts.length < 3) throw new Error('Invalid article format');
+                if (parts.length < 3) throw new Error('Invalid format');
                 
                 const meta = parseYAML(parts[1]);
                 const body = parts.slice(2).join('---').trim();
                 const excerpt = body.replace(/[#*_\-[\]()`>]/g, '').split(/\s+/).slice(0, 30).join(' ') + '…';
                 
-                // Update page content
                 document.getElementById('article-title').textContent = meta.title || 'Untitled';
                 
                 if (meta.date) {
-                    const date = new Date(meta.date).toLocaleDateString('en-US', { 
-                        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
-                    });
+                    const date = new Date(meta.date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
                     document.getElementById('article-date').querySelector('span').textContent = date;
                 } else {
                     document.getElementById('article-date').classList.add('hidden');
@@ -821,12 +580,10 @@
                     document.getElementById('article-author').classList.add('hidden');
                 }
                 
-                const readTime = calculateReadTime(body);
                 const readTimeEl = document.getElementById('article-read-time');
-                readTimeEl.querySelector('span').textContent = readTime;
+                readTimeEl.querySelector('span').textContent = calculateReadTime(body);
                 readTimeEl.classList.remove('hidden');
                 
-                // Tags
                 const tagsContainer = document.getElementById('article-tags');
                 if (meta.tags && Array.isArray(meta.tags) && meta.tags.length > 0) {
                     tagsContainer.innerHTML = meta.tags.map(tag => 
@@ -836,12 +593,10 @@
                     tagsContainer.classList.add('hidden');
                 }
                 
-                // Image
                 const imageContainer = document.getElementById('article-image-container');
                 const imageEl = document.getElementById('article-image');
                 if (meta.image) {
-                    const imageUrl = meta.image.startsWith('http') ? meta.image : meta.image;
-                    imageEl.src = imageUrl;
+                    imageEl.src = meta.image.startsWith('http') ? meta.image : meta.image;
                     imageEl.alt = meta.title || 'Article image';
                     imageEl.onerror = function() {
                         this.src = 'https://via.placeholder.com/1200x630/f1f5f9/94a3b8?text=Image+Unavailable';
@@ -851,20 +606,13 @@
                     imageContainer.classList.add('hidden');
                 }
                 
-                // Body content
                 document.getElementById('article-body').innerHTML = markdownToHtml(body);
-                
-                // Update Open Graph tags
                 updateOpenGraphTags({ id: file, meta, excerpt });
                 
-                // Show article, hide loading
                 document.getElementById('loading').classList.add('hidden');
                 document.getElementById('article-content').classList.remove('hidden');
-                
-                // Animate content
                 document.getElementById('article-content').classList.add('animate-fadeInUp');
                 
-                // Enable progress bar
                 window.addEventListener('scroll', updateProgressBar);
                 
             } catch (error) {
@@ -874,22 +622,15 @@
             }
         }
 
-        // Mobile menu toggle
         document.getElementById('mobileMenuBtn')?.addEventListener('click', function() {
             document.getElementById('mobileMenu').classList.toggle('hidden');
         });
 
-        // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('mainNav');
-            if (window.scrollY > 50) {
-                nav.classList.add('navbar-scrolled');
-            } else {
-                nav.classList.remove('navbar-scrolled');
-            }
+            nav.classList.toggle('navbar-scrolled', window.scrollY > 50);
         });
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', loadArticle);
     </script>
 </body>
