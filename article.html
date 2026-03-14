@@ -37,11 +37,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        * { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
-        body {
-          background: linear-gradient(135deg, rgba(17, 23, 87, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
-          min-height: 100vh;
+        * { 
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
+        
+        body {
+            background: linear-gradient(135deg, rgba(17, 23, 87, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
         html { scroll-behavior: smooth; }
         
         .pure-glass-nav {
@@ -55,7 +63,19 @@
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .animate-fadeInUp { 
+            animation: fadeInUp 0.8s ease-out forwards; 
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
         
         .navbar-scrolled {
             background: rgba(255, 255, 255, 0.2) !important;
@@ -80,38 +100,229 @@
             line-height: 1.8;
             color: #334155;
         }
-        .article-content h1 { font-size: 2rem; font-weight: 700; margin: 1.5rem 0 1rem; color: #1e293b; }
-        .article-content h2 { font-size: 1.5rem; font-weight: 600; margin: 1.25rem 0 0.75rem; color: #1e293b; }
-        .article-content h3 { font-size: 1.25rem; font-weight: 600; margin: 1rem 0 0.5rem; color: #334155; }
-        .article-content p { margin: 1rem 0; }
-        .article-content ul, .article-content ol { margin: 1rem 0; padding-left: 1.5rem; }
-        .article-content li { margin: 0.5rem 0; }
-        .article-content a { color: #1a237e; text-decoration: none; border-bottom: 2px solid rgba(26, 35, 126, 0.3); transition: border-color 0.2s; }
-        .article-content a:hover { border-color: #1a237e; }
-        .article-content img { max-width: 100%; height: auto; border-radius: 0.75rem; margin: 1.5rem 0; }
+        
+        .article-content h1 { 
+            font-size: 2rem; 
+            font-weight: 700; 
+            margin: 2rem 0 1rem; 
+            color: #1e293b;
+            line-height: 1.3;
+        }
+        
+        .article-content h2 { 
+            font-size: 1.5rem; 
+            font-weight: 600; 
+            margin: 1.5rem 0 0.75rem; 
+            color: #1e293b;
+            line-height: 1.4;
+        }
+        
+        .article-content h3 { 
+            font-size: 1.25rem; 
+            font-weight: 600; 
+            margin: 1.25rem 0 0.5rem; 
+            color: #334155;
+            line-height: 1.4;
+        }
+        
+        .article-content p { 
+            margin: 1.25rem 0;
+            font-size: 1.05rem;
+        }
+        
+        .article-content ul, 
+        .article-content ol { 
+            margin: 1.25rem 0; 
+            padding-left: 1.5rem; 
+        }
+        
+        .article-content li { 
+            margin: 0.75rem 0;
+            font-size: 1.05rem;
+        }
+        
+        .article-content a { 
+            color: #1a237e; 
+            text-decoration: none; 
+            border-bottom: 2px solid rgba(26, 35, 126, 0.3); 
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        
+        .article-content a:hover { 
+            border-color: #1a237e;
+            color: #0d47a1;
+        }
+        
+        .article-content img { 
+            max-width: 100%; 
+            height: auto; 
+            border-radius: 0.75rem; 
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
         .article-content blockquote {
             border-left: 4px solid #1a237e;
-            padding: 1rem 1.5rem;
+            padding: 1.25rem 1.5rem;
             background: rgba(26, 35, 126, 0.05);
             border-radius: 0 0.5rem 0.5rem 0;
             margin: 1.5rem 0;
             font-style: italic;
+            color: #475569;
         }
+        
         .article-content code {
             background: #f1f5f9;
-            padding: 0.2rem 0.4rem;
+            padding: 0.25rem 0.5rem;
             border-radius: 0.25rem;
-            font-family: monospace;
+            font-family: 'Courier New', monospace;
             font-size: 0.9em;
+            color: #dc2626;
+        }
+        
+        .article-content pre {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        .article-content pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
         }
 
-        /* Share button hover effect */
-        .share-btn {
-            transform: translateZ(0);
-            will-change: transform;
+        /* Copy Button Styles */
+        .copy-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .share-btn:active {
-            transform: scale(0.95);
+        
+        .copy-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .copy-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .copy-btn.copied {
+            background: #10b981 !important;
+            border-color: #10b981 !important;
+        }
+        
+        .copy-btn.copied i::before {
+            content: '\f00c';
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Reading Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #10b981, #059669);
+            z-index: 100;
+            transition: width 0.1s ease;
+        }
+
+        /* Smooth image loading */
+        .image-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            z-index: 1;
+        }
+        
+        .image-container.loaded::before {
+            display: none;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Tag styles */
+        .tag {
+            transition: all 0.2s ease;
+        }
+        
+        .tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Back button hover */
+        .back-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .back-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: currentColor;
+            transition: width 0.3s ease;
+        }
+        
+        .back-btn:hover::after {
+            width: 100%;
         }
     </style>
     
@@ -132,419 +343,554 @@
 </head>
 
 <body>
+    <!-- Reading Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
 
-  <!-- Glass Navbar -->
-  <nav id="mainNav" class="fixed w-full top-0 z-50 pure-glass-nav">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16 md:h-20">
-        <a href="index.html" class="flex items-center">
-          <img src="content/images/IMG_5811.png" alt="YCI Logo"
-               class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20">
-        </a>
-
-        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-        
-        <div class="hidden md:flex space-x-2">
-          <a href="index.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Home</a>
-          <a href="services.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Blogs</a>
-          <a href="articles.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Events</a>
-          <a href="team.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Team</a>
-          <a href="contact.html" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium hover:scale-105 transition">
-            Contact
-          </a>
-        </div>
-      </div>
-      
-      <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 space-y-2">
-        <a href="index.html" class="block px-4 py-2 text-white hover:text-teal-300 transition">Home</a>
-        <a href="services.html" class="block px-4 py-2 text-white hover:text-teal-300 transition">Blogs</a>
-        <a href="articles.html" class="block px-4 py-2 text-white hover:text-teal-300 transition">Events</a>
-        <a href="team.html" class="block px-4 py-2 text-white hover:text-teal-300 transition">Team</a>
-        <a href="contact.html" class="mt-2 block px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full text-center">Contact</a>
-      </div>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle text-xl"></i>
+        <span>Link copied to clipboard!</span>
     </div>
-  </nav>
 
-  <!-- Loading State -->
-  <div id="loading" class="min-h-screen flex items-center justify-center mt-16">
-    <div class="text-center text-white">
-      <div class="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-      <p class="text-xl">Loading article...</p>
-    </div>
-  </div>
+    <!-- Glass Navbar -->
+    <nav id="mainNav" class="fixed w-full top-0 z-50 pure-glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <a href="index.html" class="flex items-center group">
+                    <img src="content/images/IMG_5811.png" alt="YCI Logo"
+                         class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20 group-hover:border-white/40 transition-all duration-300">
+                    <span class="ml-3 text-white font-semibold text-lg hidden sm:block">YCI Bangladesh</span>
+                </a>
 
-  <!-- Article Content (Hidden until loaded) -->
-  <article id="article-content" class="hidden pt-24 pb-16">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Back Button -->
-      <a href="articles.html" class="inline-flex items-center text-white/90 hover:text-white mb-6 transition">
-        <i class="fas fa-arrow-left mr-2"></i> Back to Articles
-      </a>
-
-      <!-- Article Header -->
-      <header class="mb-8">
-        <h1 id="article-title" class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4"></h1>
-        
-        <div class="flex flex-wrap items-center gap-4 text-white/80 text-sm mb-6">
-          <span id="article-date"><i class="far fa-calendar-alt mr-1"></i></span>
-          <span id="article-author"><i class="far fa-user mr-1"></i></span>
-          <span id="article-read-time" class="hidden"><i class="far fa-clock mr-1"></i></span>
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl hover:bg-white/10 transition">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="index.html" class="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition">Home</a>
+                    <a href="services.html" class="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition">Blogs</a>
+                    <a href="articles.html" class="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition">Articles</a>
+                    <a href="team.html" class="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition">Team</a>
+                    <a href="contact.html" class="ml-2 px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">
+                        Contact
+                    </a>
+                </div>
+            </div>
+            
+            <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 space-y-2">
+                <a href="index.html" class="block px-4 py-2 text-white hover:bg-white/10 rounded-lg transition">Home</a>
+                <a href="services.html" class="block px-4 py-2 text-white hover:bg-white/10 rounded-lg transition">Blogs</a>
+                <a href="articles.html" class="block px-4 py-2 text-white hover:bg-white/10 rounded-lg transition">Articles</a>
+                <a href="team.html" class="block px-4 py-2 text-white hover:bg-white/10 rounded-lg transition">Team</a>
+                <a href="contact.html" class="mt-2 block px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full text-center font-medium">Contact</a>
+            </div>
         </div>
+    </nav>
 
-        <!-- Tags -->
-        <div id="article-tags" class="flex flex-wrap gap-2 mb-6"></div>
-
-        <!-- Share Buttons -->
-        <div class="flex items-center gap-3 pb-6 border-b border-white/20">
-          <span class="text-white/80 text-sm">Share:</span>
-          <button onclick="shareOnFacebook()"
-                  class="share-btn inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#1877F2] text-white hover:bg-[#166fe5] hover:scale-110 transition-all duration-300 shadow-md"
-                  aria-label="Share on Facebook"
-                  title="Share on Facebook">
-              <i class="fab fa-facebook-f"></i>
-          </button>
-          <button onclick="copyArticleLink()"
-                  class="share-btn inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/20 text-white hover:bg-white/30 hover:scale-110 transition-all duration-300 shadow-md"
-                  aria-label="Copy link"
-                  title="Copy link">
-              <i class="fas fa-link"></i>
-          </button>
+    <!-- Loading State -->
+    <div id="loading" class="min-h-screen flex items-center justify-center pt-20">
+        <div class="text-center text-white">
+            <div class="relative w-20 h-20 mx-auto mb-6">
+                <div class="absolute inset-0 border-4 border-white/20 rounded-full"></div>
+                <div class="absolute inset-0 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <i class="fas fa-newspaper text-2xl text-white/60"></i>
+                </div>
+            </div>
+            <p class="text-xl font-medium mb-2">Loading Article</p>
+            <p class="text-white/60 text-sm">Please wait...</p>
         </div>
-      </header>
+    </div>
 
-      <!-- Featured Image -->
-      <div id="article-image-container" class="mb-8 rounded-2xl overflow-hidden shadow-2xl">
-        <img id="article-image" src="" alt="" class="w-full h-auto object-cover">
-      </div>
+    <!-- Article Content (Hidden until loaded) -->
+    <article id="article-content" class="hidden pt-24 pb-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Breadcrumb / Back -->
+            <div class="mb-8">
+                <a href="articles.html" class="back-btn inline-flex items-center text-white/80 hover:text-white transition group">
+                    <i class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-medium">Back to Articles</span>
+                </a>
+            </div>
 
-      <!-- Article Body -->
-      <div id="article-body" class="article-content bg-white/90 backdrop-blur-xl rounded-2xl p-6 md:p-10 shadow-xl text-gray-800">
-        <!-- Content injected via JavaScript -->
-      </div>
+            <!-- Article Header Card -->
+            <header class="bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 mb-8 border border-white/20 shadow-xl">
+                <!-- Tags -->
+                <div id="article-tags" class="flex flex-wrap gap-2 mb-4"></div>
+                
+                <!-- Title -->
+                <h1 id="article-title" class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"></h1>
+                
+                <!-- Meta Info -->
+                <div class="flex flex-wrap items-center gap-4 text-white/80 text-sm pb-6 border-b border-white/20">
+                    <span id="article-date" class="flex items-center">
+                        <i class="far fa-calendar-alt mr-2 text-white/60"></i>
+                        <span></span>
+                    </span>
+                    <span id="article-author" class="flex items-center">
+                        <i class="far fa-user mr-2 text-white/60"></i>
+                        <span></span>
+                    </span>
+                    <span id="article-read-time" class="flex items-center hidden">
+                        <i class="far fa-clock mr-2 text-white/60"></i>
+                        <span></span>
+                    </span>
+                </div>
+                
+                <!-- Copy Link Button -->
+                <div class="pt-6 mt-2">
+                    <button onclick="copyArticleLink()"
+                            id="copy-link-btn"
+                            class="copy-btn inline-flex items-center gap-2 px-5 py-2.5 bg-white/20 hover:bg-white/30 text-white rounded-full font-medium transition-all duration-300 border border-white/30 hover:border-white/50 hover:shadow-lg">
+                        <i class="fas fa-link"></i>
+                        <span>Copy Article Link</span>
+                    </button>
+                </div>
+            </header>
 
-      <!-- Bottom Share -->
-      <div class="mt-10 pt-6 border-t border-white/20 flex flex-wrap items-center justify-between gap-4">
-        <a href="articles.html" class="inline-flex items-center px-5 py-2.5 bg-white/20 text-white rounded-full font-medium hover:bg-white/30 transition">
-          <i class="fas fa-arrow-left mr-2"></i> All Articles
-        </a>
-        <div class="flex items-center gap-3">
-          <span class="text-white/80 text-sm">Enjoyed this? Share it:</span>
-          <button onclick="shareOnFacebook()"
-                  class="share-btn inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#1877F2] text-white hover:bg-[#166fe5] hover:scale-110 transition-all duration-300 shadow-md">
-              <i class="fab fa-facebook-f"></i>
-          </button>
+            <!-- Featured Image -->
+            <div id="article-image-container" class="image-container mb-8 rounded-2xl overflow-hidden shadow-2xl border border-white/20">
+                <img id="article-image" src="" alt="" class="w-full h-auto object-cover" onload="this.parentElement.classList.add('loaded')">
+            </div>
+
+            <!-- Article Body -->
+            <div id="article-body" class="article-content bg-white/95 backdrop-blur-xl rounded-2xl p-6 md:p-10 shadow-xl text-gray-800 border border-white/50">
+                <!-- Content injected via JavaScript -->
+            </div>
+
+            <!-- Bottom Section -->
+            <div class="mt-10 pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <a href="articles.html" class="inline-flex items-center px-6 py-3 bg-white/20 hover:bg-white/30 text-white rounded-full font-medium transition-all duration-300 border border-white/30">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    <span>All Articles</span>
+                </a>
+                
+                <button onclick="copyArticleLink()"
+                        class="copy-btn inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary text-white rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <i class="fas fa-link"></i>
+                    <span>Copy Link</span>
+                </button>
+            </div>
+
         </div>
-      </div>
+    </article>
 
-    </div>
-  </article>
-
-  <!-- Error State -->
-  <div id="error-state" class="hidden min-h-screen flex items-center justify-center mt-16">
-    <div class="text-center text-white max-w-md px-4">
-      <i class="fas fa-exclamation-triangle text-5xl text-red-300 mb-4"></i>
-      <h2 class="text-2xl font-bold mb-2">Article Not Found</h2>
-      <p class="text-white/80 mb-6">The article you're looking for doesn't exist or has been moved.</p>
-      <a href="articles.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">
-        Back to Articles
-      </a>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-        <div>
-          <h3 class="text-white font-bold mb-2">YCI Bangladesh</h3>
-          <p class="text-white mb-2 text-sm">
-             To build a climate resilient Bangladesh where youth leads toward sustainable Change
-          </p>
-          <div class="flex space-x-3">
-            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition hover:scale-110">
-              <i class="fab fa-twitter"></i>
+    <!-- Error State -->
+    <div id="error-state" class="hidden min-h-screen flex items-center justify-center pt-20">
+        <div class="text-center text-white max-w-md px-4">
+            <div class="w-24 h-24 mx-auto mb-6 bg-white/10 rounded-full flex items-center justify-center">
+                <i class="fas fa-exclamation-triangle text-4xl text-red-300"></i>
+            </div>
+            <h2 class="text-2xl font-bold mb-3">Article Not Found</h2>
+            <p class="text-white/70 mb-8 leading-relaxed">
+                The article you're looking for doesn't exist or has been moved. Please check the URL or browse our articles.
+            </p>
+            <a href="articles.html" class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">
+                <i class="fas fa-arrow-left mr-2"></i>
+                <span>Browse All Articles</span>
             </a>
-            <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition hover:scale-110">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition hover:scale-110">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-          </div>
         </div>
-
-        <div>
-          <h4 class="font-bold text-white mb-4">Quick Links</h4>
-          <ul class="space-y-2.5 text-sm">
-            <li><a href="services.html" class="text-white hover:text-teal-300 transition">About Us</a></li>
-            <li><a href="articles.html" class="text-white hover:text-teal-300 transition">Publications</a></li>
-            <li><a href="team.html" class="text-white hover:text-teal-300 transition">Our Team</a></li>
-            <li><a href="contact.html" class="text-white hover:text-teal-300 transition">Contact</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
-          <ul class="space-y-3 text-sm">
-            <li class="flex items-start">
-              <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
-              <span class="text-white">Dhaka, Bangladesh</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
-              <span class="text-white">ycibangladesh@gmail.com</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
-              <span class="text-white">01919403296 / 01980632583</span>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
-          <ul class="space-y-2.5 text-sm">
-            <li><a href="#" class="text-white hover:text-teal-300 transition">Annual Reports</a></li>
-            <li><a href="#" class="text-white hover:text-teal-300 transition">Research Papers</a></li>
-            <li><a href="#" class="text-white hover:text-teal-300 transition">Case Studies</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
-        <p>&copy; 2025 YCI. All rights reserved.</p>
-        <div class="mt-3 space-x-4">
-          <a href="#" class="hover:text-white transition-colors">Privacy</a>
-          <span class="text-gray-600">•</span>
-          <a href="#" class="hover:text-white transition-colors">Terms</a>
-          <span class="text-gray-600">•</span>
-          <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
-        </div>
-      </div>
     </div>
-  </footer>
 
-  <!-- Floating Action Button -->
-  <a href="contact.html" 
-     class="fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
-     aria-label="Join Our Mission">
-    Join Us
-  </a>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+                <div>
+                    <h3 class="text-white font-bold mb-3 text-lg">YCI Bangladesh</h3>
+                    <p class="text-white/70 mb-4 text-sm leading-relaxed">
+                        To build a climate resilient Bangladesh where youth leads toward sustainable Change
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition hover:scale-110">
+                            <i class="fab fa-twitter text-white"></i>
+                        </a>
+                        <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition hover:scale-110">
+                            <i class="fab fa-facebook-f text-white"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition hover:scale-110">
+                            <i class="fab fa-linkedin-in text-white"></i>
+                        </a>
+                    </div>
+                </div>
 
-  <script>
-    // --- YAML Parser ---
-    function parseYAML(yamlStr) {
-        const result = {};
-        yamlStr.trim().split('\n').forEach(line => {
-            const idx = line.indexOf(':');
-            if (idx === -1) return;
-            let key = line.slice(0, idx).trim();
-            let val = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
-            if (val === 'true') val = true;
-            if (val === 'false') val = false;
-            if (!isNaN(val) && val !== '') val = Number(val);
-            result[key] = val;
-        });
-        return result;
-    }
+                <div>
+                    <h4 class="font-bold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="services.html" class="text-white/70 hover:text-white transition">About Us</a></li>
+                        <li><a href="articles.html" class="text-white/70 hover:text-white transition">Publications</a></li>
+                        <li><a href="team.html" class="text-white/70 hover:text-white transition">Our Team</a></li>
+                        <li><a href="contact.html" class="text-white/70 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
 
-    // --- Facebook Share Function ---
-    function shareOnFacebook() {
-        const url = window.location.href;
-        const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-        window.open(shareUrl, 'facebook-share-dialog', 'width=626,height=436');
-        return false;
-    }
+                <div>
+                    <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
+                            <span class="text-white/70">Dhaka, Bangladesh</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
+                            <span class="text-white/70">ycibangladesh@gmail.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
+                            <span class="text-white/70">01919403296 / 01980632583</span>
+                        </li>
+                    </ul>
+                </div>
 
-    // --- Copy Link Function ---
-    function copyArticleLink() {
-        navigator.clipboard.writeText(window.location.href).then(() => {
-            const btn = event.currentTarget;
-            const originalIcon = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-check"></i>';
-            btn.classList.add('bg-green-500', 'hover:bg-green-600');
-            setTimeout(() => {
-                btn.innerHTML = originalIcon;
-                btn.classList.remove('bg-green-500', 'hover:bg-green-600');
-            }, 2000);
-        }).catch(err => {
-            console.error('Failed to copy:', err);
-            alert('Could not copy link. Please copy manually.');
-        });
-    }
+                <div>
+                    <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#" class="text-white/70 hover:text-white transition">Annual Reports</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition">Research Papers</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition">Case Studies</a></li>
+                    </ul>
+                </div>
+            </div>
 
-    // --- Update Open Graph Tags Dynamically ---
-    function updateOpenGraphTags(article) {
-        const fullUrl = window.location.href.split('?')[0] + '?file=' + encodeURIComponent(article.id);
-        const imageUrl = article.meta.image?.startsWith('http') 
-            ? article.meta.image 
-            : (article.meta.image ? window.location.origin + article.meta.image : 'https://via.placeholder.com/1200x630?text=YCI+Bangladesh');
-        
-        const setMeta = (id, content) => {
-            const el = document.getElementById(id);
-            if (el && content) el.setAttribute('content', content);
-        };
-        
-        setMeta('og-url', fullUrl);
-        setMeta('og-title', article.meta.title || 'YCI Article');
-        setMeta('og-description', article.excerpt || article.meta.description || '');
-        setMeta('og-image', imageUrl);
-        
-        setMeta('twitter-title', article.meta.title || 'YCI Article');
-        setMeta('twitter-description', article.excerpt || article.meta.description || '');
-        setMeta('twitter-image', imageUrl);
-        
-        if (article.meta.title) {
-            document.title = `${article.meta.title} | YCI Bangladesh`;
+            <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
+                <p class="text-white/60">&copy; 2025 YCI Bangladesh. All rights reserved.</p>
+                <div class="mt-3 space-x-4">
+                    <a href="#" class="text-white/60 hover:text-white transition-colors">Privacy Policy</a>
+                    <span class="text-white/30">•</span>
+                    <a href="#" class="text-white/60 hover:text-white transition-colors">Terms of Service</a>
+                    <span class="text-white/30">•</span>
+                    <a href="contact.html" class="text-white/60 hover:text-white transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <a href="contact.html" 
+       class="fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30 backdrop-blur-sm hover:from-white/30 hover:to-white/20"
+       aria-label="Join Our Mission">
+        <i class="fas fa-handshake mr-2"></i>
+        <span class="hidden sm:inline">Join Us</span>
+    </a>
+
+    <script>
+        // --- YAML Parser ---
+        function parseYAML(yamlStr) {
+            const result = {};
+            yamlStr.trim().split('\n').forEach(line => {
+                const idx = line.indexOf(':');
+                if (idx === -1) return;
+                let key = line.slice(0, idx).trim();
+                let val = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
+                if (val === 'true') val = true;
+                if (val === 'false') val = false;
+                if (!isNaN(val) && val !== '') val = Number(val);
+                result[key] = val;
+            });
+            return result;
         }
-    }
 
-    // --- Convert Markdown-like text to HTML (basic) ---
-    function markdownToHtml(text) {
-        // Escape HTML first
-        let html = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        
-        // Headers
-        html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
-        html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
-        html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
-        
-        // Bold & Italic
-        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
-        
-        // Links
-        html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-        
-        // Images
-        html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="my-4 rounded-lg">');
-        
-        // Line breaks
-        html = html.replace(/\n/g, '<br>');
-        
-        // Blockquotes
-        html = html.replace(/^&gt; (.*$)/gim, '<blockquote>$1</blockquote>');
-        
-        return html;
-    }
-
-    // --- Calculate Read Time ---
-    function calculateReadTime(text) {
-        const wordsPerMinute = 200;
-        const wordCount = text.trim().split(/\s+/).length;
-        const minutes = Math.ceil(wordCount / wordsPerMinute);
-        return `${minutes} min read`;
-    }
-
-    // --- Load Article ---
-    async function loadArticle() {
-        const params = new URLSearchParams(window.location.search);
-        const file = params.get('file');
-        
-        if (!file) {
-            document.getElementById('loading').classList.add('hidden');
-            document.getElementById('error-state').classList.remove('hidden');
-            return;
-        }
-        
-        try {
-            const response = await fetch(`/content/${file}`);
-            if (!response.ok) throw new Error('Article not found');
+        // --- Copy Link Function (FIXED) ---
+        function copyArticleLink() {
+            const url = window.location.href;
             
-            const text = await response.text();
-            const parts = text.split('---');
-            
-            if (parts.length < 3) throw new Error('Invalid article format');
-            
-            const meta = parseYAML(parts[1]);
-            const body = parts.slice(2).join('---').trim();
-            const excerpt = body.replace(/[#*_\-[\]()`>]/g, '').split(/\s+/).slice(0, 30).join(' ') + '…';
-            
-            // Update page content
-            document.getElementById('article-title').textContent = meta.title || 'Untitled';
-            
-            if (meta.date) {
-                const date = new Date(meta.date).toLocaleDateString('en-US', { 
-                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+            // Try modern clipboard API first
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url).then(() => {
+                    showCopySuccess();
+                }).catch(err => {
+                    console.error('Clipboard API failed:', err);
+                    fallbackCopy(url);
                 });
-                document.getElementById('article-date').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> ${date}`;
-            }
-            
-            if (meta.author) {
-                document.getElementById('article-author').innerHTML = `<i class="far fa-user mr-1"></i> ${meta.author}`;
-            }
-            
-            const readTime = calculateReadTime(body);
-            const readTimeEl = document.getElementById('article-read-time');
-            readTimeEl.innerHTML = `<i class="far fa-clock mr-1"></i> ${readTime}`;
-            readTimeEl.classList.remove('hidden');
-            
-            // Tags
-            const tagsContainer = document.getElementById('article-tags');
-            if (meta.tags && Array.isArray(meta.tags) && meta.tags.length > 0) {
-                tagsContainer.innerHTML = meta.tags.map(tag => 
-                    `<span class="inline-block bg-white/20 text-white text-xs px-3 py-1 rounded-full">${tag}</span>`
-                ).join('');
             } else {
-                tagsContainer.classList.add('hidden');
+                // Fallback for older browsers
+                fallbackCopy(url);
+            }
+        }
+
+        // Fallback copy method
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.left = '-9999px';
+            textarea.style.top = '0';
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showCopySuccess();
+                } else {
+                    showError('Failed to copy link');
+                }
+            } catch (err) {
+                console.error('Fallback copy failed:', err);
+                showError('Failed to copy link');
             }
             
-            // Image
-            const imageContainer = document.getElementById('article-image-container');
-            const imageEl = document.getElementById('article-image');
-            if (meta.image) {
-                const imageUrl = meta.image.startsWith('http') ? meta.image : meta.image;
-                imageEl.src = imageUrl;
-                imageEl.alt = meta.title || 'Article image';
-                imageEl.onerror = function() {
-                    this.src = 'https://via.placeholder.com/1200x630/f1f5f9/94a3b8?text=Image+Unavailable';
-                };
+            document.body.removeChild(textarea);
+        }
+
+        // Show success toast
+        function showCopySuccess() {
+            const toast = document.getElementById('toast');
+            const buttons = document.querySelectorAll('.copy-btn');
+            
+            // Show toast
+            toast.classList.add('show');
+            
+            // Update button states
+            buttons.forEach(btn => {
+                btn.classList.add('copied');
+                const span = btn.querySelector('span');
+                if (span) span.textContent = 'Copied!';
+            });
+            
+            // Reset after 2 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+                buttons.forEach(btn => {
+                    btn.classList.remove('copied');
+                    const span = btn.querySelector('span');
+                    if (span) span.textContent = btn.id === 'copy-link-btn' ? 'Copy Article Link' : 'Copy Link';
+                });
+            }, 2000);
+        }
+
+        // Show error toast
+        function showError(message) {
+            const toast = document.getElementById('toast');
+            toast.innerHTML = `
+                <i class="fas fa-exclamation-circle text-xl"></i>
+                <span>${message}</span>
+            `;
+            toast.style.background = '#ef4444';
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                // Reset toast
+                setTimeout(() => {
+                    toast.innerHTML = `
+                        <i class="fas fa-check-circle text-xl"></i>
+                        <span>Link copied to clipboard!</span>
+                    `;
+                    toast.style.background = '#10b981';
+                }, 300);
+            }, 2000);
+        }
+
+        // --- Update Open Graph Tags Dynamically ---
+        function updateOpenGraphTags(article) {
+            const baseUrl = window.location.origin + window.location.pathname;
+            const fullUrl = `${baseUrl}?file=${encodeURIComponent(article.id)}`;
+            const imageUrl = article.meta.image?.startsWith('http') 
+                ? article.meta.image 
+                : (article.meta.image ? window.location.origin + article.meta.image : 'https://via.placeholder.com/1200x630?text=YCI+Bangladesh');
+            
+            const setMeta = (id, content) => {
+                const el = document.getElementById(id);
+                if (el && content) el.setAttribute('content', content);
+            };
+            
+            setMeta('og-url', fullUrl);
+            setMeta('og-title', article.meta.title || 'YCI Article');
+            setMeta('og-description', article.excerpt || article.meta.description || '');
+            setMeta('og-image', imageUrl);
+            
+            setMeta('twitter-title', article.meta.title || 'YCI Article');
+            setMeta('twitter-description', article.excerpt || article.meta.description || '');
+            setMeta('twitter-image', imageUrl);
+            
+            if (article.meta.title) {
+                document.title = `${article.meta.title} | YCI Bangladesh`;
+            }
+        }
+
+        // --- Convert Markdown-like text to HTML ---
+        function markdownToHtml(text) {
+            // Escape HTML first
+            let html = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            
+            // Headers
+            html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+            html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+            html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+            
+            // Bold & Italic
+            html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            
+            // Links
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+            
+            // Images
+            html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="my-4 rounded-lg">');
+            
+            // Line breaks (but not in headers)
+            html = html.replace(/(?<!^#.+)\n(?!\n)/g, '<br>');
+            
+            // Blockquotes
+            html = html.replace(/^&gt; (.*$)/gim, '<blockquote>$1</blockquote>');
+            
+            // Unordered lists
+            html = html.replace(/^[*-] (.*$)/gim, '<li>$1</li>');
+            html = html.replace(/(<li>.*<\/li>\n?)+/g, '<ul class="list-disc pl-6 my-4">$&</ul>');
+            
+            // Ordered lists
+            html = html.replace(/^\d+\. (.*$)/gim, '<li>$1</li>');
+            
+            // Horizontal rules
+            html = html.replace(/^---$/gim, '<hr class="my-6 border-white/20">');
+            
+            return html;
+        }
+
+        // --- Calculate Read Time ---
+        function calculateReadTime(text) {
+            const wordsPerMinute = 200;
+            const wordCount = text.trim().split(/\s+/).length;
+            const minutes = Math.ceil(wordCount / wordsPerMinute);
+            return `${minutes} min read`;
+        }
+
+        // --- Reading Progress Bar ---
+        function updateProgressBar() {
+            const article = document.getElementById('article-content');
+            const progressBar = document.getElementById('progress-bar');
+            
+            if (!article || article.classList.contains('hidden')) return;
+            
+            const articleTop = article.offsetTop;
+            const articleHeight = article.offsetHeight;
+            const windowHeight = window.innerHeight;
+            const scrollTop = window.pageYOffset;
+            
+            const progress = Math.min(100, Math.max(0, 
+                ((scrollTop - articleTop + windowHeight) / articleHeight) * 100
+            ));
+            
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // --- Load Article ---
+        async function loadArticle() {
+            const params = new URLSearchParams(window.location.search);
+            const file = params.get('file');
+            
+            if (!file) {
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('error-state').classList.remove('hidden');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/content/${file}`);
+                if (!response.ok) throw new Error('Article not found');
+                
+                const text = await response.text();
+                const parts = text.split('---');
+                
+                if (parts.length < 3) throw new Error('Invalid article format');
+                
+                const meta = parseYAML(parts[1]);
+                const body = parts.slice(2).join('---').trim();
+                const excerpt = body.replace(/[#*_\-[\]()`>]/g, '').split(/\s+/).slice(0, 30).join(' ') + '…';
+                
+                // Update page content
+                document.getElementById('article-title').textContent = meta.title || 'Untitled';
+                
+                if (meta.date) {
+                    const date = new Date(meta.date).toLocaleDateString('en-US', { 
+                        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+                    });
+                    document.getElementById('article-date').querySelector('span').textContent = date;
+                } else {
+                    document.getElementById('article-date').classList.add('hidden');
+                }
+                
+                if (meta.author) {
+                    document.getElementById('article-author').querySelector('span').textContent = meta.author;
+                } else {
+                    document.getElementById('article-author').classList.add('hidden');
+                }
+                
+                const readTime = calculateReadTime(body);
+                const readTimeEl = document.getElementById('article-read-time');
+                readTimeEl.querySelector('span').textContent = readTime;
+                readTimeEl.classList.remove('hidden');
+                
+                // Tags
+                const tagsContainer = document.getElementById('article-tags');
+                if (meta.tags && Array.isArray(meta.tags) && meta.tags.length > 0) {
+                    tagsContainer.innerHTML = meta.tags.map(tag => 
+                        `<span class="tag inline-block bg-white/20 hover:bg-white/30 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm border border-white/30">${tag}</span>`
+                    ).join('');
+                } else {
+                    tagsContainer.classList.add('hidden');
+                }
+                
+                // Image
+                const imageContainer = document.getElementById('article-image-container');
+                const imageEl = document.getElementById('article-image');
+                if (meta.image) {
+                    const imageUrl = meta.image.startsWith('http') ? meta.image : meta.image;
+                    imageEl.src = imageUrl;
+                    imageEl.alt = meta.title || 'Article image';
+                    imageEl.onerror = function() {
+                        this.src = 'https://via.placeholder.com/1200x630/f1f5f9/94a3b8?text=Image+Unavailable';
+                        this.parentElement.classList.add('loaded');
+                    };
+                } else {
+                    imageContainer.classList.add('hidden');
+                }
+                
+                // Body content
+                document.getElementById('article-body').innerHTML = markdownToHtml(body);
+                
+                // Update Open Graph tags
+                updateOpenGraphTags({ id: file, meta, excerpt });
+                
+                // Show article, hide loading
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('article-content').classList.remove('hidden');
+                
+                // Animate content
+                document.getElementById('article-content').classList.add('animate-fadeInUp');
+                
+                // Enable progress bar
+                window.addEventListener('scroll', updateProgressBar);
+                
+            } catch (error) {
+                console.error('Failed to load article:', error);
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('error-state').classList.remove('hidden');
+            }
+        }
+
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn')?.addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('navbar-scrolled');
             } else {
-                imageContainer.classList.add('hidden');
+                nav.classList.remove('navbar-scrolled');
             }
-            
-            // Body content
-            document.getElementById('article-body').innerHTML = markdownToHtml(body);
-            
-            // Update Open Graph tags
-            updateOpenGraphTags({ id: file, meta, excerpt });
-            
-            // Show article, hide loading
-            document.getElementById('loading').classList.add('hidden');
-            document.getElementById('article-content').classList.remove('hidden');
-            
-            // Animate content
-            document.getElementById('article-content').classList.add('animate-fadeInUp');
-            
-        } catch (error) {
-            console.error('Failed to load article:', error);
-            document.getElementById('loading').classList.add('hidden');
-            document.getElementById('error-state').classList.remove('hidden');
-        }
-    }
+        });
 
-    // Mobile menu toggle
-    document.getElementById('mobileMenuBtn')?.addEventListener('click', function() {
-        document.getElementById('mobileMenu').classList.toggle('hidden');
-    });
-
-    // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-        const nav = document.getElementById('mainNav');
-        if (window.scrollY > 50) {
-            nav.classList.add('navbar-scrolled');
-        } else {
-            nav.classList.remove('navbar-scrolled');
-        }
-    });
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', loadArticle);
-  </script>
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadArticle);
+    </script>
 </body>
 </html>
