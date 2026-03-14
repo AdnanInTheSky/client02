@@ -121,15 +121,25 @@
       color: white; 
       font-weight: 600; 
     }
+    
+    /* ✅ BLUE LINKS IN BLOG CONTENT */
     .blog-content a { 
-      color: #4FD1C5; 
+      color: #3B82F6; /* Blue-500 */
       text-decoration: underline; 
-      transition: color 0.2s;
+      transition: all 0.2s ease;
       word-break: break-word;
+      font-weight: 500;
     }
     .blog-content a:hover { 
-      color: #2C5282; 
+      color: #1D4ED8; /* Blue-700 */
+      text-decoration: underline;
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 2px;
     }
+    .blog-content a:visited {
+      color: #7C3AED; /* Purple-600 for visited links */
+    }
+    
     .blog-content blockquote { 
       border-left: 4px solid #4FD1C5; 
       padding: 1rem; 
@@ -392,7 +402,7 @@
       return result;
     }
 
-    // --- Markdown to HTML ---
+    // --- Markdown to HTML (Updated with Plain URL Detection) ---
     function markdownToHTML(md) {
       let html = md.trim();
       
@@ -405,8 +415,15 @@
       html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
       html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
       
-      // Links
+      // Markdown Links [text](url) - Process FIRST to avoid double-wrapping
       html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+      
+      // ✅ NEW: Plain URLs (http/https) - Convert to clickable links
+      // This regex matches URLs that aren't already inside <a> tags
+      html = html.replace(
+        /(?<!href="|<a[^>]*>)\b(https?:\/\/[^\s<>"{}|\\^`\[\]]+)/g, 
+        '<a href="$1" target="_blank" rel="noopener">$1</a>'
+      );
       
       // Lists
       html = html.replace(/^-\s+(.*$)/gm, '<li>$1</li>');
