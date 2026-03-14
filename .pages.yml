@@ -75,7 +75,7 @@ content:
 
   #  Services/Blogs Collection
   - name: services
-    label: Blogs
+    label: Blog
     type: collection
     path: content/services
     format: yaml-frontmatter
