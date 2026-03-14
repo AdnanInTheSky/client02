@@ -20,50 +20,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        }
-        /* Light teal greenish blue background */
+        * { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
         body {
           background: linear-gradient(135deg, rgba(17, 23, 87, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
           min-height: 100vh;
         }
-    
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
         
-        /* Glassmorphism utility classes */
         .glass {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
         .pure-glass-nav {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
-        
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .glass-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            background: rgba(255, 255, 255, 0.9);
-        }
-        
-        /* Solid card style for articles */
         .solid-card {
             background: white;
             border-radius: 1rem;
@@ -72,130 +47,28 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
-        
         .solid-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
-        
-        /* Hero gradient overlay */
         .hero-overlay {
             background: linear-gradient(135deg, rgba(26, 35, 126, 0.85), rgba(13, 71, 161, 0.7), rgba(0, 150, 136, 0.6));
         }
         
-        /* Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .animate-fadeInUp {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-        
-        .animate-fadeIn {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-        
-        .animate-slideInRight {
-            animation: slideInRight 0.8s ease-out forwards;
-        }
-        
-        .delay-100 { animation-delay: 0.1s; }
+        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
         .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
-        .delay-500 { animation-delay: 0.5s; }
         
-        /* Navbar scroll effect */
         .navbar-scrolled {
             background: rgba(255, 255, 255, 0.2) !important;
             backdrop-filter: blur(30px) !important;
             -webkit-backdrop-filter: blur(30px) !important;
             border-bottom: 1px solid rgba(255, 255, 255, 0.25) !important;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
         
-        /* Gradient text */
-        .gradient-text {
-            background: linear-gradient(135deg, #ffffff, #e0f7fa, #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Floating button pulse */
-        @keyframes pulse-ring {
-            0% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-            }
-            70% {
-                transform: scale(1);
-                box-shadow: 0 0 0 12px rgba(255, 255, 255, 0);
-            }
-            100% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-            }
-        }
-        
-        .floating-btn {
-            animation: pulse-ring 2s infinite;
-        }
-        
-        /* Card image overlay effect */
-        .card-image-wrapper {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .card-image-wrapper::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.05) 100%);
-            transition: opacity 0.3s;
-        }
-        
-        .solid-card:hover .card-image-wrapper::after {
-            opacity: 0;
-        }
-        
-        .card-image-wrapper img {
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .solid-card:hover .card-image-wrapper img {
-            transform: scale(1.08);
-        }
-        
-        /* Search Box */
         .search-box {
             border-radius: 50px;
             padding: 0.75rem 1.5rem 0.75rem 3rem;
@@ -206,24 +79,15 @@
             color: white;
             transition: all 0.3s ease;
         }
-        
         .search-box:focus {
             background-color: rgba(255, 255, 255, 0.25);
             border-color: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+            outline: none;
             color: white;
         }
+        .search-box::placeholder { color: rgba(255, 255, 255, 0.8); }
+        .search-icon { color: rgba(255, 255, 255, 0.8); z-index: 5; }
         
-        .search-box::placeholder {
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .search-icon {
-            color: rgba(255, 255, 255, 0.8);
-            z-index: 5;
-        }
-        
-        /* Filter Buttons */
         .filter-btn {
             border-radius: 50px;
             padding: 0.5rem 1.25rem;
@@ -235,14 +99,12 @@
             transition: all 0.3s ease;
             margin: 0 5px 10px;
         }
-        
         .filter-btn:hover, .filter-btn.active {
             background-color: rgba(255, 255, 255, 0.9);
             color: #1a237e;
             border-color: rgba(255, 255, 255, 0.9);
         }
         
-        /* Active Filters */
         .active-filter-badge {
             background-color: rgba(255, 255, 255, 0.9);
             color: #1e293b;
@@ -254,7 +116,6 @@
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
         }
-        
         .clear-filters-btn {
             border-radius: 20px;
             padding: 0.4rem 0.8rem;
@@ -264,23 +125,26 @@
             -webkit-backdrop-filter: blur(5px);
         }
         
-        /* Improved focus states for accessibility */
-        a:focus, button:focus {
-            outline: 2px solid rgba(255, 255, 255, 0.6);
-            outline-offset: 2px;
+        .card-image-wrapper { position: relative; overflow: hidden; }
+        .card-image-wrapper::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.05) 100%);
+            transition: opacity 0.3s;
         }
+        .solid-card:hover .card-image-wrapper::after { opacity: 0; }
+        .card-image-wrapper img { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .solid-card:hover .card-image-wrapper img { transform: scale(1.08); }
+        
         #mobileMenu {
-            background: rgba(255, 255, 255, 0.25); /* more transparent for true glass effect */
+            background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(12px);
-           -webkit-backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
             margin-top: 0.5rem;
             padding: 0.75rem 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
- 
-        
     </style>
     
     <script>
@@ -302,49 +166,48 @@
 <body>
 
   <!-- Glass Navbar -->
-  <nav id="mainNav" class="fixed w-full top-0 z-50 nav-glass">
+  <nav id="mainNav" class="fixed w-full top-0 z-50 pure-glass-nav">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16 md:h-20">
-        <a href="index.html" class="flex items-center page-load">
-          <img src="content/images/IMG_5811.png" alt="BioNova Logo"
-               class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20"
-               onerror="this.src=''; this.parentElement.innerHTML='BioNova';">
+        <a href="index.html" class="flex items-center">
+          <img src="content/images/IMG_5811.png" alt="YCI Logo"
+               class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20">
         </a>
 
-        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass page-load delay-1">
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl">
           <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
+        
         <div class="hidden md:flex space-x-2">
-          <a href="index.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-1">Home</a>
-          <a href="services.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-2">Blogs</a>
-          <a href="articles.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-3">Events</a>
-          <a href="team.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-4">Team</a>
-          <a href="contact.html" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium hover:scale-105 transition glow-button page-load delay-5">
+          <a href="index.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Home</a>
+          <a href="services.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Blogs</a>
+          <a href="articles.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Events</a>
+          <a href="team.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Team</a>
+          <a href="contact.html" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium hover:scale-105 transition">
             Contact
           </a>
         </div>
       </div>
+      
       <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 space-y-2">
-        <a href="index.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Home</a>
-        <a href="services.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">blogs</a>
-        <a href="articles.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Events</a>
-        <a href="team.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Team</a>
-        <a href="contact.html" class="mt-2 block px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full text-center glow-button">Contact</a>
+        <a href="index.html" class="block px-4 py-2 text-white hover:text-teal-300 transition">Home</a>
+        <a href="services.html" class="block px-4 py-2 text-white hover:text-teal-300 transition">Blogs</a>
+        <a href="articles.html" class="block px-4 py-2 text-white hover:text-teal-300 transition">Events</a>
+        <a href="team.html" class="block px-4 py-2 text-white hover:text-teal-300 transition">Team</a>
+        <a href="contact.html" class="mt-2 block px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full text-center">Contact</a>
       </div>
     </div>
   </nav>
 
     <!-- Hero Section -->
     <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden mt-16">
-        <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="content/images/tester.jpg" alt="Hero background" class="w-full h-full object-cover">
             <div class="absolute inset-0 hero-overlay"></div>
         </div>
         
-        <!-- Content -->
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
             <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 opacity-0 animate-fadeInUp">
                 Insights & Impact Stories
@@ -361,12 +224,10 @@
             </div>
 
             <!-- Active Filters Display -->
-            <div id="active-filters" class="mb-3" style="min-height: 30px;">
-                <!-- Active filters will be displayed here -->
-            </div>
+            <div id="active-filters" class="mb-3" style="min-height: 30px;"></div>
 
             <!-- Filters -->
-            <div class="d-flex flex-wrap justify-center mb-4" id="tags-container">
+            <div class="flex flex-wrap justify-center mb-4" id="tags-container">
                 <button class="filter-btn active" onclick="clearAllFilters()">All Articles</button>
             </div>
         </div>
@@ -376,7 +237,6 @@
     <main class="py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <!-- Loading state -->
                 <div class="col-span-full flex justify-center py-12">
                     <div class="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
                 </div>
@@ -388,75 +248,64 @@
   <footer class="bg-gray-900 text-gray-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-        <!-- Brand -->
         <div>
-          <h3 class="text-white font-bold mb-2">YCI bangladesh</h3>
-          <p class="text-white mb-2">
+          <h3 class="text-white font-bold mb-2">YCI Bangladesh</h3>
+          <p class="text-white mb-2 text-sm">
              To build a climate resilient Bangladesh where youth leads toward sustainable Change
           </p>
           <div class="flex space-x-3">
-            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition hover:scale-110">
               <i class="fab fa-twitter"></i>
             </a>
-            <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+            <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition hover:scale-110">
               <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
+            <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition hover:scale-110">
               <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110">
-              <i class="fab fa-instagram"></i>
             </a>
           </div>
         </div>
 
-
-        <!-- Quick Links -->
         <div>
           <h4 class="font-bold text-white mb-4">Quick Links</h4>
           <ul class="space-y-2.5 text-sm">
-            <li><a href="services.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
-            <li><a href="articles.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
-            <li><a href="team.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Our Team</a></li>
-            <li><a href="contact.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Contact</a></li>
-            <li><a href="contact.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Careers</a></li>
+            <li><a href="services.html" class="text-white hover:text-teal-300 transition">About Us</a></li>
+            <li><a href="articles.html" class="text-white hover:text-teal-300 transition">Publications</a></li>
+            <li><a href="team.html" class="text-white hover:text-teal-300 transition">Our Team</a></li>
+            <li><a href="contact.html" class="text-white hover:text-teal-300 transition">Contact</a></li>
           </ul>
         </div>
 
-        <!-- Contact -->
         <div>
           <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
           <ul class="space-y-3 text-sm">
             <li class="flex items-start">
               <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
-              <span class="text-white mb-2">Dhaka, Bangladesh</span>
+              <span class="text-white">Dhaka, Bangladesh</span>
             </li>
             <li class="flex items-start">
               <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
-              <span class="text-white mb-2">ycibangladesh@gmail.com</span>
+              <span class="text-white">ycibangladesh@gmail.com</span>
             </li>
             <li class="flex items-start">
               <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
-              <span class="text-white mb-2">01919403296 / 01980632583</span>
+              <span class="text-white">01919403296 / 01980632583</span>
             </li>
           </ul>
         </div>
 
-        <!-- Resources -->
         <div>
           <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
           <ul class="space-y-2.5 text-sm">
-            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Annual Reports</a></li>
-            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Research Papers</a></li>
-            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Case Studies</a></li>
-            <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Partnerships</a></li>
+            <li><a href="#" class="text-white hover:text-teal-300 transition">Annual Reports</a></li>
+            <li><a href="#" class="text-white hover:text-teal-300 transition">Research Papers</a></li>
+            <li><a href="#" class="text-white hover:text-teal-300 transition">Case Studies</a></li>
           </ul>
         </div>
       </div>
 
-      <!-- Copyright -->
       <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
-        <p>&copy; 2025 yci. All rights reserved.</p>
+        <p>&copy; 2025 YCI. All rights reserved.</p>
         <div class="mt-3 space-x-4">
           <a href="#" class="hover:text-white transition-colors">Privacy</a>
           <span class="text-gray-600">•</span>
@@ -470,16 +319,9 @@
 
   <!-- Floating Action Button -->
   <a href="contact.html" 
-     class="floating-btn fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
+     class="fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
      aria-label="Join Our Mission">
     Join Us
-  </a>
-
-    <!-- Floating Action Button -->
-  <a href="team.html" 
-     class="floating-btn fixed bottom-6 left-6 md:bottom-8 md:left-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
-     aria-label="Join Our Mission">
-    Our Team
   </a>
 
     <script>
@@ -540,7 +382,6 @@
                             excerpt 
                         });
                         
-                        // Extract tags
                         if (meta.tags) {
                             if (Array.isArray(meta.tags)) {
                                 meta.tags.forEach(tag => allTags.add(tag));
@@ -609,7 +450,6 @@
         function filterAndRender() {
             let filtered = allArticles;
 
-            // Tag filter (multiple tags - AND logic)
             if (selectedTags.size > 0) {
                 filtered = filtered.filter(a => {
                     const articleTags = a.meta.tags || [];
@@ -617,7 +457,6 @@
                 });
             }
 
-            // Search filter
             if (searchQuery) {
                 const q = searchQuery.toLowerCase();
                 filtered = filtered.filter(a =>
@@ -662,14 +501,16 @@
             const cards = articles.map(article => {
                 const imageUrl = article.meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article+Image';
                 
-                // Enhanced tags display
                 const tagsHtml = (article.meta.tags || [])
                     .map(tag => `<span class="inline-block bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full mr-1 mb-1 cursor-pointer hover:bg-primary hover:text-white transition-colors" onclick="toggleTag('${tag}')">${tag}</span>`).join('');
                 
                 const date = article.meta.date 
                     ? new Date(article.meta.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) 
                     : '';
-                const author = article.meta.author || 'BioNova Team';
+                const author = article.meta.author || 'YCI Team';
+
+                // ✅ SHAREABLE LINK: Using query parameter
+                const articleUrl = `article.html?file=${encodeURIComponent(article.id)}`;
 
                 return `
                     <div class="article-card opacity-0">
@@ -680,15 +521,15 @@
                             </div>
                             <div class="p-6 flex flex-col flex-grow">
                                 <h3 class="text-xl font-bold mb-2 text-gray-900 line-clamp-2">${article.meta.title}</h3>
-                                <div class="text-dark font-bold">
-                                    ${date ? `<i class="class="far fa-calendar-alt mr-1"></i> ${date}` : ''}
-                                    ${date && author ? '<span>•</span>' : ''}
+                                <div class="text-gray-700 font-medium text-sm mb-2">
+                                    ${date ? `<i class="far fa-calendar-alt mr-1"></i> ${date}` : ''}
+                                    ${date && author ? '<span class="mx-1">•</span>' : ''}
                                     ${author ? `<i class="far fa-user mr-1"></i> ${author}` : ''}
                                 </div>
-                                <p class="text-dark-600 mb-4 flex-grow leading-relaxed">${article.excerpt}</p>
+                                <p class="text-gray-600 mb-4 flex-grow leading-relaxed">${article.excerpt}</p>
                                 <div class="mb-4 flex flex-wrap">${tagsHtml}</div>
-                                <a href="article.html" 
-                                   onclick="openDetail('${article.id}');return false;"
+                                <!-- ✅ SHAREABLE LINK HERE -->
+                                <a href="${articleUrl}" 
                                    class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 self-start">
                                     Read More
                                     <i class="fas fa-arrow-right ml-2 text-sm"></i>
@@ -726,11 +567,6 @@
                         </button>
                     </div>
                 </div>`;
-        }
-
-        function openDetail(id) {
-            sessionStorage.setItem('selectedFile', id);
-            window.location.href = 'article.html';
         }
 
         // Search
