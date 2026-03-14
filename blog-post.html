@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title id="page-title">Loading... - YCI Bangladesh</title>
   
-  <!-- Default Meta Tags (Updated dynamically by JS) -->
+  <!-- Default Meta Tags -->
   <meta id="meta-description" name="description" content="Read the latest updates from YCI Bangladesh">
   <meta id="meta-image" property="og:image" content="">
   <meta id="meta-title" property="og:title" content="YCI Bangladesh Blog">
@@ -31,15 +31,21 @@
   <style>
     * {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
     html {
       scroll-behavior: smooth;
+    }
+    body {
+      overflow-x: hidden;
+      width: 100%;
     }
 
     /* Pure Glass Effect */
     .pure-glass {
       background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     }
@@ -47,16 +53,17 @@
     .nav-glass {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    /* ✅ LANDSCAPE HERO IMAGE - 16:9 */
+    /* ✅ LANDSCAPE HERO IMAGE - 16:9 - Mobile Optimized */
     .blog-hero {
       position: relative;
       width: 100%;
       padding-top: 56.25%; /* 16:9 Aspect Ratio */
       overflow: hidden;
-      border-radius: 1rem;
+      border-radius: 0.75rem;
       border: 1px solid rgba(255, 255, 255, 0.2);
       background: rgba(0,0,0,0.2);
     }
@@ -71,39 +78,87 @@
       object-position: center;
     }
 
-    /* Blog Content Typography */
-    .blog-content h1 { font-size: 2rem; font-weight: 700; margin: 2rem 0 1rem; color: white; }
-    .blog-content h2 { font-size: 1.5rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: white; }
-    .blog-content h3 { font-size: 1.25rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: white; }
-    .blog-content p { margin: 1rem 0; color: rgba(255,255,255,0.9); line-height: 1.8; font-size: 1.05rem; }
-    .blog-content ul { margin: 1rem 0; padding-left: 2rem; color: rgba(255,255,255,0.9); }
-    .blog-content li { margin: 0.5rem 0; }
-    .blog-content strong { color: white; font-weight: 600; }
-    .blog-content a { color: #4FD1C5; text-decoration: underline; transition: color 0.2s; }
-    .blog-content a:hover { color: #2C5282; }
+    /* Blog Content Typography - Mobile Responsive */
+    .blog-content {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    .blog-content h1 { 
+      font-size: clamp(1.5rem, 5vw, 2rem); 
+      font-weight: 700; 
+      margin: 2rem 0 1rem; 
+      color: white; 
+      line-height: 1.3;
+    }
+    .blog-content h2 { 
+      font-size: clamp(1.25rem, 4vw, 1.5rem); 
+      font-weight: 600; 
+      margin: 1.5rem 0 0.75rem; 
+      color: white;
+      line-height: 1.3;
+    }
+    .blog-content h3 { 
+      font-size: clamp(1.1rem, 3.5vw, 1.25rem); 
+      font-weight: 600; 
+      margin: 1.25rem 0 0.5rem; 
+      color: white;
+    }
+    .blog-content p { 
+      margin: 1rem 0; 
+      color: rgba(255,255,255,0.9); 
+      line-height: 1.8; 
+      font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+    }
+    .blog-content ul { 
+      margin: 1rem 0; 
+      padding-left: 1.5rem; 
+      color: rgba(255,255,255,0.9); 
+    }
+    .blog-content li { 
+      margin: 0.5rem 0; 
+    }
+    .blog-content strong { 
+      color: white; 
+      font-weight: 600; 
+    }
+    .blog-content a { 
+      color: #4FD1C5; 
+      text-decoration: underline; 
+      transition: color 0.2s;
+      word-break: break-word;
+    }
+    .blog-content a:hover { 
+      color: #2C5282; 
+    }
     .blog-content blockquote { 
       border-left: 4px solid #4FD1C5; 
-      padding-left: 1rem; 
+      padding: 1rem; 
       margin: 1.5rem 0; 
       font-style: italic; 
       color: rgba(255,255,255,0.8);
       background: rgba(255,255,255,0.05);
-      padding: 1rem;
       border-radius: 0 0.5rem 0.5rem 0;
     }
     .blog-content img {
       max-width: 100%;
+      height: auto;
       border-radius: 0.5rem;
       margin: 1.5rem 0;
       border: 1px solid rgba(255,255,255,0.2);
     }
 
-    /* Share Buttons */
+    /* Share Buttons - Mobile Responsive */
     .share-btn {
       transition: all 0.2s ease;
       display: flex;
       align-items: center;
       justify-content: center;
+      min-width: 40px;
+      min-height: 40px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .share-btn:active {
+      transform: scale(0.95);
     }
     .share-btn:hover {
       transform: translateY(-2px);
@@ -115,6 +170,34 @@
     .share-btn.twitter { background: #1da1f2; }
     .share-btn.linkedin { background: #0077b5; }
     .share-btn.copy { background: #6b7280; }
+
+    /* Mobile Menu Animation */
+    #mobileMenu {
+      transition: all 0.3s ease;
+    }
+    
+    /* Prevent horizontal scroll */
+    .container-mobile {
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+
+    /* Touch-friendly buttons */
+    .btn-touch {
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    /* Responsive padding */
+    @media (max-width: 640px) {
+      .pure-glass {
+        padding: 1rem;
+      }
+      .blog-hero {
+        border-radius: 0.5rem;
+      }
+    }
   </style>
 
   <script>
@@ -131,62 +214,63 @@
     }
   </script>
 </head>
-<body class="bg-gradient-to-br from-[#003f87] to-[#a8e6cf] min-h-screen flex flex-col">
+<body class="bg-gradient-to-br from-[#003f87] to-[#a8e6cf] min-h-screen flex flex-col container-mobile">
 
   <!-- Navbar -->
   <nav class="fixed w-full top-0 z-50 nav-glass">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16 md:h-20">
-        <a href="index.html" class="flex items-center gap-3">
+      <div class="flex justify-between items-center h-16">
+        <a href="index.html" class="flex items-center gap-2 sm:gap-3">
           <img src="content/images/IMG_5811.png" alt="YCI Logo"
-               class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20"
-               onerror="this.parentElement.innerHTML='<span class=\'text-white font-bold text-xl\'>YCI</span>';">
-          <span class="text-white font-bold text-xl hidden sm:block">YCI Bangladesh</span>
+               class="w-10 h-10 rounded-full object-cover border-2 border-white/20 flex-shrink-0"
+               onerror="this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>YCI</span>';">
+          <span class="text-white font-bold text-lg hidden sm:block">YCI Bangladesh</span>
         </a>
         
-        <div class="hidden md:flex space-x-2">
-          <a href="index.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Home</a>
-          <a href="services.html" class="px-4 py-2 text-teal-300 font-semibold">Blogs</a>
-          <a href="articles.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Events</a>
-          <a href="team.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Team</a>
-          <a href="contact.html" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium hover:scale-105 transition">
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-1 lg:space-x-2">
+          <a href="index.html" class="px-3 py-2 text-white hover:text-teal-300 transition text-sm lg:text-base">Home</a>
+          <a href="services.html" class="px-3 py-2 text-teal-300 font-semibold text-sm lg:text-base">Blogs</a>
+          <a href="articles.html" class="px-3 py-2 text-white hover:text-teal-300 transition text-sm lg:text-base">Events</a>
+          <a href="team.html" class="px-3 py-2 text-white hover:text-teal-300 transition text-sm lg:text-base">Team</a>
+          <a href="contact.html" class="ml-2 px-4 py-2 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium text-sm hover:scale-105 transition">
             Contact
           </a>
         </div>
 
         <!-- Mobile Menu Button -->
-        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass text-white">
-          <i class="fas fa-bars"></i>
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass text-white btn-touch flex-shrink-0">
+          <i class="fas fa-bars text-lg"></i>
         </button>
       </div>
       
       <!-- Mobile Menu -->
       <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 space-y-2">
-        <a href="index.html" class="block px-4 py-2 text-white hover:text-teal-300">Home</a>
-        <a href="services.html" class="block px-4 py-2 text-teal-300 font-semibold">Blogs</a>
-        <a href="articles.html" class="block px-4 py-2 text-white hover:text-teal-300">Events</a>
-        <a href="team.html" class="block px-4 py-2 text-white hover:text-teal-300">Team</a>
-        <a href="contact.html" class="block px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full text-center mt-2">Contact</a>
+        <a href="index.html" class="block px-4 py-3 text-white hover:text-teal-300 hover:bg-white/10 rounded-lg transition">Home</a>
+        <a href="services.html" class="block px-4 py-3 text-teal-300 font-semibold hover:bg-white/10 rounded-lg transition">Blogs</a>
+        <a href="articles.html" class="block px-4 py-3 text-white hover:text-teal-300 hover:bg-white/10 rounded-lg transition">Events</a>
+        <a href="team.html" class="block px-4 py-3 text-white hover:text-teal-300 hover:bg-white/10 rounded-lg transition">Team</a>
+        <a href="contact.html" class="block mx-4 mt-4 px-6 py-3 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full text-center font-medium">Contact</a>
       </div>
     </div>
   </nav>
 
   <!-- Main Content -->
-  <main class="pt-24 pb-12 flex-grow">
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <main class="pt-20 pb-12 flex-grow">
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       
       <!-- Loading State -->
       <div id="loading-state" class="flex flex-col items-center justify-center py-20">
-        <div class="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin mb-4"></div>
-        <p class="text-white/80">Loading article...</p>
+        <div class="w-12 h-12 sm:w-16 sm:h-16 border-4 border-white border-t-transparent rounded-full animate-spin mb-4"></div>
+        <p class="text-white/80 text-sm sm:text-base">Loading article...</p>
       </div>
 
       <!-- Error State -->
       <div id="error-state" class="hidden text-center py-20">
-        <i class="fas fa-exclamation-circle text-5xl text-white/50 mb-4"></i>
-        <h2 class="text-2xl font-bold text-white mb-2">Article Not Found</h2>
-        <p class="text-white/70 mb-6">We couldn't find the blog post you were looking for.</p>
-        <a href="services.html" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-lg font-medium hover:scale-105 transition">
+        <i class="fas fa-exclamation-circle text-4xl sm:text-5xl text-white/50 mb-4"></i>
+        <h2 class="text-xl sm:text-2xl font-bold text-white mb-2">Article Not Found</h2>
+        <p class="text-white/70 mb-6 text-sm sm:text-base">We couldn't find the blog post you were looking for.</p>
+        <a href="services.html" class="inline-block px-6 py-3 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-lg font-medium text-sm sm:text-base btn-touch">
           Back to Blogs
         </a>
       </div>
@@ -194,9 +278,9 @@
       <!-- Blog Content Container -->
       <div id="blog-container" class="hidden">
         <!-- Back Button -->
-        <div class="mb-6">
-          <a href="services.html" class="inline-flex items-center text-white/80 hover:text-white transition group">
-            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mr-2 group-hover:bg-white/20 transition">
+        <div class="mb-4 sm:mb-6">
+          <a href="services.html" class="inline-flex items-center text-white/80 hover:text-white transition group text-sm sm:text-base">
+            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mr-2 group-hover:bg-white/20 transition btn-touch">
               <i class="fas fa-arrow-left text-sm"></i>
             </div>
             Back to Blogs
@@ -204,45 +288,45 @@
         </div>
 
         <!-- Glass Card -->
-        <div class="pure-glass rounded-2xl p-6 md:p-10 mb-8">
+        <div class="pure-glass rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-10 mb-6 sm:mb-8">
           
           <!-- Hero Image (Landscape 16:9) -->
-          <div id="blog-hero-container" class="blog-hero mb-8 hidden">
+          <div id="blog-hero-container" class="blog-hero mb-6 sm:mb-8 hidden">
             <img id="blog-image" src="" alt="Blog Header">
           </div>
           
           <!-- Header Info -->
-          <div class="mb-8">
-            <div class="flex flex-wrap items-center gap-4 text-sm text-white/70 mb-4">
+          <div class="mb-6 sm:mb-8">
+            <div class="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-white/70 mb-4">
               <span id="blog-date" class="flex items-center"><i class="far fa-calendar mr-2 text-teal-300"></i></span>
               <span id="blog-author" class="flex items-center"><i class="far fa-user mr-2 text-teal-300"></i></span>
             </div>
             
-            <h1 id="blog-title" class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight"></h1>
+            <h1 id="blog-title" class="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight break-words"></h1>
           </div>
 
-          <!-- Share Buttons -->
-          <div class="flex flex-wrap items-center gap-3 mb-8 pb-8 border-b border-white/20">
-            <span class="text-white/80 text-sm font-medium mr-2">Share:</span>
-            <button onclick="sharePost('facebook')" class="share-btn facebook w-10 h-10 rounded-full text-white" title="Share on Facebook">
+          <!-- Share Buttons - Mobile Responsive -->
+          <div class="flex flex-wrap items-center gap-2 sm:gap-3 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-white/20">
+            <span class="text-white/80 text-sm font-medium mr-2 w-full sm:w-auto mb-2 sm:mb-0">Share:</span>
+            <button onclick="sharePost('facebook')" class="share-btn facebook w-10 h-10 sm:w-10 sm:h-10 rounded-full text-white text-sm" title="Share on Facebook" aria-label="Share on Facebook">
               <i class="fab fa-facebook-f"></i>
             </button>
-            <button onclick="sharePost('whatsapp')" class="share-btn whatsapp w-10 h-10 rounded-full text-white" title="Share on WhatsApp">
+            <button onclick="sharePost('whatsapp')" class="share-btn whatsapp w-10 h-10 sm:w-10 sm:h-10 rounded-full text-white text-sm" title="Share on WhatsApp" aria-label="Share on WhatsApp">
               <i class="fab fa-whatsapp"></i>
             </button>
-            <button onclick="sharePost('twitter')" class="share-btn twitter w-10 h-10 rounded-full text-white" title="Share on Twitter">
+            <button onclick="sharePost('twitter')" class="share-btn twitter w-10 h-10 sm:w-10 sm:h-10 rounded-full text-white text-sm" title="Share on Twitter" aria-label="Share on Twitter">
               <i class="fab fa-twitter"></i>
             </button>
-            <button onclick="sharePost('linkedin')" class="share-btn linkedin w-10 h-10 rounded-full text-white" title="Share on LinkedIn">
+            <button onclick="sharePost('linkedin')" class="share-btn linkedin w-10 h-10 sm:w-10 sm:h-10 rounded-full text-white text-sm" title="Share on LinkedIn" aria-label="Share on LinkedIn">
               <i class="fab fa-linkedin-in"></i>
             </button>
-            <button onclick="copyLink()" class="share-btn copy w-10 h-10 rounded-full text-white" title="Copy Link">
+            <button onclick="copyLink()" class="share-btn copy w-10 h-10 sm:w-10 sm:h-10 rounded-full text-white text-sm" title="Copy Link" aria-label="Copy Link">
               <i class="fas fa-link"></i>
             </button>
           </div>
 
           <!-- Blog Body -->
-          <div id="blog-content" class="blog-content text-white/90">
+          <div id="blog-content" class="blog-content text-white/90 text-sm sm:text-base">
             <!-- Content injected via JS -->
           </div>
         </div>
@@ -251,19 +335,19 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div>
-          <h3 class="text-white font-bold mb-2">YCI Bangladesh</h3>
+  <footer class="bg-gray-900 text-gray-300 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div class="sm:col-span-2 lg:col-span-1">
+          <h3 class="text-white font-bold mb-2 text-lg">YCI Bangladesh</h3>
           <p class="text-sm">Building a climate resilient Bangladesh where youth lead toward sustainable change.</p>
         </div>
         <div>
           <h4 class="text-white font-semibold mb-4">Quick Links</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="index.html" class="hover:text-white">Home</a></li>
-            <li><a href="services.html" class="hover:text-white">Blogs</a></li>
-            <li><a href="team.html" class="hover:text-white">Team</a></li>
+            <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+            <li><a href="services.html" class="hover:text-white transition">Blogs</a></li>
+            <li><a href="team.html" class="hover:text-white transition">Team</a></li>
           </ul>
         </div>
         <div>
@@ -274,10 +358,10 @@
         <div>
           <h4 class="text-white font-semibold mb-4">Follow Us</h4>
           <div class="flex space-x-3">
-            <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-blue-600 transition">
+            <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-blue-600 transition btn-touch">
               <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-blue-700 transition">
+            <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-blue-700 transition btn-touch">
               <i class="fab fa-linkedin-in"></i>
             </a>
           </div>
@@ -326,7 +410,6 @@
       
       // Lists
       html = html.replace(/^-\s+(.*$)/gm, '<li>$1</li>');
-      // Wrap consecutive lis in ul (simplified regex)
       html = html.replace(/(<li>.*<\/li>\n?)+/g, '<ul class="list-disc pl-5 my-4">$&</ul>');
       
       // Blockquotes
@@ -339,7 +422,7 @@
       html = html.split('\n\n').map(p => {
         p = p.trim();
         if (!p) return '';
-        if (p.startsWith('<')) return p; // Don't wrap existing HTML tags
+        if (p.startsWith('<')) return p;
         return `<p>${p}</p>`;
       }).join('');
       
@@ -359,10 +442,8 @@
       const url = window.location.href;
       document.title = blog.title + ' - YCI Bangladesh';
       
-      // Update DOM elements
       document.getElementById('page-title').textContent = document.title;
       
-      // Update Meta Tags
       const setMeta = (id, content) => {
         const el = document.getElementById(id);
         if (el) el.setAttribute('content', content);
@@ -403,6 +484,13 @@
           btn.innerHTML = originalIcon;
         }, 2000);
       }).catch(() => {
+        // Fallback for older browsers
+        const textArea = document.createElement("textarea");
+        textArea.value = window.location.href;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
         alert('Link copied to clipboard!');
       });
     }
@@ -418,14 +506,11 @@
       }
 
       try {
-        // 1. Load Index
         const indexRes = await fetch('/content/index.json');
         if (!indexRes.ok) throw new Error('Index not found');
         const indexData = await indexRes.json();
         const files = indexData.services || [];
 
-        // 2. Fetch all files to find matching slug
-        // (Since slug is generated from content, we must check each file)
         const promises = files.map(file => fetch(`/content/${file}`).then(r => r.ok ? r.text() : null));
         const texts = await Promise.all(promises);
 
@@ -468,16 +553,13 @@
     }
 
     function renderBlog(blog) {
-      // Hide loading, show content
       document.getElementById('loading-state').classList.add('hidden');
       document.getElementById('blog-container').classList.remove('hidden');
 
-      // Populate Data
       document.getElementById('blog-title').textContent = blog.title;
       document.getElementById('blog-date').innerHTML = `<i class="far fa-calendar mr-2 text-teal-300"></i>${blog.date}`;
       document.getElementById('blog-author').innerHTML = `<i class="far fa-user mr-2 text-teal-300"></i>${blog.author}`;
       
-      // Image
       const imgContainer = document.getElementById('blog-hero-container');
       const img = document.getElementById('blog-image');
       if (blog.image) {
@@ -487,14 +569,11 @@
         imgContainer.classList.add('hidden');
       }
 
-      // Content
       document.getElementById('blog-content').innerHTML = markdownToHTML(blog.content);
-
-      // Update Meta Tags for Sharing
       updateMetaTags(blog);
       
-      // Scroll to top
-      window.scrollTo(0, 0);
+      // Smooth scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function showNotFound() {
@@ -502,9 +581,33 @@
       document.getElementById('error-state').classList.remove('hidden');
     }
 
-    // Mobile Menu Toggle
-    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-      document.getElementById('mobileMenu').classList.toggle('hidden');
+    // Mobile Menu Toggle - Fixed
+    document.getElementById('mobileMenuBtn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+      
+      // Change icon
+      const icon = this.querySelector('i');
+      if (menu.classList.contains('hidden')) {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      } else {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      }
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+      const menu = document.getElementById('mobileMenu');
+      const btn = document.getElementById('mobileMenuBtn');
+      if (!menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.classList.add('hidden');
+        const icon = btn.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
     });
 
     // Initialize
