@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ✅ PAGE TITLE -->
+  <title>{{PAGE_TITLE}}</title>
+  
+  <!-- ✅ FACEBOOK OPEN GRAPH TAGS (Critical for preview) -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{OG_TITLE}}">
+  <meta property="og:description" content="{{OG_DESCRIPTION}}">
+  <meta property="og:image" content="{{OG_IMAGE}}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="{{OG_URL}}">
+  <meta property="og:site_name" content="YCI Bangladesh">
+  
+  <!-- ✅ TWITTER CARD TAGS -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{OG_TITLE}}">
+  <meta name="twitter:description" content="{{OG_DESCRIPTION}}">
+  <meta name="twitter:image" content="{{OG_IMAGE}}">
+  
+  <!-- ✅ STANDARD META -->
+  <meta name="description" content="{{OG_DESCRIPTION}}">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * { font-family: 'Inter', sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: linear-gradient(135deg, rgba(17, 23, 87, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
+      min-height: 100vh;
+    }
+    .pure-glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 1rem;
+    }
+    .nav-glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .blog-content {
+      line-height: 1.8;
+      color: rgba(255,255,255,0.95);
+    }
+    .blog-content h1, .blog-content h2, .blog-content h3 {
+      color: white;
+      margin: 1.5rem 0 1rem;
+    }
+    .blog-content p { margin: 1rem 0; }
+    .blog-content a { color: #60A5FA; text-decoration: underline; }
+    .blog-content img { max-width: 100%; height: auto; border-radius: 0.5rem; margin: 1.5rem 0; }
+    .blog-content blockquote {
+      border-left: 4px solid #4FD1C5;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      background: rgba(255,255,255,0.05);
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+    .button-group { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1.25rem;
+      border-radius: 9999px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+    }
+    .action-btn:hover { transform: translateY(-2px); }
+    .action-btn.primary {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+    }
+    .action-btn.whatsapp { background: #25D366; color: white; }
+    .action-btn.facebook { background: #1877F2; color: white; }
+  </style>
+</head>
+<body class="flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="fixed w-full top-0 z-50 nav-glass">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="/index.html" class="text-white font-bold text-lg">YCI Bangladesh</a>
+      <a href="/services.html" class="text-white/80 hover:text-white transition">← Back to Blogs</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="pt-24 pb-12 flex-grow">
+    <article class="max-w-4xl mx-auto px-4">
+      
+      <div class="pure-glass p-6 md:p-10 mb-8">
+        
+        <!-- Blog Title -->
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-6">{{BLOG_TITLE}}</h1>
+        
+        <!-- Blog Image -->
+        <div class="mb-8 rounded-xl overflow-hidden">
+          <img src="{{BLOG_IMAGE}}" alt="{{OG_TITLE}}" class="w-full h-auto">
+        </div>
+        
+        <!-- Meta Info -->
+        <div class="flex flex-wrap gap-4 text-white/70 text-sm mb-8 pb-6 border-b border-white/20">
+          <span><i class="far fa-calendar mr-2"></i>{{BLOG_DATE}}</span>
+          <span><i class="far fa-user mr-2"></i>{{BLOG_AUTHOR}}</span>
+        </div>
+        
+        <!-- Share Buttons -->
+        <div class="button-group mb-8 pb-6 border-b border-white/20">
+          <button onclick="shareToFacebook()" class="action-btn facebook">
+            <i class="fab fa-facebook"></i>
+            <span>Share on Facebook</span>
+          </button>
+          <button onclick="shareToWhatsApp()" class="action-btn whatsapp">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp</span>
+          </button>
+          <button onclick="copyLink()" class="action-btn primary">
+            <i class="fas fa-link"></i>
+            <span>Copy Link</span>
+          </button>
+        </div>
+        
+        <!-- Blog Content -->
+        <div class="blog-content">
+          {{BLOG_CONTENT}}
+        </div>
+      </div>
+      
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-8 text-center">
+    <p>&copy; 2025 YCI Bangladesh. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function shareToFacebook() {
+      const url = encodeURIComponent(window.location.href);
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+    }
+    
+    function shareToWhatsApp() {
+      const title = encodeURIComponent('{{OG_TITLE}}');
+      const url = encodeURIComponent(window.location.href);
+      window.open(`https://wa.me/?text=*${title}*%0A%0A${url}`, '_blank');
+    }
+    
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        alert('Link copied!');
+      });
+    }
+  </script>
+</body>
+</html>

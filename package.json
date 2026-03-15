@@ -1,12 +1,25 @@
 {
   "name": "ngo-website",
   "version": "1.0.0",
-  "description": "A static NGO website managed by Pages CMS",
-  "main": "index.html",
+  "description": "Static NGO website managed by Pages CMS and deployed on Vercel",
+  "main": "generateIndex.js",
   "scripts": {
-    "build": "node generateIndex.js"
+    "build": "node generateIndex.js",
+    "start": "node generateIndex.js"
   },
-  "keywords": ["static", "cms", "ngo", "vercel"],
-  "author": "Your Name",
-  "license": "MIT"
+  "keywords": [
+    "static-site",
+    "ngo",
+    "cms",
+    "markdown",
+    "vercel"
+  ],
+  "author": "Syed Adnan Rahman",
+  "license": "MIT",
+  "dependencies": {
+    "marked": "^17.0.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
 }

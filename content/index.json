@@ -1,6 +1,24 @@
 {
-  "articles": ["articles/placeholder03.md"],
-  "teams": ["teams/2025-10-18-adiat.md"],
-  "services": ["services/2025-10-27-student.md"],
-  "announcement": ["announcement/update1.md"]
+  "articles": [
+    "articles/2025-12-10-placeholder03.md",
+    "articles/2025-12-20-climate-action-now-dhaka-communities-embrace-tree-planting-and-plastic-reduction.md",
+    "articles/2025-12-20-green-campus-clean-future-sparks-youth-climate-leadership.md",
+    "articles/2025-12-20-green-eid-initiative-honors-youth-for-planting-trees-nationwide.md"
+  ],
+  "teams": [
+    "teams/2025-10-28-adiat.md",
+    "teams/2025-10-28-tafsirul-sarif-shuvo.md",
+    "teams/2025-11-03-akib.md",
+    "teams/2025-11-09-team-member-name.md",
+    "teams/2025-12-18-abdullah-al-noman.md",
+    "teams/2025-12-18-ahmed-irtiza-rafid.md",
+    "teams/2025-12-18-maishuri-islam-prova.md"
+  ],
+  "services": [
+    "services/2025-10-27-student.md",
+    "services/2025-10-28-lecturer.md"
+  ],
+  "announcement": [
+    "announcement/update1.md"
+  ]
 }
