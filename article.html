@@ -9,7 +9,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
 
-    <!-- ⚠️ IMPORTANT: Open Graph Tags for Facebook Preview -->
+    <!-- Open Graph Tags for Facebook Preview -->
     <meta property="og:type" content="article" id="og-type">
     <meta property="og:url" content="" id="og-url">
     <meta property="og:title" content="YCI Bangladesh Article" id="og-title">
@@ -114,14 +114,16 @@
         .article-content th { background: #f1f5f9; font-weight: 600; }
         .article-content input[type="checkbox"] { margin-right: 0.5rem; accent-color: #1a237e; }
 
-        .copy-btn {
+        /* unified copy & share buttons */
+        .action-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .copy-btn.copied { background: #10b981 !important; border-color: #10b981 !important; }
-        .copy-btn.copied i::before { content: '\f00c'; }
-
+        .action-btn.copied { background: #10b981 !important; border-color: #10b981 !important; }
+        .action-btn.copied i.fa-link::before { content: '\f00c'; } /* check mark */
+        .action-btn.wapp-sent { background: #25D366 !important; border-color: #25D366 !important; }
+        
         .toast {
             position: fixed;
             bottom: 100px;
@@ -182,6 +184,14 @@
             transition: width 0.3s ease;
         }
         .back-btn:hover::after { width: 100%; }
+
+        /* button group spacing */
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
     </style>
     
     <script>
@@ -193,6 +203,7 @@
                         secondary: '#0d47a1',
                         accent: '#ef6c00',
                         success: '#00897b',
+                        whatsapp: '#25D366',
                     }
                 }
             }
@@ -204,7 +215,7 @@
     <!-- Reading Progress Bar -->
     <div class="progress-bar" id="progress-bar"></div>
 
-    <!-- Toast Notification -->
+    <!-- Toast Notification (reused for copy & whatsapp) -->
     <div class="toast" id="toast">
         <i class="fas fa-check-circle text-xl"></i>
         <span>Link copied to clipboard!</span>
@@ -290,12 +301,30 @@
                     </span>
                 </div>
                 
-                <div class="pt-6 mt-2">
+                <!-- NEW button group: copy text & share to WhatsApp + original copy link (kept) -->
+                <div class="pt-6 mt-2 button-group">
+                    <!-- Copy article text (plain) -->
+                    <button onclick="copyArticleText()"
+                            id="copy-text-btn"
+                            class="action-btn inline-flex items-center gap-2 px-5 py-2.5 bg-white/20 hover:bg-white/30 text-white rounded-full font-medium transition-all duration-300 border border-white/30 hover:border-white/50 hover:shadow-lg">
+                        <i class="fas fa-copy"></i>
+                        <span>Copy Text</span>
+                    </button>
+
+                    <!-- Share to WhatsApp -->
+                    <button onclick="shareToWhatsApp()"
+                            id="whatsapp-share-btn"
+                            class="action-btn inline-flex items-center gap-2 px-5 py-2.5 bg-[#25D366] hover:bg-[#20b859] text-white rounded-full font-medium transition-all duration-300 border border-white/30 hover:border-white/50 hover:shadow-lg">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </button>
+
+                    <!-- Original copy link button (kept) -->
                     <button onclick="copyArticleLink()"
                             id="copy-link-btn"
-                            class="copy-btn inline-flex items-center gap-2 px-5 py-2.5 bg-white/20 hover:bg-white/30 text-white rounded-full font-medium transition-all duration-300 border border-white/30 hover:border-white/50 hover:shadow-lg">
+                            class="action-btn inline-flex items-center gap-2 px-5 py-2.5 bg-white/20 hover:bg-white/30 text-white rounded-full font-medium transition-all duration-300 border border-white/30 hover:border-white/50 hover:shadow-lg">
                         <i class="fas fa-link"></i>
-                        <span>Copy Article Link</span>
+                        <span>Copy Link</span>
                     </button>
                 </div>
             </header>
@@ -306,17 +335,30 @@
 
             <div id="article-body" class="article-content bg-white/95 backdrop-blur-xl rounded-2xl p-6 md:p-10 shadow-xl text-gray-800 border border-white/50"></div>
 
+            <!-- footer buttons also updated with same group -->
             <div class="mt-10 pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <a href="articles.html" class="inline-flex items-center px-6 py-3 bg-white/20 hover:bg-white/30 text-white rounded-full font-medium transition-all duration-300 border border-white/30">
                     <i class="fas fa-arrow-left mr-2"></i>
                     <span>All Articles</span>
                 </a>
                 
-                <button onclick="copyArticleLink()"
-                        class="copy-btn inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary text-white rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl">
-                    <i class="fas fa-link"></i>
-                    <span>Copy Link</span>
-                </button>
+                <div class="button-group">
+                    <button onclick="copyArticleText()"
+                            class="action-btn inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl border border-white/30">
+                        <i class="fas fa-copy"></i>
+                        <span class="hidden sm:inline">Copy Text</span>
+                    </button>
+                    <button onclick="shareToWhatsApp()"
+                            class="action-btn inline-flex items-center gap-2 px-5 py-2.5 bg-[#25D366] text-white rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl border border-white/30">
+                        <i class="fab fa-whatsapp"></i>
+                        <span class="hidden sm:inline">WhatsApp</span>
+                    </button>
+                    <button onclick="copyArticleLink()"
+                            class="action-btn inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl border border-white/30">
+                        <i class="fas fa-link"></i>
+                        <span class="hidden sm:inline">Copy Link</span>
+                    </button>
+                </div>
             </div>
 
         </div>
@@ -422,15 +464,13 @@
         // === marked.js Configuration ===
         if (typeof marked !== 'undefined') {
             marked.setOptions({
-                breaks: true,           // Convert \n to <br>
-                gfm: true,              // GitHub Flavored Markdown
-                headerIds: true,        // Add id attributes to headers
-                mangle: false,          // Don't escape email addresses
-                sanitize: false,        // We use DOMPurify instead
-                silent: false           // Throw errors on failure
+                breaks: true,
+                gfm: true,
+                headerIds: true,
+                mangle: false,
+                sanitize: false,
+                silent: false
             });
-
-            // Custom renderer for images with Tailwind classes
             const renderer = new marked.Renderer();
             renderer.image = function(href, title, text) {
                 return `<img src="${href}" alt="${text || ''}" title="${title || ''}" class="my-4 rounded-lg shadow-md max-w-full h-auto">`;
@@ -438,38 +478,73 @@
             marked.use({ renderer });
         }
 
-        // === Sanitized Markdown Parser using marked.js + DOMPurify ===
         function markdownToHtml(text) {
             if (typeof marked === 'undefined') {
                 console.error('marked.js not loaded');
                 return '<p class="text-red-500">Error: Markdown parser not available.</p>';
             }
             const rawHtml = marked.parse(text);
-            // Sanitize to prevent XSS attacks
             if (typeof DOMPurify !== 'undefined') {
                 return DOMPurify.sanitize(rawHtml, { ADD_ATTR: ['target'] });
             }
             return rawHtml;
         }
 
-        // === Read Time Calculator ===
         function calculateReadTime(text) {
             const words = text.trim().split(/\s+/).length;
             return `${Math.ceil(words / 200)} min read`;
         }
 
-        // === Copy Link Function ===
+        // === Copy Article Link (original) ===
         function copyArticleLink() {
             const url = window.location.href;
-            
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(url).then(() => showCopySuccess()).catch(() => fallbackCopy(url));
+                navigator.clipboard.writeText(url).then(() => showCopySuccess('link')).catch(() => fallbackCopy(url, 'link'));
             } else {
-                fallbackCopy(url);
+                fallbackCopy(url, 'link');
             }
         }
 
-        function fallbackCopy(text) {
+        // === NEW: Copy Article Text (only plain text from article body) ===
+        function copyArticleText() {
+            // extract plain text from article body (strip HTML)
+            const articleBody = document.getElementById('article-body');
+            if (!articleBody) return;
+            
+            // use innerText to get plain text (rendered text)
+            const plainText = articleBody.innerText || articleBody.textContent;
+            
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(plainText).then(() => showCopySuccess('text')).catch(() => fallbackCopy(plainText, 'text'));
+            } else {
+                fallbackCopy(plainText, 'text');
+            }
+        }
+
+        // === NEW: Share to WhatsApp ===
+        function shareToWhatsApp() {
+            const title = document.getElementById('article-title')?.textContent || 'YCI Bangladesh Article';
+            const url = window.location.href;
+            // get excerpt from first 100 characters of body text
+            const bodyEl = document.getElementById('article-body');
+            let excerpt = '';
+            if (bodyEl) {
+                excerpt = bodyEl.innerText || bodyEl.textContent;
+                excerpt = excerpt.substring(0, 100).replace(/\s+/g, ' ').trim() + '…';
+            }
+            const text = `*${title}*\n\n${excerpt}\n\nRead more: ${url}`;
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            // optional small feedback on the whatsapp button
+            const wappBtn = document.getElementById('whatsapp-share-btn');
+            if (wappBtn) {
+                wappBtn.classList.add('wapp-sent');
+                setTimeout(() => wappBtn.classList.remove('wapp-sent'), 1000);
+            }
+        }
+
+        function fallbackCopy(text, type = 'link') {
             const textarea = document.createElement('textarea');
             textarea.value = text;
             textarea.style.position = 'fixed';
@@ -478,29 +553,34 @@
             textarea.select();
             try {
                 document.execCommand('copy');
-                showCopySuccess();
+                showCopySuccess(type);
             } catch (err) {
                 showError('Failed to copy');
             }
             document.body.removeChild(textarea);
         }
 
-        function showCopySuccess() {
+        function showCopySuccess(type = 'link') {
             const toast = document.getElementById('toast');
-            const buttons = document.querySelectorAll('.copy-btn');
+            const message = type === 'text' ? 'Article text copied!' : (type === 'link' ? 'Link copied to clipboard!' : '');
+            toast.innerHTML = `<i class="fas fa-check-circle text-xl"></i><span>${message}</span>`;
+            toast.style.background = '#10b981';
             toast.classList.add('show');
-            buttons.forEach(btn => {
-                btn.classList.add('copied');
-                const span = btn.querySelector('span');
-                if (span) span.textContent = 'Copied!';
+            
+            // visual feedback on all copy buttons
+            const btns = document.querySelectorAll('.action-btn');
+            btns.forEach(btn => {
+                if (type === 'text' && (btn.id === 'copy-text-btn' || btn.innerHTML.includes('Copy Text'))) {
+                    btn.classList.add('copied');
+                    setTimeout(() => btn.classList.remove('copied'), 1500);
+                } else if (type === 'link' && (btn.id === 'copy-link-btn' || btn.innerHTML.includes('Copy Link'))) {
+                    btn.classList.add('copied');
+                    setTimeout(() => btn.classList.remove('copied'), 1500);
+                }
             });
+            
             setTimeout(() => {
                 toast.classList.remove('show');
-                buttons.forEach(btn => {
-                    btn.classList.remove('copied');
-                    const span = btn.querySelector('span');
-                    if (span) span.textContent = btn.id === 'copy-link-btn' ? 'Copy Article Link' : 'Copy Link';
-                });
             }, 2000);
         }
 
@@ -640,7 +720,6 @@
                     imageContainer.classList.add('hidden');
                 }
                 
-                // ✅ Parse Markdown with marked.js
                 document.getElementById('article-body').innerHTML = markdownToHtml(body);
                 
                 updateOpenGraphTags({ id: file, meta, excerpt });
