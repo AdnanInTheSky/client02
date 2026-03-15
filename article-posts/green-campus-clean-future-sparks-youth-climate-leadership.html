@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  
+  <!-- ✅ PAGE TITLE -->
+  <title>"Green Campus, Clean Future" Sparks Youth Climate Leadership” - YCI Bangladesh</title>
+  
+  <!-- ✅ FACEBOOK OPEN GRAPH TAGS (Critical for preview) -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content=""Green Campus, Clean Future" Sparks Youth Climate Leadership”">
+  <meta property="og:description" content="The "Green Campus, Clean Future" event was organized by the Institute of Disaster Management and Vulnerability Studies IDMVS, University of Dhaka, and supported by VSO Bangladesh and successfully im…">
+  <meta property="og:image" content="https://ycibangladesh.org/content/images/Picture2.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://ycibangladesh.org/article-posts/green-campus-clean-future-sparks-youth-climate-leadership.html">
+  <meta property="og:site_name" content="YCI Bangladesh">
+  
+  <!-- ✅ TWITTER CARD TAGS -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content=""Green Campus, Clean Future" Sparks Youth Climate Leadership”">
+  <meta name="twitter:description" content="The "Green Campus, Clean Future" event was organized by the Institute of Disaster Management and Vulnerability Studies IDMVS, University of Dhaka, and supported by VSO Bangladesh and successfully im…">
+  <meta name="twitter:image" content="https://ycibangladesh.org/content/images/Picture2.jpg">
+  
+  <!-- ✅ STANDARD META -->
+  <meta name="description" content="The "Green Campus, Clean Future" event was organized by the Institute of Disaster Management and Vulnerability Studies IDMVS, University of Dhaka, and supported by VSO Bangladesh and successfully im…">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ✅ Base Reset & Mobile Fixes */
+    * {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    html {
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: auto;
+    }
+    
+    @media (min-width: 768px) {
+      html { scroll-behavior: smooth; }
+    }
+    
+    body {
+      background: linear-gradient(135deg, rgba(17, 23, 87, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
+      min-height: 100vh;
+      width: 100%;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    /* ✅ Glass Effect - Disabled on mobile for performance */
+    .pure-glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 1rem;
+      will-change: transform;
+      contain: layout style paint;
+    }
+    
+    @media (max-width: 767px) {
+      .pure-glass {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+    
+    .nav-glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      transform: translateZ(0);
+      will-change: transform;
+    }
+    
+    @media (max-width: 767px) {
+      .nav-glass {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(0, 0, 0, 0.8);
+      }
+    }
+    
+    /* ✅ Article Content - Mobile Typography */
+    .article-content {
+      line-height: 1.8;
+      color: rgba(255,255,255,0.95);
+      font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      contain: content;
+    }
+    
+    .article-content h1 {
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      color: white;
+      line-height: 1.3;
+      word-break: break-word;
+    }
+    
+    .article-content h2 {
+      font-size: clamp(1.25rem, 4vw, 1.5rem);
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+      color: white;
+      line-height: 1.3;
+    }
+    
+    .article-content h3 {
+      font-size: clamp(1.1rem, 3.5vw, 1.25rem);
+      font-weight: 600;
+      margin: 1.25rem 0 0.5rem;
+      color: white;
+    }
+    
+    .article-content p {
+      margin: 1rem 0;
+      color: rgba(255,255,255,0.95);
+    }
+    
+    .article-content a {
+      color: #60A5FA;
+      text-decoration: none;
+      border-bottom: 2px solid rgba(96, 165, 250, 0.4);
+      transition: all 0.2s ease;
+      word-break: break-word;
+    }
+    
+    .article-content a:hover {
+      color: #93C5FD;
+      border-color: #93C5FD;
+    }
+    
+    .article-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      margin: 1.5rem 0;
+      display: block;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      background: rgba(255,255,255,0.1);
+    }
+    
+    .article-content blockquote {
+      border-left: 4px solid #4FD1C5;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      background: rgba(255,255,255,0.05);
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+    
+    .article-content ul,
+    .article-content ol {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+    
+    .article-content li {
+      margin: 0.5rem 0;
+    }
+    
+    /* ✅ Touch-Friendly Buttons */
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
+      min-height: 44px;
+      min-width: 44px;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color 0.2s ease;
+    }
+    
+    @media (min-width: 768px) {
+      .action-btn { transition: all 0.3s ease; }
+      .action-btn:hover { transform: translateY(-2px); }
+    }
+    
+    .action-btn:active { transform: scale(0.98); }
+    
+    .action-btn.primary {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+    }
+    
+    .action-btn.whatsapp { background: #25D366; color: white; }
+    .action-btn.facebook { background: #1877F2; color: white; }
+    
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    
+    @media (max-width: 640px) {
+      .pure-glass { padding: 1rem; border-radius: 0.75rem; }
+      .article-content { font-size: 1rem; padding: 0 0.25rem; }
+      .button-group { flex-direction: column; align-items: stretch; }
+      .action-btn { width: 100%; justify-content: center; }
+    }
+    
+    @supports (-webkit-touch-callout: none) {
+      .pure-glass, .nav-glass { -webkit-backdrop-filter: blur(12px); }
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .pure-glass, .nav-glass {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+    }
+  </style>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4FD1C5',
+            secondary: '#2C5282',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="fixed w-full top-0 z-50 nav-glass">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="/index.html" class="text-white font-bold text-lg flex items-center gap-2">
+        <i class="fas fa-arrow-left text-sm"></i>
+        <span class="hidden sm:inline">YCI Bangladesh</span>
+        <span class="sm:hidden">Back</span>
+      </a>
+      <a href="/articles.html" class="text-white/80 hover:text-white transition text-sm">
+        All Articles →
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="pt-20 pb-12 flex-grow">
+    <article class="max-w-4xl mx-auto px-4">
+      
+      <div class="pure-glass p-4 md:p-8 mb-6">
+        
+        <!-- Article Title -->
+        <h1 class="text-2xl md:text-4xl font-bold text-white mb-4 md:mb-6 leading-tight">
+          "Green Campus, Clean Future" Sparks Youth Climate Leadership”
+        </h1>
+        
+        <!-- Article Image -->
+        <div class="mb-6 md:mb-8 rounded-xl overflow-hidden">
+          <img src="https://ycibangladesh.org/content/images/Picture2.jpg" alt=""Green Campus, Clean Future" Sparks Youth Climate Leadership”" 
+               class="w-full h-auto"
+               loading="lazy"
+               onerror="this.style.display='none'">
+        </div>
+        
+        <!-- Meta Info -->
+        <div class="flex flex-wrap gap-3 text-white/70 text-sm mb-6 md:mb-8 pb-4 md:pb-6 border-b border-white/20">
+          <span class="flex items-center gap-2">
+            <i class="far fa-calendar"></i>
+            Sunday, July 27, 2025
+          </span>
+          <span class="flex items-center gap-2">
+            <i class="far fa-user"></i>
+            YCI
+          </span>
+        </div>
+        
+        <!-- Share Buttons -->
+        <div class="button-group mb-6 md:mb-8 pb-4 md:pb-6 border-b border-white/20">
+          <button onclick="shareToFacebook()" class="action-btn facebook">
+            <i class="fab fa-facebook"></i>
+            <span>Share on Facebook</span>
+          </button>
+          <button onclick="shareToWhatsApp()" class="action-btn whatsapp">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp</span>
+          </button>
+          <button onclick="copyLink()" class="action-btn primary">
+            <i class="fas fa-link"></i>
+            <span>Copy Link</span>
+          </button>
+        </div>
+        
+        <!-- Article Content -->
+        <div class="article-content">
+          <p>The &quot;Green Campus, Clean Future&quot; event was organized by the Institute of Disaster Management and Vulnerability Studies (IDMVS), University of Dhaka, and supported by VSO Bangladesh and successfully implemented by YCI Bangladesh. It was engaged over 150 students of G.R. Institution, Sonargaon, Narayanganj, on Sunday, July 27, 2025. The program commenced with a Plastic Exchange Program, where students traded unused plastic items, such as bags, bottles, and broken rulers, for eco-friendly gifts like pads and pens embedded with vegetable seeds. This initiative aimed to raise awareness about plastic pollution and encourage environmentally-friendly habits.</p>
+<p>A comprehensive Climate Awareness Seminar followed, featuring key speakers including Upazila Education Officers Delowar Hossain and Kajal Chandra Paul, alongside IDMVS Lecturers Raisa Imran Chowdhury and Jawad Ibn Farid. Ms. Raisa Imran emphasized the critical role of youth, stating, &quot;If students become aware, it is possible to build a climate-resilient Bangladesh in the future&quot;. The engagement of headteachers from nearby institutions strengthened environmental advocacy across the area.</p>
+<p>The event concluded with an engaging student debate on the topic, &quot;Government initiatives alone are sufficient to prevent environmental pollution,&quot; fostering critical thinking and leadership skills. Through these interactive sessions, the program effectively fostered sustainable practices among students, reminding all attendees that meaningful change begins with awareness, and that the youth are essential to leading the way toward a climate-resilient Bangladesh.</p>
+
+        </div>
+      </div>
+      
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-6 md:py-8 text-center text-sm">
+    <p class="px-4">&copy; 2025 YCI Bangladesh. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function shareToFacebook() {
+      const url = encodeURIComponent(window.location.href);
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+    }
+    
+    function shareToWhatsApp() {
+      const title = encodeURIComponent('"Green Campus, Clean Future" Sparks Youth Climate Leadership”');
+      const url = encodeURIComponent(window.location.href);
+      window.open(`https://wa.me/?text=*${title}*%0A%0A${url}`, '_blank');
+    }
+    
+    function copyLink() {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          showCopyFeedback();
+        });
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = window.location.href;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showCopyFeedback();
+      }
+    }
+    
+    function showCopyFeedback() {
+      const btn = event.target.closest('.action-btn');
+      if (btn) {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        btn.classList.add('bg-green-500');
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('bg-green-500');
+        }, 2000);
+      }
+    }
+    
+    // Disable heavy effects on low-end devices
+    document.addEventListener('DOMContentLoaded', function() {
+      if (navigator.deviceMemory && navigator.deviceMemory < 4) {
+        document.querySelectorAll('.pure-glass, .nav-glass').forEach(el => {
+          el.style.backdropFilter = 'none';
+          el.style.webkitBackdropFilter = 'none';
+        });
+      }
+    });
+  </script>
+</body>
+</html>

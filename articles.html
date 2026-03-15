@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Articles - YCI Bangladesh</title>
     <meta name="description" content="Explore insights, research, and impact stories from Youth Climate Initiative Bangladesh">
 
@@ -29,19 +29,49 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        * { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
-        body {
-          background: linear-gradient(135deg, rgba(17, 23, 87, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
-          min-height: 100vh;
+        /* ✅ Base Reset & Mobile Fixes */
+        * { 
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
-        html { scroll-behavior: smooth; }
         
+        html {
+            scroll-behavior: auto;
+            -webkit-text-size-adjust: 100%;
+        }
+        @media (min-width: 768px) {
+            html { scroll-behavior: smooth; }
+        }
+        
+        body {
+            background: linear-gradient(135deg, rgba(17, 23, 87, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* ✅ Glass Effect - Disabled on mobile for performance */
         .pure-glass-nav {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            will-change: transform;
+            contain: layout style;
         }
+        @media (max-width: 767px) {
+            .pure-glass-nav {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                background: rgba(0, 0, 0, 0.8);
+            }
+        }
+        
         .hero-overlay {
             background: linear-gradient(135deg, rgba(26, 35, 126, 0.85), rgba(13, 71, 161, 0.7), rgba(0, 150, 136, 0.6));
         }
@@ -50,7 +80,7 @@
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
         .delay-200 { animation-delay: 0.2s; }
         
         .navbar-scrolled {
@@ -60,6 +90,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.25) !important;
         }
         
+        /* ✅ Search & Filters - Mobile Optimized */
         .search-box {
             border-radius: 50px;
             padding: 0.75rem 1.5rem 0.75rem 3rem;
@@ -69,12 +100,19 @@
             -webkit-backdrop-filter: blur(15px);
             color: white;
             transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+        }
+        @media (max-width: 640px) {
+            .search-box {
+                padding: 0.625rem 1.25rem 0.625rem 2.5rem;
+                font-size: 0.95rem;
+            }
         }
         .search-box:focus {
             background-color: rgba(255, 255, 255, 0.25);
             border-color: rgba(255, 255, 255, 0.6);
             outline: none;
-            color: white;
         }
         .search-box::placeholder { color: rgba(255, 255, 255, 0.8); }
         .search-icon { color: rgba(255, 255, 255, 0.8); z-index: 5; }
@@ -87,9 +125,20 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             color: white;
-            transition: all 0.3s ease;
+            transition: background-color 0.2s ease;
             margin: 0 5px 10px;
+            min-height: 44px;
+            min-width: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
         }
+        @media (min-width: 768px) {
+            .filter-btn { transition: all 0.3s ease; }
+            .filter-btn:hover { transform: translateY(-2px); }
+        }
+        .filter-btn:active { transform: scale(0.98); }
         .filter-btn:hover, .filter-btn.active {
             background-color: rgba(255, 255, 255, 0.9);
             color: #1a237e;
@@ -106,6 +155,10 @@
             cursor: pointer;
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
+            min-height: 36px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
         }
         .clear-filters-btn {
             border-radius: 20px;
@@ -114,17 +167,44 @@
             margin: 0 3px 5px;
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
+            min-height: 36px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
         }
         
-        .card-image-wrapper { position: relative; overflow: hidden; }
+        /* ✅ Article Cards - Mobile Optimized */
+        .solid-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform;
+        }
+        @media (min-width: 768px) {
+            .solid-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            }
+        }
+        
+        .card-image-wrapper { position: relative; overflow: hidden; border-radius: 1rem 1rem 0 0; }
         .card-image-wrapper::after {
             content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.05) 100%);
-            transition: opacity 0.3s;
         }
-        .card-image-wrapper img { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
-        .solid-card:hover .card-image-wrapper img { transform: scale(1.08); }
+        .card-image-wrapper img { 
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        @media (min-width: 768px) {
+            .solid-card:hover .card-image-wrapper img { transform: scale(1.08); }
+        }
+        @media (max-width: 640px) {
+            .card-image-wrapper img { height: 180px; }
+        }
         
+        /* ✅ Mobile Menu */
         #mobileMenu {
             background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(12px);
@@ -134,6 +214,42 @@
             margin-top: 0.5rem;
             padding: 0.75rem 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 767px) {
+            #mobileMenu {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                background: rgba(255, 255, 255, 0.15);
+            }
+        }
+        
+        /* ✅ Touch-Friendly */
+        .btn-touch {
+            min-height: 44px;
+            min-width: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* ✅ iOS Safari Fixes */
+        @supports (-webkit-touch-callout: none) {
+            .pure-glass-nav, #mobileMenu {
+                -webkit-backdrop-filter: blur(12px);
+            }
+        }
+        
+        /* ✅ Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .pure-glass-nav, #mobileMenu {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
         }
     </style>
     
@@ -155,16 +271,17 @@
 
 <body>
 
-  <!-- Glass Navbar -->
+  <!-- Glass Navbar - Performance Optimized -->
   <nav id="mainNav" class="fixed w-full top-0 z-50 pure-glass-nav">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16 md:h-20">
-        <a href="index.html" class="flex items-center">
+        <a href="index.html" class="flex items-center gap-2">
           <img src="content/images/IMG_5811.png" alt="YCI Logo"
-               class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20">
+               class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20 flex-shrink-0">
+          <span class="text-white font-semibold text-lg hidden sm:block">YCI Bangladesh</span>
         </a>
 
-        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl">
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl btn-touch" aria-label="Menu">
           <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
@@ -173,7 +290,7 @@
         <div class="hidden md:flex space-x-2">
           <a href="index.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Home</a>
           <a href="services.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Blogs</a>
-          <a href="articles.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Events</a>
+          <a href="articles.html" class="px-4 py-2 text-teal-300 font-semibold">Articles</a>
           <a href="team.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Team</a>
           <a href="contact.html" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium hover:scale-105 transition">
             Contact
@@ -182,83 +299,107 @@
       </div>
       
       <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 space-y-2">
-        <a href="index.html" class="block px-4 py-2 text-white hover:text-teal-300 transition">Home</a>
-        <a href="services.html" class="block px-4 py-2 text-white hover:text-teal-300 transition">Blogs</a>
-        <a href="articles.html" class="block px-4 py-2 text-white hover:text-teal-300 transition">Events</a>
-        <a href="team.html" class="block px-4 py-2 text-white hover:text-teal-300 transition">Team</a>
-        <a href="contact.html" class="mt-2 block px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full text-center">Contact</a>
+        <a href="index.html" class="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition">Home</a>
+        <a href="services.html" class="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition">Blogs</a>
+        <a href="articles.html" class="block px-4 py-3 text-teal-300 font-semibold hover:bg-white/10 rounded-lg transition">Articles</a>
+        <a href="team.html" class="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition">Team</a>
+        <a href="contact.html" class="mt-2 block px-6 py-3 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full text-center font-medium">Contact</a>
       </div>
     </div>
   </nav>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden mt-16">
+    <!-- Hero Section - Mobile Optimized -->
+    <section class="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden mt-16">
         <div class="absolute inset-0 z-0">
-            <img src="content/images/tester.jpg" alt="Hero background" class="w-full h-full object-cover">
+            <img src="content/images/tester.jpg" alt="Hero background" class="w-full h-full object-cover" loading="lazy">
             <div class="absolute inset-0 hero-overlay"></div>
         </div>
         
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 opacity-0 animate-fadeInUp">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 opacity-0 animate-fadeInUp px-2">
                 Insights & Impact Stories
             </h1>
-            <p class="text-lg sm:text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-0 animate-fadeInUp delay-200 font-light">
+            <p class="text-base sm:text-lg md:text-xl mb-6 md:mb-10 max-w-3xl mx-auto opacity-0 animate-fadeInUp delay-200 font-light px-4">
                 Explore our research, program updates, and stories of transformation from communities around the world
             </p>
 
-            <!-- Search -->
-            <div class="search-container max-w-2xl mx-auto mb-4 relative">
-                <i class="fas fa-search absolute top-1/2 left-4 transform -translate-y-1/2 search-icon"></i>
-                <input type="text" class="w-full search-box py-3 px-12" 
-                       id="search-input" placeholder="Search articles by title, content, or tags...">
+            <!-- Search - Mobile Friendly -->
+            <div class="search-container max-w-2xl mx-auto mb-4 relative px-4">
+                <i class="fas fa-search absolute top-1/2 left-6 transform -translate-y-1/2 search-icon"></i>
+                <input type="text" class="w-full search-box" 
+                       id="search-input" placeholder="Search articles..." aria-label="Search articles">
             </div>
 
             <!-- Active Filters Display -->
-            <div id="active-filters" class="mb-3" style="min-height: 30px;"></div>
+            <div id="active-filters" class="mb-3 px-4" style="min-height: 30px;"></div>
 
-            <!-- Filters -->
-            <div class="flex flex-wrap justify-center mb-4" id="tags-container">
+            <!-- Filters - Wrap on Mobile -->
+            <div class="flex flex-wrap justify-center mb-4 px-4" id="tags-container">
                 <button class="filter-btn active" onclick="clearAllFilters()">All Articles</button>
             </div>
         </div>
     </section>
 
     <!-- Main Content -->
-    <main class="py-12">
+    <main class="py-8 md:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <div class="col-span-full flex justify-center py-12">
-                    <div class="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
-                </div>
+            <!-- Loading State -->
+            <div id="loading-state" class="flex justify-center py-12">
+                <div class="w-10 h-10 md:w-12 md:h-12 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+            </div>
+            
+            <!-- Articles Grid -->
+            <div id="articles-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 hidden">
+                <!-- Article cards inserted by JavaScript -->
+            </div>
+            
+            <!-- No Results State -->
+            <div id="no-results" class="hidden text-center py-12">
+                <i class="fas fa-search text-4xl md:text-5xl text-white/30 mb-4"></i>
+                <h3 class="text-lg md:text-xl font-bold text-white mb-2">No Articles Found</h3>
+                <p class="text-white/70 mb-4">Try adjusting your search or filters</p>
+                <button onclick="clearAllFilters()" class="px-6 py-2.5 bg-white/20 hover:bg-white/30 text-white rounded-full font-medium transition">
+                    Clear Filters
+                </button>
+            </div>
+            
+            <!-- Error State -->
+            <div id="error-state" class="hidden text-center py-12">
+                <i class="fas fa-exclamation-triangle text-4xl md:text-5xl text-red-300 mb-4"></i>
+                <h3 class="text-lg md:text-xl font-bold text-white mb-2">Failed to Load Articles</h3>
+                <p class="text-white/70 mb-4">Please check your connection and try again</p>
+                <button onclick="loadAllArticles()" class="px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium hover:scale-105 transition">
+                    Try Again
+                </button>
             </div>
         </div>
     </main>
 
-  <!-- Footer -->
+  <!-- Footer - Mobile Padding -->
   <footer class="bg-gray-900 text-gray-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
         <div>
-          <h3 class="text-white font-bold mb-2">YCI Bangladesh</h3>
-          <p class="text-white mb-2 text-sm">
+          <h3 class="text-white font-bold mb-2 text-base md:text-lg">YCI Bangladesh</h3>
+          <p class="text-white mb-3 text-sm">
              To build a climate resilient Bangladesh where youth leads toward sustainable Change
           </p>
           <div class="flex space-x-3">
-            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition hover:scale-110">
+            <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition hover:scale-110 btn-touch" aria-label="Twitter">
               <i class="fab fa-twitter"></i>
             </a>
-            <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition hover:scale-110">
+            <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition hover:scale-110 btn-touch" aria-label="Facebook">
               <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition hover:scale-110">
+            <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition hover:scale-110 btn-touch" aria-label="LinkedIn">
               <i class="fab fa-linkedin-in"></i>
             </a>
           </div>
         </div>
 
         <div>
-          <h4 class="font-bold text-white mb-4">Quick Links</h4>
-          <ul class="space-y-2.5 text-sm">
+          <h4 class="font-bold text-white mb-3 md:mb-4 text-sm md:text-base">Quick Links</h4>
+          <ul class="space-y-2 text-sm">
             <li><a href="services.html" class="text-white hover:text-teal-300 transition">About Us</a></li>
             <li><a href="articles.html" class="text-white hover:text-teal-300 transition">Publications</a></li>
             <li><a href="team.html" class="text-white hover:text-teal-300 transition">Our Team</a></li>
@@ -267,8 +408,8 @@
         </div>
 
         <div>
-          <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
-          <ul class="space-y-3 text-sm">
+          <h4 class="text-white font-semibold text-base md:text-lg mb-3 md:mb-4">Contact</h4>
+          <ul class="space-y-2 text-sm">
             <li class="flex items-start">
               <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
               <span class="text-white">Dhaka, Bangladesh</span>
@@ -285,8 +426,8 @@
         </div>
 
         <div>
-          <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
-          <ul class="space-y-2.5 text-sm">
+          <h4 class="text-white font-semibold text-base md:text-lg mb-3 md:mb-4">Resources</h4>
+          <ul class="space-y-2 text-sm">
             <li><a href="#" class="text-white hover:text-teal-300 transition">Annual Reports</a></li>
             <li><a href="#" class="text-white hover:text-teal-300 transition">Research Papers</a></li>
             <li><a href="#" class="text-white hover:text-teal-300 transition">Case Studies</a></li>
@@ -294,7 +435,7 @@
         </div>
       </div>
 
-      <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
+      <div class="border-t border-white/10 mt-8 pt-6 md:pt-8 text-center text-sm">
         <p>&copy; 2025 YCI. All rights reserved.</p>
         <div class="mt-3 space-x-4">
           <a href="#" class="hover:text-white transition-colors">Privacy</a>
@@ -307,15 +448,19 @@
     </div>
   </footer>
 
-  <!-- Floating Action Button -->
+  <!-- Floating Action Button - Mobile Position -->
   <a href="contact.html" 
-     class="fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
+     class="fixed bottom-4 right-4 md:bottom-6 md:right-6 lg:bottom-8 lg:right-8 px-4 py-3 md:px-6 md:py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-sm md:text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30 btn-touch"
      aria-label="Join Our Mission">
-    Join Us
+    <i class="fas fa-handshake mr-2"></i>
+    <span class="hidden sm:inline">Join Us</span>
   </a>
 
     <script>
-        // --- YAML Parser ---
+        // ===== Configuration =====
+        const SITE_URL = window.location.origin;
+        
+        // ===== YAML Parser =====
         function parseYAML(yamlStr) {
             const result = {};
             yamlStr.trim().split('\n').forEach(line => {
@@ -331,6 +476,15 @@
             return result;
         }
 
+        // ===== Generate Slug for Static File Links =====
+        function generateSlug(title) {
+            return title.toLowerCase()
+                .replace(/[^\w\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .substring(0, 60);
+        }
+
+        // ===== Clean Excerpt =====
         function cleanExcerpt(text, limit = 20) {
             return text.replace(/[#*_\-[\]()`>]/g, '')
                 .split(/\s+/)
@@ -338,12 +492,45 @@
                 .join(' ') + (text.split(/\s+/).length > limit ? '…' : '');
         }
 
-        // --- State & logic ---
+        // ===== Resolve Image URL =====
+        function resolveImageURL(imagePath) {
+            if (!imagePath) return `${SITE_URL}/content/images/IMG_5811.png`;
+            if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+                return imagePath;
+            }
+            if (imagePath.startsWith('/')) {
+                return `${SITE_URL}${imagePath}`;
+            }
+            return `${SITE_URL}/content/images/${imagePath}`;
+        }
+
+        // ===== Format Date =====
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            try {
+                return new Date(dateStr).toLocaleDateString('en-US', { 
+                    month: 'short', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                });
+            } catch (e) {
+                return dateStr;
+            }
+        }
+
+        // ===== State =====
         let allArticles = [];
         let searchQuery = '';
         let selectedTags = new Set();
 
+        // ===== Load All Articles =====
         async function loadAllArticles() {
+            // Show loading, hide others
+            document.getElementById('loading-state').classList.remove('hidden');
+            document.getElementById('articles-container').classList.add('hidden');
+            document.getElementById('no-results').classList.add('hidden');
+            document.getElementById('error-state').classList.add('hidden');
+            
             try {
                 const indexResponse = await fetch('/content/index.json');
                 if (!indexResponse.ok) throw new Error('Failed to load index');
@@ -366,12 +553,18 @@
                         const body = parts.slice(2).join('---');
                         const meta = parseYAML(frontmatter);
                         const excerpt = cleanExcerpt(body, 22);
+                        
+                        // Generate slug for static file link
+                        const slug = meta.slug || generateSlug(meta.title);
+                        
                         allArticles.push({ 
-                            id: articleFiles[i], 
+                            id: articleFiles[i],
+                            slug: slug,  // ← For static file links
                             meta, 
                             excerpt 
                         });
                         
+                        // Collect tags
                         if (meta.tags) {
                             if (Array.isArray(meta.tags)) {
                                 meta.tags.forEach(tag => allTags.add(tag));
@@ -384,33 +577,37 @@
 
                 renderTags(Array.from(allTags));
                 filterAndRender();
+                
             } catch (error) {
                 console.error('Error loading articles:', error);
-                renderError();
+                document.getElementById('loading-state').classList.add('hidden');
+                document.getElementById('error-state').classList.remove('hidden');
             }
         }
 
+        // ===== Render Tags =====
         function renderTags(tags) {
             const container = document.getElementById('tags-container');
             let html = `<button class="filter-btn ${selectedTags.size === 0 ? 'active' : ''}" onclick="clearAllFilters()">All Articles</button>`;
             tags.forEach(tag => {
                 const isActive = selectedTags.has(tag);
-                html += `<button class="filter-btn ${isActive ? 'active' : ''}" onclick="toggleTag('${tag}')">
-                    ${tag} ${isActive ? '<i class="fas fa-times ms-1"></i>' : ''}
+                html += `<button class="filter-btn ${isActive ? 'active' : ''}" onclick="toggleTag('${tag.replace(/'/g, "\\'")}')">
+                    ${tag} ${isActive ? '<i class="fas fa-times ml-1"></i>' : ''}
                 </button>`;
             });
             container.innerHTML = html;
         }
 
+        // ===== Render Active Filters =====
         function renderActiveFilters() {
             const container = document.getElementById('active-filters');
             if (selectedTags.size > 0) {
                 container.innerHTML = `
                     <div class="flex flex-wrap justify-center">
-                        <span class="active-filter-badge">Active Filters:</span>
+                        <span class="active-filter-badge">Active:</span>
                         ${Array.from(selectedTags).map(tag => `
-                            <span class="active-filter-badge" onclick="toggleTag('${tag}')">
-                                ${tag} <i class="fas fa-times ms-1"></i>
+                            <span class="active-filter-badge" onclick="toggleTag('${tag.replace(/'/g, "\\'")}')">
+                                ${tag} <i class="fas fa-times ml-1"></i>
                             </span>
                         `).join('')}
                         <button class="clear-filters-btn bg-white/10 text-white border border-white/30 hover:bg-white hover:text-gray-900" onclick="clearAllFilters()">Clear All</button>
@@ -421,6 +618,7 @@
             }
         }
 
+        // ===== Toggle Tag Filter =====
         function toggleTag(tag) {
             if (selectedTags.has(tag)) {
                 selectedTags.delete(tag);
@@ -430,6 +628,7 @@
             filterAndRender();
         }
 
+        // ===== Clear All Filters =====
         function clearAllFilters() {
             selectedTags.clear();
             document.getElementById('search-input').value = '';
@@ -437,9 +636,11 @@
             filterAndRender();
         }
 
+        // ===== Filter and Render Articles =====
         function filterAndRender() {
             let filtered = allArticles;
 
+            // Filter by tags
             if (selectedTags.size > 0) {
                 filtered = filtered.filter(a => {
                     const articleTags = a.meta.tags || [];
@@ -447,6 +648,7 @@
                 });
             }
 
+            // Filter by search
             if (searchQuery) {
                 const q = searchQuery.toLowerCase();
                 filtered = filtered.filter(a =>
@@ -461,6 +663,7 @@
             renderActiveFilters();
         }
 
+        // ===== Get All Unique Tags =====
         function getAllTags() {
             const allTags = new Set();
             allArticles.forEach(article => {
@@ -471,111 +674,114 @@
             return allTags;
         }
 
+        // ===== Render Article Cards =====
         function renderArticles(articles) {
             const container = document.getElementById('articles-container');
+            const loadingEl = document.getElementById('loading-state');
 
+            // Hide loading
+            loadingEl.classList.add('hidden');
+
+            // No results
             if (articles.length === 0) {
-                container.innerHTML = `
-                    <div class="col-span-full">
-                        <div class="solid-card rounded-2xl p-12 text-center bg-white/95 backdrop-blur-xl">
-                            <i class="fas fa-search text-5xl text-gray-300 mb-4"></i>
-                            <h5 class="text-gray-900">No Articles Found</h5>
-                            <p class="text-gray-600">Try adjusting your filters or search query</p>
-                            ${selectedTags.size > 0 ? `<button class="mt-4 px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300" onclick="clearAllFilters()">Clear All Filters</button>` : ''}
-                        </div>
-                    </div>
-                `;
+                container.classList.add('hidden');
+                document.getElementById('no-results').classList.remove('hidden');
                 return;
             }
 
-            const cards = articles.map(article => {
-                const imageUrl = article.meta.image || 'https://via.placeholder.com/800x500/e2e8f0/64748b?text=Article+Image';
-                
-                const tagsHtml = (article.meta.tags || [])
-                    .map(tag => `<span class="inline-block bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full mr-1 mb-1 cursor-pointer hover:bg-primary hover:text-white transition-colors" onclick="toggleTag('${tag}')">${tag}</span>`).join('');
-                
-                const date = article.meta.date 
-                    ? new Date(article.meta.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) 
-                    : '';
+            // Show container, hide no-results
+            container.classList.remove('hidden');
+            document.getElementById('no-results').classList.add('hidden');
+
+            // Generate cards
+            const cards = articles.map((article, index) => {
+                const imageUrl = resolveImageURL(article.meta.image);
+                const date = formatDate(article.meta.date);
                 const author = article.meta.author || 'YCI Team';
+                
+                // ✅ Link to STATIC HTML file (not dynamic article.html)
+                const articleUrl = `/article-posts/${article.slug}.html`;
 
-                const articleUrl = `article.html?file=${encodeURIComponent(article.id)}`;
-
+                // Tags HTML
+                const tagsHtml = (article.meta.tags || [])
+                    .map(tag => `<span class="inline-block bg-white/20 text-white text-xs px-2 py-1 rounded-full mr-1 mb-1 cursor-pointer hover:bg-white hover:text-gray-900 transition-colors" onclick="toggleTag('${tag.replace(/'/g, "\\'")}')">${tag}</span>`).join('');
+                
                 return `
-                    <div class="article-card opacity-0">
-                        <div class="rounded-2xl overflow-hidden h-full flex flex-col bg-white/20 backdrop-blur-xl border border-white/30 shadow-xl">
-                            <div class="card-image-wrapper h-48 overflow-hidden">
-                                <img src="${imageUrl}" class="w-full h-full object-cover" alt="${article.meta.title}" loading="lazy"
-                                     onerror="this.onerror=null;this.src='https://via.placeholder.com/800x500/f1f5f9/94a3b8?text=Image+Unavailable'">
+                    <article class="solid-card opacity-0 animate-fadeInUp" style="animation-delay: ${index * 100}ms">
+                        <a href="${articleUrl}" class="block rounded-2xl overflow-hidden h-full flex flex-col bg-white/20 backdrop-blur-xl border border-white/30 shadow-xl hover:bg-white/25 transition">
+                            <div class="card-image-wrapper">
+                                <img src="${imageUrl}" 
+                                     alt="${article.meta.title}" 
+                                     loading="lazy"
+                                     class="w-full"
+                                     onerror="this.src='https://via.placeholder.com/800x500/1e3a8a/ffffff?text=No+Image'">
                             </div>
-                            <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="text-xl font-bold mb-2 text-gray-900 line-clamp-2">${article.meta.title}</h3>
-                                <div class="text-gray-700 font-medium text-sm mb-2">
-                                    ${date ? `<i class="far fa-calendar-alt mr-1"></i> ${date}` : ''}
-                                    ${date && author ? '<span class="mx-1">•</span>' : ''}
-                                    ${author ? `<i class="far fa-user mr-1"></i> ${author}` : ''}
+                            <div class="p-4 md:p-6 flex flex-col flex-grow">
+                                <h3 class="text-lg md:text-xl font-bold mb-2 text-white line-clamp-2">${article.meta.title}</h3>
+                                <div class="text-white/70 font-medium text-xs md:text-sm mb-2 flex flex-wrap items-center gap-2">
+                                    ${date ? `<span><i class="far fa-calendar mr-1"></i>${date}</span>` : ''}
+                                    ${date && author ? '<span>•</span>' : ''}
+                                    ${author ? `<span><i class="far fa-user mr-1"></i>${author}</span>` : ''}
                                 </div>
-                                <p class="text-gray-600 mb-4 flex-grow leading-relaxed">${article.excerpt}</p>
+                                <p class="text-white/80 mb-4 flex-grow leading-relaxed text-sm md:text-base line-clamp-3">${article.excerpt}</p>
                                 <div class="mb-4 flex flex-wrap">${tagsHtml}</div>
                                 
-                                <div class="mt-auto">
-                                    <a href="${articleUrl}" 
-                                       class="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">
-                                        Read More
-                                        <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                                    </a>
+                                <div class="mt-auto pt-2">
+                                    <span class="inline-flex items-center text-teal-300 font-medium text-sm">
+                                        Read More <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                                    </span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </a>
+                    </article>
                 `;
             }).join('');
 
             container.innerHTML = cards;
-            animateCards(container);
         }
 
-        function animateCards(container) {
-            container.querySelectorAll('.article-card').forEach((c, i) => {
-                c.classList.add('animate-fadeInUp');
-                c.style.animationDelay = `${i * 120}ms`;
-                c.style.opacity = '0';
-                setTimeout(() => c.style.opacity = '1', i * 120);
-            });
-        }
-
-        function renderError() {
-            const container = document.getElementById('articles-container');
-            container.innerHTML = `
-                <div class="col-span-full">
-                    <div class="bg-red-50 border border-red-200 rounded-2xl p-12 text-center">
-                        <i class="fas fa-exclamation-triangle text-5xl text-red-400 mb-4"></i>
-                        <p class="text-xl text-red-600">Failed to load articles.</p>
-                        <button class="mt-4 px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300" onclick="loadAllArticles()">
-                            Try Again
-                        </button>
-                    </div>
-                </div>`;
-        }
-
-        document.getElementById('search-input').addEventListener('input', e => {
+        // ===== Search Input Handler =====
+        document.getElementById('search-input')?.addEventListener('input', e => {
             searchQuery = e.target.value.trim();
             filterAndRender();
         });
 
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
-        });
-
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('mainNav');
-            if (window.scrollY > 50) {
-                nav.classList.add('navbar-scrolled');
+        // ===== Mobile Menu Toggle =====
+        document.getElementById('mobileMenuBtn')?.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+            const icon = this.querySelector('i');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             } else {
-                nav.classList.remove('navbar-scrolled');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
             }
         });
 
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('mobileMenu');
+            const btn = document.getElementById('mobileMenuBtn');
+            if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+                menu.classList.add('hidden');
+                const icon = btn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // ===== Navbar Scroll Effect =====
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if (nav) {
+                nav.classList.toggle('navbar-scrolled', window.scrollY > 50);
+            }
+        }, { passive: true });
+
+        // ===== Initialize =====
         document.addEventListener('DOMContentLoaded', loadAllArticles);
     </script>
 </body>
