@@ -114,7 +114,6 @@
         .article-content th { background: #f1f5f9; font-weight: 600; }
         .article-content input[type="checkbox"] { margin-right: 0.5rem; accent-color: #1a237e; }
 
-        /* unified copy & share buttons */
         .action-btn {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
@@ -192,7 +191,6 @@
             align-items: center;
         }
 
-        /* Header image hover effect */
         #header-article-image:hover {
             filter: brightness(1.05);
         }
@@ -286,13 +284,13 @@
                 </a>
             </div>
 
-            <!-- ✅ UPDATED HEADER WITH IMAGE -->
+            <!-- ✅ HEADER WITH IMAGE -->
             <header class="bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 mb-8 border border-white/20 shadow-xl">
                 <div id="article-tags" class="flex flex-wrap gap-2 mb-4"></div>
                 
                 <h1 id="article-title" class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight"></h1>
                 
-                <!-- ✅ Article Header Image (added inside header) -->
+                <!-- ✅ Article Header Image -->
                 <div id="header-image-container" class="image-container mb-6 rounded-xl overflow-hidden border border-white/20">
                     <img id="header-article-image" src="" alt="" 
                          class="w-full h-48 md:h-64 object-cover transition-transform duration-300 hover:scale-105" 
@@ -340,7 +338,7 @@
                 </div>
             </header>
 
-            <!-- Original large image below header (kept for full article view) -->
+            <!-- Main article image below header -->
             <div id="article-image-container" class="image-container mb-8 rounded-2xl overflow-hidden shadow-2xl border border-white/20">
                 <img id="article-image" src="" alt="" class="w-full h-auto object-cover" onload="this.parentElement.classList.add('loaded')">
             </div>
@@ -614,9 +612,11 @@
                 if (article.meta.image.startsWith('http')) {
                     imageUrl = article.meta.image;
                 } else if (article.meta.image.startsWith('/')) {
-                    imageUrl = 'https://ycibangladesh.org' + article.meta.image;
+                    // ✅ Already absolute path from root - use as-is
+                    imageUrl = article.meta.image;
                 } else {
-                    imageUrl = 'https://ycibangladesh.org/content/' + article.meta.image;
+                    // Relative path - prepend /content/
+                    imageUrl = '/content/' + article.meta.image;
                 }
             }
             
@@ -660,6 +660,20 @@
                 ((scrollTop - articleTop + windowHeight) / articleHeight) * 100
             ));
             progressBar.style.width = `${progress}%`;
+        }
+
+        // === HELPER: Resolve image path correctly ===
+        function resolveImagePath(imagePath) {
+            if (!imagePath) return null;
+            if (imagePath.startsWith('http')) {
+                return imagePath;
+            } else if (imagePath.startsWith('/')) {
+                // Already absolute path from site root
+                return imagePath;
+            } else {
+                // Relative path - prepend /content/
+                return '/content/' + imagePath;
+            }
         }
 
         // === Load Article ===
@@ -713,11 +727,13 @@
                     tagsContainer.classList.add('hidden');
                 }
                 
-                // ✅ Handle Header Image (NEW)
+                // ✅ Resolve image path using helper function
+                const imageUrl = resolveImagePath(meta.image);
+                
+                // Handle Header Image
                 const headerImageContainer = document.getElementById('header-image-container');
                 const headerImageEl = document.getElementById('header-article-image');
-                if (meta.image) {
-                    const imageUrl = meta.image.startsWith('http') ? meta.image : `/content/${meta.image}`;
+                if (imageUrl) {
                     headerImageEl.src = imageUrl;
                     headerImageEl.alt = meta.title || 'Article image';
                     headerImageEl.onerror = function() {
@@ -730,8 +746,8 @@
                 // Handle main article image (below header)
                 const imageContainer = document.getElementById('article-image-container');
                 const imageEl = document.getElementById('article-image');
-                if (meta.image) {
-                    imageEl.src = meta.image.startsWith('http') ? meta.image : `/content/${meta.image}`;
+                if (imageUrl) {
+                    imageEl.src = imageUrl;
                     imageEl.alt = meta.title || 'Article image';
                     imageEl.onerror = function() {
                         this.src = 'https://via.placeholder.com/1200x630/f1f5f9/94a3b8?text=Image+Unavailable';
