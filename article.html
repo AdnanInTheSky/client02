@@ -121,7 +121,7 @@
             overflow: hidden;
         }
         .action-btn.copied { background: #10b981 !important; border-color: #10b981 !important; }
-        .action-btn.copied i.fa-link::before { content: '\f00c'; } /* check mark */
+        .action-btn.copied i.fa-link::before { content: '\f00c'; }
         .action-btn.wapp-sent { background: #25D366 !important; border-color: #25D366 !important; }
         
         .toast {
@@ -185,12 +185,16 @@
         }
         .back-btn:hover::after { width: 100%; }
 
-        /* button group spacing */
         .button-group {
             display: flex;
             flex-wrap: wrap;
             gap: 0.75rem;
             align-items: center;
+        }
+
+        /* Header image hover effect */
+        #header-article-image:hover {
+            filter: brightness(1.05);
         }
     </style>
     
@@ -215,7 +219,7 @@
     <!-- Reading Progress Bar -->
     <div class="progress-bar" id="progress-bar"></div>
 
-    <!-- Toast Notification (reused for copy & whatsapp) -->
+    <!-- Toast Notification -->
     <div class="toast" id="toast">
         <i class="fas fa-check-circle text-xl"></i>
         <span>Link copied to clipboard!</span>
@@ -282,9 +286,19 @@
                 </a>
             </div>
 
+            <!-- ✅ UPDATED HEADER WITH IMAGE -->
             <header class="bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 mb-8 border border-white/20 shadow-xl">
                 <div id="article-tags" class="flex flex-wrap gap-2 mb-4"></div>
-                <h1 id="article-title" class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"></h1>
+                
+                <h1 id="article-title" class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight"></h1>
+                
+                <!-- ✅ Article Header Image (added inside header) -->
+                <div id="header-image-container" class="image-container mb-6 rounded-xl overflow-hidden border border-white/20">
+                    <img id="header-article-image" src="" alt="" 
+                         class="w-full h-48 md:h-64 object-cover transition-transform duration-300 hover:scale-105" 
+                         onload="this.parentElement.classList.add('loaded')"
+                         onerror="this.parentElement.classList.add('hidden')">
+                </div>
                 
                 <div class="flex flex-wrap items-center gap-4 text-white/80 text-sm pb-6 border-b border-white/20">
                     <span id="article-date" class="flex items-center">
@@ -301,9 +315,8 @@
                     </span>
                 </div>
                 
-                <!-- NEW button group: copy text & share to WhatsApp + original copy link (kept) -->
+                <!-- Button group -->
                 <div class="pt-6 mt-2 button-group">
-                    <!-- Copy article text (plain) -->
                     <button onclick="copyArticleText()"
                             id="copy-text-btn"
                             class="action-btn inline-flex items-center gap-2 px-5 py-2.5 bg-white/20 hover:bg-white/30 text-white rounded-full font-medium transition-all duration-300 border border-white/30 hover:border-white/50 hover:shadow-lg">
@@ -311,7 +324,6 @@
                         <span>Copy Text</span>
                     </button>
 
-                    <!-- Share to WhatsApp -->
                     <button onclick="shareToWhatsApp()"
                             id="whatsapp-share-btn"
                             class="action-btn inline-flex items-center gap-2 px-5 py-2.5 bg-[#25D366] hover:bg-[#20b859] text-white rounded-full font-medium transition-all duration-300 border border-white/30 hover:border-white/50 hover:shadow-lg">
@@ -319,7 +331,6 @@
                         <span>WhatsApp</span>
                     </button>
 
-                    <!-- Original copy link button (kept) -->
                     <button onclick="copyArticleLink()"
                             id="copy-link-btn"
                             class="action-btn inline-flex items-center gap-2 px-5 py-2.5 bg-white/20 hover:bg-white/30 text-white rounded-full font-medium transition-all duration-300 border border-white/30 hover:border-white/50 hover:shadow-lg">
@@ -329,13 +340,14 @@
                 </div>
             </header>
 
+            <!-- Original large image below header (kept for full article view) -->
             <div id="article-image-container" class="image-container mb-8 rounded-2xl overflow-hidden shadow-2xl border border-white/20">
                 <img id="article-image" src="" alt="" class="w-full h-auto object-cover" onload="this.parentElement.classList.add('loaded')">
             </div>
 
             <div id="article-body" class="article-content bg-white/95 backdrop-blur-xl rounded-2xl p-6 md:p-10 shadow-xl text-gray-800 border border-white/50"></div>
 
-            <!-- footer buttons also updated with same group -->
+            <!-- Footer buttons -->
             <div class="mt-10 pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <a href="articles.html" class="inline-flex items-center px-6 py-3 bg-white/20 hover:bg-white/30 text-white rounded-full font-medium transition-all duration-300 border border-white/30">
                     <i class="fas fa-arrow-left mr-2"></i>
@@ -445,7 +457,7 @@
     </a>
 
     <script>
-        // === YAML Parser (unchanged) ===
+        // === YAML Parser ===
         function parseYAML(yamlStr) {
             const result = {};
             yamlStr.trim().split('\n').forEach(line => {
@@ -495,7 +507,7 @@
             return `${Math.ceil(words / 200)} min read`;
         }
 
-        // === Copy Article Link (original) ===
+        // === Copy Article Link ===
         function copyArticleLink() {
             const url = window.location.href;
             if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -505,13 +517,10 @@
             }
         }
 
-        // === NEW: Copy Article Text (only plain text from article body) ===
+        // === Copy Article Text ===
         function copyArticleText() {
-            // extract plain text from article body (strip HTML)
             const articleBody = document.getElementById('article-body');
             if (!articleBody) return;
-            
-            // use innerText to get plain text (rendered text)
             const plainText = articleBody.innerText || articleBody.textContent;
             
             if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -521,11 +530,10 @@
             }
         }
 
-        // === NEW: Share to WhatsApp ===
+        // === Share to WhatsApp ===
         function shareToWhatsApp() {
             const title = document.getElementById('article-title')?.textContent || 'YCI Bangladesh Article';
             const url = window.location.href;
-            // get excerpt from first 100 characters of body text
             const bodyEl = document.getElementById('article-body');
             let excerpt = '';
             if (bodyEl) {
@@ -536,7 +544,6 @@
             const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
             window.open(whatsappUrl, '_blank');
             
-            // optional small feedback on the whatsapp button
             const wappBtn = document.getElementById('whatsapp-share-btn');
             if (wappBtn) {
                 wappBtn.classList.add('wapp-sent');
@@ -567,7 +574,6 @@
             toast.style.background = '#10b981';
             toast.classList.add('show');
             
-            // visual feedback on all copy buttons
             const btns = document.querySelectorAll('.action-btn');
             btns.forEach(btn => {
                 if (type === 'text' && (btn.id === 'copy-text-btn' || btn.innerHTML.includes('Copy Text'))) {
@@ -707,6 +713,21 @@
                     tagsContainer.classList.add('hidden');
                 }
                 
+                // ✅ Handle Header Image (NEW)
+                const headerImageContainer = document.getElementById('header-image-container');
+                const headerImageEl = document.getElementById('header-article-image');
+                if (meta.image) {
+                    const imageUrl = meta.image.startsWith('http') ? meta.image : `/content/${meta.image}`;
+                    headerImageEl.src = imageUrl;
+                    headerImageEl.alt = meta.title || 'Article image';
+                    headerImageEl.onerror = function() {
+                        headerImageContainer.classList.add('hidden');
+                    };
+                } else {
+                    headerImageContainer.classList.add('hidden');
+                }
+                
+                // Handle main article image (below header)
                 const imageContainer = document.getElementById('article-image-container');
                 const imageEl = document.getElementById('article-image');
                 if (meta.image) {
