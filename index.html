@@ -2,52 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>YCI Bangladesh</title>
   
-  <!-- Favicon + Apple Touch Icon -->
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
-  <link rel="apple-touch-icon" href="/content/images/IMG_5811.png">
   
-  <!-- Tailwind CSS CDN - FIXED: no trailing spaces -->
+  <!-- Tailwind CSS CDN (Fixed: removed trailing spaces) -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Font Awesome - FIXED: no trailing spaces -->
+  <!-- Font Awesome (Fixed: removed trailing spaces) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Google Fonts - FIXED: no trailing spaces, correct syntax -->
+  <!-- Google Fonts (Fixed: removed trailing spaces) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
-    /* ===== iOS SAFARI ESSENTIAL PREFIXES ===== */
-    
-    /* Prevent iOS auto-text-size adjustment */
-    html, body {
-      -webkit-text-size-adjust: 100%;
-      -moz-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-      text-size-adjust: 100%;
-    }
-
-    /* Remove blue tap highlight & disable long-press menu */
-    * {
-      -webkit-tap-highlight-color: transparent;
-      -webkit-touch-callout: none;
-    }
-
-    /* Smooth scrolling for iOS */
-    html {
-      -webkit-overflow-scrolling: touch;
-      scroll-behavior: smooth;
-    }
-
     * {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
+    @media (max-width: 767px) {
+  .pure-glass, .nav-glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+@media (max-width: 767px) {
+  .pure-glass, .nav-glass {
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+}
 
     body {
       background: linear-gradient(135deg, 
@@ -58,13 +45,11 @@
         #0F1B2D 100%
       );
       background-size: 100% 300%;
-      background-attachment: fixed;
-      -webkit-animation: gradientBG 20s ease infinite;
       animation: gradientBG 20s ease infinite;
       overflow-x: hidden;
       color: #ffffff;
       position: relative;
-      min-height: 100vh;
+      min-height: 100dvh;
     }
 
     body::before {
@@ -77,142 +62,97 @@
         radial-gradient(circle at 80% 40%, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
       background-size: 150px 150px, 200px 200px, 180px 180px;
       z-index: -1;
-      -webkit-animation: floatParticles 60s linear infinite;
       animation: floatParticles 60s linear infinite;
       pointer-events: none;
     }
-
-    @-webkit-keyframes gradientBG {
-      0% { background-position: 0% 0%; }
-      50% { background-position: 100% 100%; }
-      100% { background-position: 0% 0%; }
+        @supports (-webkit-backdrop-filter: none) {
+    .pure-glass,
+    .nav-glass {
+        -webkit-backdrop-filter: blur(20px);
     }
+    }
+    summary::-webkit-details-marker {
+  display: none;
+}
+
+.page-load {
+  opacity: 0;
+  transform: translate3d(0,30px,0);
+  animation: fadeInUp 0.8s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+
     @keyframes gradientBG {
       0% { background-position: 0% 0%; }
       50% { background-position: 100% 100%; }
       100% { background-position: 0% 0%; }
     }
 
-    @-webkit-keyframes floatParticles {
-      0% { -webkit-transform: translateY(0px) translateX(0px); transform: translateY(0px) translateX(0px); }
-      25% { -webkit-transform: translateY(-20px) translateX(10px); transform: translateY(-20px) translateX(10px); }
-      50% { -webkit-transform: translateY(0px) translateX(20px); transform: translateY(0px) translateX(20px); }
-      75% { -webkit-transform: translateY(20px) translateX(10px); transform: translateY(20px) translateX(10px); }
-      100% { -webkit-transform: translateY(0px) translateX(0px); transform: translateY(0px) translateX(0px); }
-    }
     @keyframes floatParticles {
-      0% { -webkit-transform: translateY(0px) translateX(0px); transform: translateY(0px) translateX(0px); }
-      25% { -webkit-transform: translateY(-20px) translateX(10px); transform: translateY(-20px) translateX(10px); }
-      50% { -webkit-transform: translateY(0px) translateX(20px); transform: translateY(0px) translateX(20px); }
-      75% { -webkit-transform: translateY(20px) translateX(10px); transform: translateY(20px) translateX(10px); }
-      100% { -webkit-transform: translateY(0px) translateX(0px); transform: translateY(0px) translateX(0px); }
+      0% { transform: translateY(0px) translateX(0px); }
+      25% { transform: translateY(-20px) translateX(10px); }
+      50% { transform: translateY(0px) translateX(20px); }
+      75% { transform: translateY(20px) translateX(10px); }
+      100% { transform: translateY(0px) translateX(0px); }
     }
 
     .pure-glass {
+  -webkit-backdrop-filter: blur(4px);
+
       background: rgba(255, 255, 255, 0.07);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      -webkit-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      -webkit-backdrop-filter: blur(4px);
       backdrop-filter: blur(4px);
       color: white;
-      -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .pure-glass:hover {
       background: rgba(255, 255, 255, 0.12);
       border-color: rgba(255, 255, 255, 0.25);
-      -webkit-transform: translateY(-4px);
       transform: translateY(-4px);
-      -webkit-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
     .nav-glass {
       background: rgba(255, 255, 255, 0.08);
-      -webkit-backdrop-filter: blur(20px);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        -webkit-backdrop-filter: blur(20px);
+
     }
 
-    /* ===== FIXED: iOS Gradient Text - No Box Issue ===== */
     h1, h2, h3, h4, h5, h6 { 
-      /* Fallback color for iOS */
-      color: #4FD1C5;
-      /* Gradient background */
+      color: transparent;
       background: linear-gradient(135deg, #4FD1C5 0%, #2C5282 50%, #1A365D 100%);
-      background-size: 200% 200%;
-      /* Clip gradient to text */
       -webkit-background-clip: text;
       background-clip: text;
-      /* Make text transparent to show gradient */
-      -webkit-text-fill-color: transparent;
-      text-fill-color: transparent;
-      /* Animation */
-      -webkit-animation: titleShimmer 3s ease-in-out infinite alternate;
+      background-size: 200% 200%;
       animation: titleShimmer 3s ease-in-out infinite alternate;
     }
 
-    /* iOS 15+ specific fix - prevent gradient box */
-    @supports (-webkit-touch-callout: none) {
-      h1, h2, h3, h4, h5, h6 {
-        /* Force proper rendering on iOS */
-        -webkit-text-fill-color: transparent;
-        -webkit-background-clip: text;
-        background-clip: text;
-        /* Ensure no box appears */
-        display: inline;
-        -webkit-box-decoration-break: clone;
-        box-decoration-break: clone;
-      }
-    }
-
-    /* Fallback for older iOS that doesn't support gradient text */
-    @supports not (-webkit-background-clip: text) {
-      h1, h2, h3, h4, h5, h6 {
-        color: #4FD1C5;
-        background: none;
-        -webkit-text-fill-color: initial;
-        text-fill-color: initial;
-      }
-    }
-
-    @-webkit-keyframes titleShimmer {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
     @keyframes titleShimmer {
       0% { background-position: 0% 50%; }
       100% { background-position: 100% 50%; }
     }
 
-    .stat-number { 
-      color: white; 
-      text-shadow: 0 0 20px rgba(79, 209, 197, 0.5);
-      -webkit-text-shadow: 0 0 20px rgba(79, 209, 197, 0.5);
-    }
+    .stat-number { color: white; text-shadow: 0 0 20px rgba(79, 209, 197, 0.5); }
     .stat-title { color: #4FD1C5; font-weight: 600; }
 
-    .page-load {
+    <!-- .page-load {
       opacity: 0;
-      -webkit-transform: translateY(30px);
       transform: translateY(30px);
-      -webkit-animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
       animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-    .delay-1 { -webkit-animation-delay: 0.1s; animation-delay: 0.1s; }
-    .delay-2 { -webkit-animation-delay: 0.2s; animation-delay: 0.2s; }
-    .delay-3 { -webkit-animation-delay: 0.3s; animation-delay: 0.3s; }
+    } -->
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
 
-    @-webkit-keyframes fadeInUp {
-      to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
-    }
     @keyframes fadeInUp {
-      to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+      to { opacity: 1; transform: translateY(0); }
     }
+
+    html { scroll-behavior: smooth; }
 
     .glow-button {
       position: relative;
@@ -225,58 +165,33 @@
       top: 0; left: -100%;
       width: 100%; height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      -webkit-transition: left 0.7s ease;
       transition: left 0.7s ease;
       z-index: -1;
     }
     .glow-button:hover::before { left: 100%; }
 
-    .article-image { 
-      -webkit-transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .article-card:hover .article-image { 
-      -webkit-transform: scale(1.05);
-      transform: scale(1.05);
-    }
+    .article-image { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+    .article-card:hover .article-image { transform: scale(1.05); }
 
     .scroll-progress {
       position: fixed; top: 0; left: 0;
       width: 0%; height: 3px;
       background: linear-gradient(90deg, #4FD1C5, #2C5282);
       z-index: 100;
-      -webkit-transition: width 0.3s ease;
       transition: width 0.3s ease;
     }
 
-    .floating-element { 
-      -webkit-animation: floatElement 6s ease-in-out infinite;
-      animation: floatElement 6s ease-in-out infinite;
-    }
-    
-    @-webkit-keyframes floatElement {
-      0%, 100% { -webkit-transform: translateY(0px); transform: translateY(0px); }
-      50% { -webkit-transform: translateY(-15px); transform: translateY(-15px); }
-    }
+    .floating-element { animation: floatElement 6s ease-in-out infinite; }
     @keyframes floatElement {
-      0%, 100% { -webkit-transform: translateY(0px); transform: translateY(0px); }
-      50% { -webkit-transform: translateY(-15px); transform: translateY(-15px); }
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
     }
     
-    /* ===== FIXED: Article Title - No Gradient Box ===== */
     .article-title {
-      /* Solid color fallback */
       color: #4FD1C5 !important;
       font-weight: 700;
-      /* Remove gradient to prevent box issue */
-      background: none !important;
-      -webkit-text-fill-color: #4FD1C5 !important;
-      text-fill-color: #4FD1C5 !important;
     }
-    .article-title:hover { 
-      color: #4FD1C5 !important;
-      -webkit-text-fill-color: #4FD1C5 !important;
-    }
+    .article-title:hover { color: #4FD1C5 !important; }
     
     .article-card {
       display: flex;
@@ -296,12 +211,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      -webkit-transition: transform 0.6s ease;
       transition: transform 0.6s ease;
     }
     
     .article-card:hover .article-image-container img {
-      -webkit-transform: scale(1.08);
       transform: scale(1.08);
     }
     
@@ -320,40 +233,16 @@
     .faq-answer {
       max-height: 0;
       overflow: hidden;
-      -webkit-transition: max-height 0.3s ease, padding 0.3s ease;
       transition: max-height 0.3s ease, padding 0.3s ease;
     }
     .faq-answer > div { padding: 0 1.25rem 1.25rem 1.25rem; }
-    .rotate-180 { 
-      -webkit-transform: rotate(180deg); 
-      transform: rotate(180deg); 
-    }
+    .rotate-180 { transform: rotate(180deg); }
     
-    /* Mobile optimizations - iOS friendly */
+    /* Mobile optimizations */
     @media (max-width: 767px) {
       .pure-glass, .nav-glass {
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-        background: rgba(255, 255, 255, 0.12);
-      }
-      
-      /* Simplify gradient text on mobile for better performance */
-      h1, h2, h3, h4, h5, h6 {
-        color: #4FD1C5;
-        background: none;
-        -webkit-text-fill-color: #4FD1C5;
-        text-fill-color: #4FD1C5;
-        -webkit-animation: none;
-        animation: none;
-      }
-    }
-    
-    /* iOS fallback for backdrop-filter support */
-    @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-      .pure-glass, .nav-glass {
-        background: rgba(255, 255, 255, 0.15) !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
       }
     }
   </style>
@@ -383,7 +272,7 @@
         <a href="index.html" class="flex items-center page-load">
           <img src="content/images/IMG_5811.png" alt="YCI Logo"
                class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20"
-               onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>YCI</span>';">
+               onerror="this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>YCI</span>';">
         </a>
 
         <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass page-load delay-1" aria-label="Menu">
@@ -546,7 +435,7 @@
       </div>
     </section>
 
-    <!-- Articles (Events) -->
+    <!-- Articles (Events) - FIXED LINKS -->
     <section class="py-16 page-load delay-5">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
@@ -578,7 +467,7 @@
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Footer - Fixed Links -->
   <footer class="bg-gray-900 text-gray-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
@@ -736,6 +625,14 @@
       e.stopPropagation();
       const menu = document.getElementById('mobileMenu');
       menu.classList.toggle('hidden');
+      const icon = this.querySelector('i');
+      if (menu.classList.contains('hidden')) {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      } else {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      }
     });
     
     // Close mobile menu when clicking outside
@@ -744,6 +641,9 @@
       const btn = document.getElementById('mobileMenuBtn');
       if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
         menu.classList.add('hidden');
+        const icon = btn.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
       }
     });
 
@@ -809,11 +709,11 @@
         container.innerHTML = html || '<p class="text-white text-center">No announcements.</p>';
       } catch (e) {
         console.error('Announcements error:', e);
-        container.innerHTML = '<p class="text-white text-center">📢 Announcements coming soon!</p>';
+        container.innerHTML = '<p class="text-white text-center">Failed to load announcements.</p>';
       }
     }
 
-    // Load articles
+    // Load articles with STATIC FILE LINKS
     async function loadArticles() {
       const container = document.getElementById('articles-container');
       try {
@@ -834,7 +734,9 @@
             .join(' ') + '…';
           const tags = Array.isArray(meta.tags) ? meta.tags : (meta.tags ? [meta.tags] : []);
           
+          // ✅ Generate slug for static file link
           const slug = meta.slug || generateSlug(meta.title);
+          // ✅ Link to STATIC HTML file
           const articleUrl = `/article-posts/${slug}.html`;
 
           cards.push(`
@@ -867,10 +769,10 @@
             </div>
           `);
         }
-        container.innerHTML = cards.length ? cards.join('') : '<p class="col-span-full text-white text-center">📰 Articles coming soon!</p>';
+        container.innerHTML = cards.length ? cards.join('') : '<p class="col-span-full text-white text-center">No articles available.</p>';
       } catch (err) {
         console.error('Article loading error:', err);
-        container.innerHTML = '<p class="col-span-full text-white text-center">📰 Articles coming soon!</p>';
+        container.innerHTML = '<p class="col-span-full text-red-400 text-center">Failed to load articles.</p>';
       }
     }
 
