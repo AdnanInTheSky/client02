@@ -3,34 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YCI</title>
+  <title>YCI Bangladesh</title>
+  
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
-  <!-- Tailwind CSS CDN -->
+  
+  <!-- Tailwind CSS CDN (Fixed: removed trailing spaces) -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome -->
+  
+  <!-- Font Awesome (Fixed: removed trailing spaces) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts -->
+  
+  <!-- Google Fonts (Fixed: removed trailing spaces) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- GSAP + ScrollTrigger -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
+  
   <style>
     * {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
 
     body {
-      background: linear-gradient(135deg, #4FD1C5 0%, #319795 25%, #2C5282 50%, #1A365D 75%, #0F1B2D 100%);
+      background: linear-gradient(135deg, 
+        #4FD1C5 0%,
+        #319795 25%,
+        #2C5282 50%,
+        #1A365D 75%,
+        #0F1B2D 100%
+      );
       background-size: 100% 300%;
       background-attachment: fixed;
-      color: #ffffff;
+      animation: gradientBG 20s ease infinite;
       overflow-x: hidden;
-      min-height: 100vh;
+      color: #ffffff;
       position: relative;
+      min-height: 100vh;
     }
 
     body::before {
@@ -38,39 +46,81 @@
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       background-image: 
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 1px, transparent 1px),
-        radial-gradient(circle at 60% 70%, rgba(255,255,255,0.08) 1px, transparent 1px),
-        radial-gradient(circle at 80% 40%, rgba(255,255,255,0.06) 1px, transparent 1px);
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 60% 70%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        radial-gradient(circle at 80% 40%, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
       background-size: 150px 150px, 200px 200px, 180px 180px;
       z-index: -1;
+      animation: floatParticles 60s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    @keyframes floatParticles {
+      0% { transform: translateY(0px) translateX(0px); }
+      25% { transform: translateY(-20px) translateX(10px); }
+      50% { transform: translateY(0px) translateX(20px); }
+      75% { transform: translateY(20px) translateX(10px); }
+      100% { transform: translateY(0px) translateX(0px); }
     }
 
     .pure-glass {
       background: rgba(255, 255, 255, 0.07);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(4px);
       color: white;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .pure-glass:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
     .nav-glass {
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6 { 
       color: transparent;
       background: linear-gradient(135deg, #4FD1C5 0%, #2C5282 50%, #1A365D 100%);
       -webkit-background-clip: text;
       background-clip: text;
       background-size: 200% 200%;
+      animation: titleShimmer 3s ease-in-out infinite alternate;
     }
 
-    .stat-number { color: white; text-shadow: 0 0 20px rgba(79,209,197,0.5); }
+    @keyframes titleShimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .stat-number { color: white; text-shadow: 0 0 20px rgba(79, 209, 197, 0.5); }
     .stat-title { color: #4FD1C5; font-weight: 600; }
+
+    .page-load {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     html { scroll-behavior: smooth; }
 
@@ -79,20 +129,46 @@
       overflow: hidden;
       z-index: 1;
     }
+    .glow-button::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.7s ease;
+      z-index: -1;
+    }
+    .glow-button:hover::before { left: 100%; }
 
+    .article-image { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+    .article-card:hover .article-image { transform: scale(1.05); }
+
+    .scroll-progress {
+      position: fixed; top: 0; left: 0;
+      width: 0%; height: 3px;
+      background: linear-gradient(90deg, #4FD1C5, #2C5282);
+      z-index: 100;
+      transition: width 0.3s ease;
+    }
+
+    .floating-element { animation: floatElement 6s ease-in-out infinite; }
+    @keyframes floatElement {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+    
     .article-title {
-      color: #f97316 !important;
+      color: #4FD1C5 !important;
       font-weight: 700;
     }
-    .article-title:hover {
-      color: #fb923c !important;
-    }
-
+    .article-title:hover { color: #4FD1C5 !important; }
+    
     .article-card {
       display: flex;
       flex-direction: column;
       height: 100%;
     }
+    
     .article-image-container {
       position: relative;
       width: 100%;
@@ -100,39 +176,47 @@
       overflow: hidden;
       border-radius: 12px 12px 0 0;
     }
+    
     .article-image-container img {
-      width: 100%; height: 100%; object-fit: cover;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
     }
-
+    
+    .article-card:hover .article-image-container img {
+      transform: scale(1.08);
+    }
+    
     .article-content {
       flex: 1;
       display: flex;
       flex-direction: column;
       padding: 1.5rem;
     }
+    
     .article-excerpt {
       flex: 1;
       margin-bottom: 1rem;
     }
 
-    .scroll-progress {
-      position: fixed; top: 0; left: 0; height: 3px;
-      background: linear-gradient(90deg, #4FD1C5, #2C5282);
-      z-index: 1000;
-      width: 0%;
-    }
-
-    /* FAQ */
     .faq-answer {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease;
+      transition: max-height 0.3s ease, padding 0.3s ease;
     }
-    .faq-answer.expanded {
-      max-height: 500px;
+    .faq-answer > div { padding: 0 1.25rem 1.25rem 1.25rem; }
+    .rotate-180 { transform: rotate(180deg); }
+    
+    /* Mobile optimizations */
+    @media (max-width: 767px) {
+      .pure-glass, .nav-glass {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
     }
   </style>
-
+  
   <script>
     tailwind.config = {
       theme: {
@@ -140,6 +224,7 @@
           colors: {
             primary: '#4FD1C5',
             secondary: '#2C5282',
+            accent: '#ff9800',
           }
         }
       }
@@ -147,246 +232,564 @@
   </script>
 </head>
 <body class="min-h-screen">
+  <!-- Scroll Progress -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- Navbar -->
+  <!-- Glass Navbar -->
   <nav id="mainNav" class="fixed w-full top-0 z-50 nav-glass">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16 md:h-20">
-        <a href="index.html" class="flex items-center">
+        <a href="index.html" class="flex items-center page-load">
           <img src="content/images/IMG_5811.png" alt="YCI Logo"
-               class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20">
+               class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20"
+               onerror="this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>YCI</span>';">
         </a>
-        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass">
-          <i class="fas fa-bars text-white text-xl"></i>
+
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass page-load delay-1" aria-label="Menu">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
         </button>
         <div class="hidden md:flex space-x-2">
-          <a href="index.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Home</a>
-          <a href="services.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Blogs</a>
-          <a href="articles.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Events</a>
-          <a href="team.html" class="px-4 py-2 text-white hover:text-teal-300 transition">Team</a>
-          <a href="contact.html" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium glow-button">
+          <a href="index.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-1">Home</a>
+          <a href="services.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-2">Blogs</a>
+          <a href="articles.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-3">Events</a>
+          <a href="team.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-4">Team</a>
+          <a href="contact.html" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:scale-105 transition glow-button page-load delay-5">
             Contact
           </a>
         </div>
       </div>
       <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 space-y-2">
-        <a href="index.html" class="block px-4 py-2 text-white hover:text-teal-300">Home</a>
-        <a href="services.html" class="block px-4 py-2 text-white hover:text-teal-300">Blogs</a>
-        <a href="articles.html" class="block px-4 py-2 text-white hover:text-teal-300">Events</a>
-        <a href="team.html" class="block px-4 py-2 text-white hover:text-teal-300">Team</a>
+        <a href="index.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Home</a>
+        <a href="services.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Blogs</a>
+        <a href="articles.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Events</a>
+        <a href="team.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Team</a>
         <a href="contact.html" class="mt-2 block px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full text-center glow-button">Contact</a>
       </div>
     </div>
   </nav>
 
   <main class="pt-20">
-    <!-- Hero -->
+    <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div class="absolute inset-0 z-0">
-        <img src="content/images/WhatsApp Image 2025-12-17 at 00.38.32.jpeg" alt="Hero" class="w-full h-full object-cover opacity-60">
+        <img src="content/images/WhatsApp Image 2025-12-17 at 00.38.32.jpeg" alt="Hero background" 
+             class="w-full h-full object-cover opacity-60"
+             onerror="this.style.display='none'">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40"></div>
       </div>
       
-      <div class="relative z-10 max-w-4xl mx-auto px-4 text-center text-white">
-        <h2 class="text-white text-4xl sm:text-5xl md:text-6xl font-bold mb-6" id="heroTitle">
+      <div class="absolute top-1/4 left-10 w-4 h-4 bg-teal-400 rounded-full opacity-20 floating-element"></div>
+      <div class="absolute top-1/3 right-20 w-6 h-6 bg-primary rounded-full opacity-15 floating-element" style="animation-delay: -2s;"></div>
+      <div class="absolute bottom-1/4 left-1/4 w-8 h-8 bg-secondary rounded-full opacity-10 floating-element" style="animation-delay: -4s;"></div>
+      
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        <h2 class="text-white text-3xl sm:text-4xl md:text-5xl font-bold mb-6 page-load px-2">
           TO BUILD A CLIMATE RESILIENT BANGLADESH WHERE YOUTH LEADS TOWARD
         </h2>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="contact.html" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold glow-button" id="heroBtn1">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center px-4">
+          <a href="contact.html" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition glow-button page-load delay-2">
             Join Our Mission
           </a>
-          <a href="articles.html" class="px-8 py-4 pure-glass text-white rounded-full font-semibold" id="heroBtn2">
+          <a href="articles.html" class="px-8 py-4 pure-glass text-white rounded-full font-semibold hover:scale-105 transition page-load delay-3">
             Learn More
           </a>
         </div>
       </div>
+      
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+          <div class="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
+        </div>
+      </div>
     </section>
 
-    <!-- Stats -->
-    <section class="py-12" id="statsSection">
-      <div class="max-w-4xl mx-auto px-4">
+    <!-- Stats Section -->
+    <section class="py-12 page-load delay-1" id="statsSection">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="pure-glass rounded-3xl p-8 text-center">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div><div class="text-4xl md:text-5xl font-bold stat-number">120+</div><div class="stat-title">Team Members</div></div>
-            <div><div class="text-4xl md:text-5xl font-bold stat-number">15+</div><div class="stat-title">Events</div></div>
-            <div><div class="text-3xl md:text-4xl font-bold stat-number">20+</div><div class="stat-title">Campus Reached</div></div>
+            <div>
+              <div class="text-4xl md:text-5xl font-bold stat-number">120+</div>
+              <div class="text-lg md:text-xl stat-title">Team Members</div>
+            </div>
+            <div>
+              <div class="text-4xl md:text-5xl font-bold stat-number">15+</div>
+              <div class="text-lg md:text-xl stat-title">Events</div>
+            </div>
+            <div>
+              <div class="text-3xl md:text-4xl font-bold stat-number">20+</div>
+              <div class="text-lg md:text-xl stat-title">Campus Reached</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Announcements -->
-    <section class="py-12" id="announcementsSection">
-      <div class="max-w-4xl mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-teal-300">Announcements</h2>
+    <section class="py-12 page-load delay-2">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-primary">Announcements</h2>
         <div id="announcements-container" class="space-y-6">
           <div class="text-center py-6 text-white">Loading announcements...</div>
         </div>
       </div>
     </section>
 
-    <!-- About -->
-    <section class="py-16" id="aboutSection">
-      <div class="max-w-4xl mx-auto px-4">
-        <div class="pure-glass rounded-3xl p-8">
-          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Our Commitment to Bring Change</h2>
-          <p class="text-white mb-4">We envision a climate-resilient Bangladesh where youth-led innovation, inclusive community participation, and sustainable solutions create a greener, healthier, and more just future for all.</p>
-          <p class="text-white mb-4">Our mission is to empower young people with knowledge, leadership skills, and resources to address climate challenges, uplift vulnerable communities, and promote sustainable development across Bangladesh.</p>
-          <a href="articles.html" class="mt-6 inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold glow-button">Explore Our Impact</a>
+    <!-- About Us -->
+    <section class="py-16 page-load delay-3">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="pure-glass rounded-3xl overflow-hidden group">
+          <div class="p-6 md:p-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+              Our Commitment to Bring Change
+            </h2>
+            <p class="text-white mb-4">
+              We envision a climate-resilient Bangladesh where youth-led innovation, inclusive community participation, and sustainable solutions create a greener, healthier, and more just future for all.
+            </p>
+            <p class="text-white mb-4">
+              Our mission is to empower young people with knowledge, leadership skills, and resources to address climate challenges, uplift vulnerable communities, and promote sustainable development across Bangladesh.
+            </p>
+            <a href="articles.html" 
+               class="mt-6 inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition-transform duration-300 glow-button">
+              Explore Our Impact
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="py-16" id="faqSection">
-      <div class="max-w-4xl mx-auto px-4">
+    <!-- FAQ Section -->
+    <section class="py-16 page-load delay-4">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-white text-3xl md:text-4xl font-bold text-center mb-8">Frequently Asked Questions</h2>
-        <div class="space-y-4" id="faqContainer">
-          <!-- Dynamically populated by JS -->
+        
+        <div class="space-y-4">
+          <div class="pure-glass rounded-xl overflow-hidden">
+            <details class="group" open>
+              <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none">
+                <span>What is YCI Bangladesh?</span>
+                <i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i>
+              </summary>
+              <div class="p-5 pt-0 text-white border-t border-white/10">
+                YCI Bangladesh is a youth-led initiative working to strengthen climate resilience, environmental awareness, and sustainable development across Bangladesh through education, advocacy, and community-based action.
+              </div>
+            </details>
+          </div>
+
+          <div class="pure-glass rounded-xl overflow-hidden">
+            <details class="group">
+              <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none">
+                <span>How can I volunteer with YCI?</span>
+                <i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i>
+              </summary>
+              <div class="p-5 pt-0 text-white border-t border-white/10">
+                Join our volunteer network by filling out the form on our Contact page. We welcome students, professionals, and community leaders passionate about climate action.
+              </div>
+            </details>
+          </div>
+
+          <div class="pure-glass rounded-xl overflow-hidden">
+            <details class="group">
+              <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none">
+                <span>Do you work only in Dhaka?</span>
+                <i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i>
+              </summary>
+              <div class="p-5 pt-0 text-white border-t border-white/10">
+                No—we operate nationwide with active chapters in Chittagong, Sylhet, Khulna, and Rajshahi, focusing on locally relevant climate challenges.
+              </div>
+            </details>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Articles -->
-    <section class="py-16" id="articlesSection">
-      <div class="max-w-4xl mx-auto px-4">
+    <!-- Articles (Events) - FIXED LINKS -->
+    <section class="py-16 page-load delay-5">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
           <h2 class="text-white text-4xl md:text-5xl font-bold mb-4">Our Events</h2>
-          <p class="text-white max-w-2xl mx-auto">placeholder</p>
+          <p class="text-white max-w-2xl mx-auto">Bringing change</p>
         </div>
         <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div class="text-center py-8 text-white">Loading articles...</div>
         </div>
         <div class="text-center mt-12">
-          <a href="articles.html" class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold glow-button">More Articles</a>
+          <a href="articles.html" class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition glow-button inline-block">
+            More Articles
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Team -->
-    <section class="py-16" id="teamSection">
-      <div class="max-w-4xl mx-auto px-4">
-        <div class="pure-glass rounded-3xl p-12 text-center text-white">
+    <!-- Meet the Team -->
+    <section class="py-16 page-load delay-6">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="pure-glass rounded-3xl p-12 text-center text-white group hover:scale-[1.02] transition-all duration-500">
           <h2 class="text-white text-4xl md:text-5xl font-bold mb-4">Meet Our entire Team</h2>
           <p class="text-xl mb-8">Bringing change</p>
-          <a href="team.html" class="px-8 py-4 bg-white text-primary rounded-full font-bold text-lg glow-button">View Full Team</a>
+          <a href="team.html" class="px-8 py-4 bg-white text-primary rounded-full font-bold text-lg hover:bg-opacity-90 hover:scale-105 transition glow-button inline-block">
+            View Full Team
+          </a>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer & Floating Buttons (unchanged for brevity) -->
-  <!-- ... keep your existing footer and floating buttons ... -->
-
-  <script>
-    // Initialize GSAP ScrollTrigger
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Hero Title Typewriter Effect (GSAP)
-    gsap.from("#heroTitle", {
-      duration: 2,
-      opacity: 0,
-      y: 30,
-      ease: "power3.out",
-      delay: 0.3
-    });
-    gsap.from(["#heroBtn1", "#heroBtn2"], {
-      duration: 1,
-      opacity: 0,
-      y: 20,
-      stagger: 0.2,
-      ease: "power2.out",
-      delay: 1
-    });
-
-    // Section Reveal on Scroll
-    const sections = ["#statsSection", "#announcementsSection", "#aboutSection", "#faqSection", "#articlesSection", "#teamSection"];
-    sections.forEach((sel, i) => {
-      gsap.from(sel, {
-        scrollTrigger: {
-          trigger: sel,
-          start: "top 85%",
-          toggleActions: "play none none none"
-        },
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: "power3.out",
-        delay: i * 0.1
-      });
-    });
-
-    // Article Card Hover (GSAP)
-    document.querySelectorAll(".article-card").forEach(card => {
-      const img = card.querySelector(".article-image-container img");
-      card.addEventListener("mouseenter", () => gsap.to(img, { scale: 1.08, duration: 0.6, ease: "power2.out" }));
-      card.addEventListener("mouseleave", () => gsap.to(img, { scale: 1, duration: 0.6, ease: "power2.out" }));
-    });
-
-    // Mobile Menu Toggle
-    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-      const menu = document.getElementById('mobileMenu');
-      menu.classList.toggle('hidden');
-    });
-
-    // Scroll Progress Bar
-    window.addEventListener('scroll', () => {
-      const progress = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-      document.getElementById('scrollProgress').style.width = `${progress}%`;
-    });
-
-    // FAQ Accordion (GSAP-enhanced)
-    function initFAQ() {
-      const faqs = [
-        { q: "What is YCI Bangladesh?", a: "YCI Bangladesh is a youth-led initiative working to strengthen climate resilience..." },
-        { q: "How can I volunteer with YCI?", a: "Join our volunteer network by filling out the form on our Contact page..." },
-        { q: "Do you work only in Dhaka?", a: "No—we operate nationwide with active chapters in Chittagong, Sylhet..." }
-      ];
-
-      const container = document.getElementById('faqContainer');
-      container.innerHTML = faqs.map((faq, i) => `
-        <div class="pure-glass rounded-xl overflow-hidden" data-faq="${i}">
-          <div class="flex justify-between items-center p-5 text-left font-semibold text-white cursor-pointer">
-            <span>${faq.q}</span>
-            <i class="fas fa-chevron-down text-white transition-transform"></i>
-          </div>
-          <div class="faq-answer">
-            <div class="p-5 pt-0 text-white border-t border-white/10">${faq.a}</div>
+  <!-- Footer - Fixed Links -->
+  <footer class="bg-gray-900 text-gray-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+        <!-- Brand -->
+        <div>
+          <h3 class="text-white font-bold mb-2">YCI Bangladesh</h3>
+          <p class="text-white mb-2">
+             To build a climate resilient Bangladesh where youth leads toward sustainable Change
+          </p>
+          <div class="flex space-x-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
           </div>
         </div>
-      `).join('');
 
-      document.querySelectorAll('[data-faq]').forEach(item => {
-        item.addEventListener('click', () => {
-          const answer = item.querySelector('.faq-answer');
-          const icon = item.querySelector('i');
-          const isOpen = answer.classList.contains('expanded');
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-bold text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="services.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
+            <li><a href="articles.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
+            <li><a href="team.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Our Team</a></li>
+            <li><a href="contact.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Contact</a></li>
+            <li><a href="contact.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Careers</a></li>
+          </ul>
+        </div>
 
-          gsap.to(answer, {
-            height: isOpen ? 0 : "auto",
-            duration: 0.4,
-            ease: "power2.inOut",
-            onComplete: () => {
-              answer.classList.toggle('expanded', !isOpen);
-            }
-          });
-          gsap.to(icon, { rotation: isOpen ? 0 : 180, duration: 0.3 });
-        });
+        <!-- Contact -->
+        <div>
+          <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
+              <span class="text-white mb-2">Dhaka, Bangladesh</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
+              <span class="text-white mb-2">ycibangladesh@gmail.com</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
+              <span class="text-white mb-2">01919403296 / 01980632583</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Annual Reports</a></li>
+            <li><a href="#" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Research Papers</a></li>
+            <li><a href="#" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Case Studies</a></li>
+            <li><a href="#" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Partnerships</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
+        <p>&copy; 2025 YCI Bangladesh. All rights reserved.</p>
+        <div class="mt-3 space-x-4">
+          <a href="#" class="hover:text-white transition-colors">Privacy</a>
+          <span class="text-gray-600">•</span>
+          <a href="#" class="hover:text-white transition-colors">Terms</a>
+          <span class="text-gray-600">•</span>
+          <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Action Buttons -->
+  <a href="contact.html" 
+     class="fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
+     aria-label="Join Our Mission">
+    <i class="fas fa-handshake mr-2"></i>
+    <span class="hidden sm:inline">Join Us</span>
+  </a>
+  
+  <a href="team.html" 
+     class="fixed bottom-6 left-6 md:bottom-8 md:left-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
+     aria-label="View Our Team">
+    <i class="fas fa-users mr-2"></i>
+    <span class="hidden sm:inline">Our Team</span>
+  </a>
+
+  <!-- Scripts -->
+  <script>
+    // ===== Configuration =====
+    const SITE_URL = window.location.origin;
+    
+    // ===== YAML Parser =====
+    function parseYAML(yamlStr) {
+      const result = {};
+      yamlStr.trim().split('\n').forEach(line => {
+        const idx = line.indexOf(':');
+        if (idx === -1) return;
+        let key = line.slice(0, idx).trim();
+        let val = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
+        if (val === 'true') val = true;
+        if (val === 'false') val = false;
+        if (!isNaN(val) && val !== '') val = Number(val);
+        result[key] = val;
       });
+      return result;
+    }
+    
+    // ===== Generate Slug for Static File Links =====
+    function generateSlug(title) {
+      return title.toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .substring(0, 60);
+    }
+    
+    // ===== Resolve Image URL =====
+    function resolveImageURL(imagePath) {
+      if (!imagePath) return `${SITE_URL}/content/images/IMG_5811.png`;
+      if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+        return imagePath;
+      }
+      if (imagePath.startsWith('/')) {
+        return `${SITE_URL}${imagePath}`;
+      }
+      return `${SITE_URL}/content/images/${imagePath}`;
+    }
+    
+    // ===== Format Date =====
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      try {
+        return new Date(dateStr).toLocaleDateString('en-US', { 
+          month: 'short', 
+          day: 'numeric', 
+          year: 'numeric' 
+        });
+      } catch (e) {
+        return dateStr;
+      }
     }
 
-    // Load Content Functions (unchanged logic, but call after DOM ready)
-    async function loadAnnouncements() { /* ... */ }
-    async function loadArticles() { /* ... */ }
+    // Mobile menu
+    document.getElementById('mobileMenuBtn')?.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+      const icon = this.querySelector('i');
+      if (menu.classList.contains('hidden')) {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      } else {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      }
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+      const menu = document.getElementById('mobileMenu');
+      const btn = document.getElementById('mobileMenuBtn');
+      if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.classList.add('hidden');
+        const icon = btn.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
 
-    // On Load
+    // Scroll progress indicator
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('scrollProgress').style.width = scrolled + '%';
+    }, { passive: true });
+
+    // Intersection Observer for animations
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('page-load');
+        }
+      });
+    }, observerOptions);
+    document.querySelectorAll('section').forEach(section => observer.observe(section));
+
+    // Load announcements
+    async function loadAnnouncements() {
+      const container = document.getElementById('announcements-container');
+      try {
+        const res = await fetch('/content/index.json');
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        const paths = data.announcement || [];
+        const announcements = [];
+
+        for (const path of paths) {
+          const text = await fetch(`/content/${path}`).then(r => r.text());
+          const parts = text.split('---');
+          if (parts.length < 3) continue;
+          
+          const meta = parseYAML(parts[1]);
+          const body = parts.slice(2).join('---');
+          
+          const formattedDate = meta.date 
+            ? new Date(meta.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+            : '';
+          announcements.push({ 
+            title: meta.title || 'Untitled', 
+            date: formattedDate, 
+            body: body.replace(/[#*_\-[\]()`>]/g, '').substring(0, 150) + '…'
+          });
+        }
+
+        announcements.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        const html = announcements.slice(0, 3).map(a => `
+          <div class="pure-glass p-6 rounded-xl hover:scale-[1.02] transition-transform">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-bold text-primary">${a.title}</h3>
+              ${a.date ? `<span class="text-gray-400 text-sm">${a.date}</span>` : ''}
+            </div>
+            <p class="text-white">${a.body}</p>
+          </div>
+        `).join('');
+
+        container.innerHTML = html || '<p class="text-white text-center">No announcements.</p>';
+      } catch (e) {
+        console.error('Announcements error:', e);
+        container.innerHTML = '<p class="text-white text-center">Failed to load announcements.</p>';
+      }
+    }
+
+    // Load articles with STATIC FILE LINKS
+    async function loadArticles() {
+      const container = document.getElementById('articles-container');
+      try {
+        const res = await fetch('/content/index.json');
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        const cards = [];
+        
+        for (const fullPath of (data.articles || []).slice(0, 6)) {
+          const txt = await fetch(`/content/${fullPath}`).then(r => r.text());
+          const parts = txt.split('---');
+          if (parts.length < 3) continue;
+
+          const meta = parseYAML(parts[1]);
+          const excerpt = parts.slice(2).join('---').replace(/[#*_\-[\]()`>]/g, ' ')
+            .split(/\s+/)
+            .slice(0, 20)
+            .join(' ') + '…';
+          const tags = Array.isArray(meta.tags) ? meta.tags : (meta.tags ? [meta.tags] : []);
+          
+          // ✅ Generate slug for static file link
+          const slug = meta.slug || generateSlug(meta.title);
+          // ✅ Link to STATIC HTML file
+          const articleUrl = `/article-posts/${slug}.html`;
+
+          cards.push(`
+            <div class="article-card pure-glass rounded-xl overflow-hidden group">
+              <a href="${articleUrl}" class="block">
+                <div class="article-image-container">
+                  <img src="${resolveImageURL(meta.image)}"
+                       alt="${meta.title || 'Article'}"
+                       class="article-image"
+                       loading="lazy"
+                       onerror="this.src='https://via.placeholder.com/800x500/1e3a8a/ffffff?text=No+Image'">
+                </div>
+                <div class="article-content">
+                  ${tags.length > 0 ? `
+                    <div class="flex flex-wrap gap-2 mb-3">
+                      ${tags.slice(0, 3).map(tag => `
+                        <span class="px-3 py-1 bg-teal-500/20 text-teal-300 text-xs font-medium rounded-full">
+                          ${tag}
+                        </span>
+                      `).join('')}
+                    </div>
+                  ` : ''}
+                  <h3 class="article-title text-xl font-bold mb-3 group-hover:text-400 transition-colors">${meta.title || 'Untitled'}</h3>
+                  <p class="article-excerpt text-white text-opacity-90">${excerpt}</p>
+                  <span class="mt-auto text-teal-300 hover:text-teal-400 flex items-center gap-2 font-medium">
+                    Read More <i class="fas fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                  </span>
+                </div>
+              </a>
+            </div>
+          `);
+        }
+        container.innerHTML = cards.length ? cards.join('') : '<p class="col-span-full text-white text-center">No articles available.</p>';
+      } catch (err) {
+        console.error('Article loading error:', err);
+        container.innerHTML = '<p class="col-span-full text-red-400 text-center">Failed to load articles.</p>';
+      }
+    }
+
+    // On page load
     document.addEventListener('DOMContentLoaded', () => {
-      initFAQ();
+      document.querySelectorAll('.page-load').forEach((el, index) => {
+        el.style.animationDelay = `${index * 0.1}s`;
+      });
+
       setTimeout(() => {
         loadAnnouncements();
         loadArticles();
       }, 400);
+
+      // Ripple effect for buttons
+      document.querySelectorAll('.glow-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+          const ripple = document.createElement('span');
+          const rect = this.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          const x = e.clientX - rect.left - size / 2;
+          const y = e.clientY - rect.top - size / 2;
+          
+          ripple.style.cssText = `
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+            pointer-events: none;
+          `;
+          this.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 600);
+        });
+      });
+
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes ripple {
+          to { transform: scale(4); opacity: 0; }
+        }
+      `;
+      document.head.appendChild(style);
     });
   </script>
 </body>

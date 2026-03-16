@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>YCI Bangladesh</title>
   
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
   
-  <!-- Tailwind CSS CDN (Fixed: removed trailing spaces) -->
+  <!-- Tailwind CSS CDN - FIXED: removed trailing spaces -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Font Awesome (Fixed: removed trailing spaces) -->
+  <!-- Font Awesome - FIXED: removed trailing spaces -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Google Fonts (Fixed: removed trailing spaces) -->
+  <!-- Google Fonts - FIXED: removed trailing spaces & fixed font family syntax -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -73,6 +73,8 @@
       background: rgba(255, 255, 255, 0.07);
       border: 1px solid rgba(255, 255, 255, 0.15);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      /* iOS Safari support */
+      -webkit-backdrop-filter: blur(4px);
       backdrop-filter: blur(4px);
       color: white;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -87,6 +89,8 @@
 
     .nav-glass {
       background: rgba(255, 255, 255, 0.08);
+      /* iOS Safari support */
+      -webkit-backdrop-filter: blur(20px);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -208,11 +212,21 @@
     .faq-answer > div { padding: 0 1.25rem 1.25rem 1.25rem; }
     .rotate-180 { transform: rotate(180deg); }
     
-    /* Mobile optimizations */
+    /* Mobile optimizations - iOS friendly */
     @media (max-width: 767px) {
       .pure-glass, .nav-glass {
-        backdrop-filter: none;
         -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        background: rgba(255, 255, 255, 0.12);
+      }
+    }
+    
+    /* iOS fallback for backdrop-filter support */
+    @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+      .pure-glass, .nav-glass {
+        background: rgba(255, 255, 255, 0.15) !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
       }
     }
   </style>
@@ -242,7 +256,7 @@
         <a href="index.html" class="flex items-center page-load">
           <img src="content/images/IMG_5811.png" alt="YCI Logo"
                class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20"
-               onerror="this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>YCI</span>';">
+               onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>YCI</span>';">
         </a>
 
         <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass page-load delay-1" aria-label="Menu">
@@ -679,7 +693,7 @@
         container.innerHTML = html || '<p class="text-white text-center">No announcements.</p>';
       } catch (e) {
         console.error('Announcements error:', e);
-        container.innerHTML = '<p class="text-white text-center">Failed to load announcements.</p>';
+        container.innerHTML = '<p class="text-white text-center">📢 Announcements coming soon!</p>';
       }
     }
 
@@ -739,10 +753,10 @@
             </div>
           `);
         }
-        container.innerHTML = cards.length ? cards.join('') : '<p class="col-span-full text-white text-center">No articles available.</p>';
+        container.innerHTML = cards.length ? cards.join('') : '<p class="col-span-full text-white text-center">📰 Articles coming soon!</p>';
       } catch (err) {
         console.error('Article loading error:', err);
-        container.innerHTML = '<p class="col-span-full text-red-400 text-center">Failed to load articles.</p>';
+        container.innerHTML = '<p class="col-span-full text-white text-center">📰 Articles coming soon!</p>';
       }
     }
 
