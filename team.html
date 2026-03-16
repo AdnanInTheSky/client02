@@ -9,13 +9,13 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
     
-    <!-- Tailwind CSS CDN (FIXED: removed trailing spaces) -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Font Awesome (FIXED: removed trailing spaces) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Google Fonts (FIXED: removed trailing spaces) -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -31,16 +31,15 @@
         }
 
         body {
-          background-color: #111757; /* iOS fallback solid color */
+          background-color: #111757;
           background: linear-gradient(135deg, rgba(17, 23, 87, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
           min-height: 100vh;
-          min-height: calc(var(--vh, 1vh) * 100); /* iOS 100vh fix */
+          min-height: calc(var(--vh, 1vh) * 100);
           -webkit-text-size-adjust: 100%;
           color: white;
           overflow-x: hidden;
         }
     
-        /* Smooth scroll with iOS fallback */
         html {
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
@@ -49,7 +48,52 @@
             html { scroll-behavior: auto; }
         }
         
-        /* Glassmorphism with full iOS support & fallbacks */
+        /* === FIX: Defined missing nav-glass class === */
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            -webkit-transition: background 0.3s ease, backdrop-filter 0.3s ease;
+            transition: background 0.3s ease, backdrop-filter 0.3s ease;
+        }
+        
+        .navbar-scrolled {
+            background: rgba(255, 255, 255, 0.25) !important;
+            backdrop-filter: blur(25px) !important;
+            -webkit-backdrop-filter: blur(25px) !important;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* === FIX: Defined pure-glass utility === */
+        .pure-glass {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* === FIX: Defined page-load animation fallback === */
+        .page-load {
+            opacity: 0;
+            -webkit-animation: pageLoadFade 0.5s ease-out forwards;
+            animation: pageLoadFade 0.5s ease-out forwards;
+        }
+        .page-load.delay-1 { -webkit-animation-delay: 0.1s; animation-delay: 0.1s; }
+        .page-load.delay-2 { -webkit-animation-delay: 0.2s; animation-delay: 0.2s; }
+        .page-load.delay-3 { -webkit-animation-delay: 0.3s; animation-delay: 0.3s; }
+        .page-load.delay-4 { -webkit-animation-delay: 0.4s; animation-delay: 0.4s; }
+        .page-load.delay-5 { -webkit-animation-delay: 0.5s; animation-delay: 0.5s; }
+        
+        @-webkit-keyframes pageLoadFade {
+            from { opacity: 0; -webkit-transform: translateY(10px); transform: translateY(10px); }
+            to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+        }
+        @keyframes pageLoadFade {
+            from { opacity: 0; -webkit-transform: translateY(10px); transform: translateY(10px); }
+            to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+        }
+        
         .glass {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
@@ -77,84 +121,40 @@
             border: 1px solid rgba(255, 255, 255, 0.35);
         }
         
-        /* Hero gradient overlay */
         .hero-overlay {
             background: linear-gradient(135deg, rgba(26, 35, 126, 0.85), rgba(13, 71, 161, 0.7), rgba(0, 150, 136, 0.6));
         }
         
-        /* Animations with -webkit- prefixes for iOS */
+        /* Animations with -webkit- prefixes */
         @-webkit-keyframes fadeInUp {
-            from {
-                opacity: 0;
-                -webkit-transform: translateY(30px);
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                -webkit-transform: translateY(0);
-                transform: translateY(0);
-            }
+            from { opacity: 0; -webkit-transform: translateY(30px); transform: translateY(30px); }
+            to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
         }
-        
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                -webkit-transform: translateY(30px);
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                -webkit-transform: translateY(0);
-                transform: translateY(0);
-            }
+            from { opacity: 0; -webkit-transform: translateY(30px); transform: translateY(30px); }
+            to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
         }
         
-        @-webkit-keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        @-webkit-keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
         @-webkit-keyframes slideInRight {
-            from {
-                opacity: 0;
-                -webkit-transform: translateX(30px);
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                -webkit-transform: translateX(0);
-                transform: translateX(0);
-            }
+            from { opacity: 0; -webkit-transform: translateX(30px); transform: translateX(30px); }
+            to { opacity: 1; -webkit-transform: translateX(0); transform: translateX(0); }
         }
-        
         @keyframes slideInRight {
-            from {
-                opacity: 0;
-                -webkit-transform: translateX(30px);
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                -webkit-transform: translateX(0);
-                transform: translateX(0);
-            }
+            from { opacity: 0; -webkit-transform: translateX(30px); transform: translateX(30px); }
+            to { opacity: 1; -webkit-transform: translateX(0); transform: translateX(0); }
         }
         
         .animate-fadeInUp {
             -webkit-animation: fadeInUp 0.8s ease-out forwards;
             animation: fadeInUp 0.8s ease-out forwards;
         }
-        
         .animate-fadeIn {
             -webkit-animation: fadeIn 0.8s ease-out forwards;
             animation: fadeIn 0.8s ease-out forwards;
         }
-        
         .animate-slideInRight {
             -webkit-animation: slideInRight 0.8s ease-out forwards;
             animation: slideInRight 0.8s ease-out forwards;
@@ -166,15 +166,6 @@
         .delay-400 { -webkit-animation-delay: 0.4s; animation-delay: 0.4s; }
         .delay-500 { -webkit-animation-delay: 0.5s; animation-delay: 0.5s; }
         
-        /* Navbar scroll effect */
-        .navbar-scrolled {
-            background: rgba(255, 255, 255, 0.25) !important;
-            backdrop-filter: blur(25px) !important;
-            -webkit-backdrop-filter: blur(25px) !important;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Gradient text with full prefix support */
         .gradient-text {
             background: linear-gradient(135deg, #ffffff, #e0f7fa);
             -webkit-background-clip: text;
@@ -183,41 +174,15 @@
             color: transparent;
         }
         
-        /* Floating button pulse with prefixes */
         @-webkit-keyframes pulse-ring {
-            0% {
-                -webkit-transform: scale(0.95);
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-            }
-            70% {
-                -webkit-transform: scale(1);
-                transform: scale(1);
-                box-shadow: 0 0 0 12px rgba(255, 255, 255, 0);
-            }
-            100% {
-                -webkit-transform: scale(0.95);
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-            }
+            0% { -webkit-transform: scale(0.95); transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            70% { -webkit-transform: scale(1); transform: scale(1); box-shadow: 0 0 0 12px rgba(255, 255, 255, 0); }
+            100% { -webkit-transform: scale(0.95); transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
         }
-        
         @keyframes pulse-ring {
-            0% {
-                -webkit-transform: scale(0.95);
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-            }
-            70% {
-                -webkit-transform: scale(1);
-                transform: scale(1);
-                box-shadow: 0 0 0 12px rgba(255, 255, 255, 0);
-            }
-            100% {
-                -webkit-transform: scale(0.95);
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-            }
+            0% { -webkit-transform: scale(0.95); transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            70% { -webkit-transform: scale(1); transform: scale(1); box-shadow: 0 0 0 12px rgba(255, 255, 255, 0); }
+            100% { -webkit-transform: scale(0.95); transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
         }
         
         .floating-btn {
@@ -225,7 +190,6 @@
             animation: pulse-ring 2s infinite;
         }
         
-        /* Card image overlay effect */
         .card-image-wrapper {
             position: relative;
             overflow: hidden;
@@ -235,26 +199,20 @@
         .card-image-wrapper::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
             -webkit-transition: opacity 0.3s;
             transition: opacity 0.3s;
         }
         
-        .glass-card:hover .card-image-wrapper::after {
-            opacity: 0;
-        }
+        .glass-card:hover .card-image-wrapper::after { opacity: 0; }
         
         .card-image-wrapper img {
             -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             -o-object-fit: cover;
             object-fit: cover;
         }
@@ -264,7 +222,6 @@
             transform: scale(1.08);
         }
         
-        /* Search Box with iOS fixes */
         .search-box {
             border-radius: 50px;
             padding: 0.75rem 1.5rem 0.75rem 3rem;
@@ -288,9 +245,7 @@
             outline: none;
         }
         
-        .search-box::placeholder {
-            color: rgba(255, 255, 255, 0.8);
-        }
+        .search-box::placeholder { color: rgba(255, 255, 255, 0.8); }
         
         .search-icon {
             color: rgba(255, 255, 255, 0.8);
@@ -302,7 +257,6 @@
             transform: translateY(-50%);
         }
         
-        /* Filter Buttons */
         .filter-btn {
             border-radius: 50px;
             padding: 0.5rem 1.25rem;
@@ -323,13 +277,11 @@
             border-color: rgba(255, 255, 255, 0.9);
         }
         
-        /* Improved focus states for accessibility */
         a:focus, button:focus {
             outline: 2px solid rgba(255, 255, 255, 0.6);
             outline-offset: 2px;
         }
         
-        /* Stats section */
         .stats-card {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(25px);
@@ -338,17 +290,14 @@
             border-radius: 1.5rem;
         }
         
-        /* Logo styling */
         .nav-logo {
-            width: 45px;
-            height: 45px;
+            width: 45px; height: 45px;
             border-radius: 50%;
             -o-object-fit: cover;
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.3);
         }
         
-        /* Navbar brand container */
         .nav-brand {
             display: -webkit-box;
             display: -ms-flexbox;
@@ -359,40 +308,26 @@
             gap: 12px;
         }
         
-        /* Team card content styling */
-        .team-card-content {
-            color: white;
-        }
+        .team-card-content { color: white; }
+        .team-card-content h3 { color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
+        .team-card-content p { color: rgba(255, 255, 255, 0.9); }
         
-        .team-card-content h3 {
-            color: white;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        .team-card-content p {
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        /* Navbar link styling */
         .nav-link {
             color: rgba(255, 255, 255, 0.9);
             -webkit-transition: all 0.3s ease;
             transition: all 0.3s ease;
         }
-        
         .nav-link:hover {
             color: white;
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
         }
         
-        /* Contact button in navbar */
         .nav-contact-btn {
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
-        
         .nav-contact-btn:hover {
             background: rgba(255, 255, 255, 0.3);
             border-color: rgba(255, 255, 255, 0.5);
@@ -411,7 +346,6 @@
             transform: translateZ(0);
         }
 
-        /* Utility classes for flexbox fallbacks */
         .d-flex { display: -webkit-box; display: -ms-flexbox; display: flex; }
         .flex-wrap { -ms-flex-wrap: wrap; flex-wrap: wrap; }
         .justify-center { -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
@@ -419,7 +353,6 @@
         .flex-grow { -webkit-box-flex: 1; -ms-flex-positive: 1; flex-grow: 1; }
         .flex-col { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
         
-        /* Loading spinner */
         .animate-spin {
             -webkit-animation: spin 1s linear infinite;
             animation: spin 1s linear infinite;
@@ -489,29 +422,23 @@
 
     <!-- Hero Section -->
     <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden mt-16">
-        <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="content/images/tester.jpg" alt="Hero background" class="w-full h-full object-cover" onerror="this.style.display='none'">
             <div class="absolute inset-0 hero-overlay"></div>
         </div>
         
-        <!-- Content -->
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 opacity-0 animate-fadeInUp">
-                Meet Our Team
-            </h1>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 opacity-0 animate-fadeInUp">Meet Our Team</h1>
             <p class="text-lg sm:text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-0 animate-fadeInUp delay-200 font-light">
                 Changemakers working together for sustainable development
             </p>
 
-            <!-- Search -->
             <div class="search-container max-w-2xl mx-auto mb-4 relative">
                 <i class="fas fa-search absolute top-1/2 left-4 transform -translate-y-1/2 search-icon"></i>
                 <input type="text" class="w-full search-box py-3 px-12" 
                        id="team-search-input" placeholder="Search team members by name, role, or expertise..." autocomplete="off">
             </div>
 
-            <!-- Filters -->
             <div class="d-flex flex-wrap justify-center mb-4" id="team-tags-container">
                 <button class="filter-btn active" onclick="setFilter('all', event)">All Team</button>
             </div>
@@ -544,17 +471,14 @@
     <main class="py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div id="team-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <!-- Loading state -->
                 <div class="col-span-full flex justify-center py-12">
                     <div class="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
                 </div>
             </div>
 
-            <!-- Load More Button -->
             <div class="text-center mt-12" id="team-load-more-container" style="display: none;">
                 <button id="team-load-more-btn" class="px-8 py-4 glass text-white rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300 border border-white/30">
-                    Load More Team Members
-                    <i class="fas fa-arrow-down ml-2"></i>
+                    Load More Team Members <i class="fas fa-arrow-down ml-2"></i>
                 </button>
             </div>
         </div>
@@ -564,29 +488,17 @@
     <footer class="bg-gray-900 text-gray-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-                <!-- Brand -->
                 <div>
                     <h3 class="text-white font-bold mb-2">YCI Bangladesh</h3>
-                    <p class="text-white mb-2">
-                        To build a climate resilient Bangladesh where youth leads toward sustainable Change
-                    </p>
+                    <p class="text-white mb-2">To build a climate resilient Bangladesh where youth leads toward sustainable Change</p>
                     <div class="flex space-x-3">
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
 
-                <!-- Quick Links -->
                 <div>
                     <h4 class="font-bold text-white mb-4">Quick Links</h4>
                     <ul class="space-y-2.5 text-sm">
@@ -598,26 +510,15 @@
                     </ul>
                 </div>
 
-                <!-- Contact -->
                 <div>
                     <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
                     <ul class="space-y-3 text-sm">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
-                            <span class="text-white mb-2">Dhaka, Bangladesh</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
-                            <span class="text-white mb-2">ycibangladesh@gmail.com</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
-                            <span class="text-white mb-2">01919403296 / 01980632583</span>
-                        </li>
+                        <li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i><span class="text-white mb-2">Dhaka, Bangladesh</span></li>
+                        <li class="flex items-start"><i class="fas fa-envelope mt-1 mr-3 text-accent"></i><span class="text-white mb-2">ycibangladesh@gmail.com</span></li>
+                        <li class="flex items-start"><i class="fas fa-phone mt-1 mr-3 text-accent"></i><span class="text-white mb-2">01919403296 / 01980632583</span></li>
                     </ul>
                 </div>
 
-                <!-- Resources -->
                 <div>
                     <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
                     <ul class="space-y-2.5 text-sm">
@@ -629,7 +530,6 @@
                 </div>
             </div>
 
-            <!-- Copyright -->
             <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
                 <p>&copy; 2025 YCI. All rights reserved.</p>
                 <div class="mt-3 space-x-4">
@@ -644,20 +544,50 @@
     </footer>
 
     <!-- Floating Action Buttons -->
-    <a href="contact.html" 
-       class="floating-btn fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
-       aria-label="Join Our Mission">
-        Join Us
-    </a>
+    <a href="contact.html" class="floating-btn fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30" aria-label="Join Our Mission">Join Us</a>
+    <a href="articles.html" class="floating-btn fixed bottom-6 left-6 md:bottom-8 md:left-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30" aria-label="View Our Events">Our Events</a>
 
-    <a href="articles.html" 
-       class="floating-btn fixed bottom-6 left-6 md:bottom-8 md:left-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
-       aria-label="View Our Events">
-        Our Events
-    </a>
-
-    <!-- iOS Compatibility & Feature Detection Script -->
+    <!-- === iOS SAFARI COMPATIBILITY SCRIPTS (FIXED) === -->
     <script>
+        // === FIX #1: Safe CSS.supports() wrapper ===
+        function supportsCSS(feature, value) {
+            try {
+                if (typeof CSS !== 'undefined' && CSS.supports) {
+                    return CSS.supports(feature, value);
+                }
+                // Fallback: check style property
+                const testEl = document.createElement('div');
+                const prop = feature.replace(/-([a-z])/g, (m, p1) => p1.toUpperCase());
+                return prop in testEl.style;
+            } catch (e) {
+                console.warn('CSS.supports check failed:', e);
+                return false;
+            }
+        }
+
+        // === FIX #2: Safe storage wrapper for Safari Private Mode ===
+        function safeStorageSet(key, value) {
+            try {
+                sessionStorage.setItem(key, value);
+                return true;
+            } catch (e) {
+                if (e.name === 'SecurityError' || e.name === 'QuotaExceededError') {
+                    console.warn('Storage unavailable, using URL fallback');
+                    return false;
+                }
+                throw e;
+            }
+        }
+
+        function safeStorageGet(key) {
+            try {
+                return sessionStorage.getItem(key);
+            } catch (e) {
+                console.warn('Storage get failed:', e);
+                return null;
+            }
+        }
+
         // iOS viewport height fix
         (function() {
             const setVh = () => {
@@ -668,12 +598,12 @@
             window.addEventListener('orientationchange', setVh);
         })();
 
-        // Backdrop-filter fallback detection
+        // Backdrop-filter fallback with safe detection
         (function() {
-            const supportsBackdrop = CSS.supports('backdrop-filter', 'blur(10px)') || 
-                                     CSS.supports('-webkit-backdrop-filter', 'blur(10px)');
-            if (!supportsBackdrop) {
-                document.querySelectorAll('.glass, .glass-card, .search-box, #mobileMenu, .navbar-scrolled').forEach(el => {
+            const hasBackdrop = supportsCSS('backdrop-filter', 'blur(10px)') || 
+                               supportsCSS('-webkit-backdrop-filter', 'blur(10px)');
+            if (!hasBackdrop) {
+                document.querySelectorAll('.glass, .glass-card, .search-box, #mobileMenu, .navbar-scrolled, .nav-glass').forEach(el => {
                     el.style.background = 'rgba(26, 35, 126, 0.92)';
                     el.style.border = '1px solid rgba(255, 255, 255, 0.3)';
                 });
@@ -703,7 +633,7 @@
             });
         });
 
-        // --- YAML Parser ---
+        // === YAML Parser ===
         function parseYAML(yamlStr) {
             const result = {};
             yamlStr.trim().split('\n').forEach(line => {
@@ -726,14 +656,13 @@
                 .join(' ') + (text.split(/\s+/).length > limit ? '…' : '');
         }
 
-        // --- Team State ---
+        // === Team State ===
         let allTeamMembers = [];
         let teamCurrentPage = 1;
         const teamItemsPerPage = 6;
         let teamCurrentFilter = 'all';
         let teamCurrentSearch = '';
 
-        // Load & Render
         async function loadAllTeamMembers() {
             try {
                 const res = await fetch('/content/index.json');
@@ -757,11 +686,7 @@
                         const body = parts.slice(2).join('---');
                         const meta = parseYAML(frontmatter);
                         const excerpt = cleanExcerpt(body, 22);
-                        allTeamMembers.push({ 
-                            id: teamFiles[i], 
-                            meta, 
-                            excerpt 
-                        });
+                        allTeamMembers.push({ id: teamFiles[i], meta, excerpt });
                         
                         if (meta.tags) {
                             if (Array.isArray(meta.tags)) {
@@ -773,7 +698,8 @@
                     }
                 }
 
-                document.getElementById('team-count').textContent = allTeamMembers.length;
+                const countEl = document.getElementById('team-count');
+                if (countEl) countEl.textContent = allTeamMembers.length;
                 renderTeamTags(Array.from(allTags));
                 applyFilters();
             } catch (error) {
@@ -815,9 +741,7 @@
             if (teamCurrentFilter !== 'all') {
                 filtered = filtered.filter(m => {
                     if (!m.meta.tags) return false;
-                    if (Array.isArray(m.meta.tags)) {
-                        return m.meta.tags.includes(teamCurrentFilter);
-                    }
+                    if (Array.isArray(m.meta.tags)) return m.meta.tags.includes(teamCurrentFilter);
                     return m.meta.tags === teamCurrentFilter;
                 });
             }
@@ -844,7 +768,7 @@
             const end = teamCurrentPage * teamItemsPerPage;
             const page = members.slice(0, end);
 
-            const html = page.map((m, index) => {
+            const html = page.map((m) => {
                 const imageUrl = m.meta.image && m.meta.image.trim() ? m.meta.image : 'https://via.placeholder.com/400x400/ffffff/1a237e?text=Team+Member';
                 
                 return `
@@ -861,8 +785,7 @@
                                 <a href="team_detail.html" 
                                    onclick="openDetail('${m.id}');return false;"
                                    class="inline-flex items-center px-6 py-3 glass text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 self-start border border-white/30">
-                                    View Profile
-                                    <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                                    View Profile <i class="fas fa-arrow-right ml-2 text-sm"></i>
                                 </a>
                             </div>
                         </div>
@@ -911,9 +834,21 @@
                 </div>`;
         }
 
+        // === FIX: openDetail with safe storage + URL fallback ===
         function openDetail(id) {
-            sessionStorage.setItem('selectedFile', id);
-            window.location.href = 'team_detail.html';
+            const stored = safeStorageSet('selectedFile', id);
+            if (stored) {
+                window.location.href = 'team_detail.html';
+            } else {
+                // Fallback: pass file ID via URL query parameter
+                window.location.href = `team_detail.html?file=${encodeURIComponent(id)}`;
+            }
+        }
+
+        // Read from URL fallback on team_detail.html
+        function getSelectedFileFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('file');
         }
 
         function debounce(func, wait) {
@@ -924,44 +859,31 @@
             };
         }
 
-        // Initialize when DOM is ready
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            // Search listener
             const searchInput = document.getElementById('team-search-input');
             if (searchInput) {
-                searchInput.addEventListener('input', debounce(e => {
-                    setSearch(e.target.value);
-                }, 300));
+                searchInput.addEventListener('input', debounce(e => setSearch(e.target.value), 300));
             }
 
-            // Load more button
             const loadMoreBtn = document.getElementById('team-load-more-btn');
             if (loadMoreBtn) {
                 loadMoreBtn.addEventListener('click', loadMore);
             }
 
-            // Mobile menu toggle
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const mobileMenu = document.getElementById('mobileMenu');
             if (mobileMenuBtn && mobileMenu) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    mobileMenu.classList.toggle('hidden');
-                });
+                mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
             }
 
-            // Navbar scroll effect
             window.addEventListener('scroll', () => {
                 const nav = document.getElementById('mainNav');
                 if (nav) {
-                    if (window.scrollY > 50) {
-                        nav.classList.add('navbar-scrolled');
-                    } else {
-                        nav.classList.remove('navbar-scrolled');
-                    }
+                    nav.classList.toggle('navbar-scrolled', window.scrollY > 50);
                 }
             });
 
-            // Load team members
             loadAllTeamMembers();
         });
     </script>

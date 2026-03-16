@@ -2,19 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>YCI Bangladesh</title>
   
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
-  
-  <!-- Tailwind CSS CDN (Fixed: removed trailing spaces) -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Font Awesome (Fixed: removed trailing spaces) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Google Fonts (Fixed: removed trailing spaces) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,19 +15,30 @@
   <style>
     * {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      /* Fix iOS tap highlight */
+      -webkit-tap-highlight-color: transparent;
     }
-    @media (max-width: 767px) {
-  .pure-glass, .nav-glass {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-}
-@media (max-width: 767px) {
-  .pure-glass, .nav-glass {
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
-  }
-}
+
+    /* =============================================
+       iOS FIXES SUMMARY:
+       1. min-height: 100dvh → min-height: -webkit-fill-available for Safari
+       2. backdrop-filter: always include -webkit-backdrop-filter FIRST
+       3. background-clip: text → always include -webkit-background-clip
+       4. scroll-behavior: smooth — fine but iOS needs passive listeners
+       5. position: fixed nav → safe-area-inset padding for notched iPhones
+       6. Removed CSS comment syntax inside <style> (<!-- --> breaks iOS parsing)
+       7. transform: translate3d instead of translateY for GPU compositing on iOS
+       8. animation: use will-change sparingly, avoid on too many elements
+       9. Fixed double contradictory @media rules for backdrop-filter
+       10. Added -webkit-overflow-scrolling: touch for smooth scroll on older iOS
+    ============================================= */
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      /* Prevent content shift on iOS when address bar shows/hides */
+      height: -webkit-fill-available;
+    }
 
     body {
       background: linear-gradient(135deg, 
@@ -45,10 +49,15 @@
         #0F1B2D 100%
       );
       background-size: 100% 300%;
+      /* Use webkit prefix for animation on older iOS */
+      -webkit-animation: gradientBG 20s ease infinite;
       animation: gradientBG 20s ease infinite;
       overflow-x: hidden;
       color: #ffffff;
       position: relative;
+      /* iOS safe fix: use min-height with fallbacks */
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
       min-height: 100dvh;
     }
 
@@ -62,31 +71,29 @@
         radial-gradient(circle at 80% 40%, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
       background-size: 150px 150px, 200px 200px, 180px 180px;
       z-index: -1;
+      -webkit-animation: floatParticles 60s linear infinite;
       animation: floatParticles 60s linear infinite;
       pointer-events: none;
     }
-        @supports (-webkit-backdrop-filter: none) {
-    .pure-glass,
-    .nav-glass {
-        -webkit-backdrop-filter: blur(20px);
-    }
-    }
-    summary::-webkit-details-marker {
-  display: none;
-}
 
-.page-load {
-  opacity: 0;
-  transform: translate3d(0,30px,0);
-  animation: fadeInUp 0.8s cubic-bezier(0.4,0,0.2,1) forwards;
-}
-
+    @-webkit-keyframes gradientBG {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
     @keyframes gradientBG {
       0% { background-position: 0% 0%; }
       50% { background-position: 100% 100%; }
       100% { background-position: 0% 0%; }
     }
 
+    @-webkit-keyframes floatParticles {
+      0% { -webkit-transform: translateY(0px) translateX(0px); transform: translateY(0px) translateX(0px); }
+      25% { -webkit-transform: translateY(-20px) translateX(10px); transform: translateY(-20px) translateX(10px); }
+      50% { -webkit-transform: translateY(0px) translateX(20px); transform: translateY(0px) translateX(20px); }
+      75% { -webkit-transform: translateY(20px) translateX(10px); transform: translateY(20px) translateX(10px); }
+      100% { -webkit-transform: translateY(0px) translateX(0px); transform: translateY(0px) translateX(0px); }
+    }
     @keyframes floatParticles {
       0% { transform: translateY(0px) translateX(0px); }
       25% { transform: translateY(-20px) translateX(10px); }
@@ -95,42 +102,70 @@
       100% { transform: translateY(0px) translateX(0px); }
     }
 
+    /* iOS CRITICAL FIX: -webkit-backdrop-filter must come BEFORE backdrop-filter */
     .pure-glass {
-  -webkit-backdrop-filter: blur(4px);
-
       background: rgba(255, 255, 255, 0.07);
       border: 1px solid rgba(255, 255, 255, 0.15);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
       color: white;
+      -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .pure-glass:hover {
       background: rgba(255, 255, 255, 0.12);
       border-color: rgba(255, 255, 255, 0.25);
+      -webkit-transform: translateY(-4px);
       transform: translateY(-4px);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
     .nav-glass {
       background: rgba(255, 255, 255, 0.08);
+      -webkit-backdrop-filter: blur(20px);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        -webkit-backdrop-filter: blur(20px);
-
     }
 
+    /* iOS CRITICAL FIX: -webkit-background-clip and -webkit-text-fill-color for gradient text */
     h1, h2, h3, h4, h5, h6 { 
       color: transparent;
       background: linear-gradient(135deg, #4FD1C5 0%, #2C5282 50%, #1A365D 100%);
       -webkit-background-clip: text;
       background-clip: text;
+      -webkit-text-fill-color: transparent;
       background-size: 200% 200%;
+      -webkit-animation: titleShimmer 3s ease-in-out infinite alternate;
       animation: titleShimmer 3s ease-in-out infinite alternate;
     }
 
+    /* Override for elements that need solid white text */
+    .text-white-override {
+      -webkit-text-fill-color: white !important;
+      color: white !important;
+      background: none !important;
+      -webkit-background-clip: unset !important;
+      background-clip: unset !important;
+    }
+
+    /* Hero h2 should be white */
+    .hero-title {
+      color: white !important;
+      -webkit-text-fill-color: white !important;
+      background: none !important;
+      -webkit-background-clip: unset !important;
+      background-clip: unset !important;
+      -webkit-animation: none !important;
+      animation: none !important;
+    }
+
+    @-webkit-keyframes titleShimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
     @keyframes titleShimmer {
       0% { background-position: 0% 50%; }
       100% { background-position: 100% 50%; }
@@ -139,25 +174,37 @@
     .stat-number { color: white; text-shadow: 0 0 20px rgba(79, 209, 197, 0.5); }
     .stat-title { color: #4FD1C5; font-weight: 600; }
 
-    <!-- .page-load {
+    .page-load {
       opacity: 0;
-      transform: translateY(30px);
+      /* iOS FIX: use translate3d to trigger GPU compositing */
+      -webkit-transform: translate3d(0, 30px, 0);
+      transform: translate3d(0, 30px, 0);
+      -webkit-animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
       animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    } -->
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
-
-    @keyframes fadeInUp {
-      to { opacity: 1; transform: translateY(0); }
     }
 
-    html { scroll-behavior: smooth; }
+    .delay-1 { -webkit-animation-delay: 0.1s; animation-delay: 0.1s; }
+    .delay-2 { -webkit-animation-delay: 0.2s; animation-delay: 0.2s; }
+    .delay-3 { -webkit-animation-delay: 0.3s; animation-delay: 0.3s; }
+    .delay-4 { -webkit-animation-delay: 0.4s; animation-delay: 0.4s; }
+    .delay-5 { -webkit-animation-delay: 0.5s; animation-delay: 0.5s; }
+    .delay-6 { -webkit-animation-delay: 0.6s; animation-delay: 0.6s; }
+
+    @-webkit-keyframes fadeInUp {
+      to { opacity: 1; -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
+    }
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
 
     .glow-button {
       position: relative;
       overflow: hidden;
       z-index: 1;
+      /* iOS FIX: ensure touch events work on buttons */
+      cursor: pointer;
+      -webkit-user-select: none;
+      user-select: none;
     }
     .glow-button::before {
       content: '';
@@ -165,36 +212,58 @@
       top: 0; left: -100%;
       width: 100%; height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      -webkit-transition: left 0.7s ease;
       transition: left 0.7s ease;
       z-index: -1;
     }
     .glow-button:hover::before { left: 100%; }
 
-    .article-image { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
-    .article-card:hover .article-image { transform: scale(1.05); }
+    .article-image {
+      -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .article-card:hover .article-image {
+      -webkit-transform: scale(1.05);
+      transform: scale(1.05);
+    }
 
     .scroll-progress {
       position: fixed; top: 0; left: 0;
       width: 0%; height: 3px;
       background: linear-gradient(90deg, #4FD1C5, #2C5282);
       z-index: 100;
+      -webkit-transition: width 0.3s ease;
       transition: width 0.3s ease;
     }
 
-    .floating-element { animation: floatElement 6s ease-in-out infinite; }
+    .floating-element {
+      -webkit-animation: floatElement 6s ease-in-out infinite;
+      animation: floatElement 6s ease-in-out infinite;
+    }
+    @-webkit-keyframes floatElement {
+      0%, 100% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
+      50% { -webkit-transform: translate3d(0, -15px, 0); transform: translate3d(0, -15px, 0); }
+    }
     @keyframes floatElement {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(0, -15px, 0); }
     }
     
     .article-title {
       color: #4FD1C5 !important;
+      -webkit-text-fill-color: #4FD1C5 !important;
+      background: none !important;
+      -webkit-background-clip: unset !important;
+      background-clip: unset !important;
+      -webkit-animation: none !important;
+      animation: none !important;
       font-weight: 700;
     }
-    .article-title:hover { color: #4FD1C5 !important; }
     
     .article-card {
+      display: -webkit-flex;
       display: flex;
+      -webkit-flex-direction: column;
       flex-direction: column;
       height: 100%;
     }
@@ -211,39 +280,111 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      -webkit-transition: -webkit-transform 0.6s ease;
       transition: transform 0.6s ease;
     }
     
     .article-card:hover .article-image-container img {
+      -webkit-transform: scale(1.08);
       transform: scale(1.08);
     }
     
     .article-content {
+      -webkit-flex: 1;
       flex: 1;
+      display: -webkit-flex;
       display: flex;
+      -webkit-flex-direction: column;
       flex-direction: column;
       padding: 1.5rem;
     }
     
     .article-excerpt {
+      -webkit-flex: 1;
       flex: 1;
       margin-bottom: 1rem;
     }
 
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-    }
-    .faq-answer > div { padding: 0 1.25rem 1.25rem 1.25rem; }
-    .rotate-180 { transform: rotate(180deg); }
-    
-    /* Mobile optimizations */
-    @media (max-width: 767px) {
-      .pure-glass, .nav-glass {
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
+    /* iOS FIX: details/summary native support — works on iOS 6+ but ensure no marker */
+    summary::-webkit-details-marker { display: none; }
+    summary { list-style: none; }
+
+    /* iOS FIX: Nav safe area for notched iPhones (iPhone X and later) */
+    @supports (padding-top: env(safe-area-inset-top)) {
+      #mainNav {
+        padding-top: env(safe-area-inset-top);
       }
+      main {
+        padding-top: calc(env(safe-area-inset-top) + 80px);
+      }
+    }
+
+    /* iOS FIX: Ensure the fixed FABs respect bottom safe area */
+    .fab-right {
+      bottom: max(1.5rem, env(safe-area-inset-bottom));
+    }
+    .fab-left {
+      bottom: max(1.5rem, env(safe-area-inset-bottom));
+    }
+    @supports (bottom: env(safe-area-inset-bottom)) {
+      .fab-right {
+        bottom: calc(1.5rem + env(safe-area-inset-bottom));
+      }
+      .fab-left {
+        bottom: calc(1.5rem + env(safe-area-inset-bottom));
+      }
+    }
+
+    /* iOS FIX: min-height on hero using safe fallbacks */
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      min-height: 100dvh;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* iOS FIX: object-fit on img requires explicit width/height on parent */
+    .hero-bg-img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.6;
+      /* iOS FIX: Use translate3d to fix flickering on position:absolute images */
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+
+    /* Ripple animation */
+    @-webkit-keyframes ripple {
+      to { -webkit-transform: scale(4); transform: scale(4); opacity: 0; }
+    }
+    @keyframes ripple {
+      to { transform: scale(4); opacity: 0; }
+    }
+
+    /* iOS FIX: Prevent font boosting on mobile */
+    p, span, a, li, td {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    /* iOS FIX: Inputs should not auto-zoom (font-size >= 16px prevents iOS zoom) */
+    input, textarea, select {
+      font-size: 16px;
+    }
+
+    /* iOS FIX: Remove default iOS button styling */
+    button, [type="button"], [type="submit"] {
+      -webkit-appearance: none;
+      appearance: none;
     }
   </style>
   
@@ -272,13 +413,12 @@
         <a href="index.html" class="flex items-center page-load">
           <img src="content/images/IMG_5811.png" alt="YCI Logo"
                class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20"
-               onerror="this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>YCI</span>';">
+               onerror="this.parentElement.innerHTML='<span style=\'color:white;font-weight:bold;font-size:18px\'>YCI</span>';">
         </a>
 
-        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass page-load delay-1" aria-label="Menu">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
+        <!-- iOS FIX: Use type="button" to prevent form submission on iOS -->
+        <button type="button" id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass page-load delay-1" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+          <i class="fas fa-bars w-6 h-6 text-white"></i>
         </button>
         <div class="hidden md:flex space-x-2">
           <a href="index.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-1">Home</a>
@@ -290,32 +430,36 @@
           </a>
         </div>
       </div>
-      <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 space-y-2">
-        <a href="index.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Home</a>
-        <a href="services.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Blogs</a>
-        <a href="articles.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Events</a>
-        <a href="team.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Team</a>
-        <a href="contact.html" class="mt-2 block px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full text-center glow-button">Contact</a>
+      <!-- iOS FIX: role="navigation" for accessibility, aria-hidden toggled via JS -->
+      <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 space-y-2" role="menu">
+        <a href="index.html" class="block px-4 py-2 text-white hover:text-teal-300 transition" role="menuitem">Home</a>
+        <a href="services.html" class="block px-4 py-2 text-white hover:text-teal-300 transition" role="menuitem">Blogs</a>
+        <a href="articles.html" class="block px-4 py-2 text-white hover:text-teal-300 transition" role="menuitem">Events</a>
+        <a href="team.html" class="block px-4 py-2 text-white hover:text-teal-300 transition" role="menuitem">Team</a>
+        <a href="contact.html" class="mt-2 block px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full text-center glow-button" role="menuitem">Contact</a>
       </div>
     </div>
   </nav>
 
   <main class="pt-20">
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- iOS FIX: Use class hero-section instead of inline min-h-screen for dvh support -->
+    <section class="hero-section">
       <div class="absolute inset-0 z-0">
-        <img src="content/images/WhatsApp Image 2025-12-17 at 00.38.32.jpeg" alt="Hero background" 
-             class="w-full h-full object-cover opacity-60"
+        <img src="content/images/WhatsApp Image 2025-12-17 at 00.38.32.jpeg" 
+             alt="Hero background" 
+             class="hero-bg-img"
              onerror="this.style.display='none'">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40"></div>
       </div>
       
       <div class="absolute top-1/4 left-10 w-4 h-4 bg-teal-400 rounded-full opacity-20 floating-element"></div>
-      <div class="absolute top-1/3 right-20 w-6 h-6 bg-primary rounded-full opacity-15 floating-element" style="animation-delay: -2s;"></div>
-      <div class="absolute bottom-1/4 left-1/4 w-8 h-8 bg-secondary rounded-full opacity-10 floating-element" style="animation-delay: -4s;"></div>
+      <div class="absolute top-1/3 right-20 w-6 h-6 bg-primary rounded-full opacity-15 floating-element" style="-webkit-animation-delay: -2s; animation-delay: -2s;"></div>
+      <div class="absolute bottom-1/4 left-1/4 w-8 h-8 bg-secondary rounded-full opacity-10 floating-element" style="-webkit-animation-delay: -4s; animation-delay: -4s;"></div>
       
       <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-        <h2 class="text-white text-3xl sm:text-4xl md:text-5xl font-bold mb-6 page-load px-2">
+        <!-- iOS FIX: hero title uses hero-title class to override gradient text with solid white -->
+        <h2 class="hero-title text-3xl sm:text-4xl md:text-5xl font-bold mb-6 page-load px-2">
           TO BUILD A CLIMATE RESILIENT BANGLADESH WHERE YOUTH LEADS TOWARD
         </h2>
         <div class="flex flex-col sm:flex-row gap-4 justify-center px-4">
@@ -328,7 +472,7 @@
         </div>
       </div>
       
-      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
         <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
           <div class="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
         </div>
@@ -393,14 +537,16 @@
     <!-- FAQ Section -->
     <section class="py-16 page-load delay-4">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-white text-3xl md:text-4xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+        <!-- iOS FIX: h2 in FAQ needs text-white-override or use a span -->
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8" style="color: white; -webkit-text-fill-color: white; background: none; -webkit-background-clip: unset; background-clip: unset; animation: none; -webkit-animation: none;">Frequently Asked Questions</h2>
         
         <div class="space-y-4">
           <div class="pure-glass rounded-xl overflow-hidden">
+            <!-- iOS FIX: details/summary works natively on iOS Safari -->
             <details class="group" open>
-              <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none">
+              <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer">
                 <span>What is YCI Bangladesh?</span>
-                <i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i>
+                <i class="fas fa-chevron-down transition-transform duration-300 group-open:rotate-180 flex-shrink-0 ml-2"></i>
               </summary>
               <div class="p-5 pt-0 text-white border-t border-white/10">
                 YCI Bangladesh is a youth-led initiative working to strengthen climate resilience, environmental awareness, and sustainable development across Bangladesh through education, advocacy, and community-based action.
@@ -410,9 +556,9 @@
 
           <div class="pure-glass rounded-xl overflow-hidden">
             <details class="group">
-              <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none">
+              <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer">
                 <span>How can I volunteer with YCI?</span>
-                <i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i>
+                <i class="fas fa-chevron-down transition-transform duration-300 group-open:rotate-180 flex-shrink-0 ml-2"></i>
               </summary>
               <div class="p-5 pt-0 text-white border-t border-white/10">
                 Join our volunteer network by filling out the form on our Contact page. We welcome students, professionals, and community leaders passionate about climate action.
@@ -422,9 +568,9 @@
 
           <div class="pure-glass rounded-xl overflow-hidden">
             <details class="group">
-              <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none">
+              <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer">
                 <span>Do you work only in Dhaka?</span>
-                <i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i>
+                <i class="fas fa-chevron-down transition-transform duration-300 group-open:rotate-180 flex-shrink-0 ml-2"></i>
               </summary>
               <div class="p-5 pt-0 text-white border-t border-white/10">
                 No—we operate nationwide with active chapters in Chittagong, Sylhet, Khulna, and Rajshahi, focusing on locally relevant climate challenges.
@@ -435,11 +581,11 @@
       </div>
     </section>
 
-    <!-- Articles (Events) - FIXED LINKS -->
+    <!-- Articles (Events) -->
     <section class="py-16 page-load delay-5">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-          <h2 class="text-white text-4xl md:text-5xl font-bold mb-4">Our Events</h2>
+          <h2 class="text-4xl md:text-5xl font-bold mb-4" style="color: white; -webkit-text-fill-color: white; background: none; -webkit-background-clip: unset; background-clip: unset; animation: none;">Our Events</h2>
           <p class="text-white max-w-2xl mx-auto">Bringing change</p>
         </div>
         <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -457,7 +603,7 @@
     <section class="py-16 page-load delay-6">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="pure-glass rounded-3xl p-12 text-center text-white group hover:scale-[1.02] transition-all duration-500">
-          <h2 class="text-white text-4xl md:text-5xl font-bold mb-4">Meet Our entire Team</h2>
+          <h2 class="text-4xl md:text-5xl font-bold mb-4" style="color: white; -webkit-text-fill-color: white; background: none; -webkit-background-clip: unset; background-clip: unset; animation: none;">Meet Our entire Team</h2>
           <p class="text-xl mb-8">Bringing change</p>
           <a href="team.html" class="px-8 py-4 bg-white text-primary rounded-full font-bold text-lg hover:bg-opacity-90 hover:scale-105 transition glow-button inline-block">
             View Full Team
@@ -467,15 +613,14 @@
     </section>
   </main>
 
-  <!-- Footer - Fixed Links -->
+  <!-- Footer -->
   <footer class="bg-gray-900 text-gray-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-        <!-- Brand -->
         <div>
-          <h3 class="text-white font-bold mb-2">YCI Bangladesh</h3>
+          <h3 class="text-white font-bold mb-2" style="-webkit-text-fill-color:white;background:none;">YCI Bangladesh</h3>
           <p class="text-white mb-2">
-             To build a climate resilient Bangladesh where youth leads toward sustainable Change
+            To build a climate resilient Bangladesh where youth leads toward sustainable Change
           </p>
           <div class="flex space-x-3">
             <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Twitter">
@@ -493,9 +638,8 @@
           </div>
         </div>
 
-        <!-- Quick Links -->
         <div>
-          <h4 class="font-bold text-white mb-4">Quick Links</h4>
+          <h4 class="font-bold text-white mb-4" style="-webkit-text-fill-color:white;background:none;">Quick Links</h4>
           <ul class="space-y-2.5 text-sm">
             <li><a href="services.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
             <li><a href="articles.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
@@ -505,9 +649,8 @@
           </ul>
         </div>
 
-        <!-- Contact -->
         <div>
-          <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
+          <h4 class="text-white font-semibold text-lg mb-4" style="-webkit-text-fill-color:white;background:none;">Contact</h4>
           <ul class="space-y-3 text-sm">
             <li class="flex items-start">
               <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
@@ -524,9 +667,8 @@
           </ul>
         </div>
 
-        <!-- Resources -->
         <div>
-          <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
+          <h4 class="text-white font-semibold text-lg mb-4" style="-webkit-text-fill-color:white;background:none;">Resources</h4>
           <ul class="space-y-2.5 text-sm">
             <li><a href="#" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Annual Reports</a></li>
             <li><a href="#" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Research Papers</a></li>
@@ -536,7 +678,6 @@
         </div>
       </div>
 
-      <!-- Copyright -->
       <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
         <p>&copy; 2025 YCI Bangladesh. All rights reserved.</p>
         <div class="mt-3 space-x-4">
@@ -550,276 +691,222 @@
     </div>
   </footer>
 
-  <!-- Floating Action Buttons -->
+  <!-- Floating Action Buttons — use fab-right / fab-left classes for safe-area -->
   <a href="contact.html" 
-     class="fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
+     class="fab-right fixed right-6 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
      aria-label="Join Our Mission">
     <i class="fas fa-handshake mr-2"></i>
     <span class="hidden sm:inline">Join Us</span>
   </a>
   
   <a href="team.html" 
-     class="fixed bottom-6 left-6 md:bottom-8 md:left-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
+     class="fab-left fixed left-6 md:left-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
      aria-label="View Our Team">
     <i class="fas fa-users mr-2"></i>
     <span class="hidden sm:inline">Our Team</span>
   </a>
 
-  <!-- Scripts -->
   <script>
-    // ===== Configuration =====
-    const SITE_URL = window.location.origin;
+    var SITE_URL = window.location.origin;
     
-    // ===== YAML Parser =====
     function parseYAML(yamlStr) {
-      const result = {};
-      yamlStr.trim().split('\n').forEach(line => {
-        const idx = line.indexOf(':');
+      var result = {};
+      yamlStr.trim().split('\n').forEach(function(line) {
+        var idx = line.indexOf(':');
         if (idx === -1) return;
-        let key = line.slice(0, idx).trim();
-        let val = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
+        var key = line.slice(0, idx).trim();
+        var val = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
         if (val === 'true') val = true;
-        if (val === 'false') val = false;
-        if (!isNaN(val) && val !== '') val = Number(val);
+        else if (val === 'false') val = false;
+        else if (!isNaN(val) && val !== '') val = Number(val);
         result[key] = val;
       });
       return result;
     }
     
-    // ===== Generate Slug for Static File Links =====
     function generateSlug(title) {
-      return title.toLowerCase()
+      return (title || '').toLowerCase()
         .replace(/[^\w\s-]/g, '')
         .replace(/\s+/g, '-')
         .substring(0, 60);
     }
     
-    // ===== Resolve Image URL =====
     function resolveImageURL(imagePath) {
-      if (!imagePath) return `${SITE_URL}/content/images/IMG_5811.png`;
-      if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-        return imagePath;
-      }
-      if (imagePath.startsWith('/')) {
-        return `${SITE_URL}${imagePath}`;
-      }
-      return `${SITE_URL}/content/images/${imagePath}`;
+      if (!imagePath) return SITE_URL + '/content/images/IMG_5811.png';
+      if (imagePath.indexOf('http://') === 0 || imagePath.indexOf('https://') === 0) return imagePath;
+      if (imagePath.indexOf('/') === 0) return SITE_URL + imagePath;
+      return SITE_URL + '/content/images/' + imagePath;
     }
     
-    // ===== Format Date =====
     function formatDate(dateStr) {
       if (!dateStr) return '';
       try {
-        return new Date(dateStr).toLocaleDateString('en-US', { 
-          month: 'short', 
-          day: 'numeric', 
-          year: 'numeric' 
-        });
-      } catch (e) {
-        return dateStr;
+        return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      } catch(e) { return dateStr; }
+    }
+
+    // Mobile menu — iOS FIX: use touchend as well for faster response
+    var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    var mobileMenu = document.getElementById('mobileMenu');
+
+    function toggleMenu(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      var hidden = mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden');
+      mobileMenuBtn.setAttribute('aria-expanded', hidden ? 'true' : 'false');
+      var icon = mobileMenuBtn.querySelector('i');
+      if (hidden) {
+        icon.className = 'fas fa-times w-6 h-6 text-white';
+      } else {
+        icon.className = 'fas fa-bars w-6 h-6 text-white';
       }
     }
 
-    // Mobile menu
-    document.getElementById('mobileMenuBtn')?.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const menu = document.getElementById('mobileMenu');
-      menu.classList.toggle('hidden');
-      const icon = this.querySelector('i');
-      if (menu.classList.contains('hidden')) {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
-      } else {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-times');
-      }
-    });
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', toggleMenu);
+      // iOS FIX: also handle touchend for snappier response on iOS
+      mobileMenuBtn.addEventListener('touchend', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+      }, { passive: false });
+    }
     
-    // Close mobile menu when clicking outside
     document.addEventListener('click', function(e) {
-      const menu = document.getElementById('mobileMenu');
-      const btn = document.getElementById('mobileMenuBtn');
-      if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
-        menu.classList.add('hidden');
-        const icon = btn.querySelector('i');
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
+      if (mobileMenu && mobileMenuBtn && !mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        mobileMenu.classList.add('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        var icon = mobileMenuBtn.querySelector('i');
+        if (icon) icon.className = 'fas fa-bars w-6 h-6 text-white';
       }
     });
 
-    // Scroll progress indicator
-    window.addEventListener('scroll', () => {
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      document.getElementById('scrollProgress').style.width = scrolled + '%';
+    // Scroll progress — iOS FIX: passive:true required for scroll performance
+    window.addEventListener('scroll', function() {
+      var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var scrolled = (winScroll / height) * 100;
+      var el = document.getElementById('scrollProgress');
+      if (el) el.style.width = scrolled + '%';
     }, { passive: true });
 
-    // Intersection Observer for animations
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('page-load');
-        }
-      });
-    }, observerOptions);
-    document.querySelectorAll('section').forEach(section => observer.observe(section));
-
     // Load announcements
-    async function loadAnnouncements() {
-      const container = document.getElementById('announcements-container');
-      try {
-        const res = await fetch('/content/index.json');
-        if (!res.ok) throw new Error();
-        const data = await res.json();
-        const paths = data.announcement || [];
-        const announcements = [];
-
-        for (const path of paths) {
-          const text = await fetch(`/content/${path}`).then(r => r.text());
-          const parts = text.split('---');
-          if (parts.length < 3) continue;
-          
-          const meta = parseYAML(parts[1]);
-          const body = parts.slice(2).join('---');
-          
-          const formattedDate = meta.date 
-            ? new Date(meta.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-            : '';
-          announcements.push({ 
-            title: meta.title || 'Untitled', 
-            date: formattedDate, 
-            body: body.replace(/[#*_\-[\]()`>]/g, '').substring(0, 150) + '…'
+    function loadAnnouncements() {
+      var container = document.getElementById('announcements-container');
+      fetch('/content/index.json')
+        .then(function(res) { if (!res.ok) throw new Error(); return res.json(); })
+        .then(function(data) {
+          var paths = data.announcement || [];
+          var promises = paths.map(function(path) {
+            return fetch('/content/' + path).then(function(r) { return r.text(); });
           });
-        }
-
-        announcements.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-        const html = announcements.slice(0, 3).map(a => `
-          <div class="pure-glass p-6 rounded-xl hover:scale-[1.02] transition-transform">
-            <div class="flex justify-between items-start mb-2">
-              <h3 class="text-xl font-bold text-primary">${a.title}</h3>
-              ${a.date ? `<span class="text-gray-400 text-sm">${a.date}</span>` : ''}
-            </div>
-            <p class="text-white">${a.body}</p>
-          </div>
-        `).join('');
-
-        container.innerHTML = html || '<p class="text-white text-center">No announcements.</p>';
-      } catch (e) {
-        console.error('Announcements error:', e);
-        container.innerHTML = '<p class="text-white text-center">Failed to load announcements.</p>';
-      }
+          return Promise.all(promises).then(function(texts) {
+            return texts.map(function(text) {
+              var parts = text.split('---');
+              if (parts.length < 3) return null;
+              var meta = parseYAML(parts[1]);
+              var body = parts.slice(2).join('---');
+              var formattedDate = meta.date ? new Date(meta.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+              return { title: meta.title || 'Untitled', date: formattedDate, body: body.replace(/[#*_\-\[\]()`>]/g, '').substring(0, 150) + '…' };
+            }).filter(Boolean);
+          });
+        })
+        .then(function(announcements) {
+          announcements.sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
+          var html = announcements.slice(0, 3).map(function(a) {
+            return '<div class="pure-glass p-6 rounded-xl">' +
+              '<div class="flex justify-between items-start mb-2">' +
+              '<h3 class="text-xl font-bold text-primary" style="-webkit-text-fill-color:#4FD1C5;background:none;">' + a.title + '</h3>' +
+              (a.date ? '<span class="text-gray-400 text-sm">' + a.date + '</span>' : '') +
+              '</div>' +
+              '<p class="text-white">' + a.body + '</p>' +
+              '</div>';
+          }).join('');
+          container.innerHTML = html || '<p class="text-white text-center">No announcements.</p>';
+        })
+        .catch(function(e) {
+          console.error('Announcements error:', e);
+          container.innerHTML = '<p class="text-white text-center">Failed to load announcements.</p>';
+        });
     }
 
-    // Load articles with STATIC FILE LINKS
-    async function loadArticles() {
-      const container = document.getElementById('articles-container');
-      try {
-        const res = await fetch('/content/index.json');
-        if (!res.ok) throw new Error();
-        const data = await res.json();
-        const cards = [];
-        
-        for (const fullPath of (data.articles || []).slice(0, 6)) {
-          const txt = await fetch(`/content/${fullPath}`).then(r => r.text());
-          const parts = txt.split('---');
-          if (parts.length < 3) continue;
+    // Load articles
+    function loadArticles() {
+      var container = document.getElementById('articles-container');
+      fetch('/content/index.json')
+        .then(function(res) { if (!res.ok) throw new Error(); return res.json(); })
+        .then(function(data) {
+          var articlePaths = (data.articles || []).slice(0, 6);
+          var promises = articlePaths.map(function(fullPath) {
+            return fetch('/content/' + fullPath).then(function(r) { return r.text(); });
+          });
+          return Promise.all(promises);
+        })
+        .then(function(texts) {
+          var cards = texts.map(function(txt) {
+            var parts = txt.split('---');
+            if (parts.length < 3) return null;
+            var meta = parseYAML(parts[1]);
+            var excerpt = parts.slice(2).join('---').replace(/[#*_\-\[\]()`>]/g, ' ').split(/\s+/).slice(0, 20).join(' ') + '…';
+            var tags = Array.isArray(meta.tags) ? meta.tags : (meta.tags ? [meta.tags] : []);
+            var slug = meta.slug || generateSlug(meta.title);
+            var articleUrl = '/article-posts/' + slug + '.html';
+            var imgSrc = resolveImageURL(meta.image);
 
-          const meta = parseYAML(parts[1]);
-          const excerpt = parts.slice(2).join('---').replace(/[#*_\-[\]()`>]/g, ' ')
-            .split(/\s+/)
-            .slice(0, 20)
-            .join(' ') + '…';
-          const tags = Array.isArray(meta.tags) ? meta.tags : (meta.tags ? [meta.tags] : []);
-          
-          // ✅ Generate slug for static file link
-          const slug = meta.slug || generateSlug(meta.title);
-          // ✅ Link to STATIC HTML file
-          const articleUrl = `/article-posts/${slug}.html`;
+            return '<div class="article-card pure-glass rounded-xl overflow-hidden group">' +
+              '<a href="' + articleUrl + '" class="block">' +
+              '<div class="article-image-container">' +
+              '<img src="' + imgSrc + '" alt="' + (meta.title || 'Article') + '" class="article-image" loading="lazy" ' +
+              'onerror="this.src=\'https://via.placeholder.com/800x500/1e3a8a/ffffff?text=No+Image\'">' +
+              '</div>' +
+              '<div class="article-content">' +
+              (tags.length > 0 ? '<div class="flex flex-wrap gap-2 mb-3">' + tags.slice(0, 3).map(function(tag) {
+                return '<span class="px-3 py-1 bg-teal-500/20 text-teal-300 text-xs font-medium rounded-full">' + tag + '</span>';
+              }).join('') + '</div>' : '') +
+              '<h3 class="article-title text-xl font-bold mb-3">' + (meta.title || 'Untitled') + '</h3>' +
+              '<p class="article-excerpt text-white">' + excerpt + '</p>' +
+              '<span class="mt-auto text-teal-300 flex items-center gap-2 font-medium">Read More <i class="fas fa-arrow-right"></i></span>' +
+              '</div></a></div>';
+          }).filter(Boolean);
 
-          cards.push(`
-            <div class="article-card pure-glass rounded-xl overflow-hidden group">
-              <a href="${articleUrl}" class="block">
-                <div class="article-image-container">
-                  <img src="${resolveImageURL(meta.image)}"
-                       alt="${meta.title || 'Article'}"
-                       class="article-image"
-                       loading="lazy"
-                       onerror="this.src='https://via.placeholder.com/800x500/1e3a8a/ffffff?text=No+Image'">
-                </div>
-                <div class="article-content">
-                  ${tags.length > 0 ? `
-                    <div class="flex flex-wrap gap-2 mb-3">
-                      ${tags.slice(0, 3).map(tag => `
-                        <span class="px-3 py-1 bg-teal-500/20 text-teal-300 text-xs font-medium rounded-full">
-                          ${tag}
-                        </span>
-                      `).join('')}
-                    </div>
-                  ` : ''}
-                  <h3 class="article-title text-xl font-bold mb-3 group-hover:text-400 transition-colors">${meta.title || 'Untitled'}</h3>
-                  <p class="article-excerpt text-white text-opacity-90">${excerpt}</p>
-                  <span class="mt-auto text-teal-300 hover:text-teal-400 flex items-center gap-2 font-medium">
-                    Read More <i class="fas fa-arrow-right transition-transform group-hover:translate-x-1"></i>
-                  </span>
-                </div>
-              </a>
-            </div>
-          `);
-        }
-        container.innerHTML = cards.length ? cards.join('') : '<p class="col-span-full text-white text-center">No articles available.</p>';
-      } catch (err) {
-        console.error('Article loading error:', err);
-        container.innerHTML = '<p class="col-span-full text-red-400 text-center">Failed to load articles.</p>';
-      }
+          container.innerHTML = cards.length ? cards.join('') : '<p class="col-span-full text-white text-center">No articles available.</p>';
+        })
+        .catch(function(err) {
+          console.error('Article loading error:', err);
+          container.innerHTML = '<p class="col-span-full text-red-400 text-center">Failed to load articles.</p>';
+        });
     }
 
-    // On page load
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.page-load').forEach((el, index) => {
-        el.style.animationDelay = `${index * 0.1}s`;
+    // Ripple effect
+    function addRipple(e) {
+      var button = e.currentTarget;
+      var ripple = document.createElement('span');
+      var rect = button.getBoundingClientRect();
+      var size = Math.max(rect.width, rect.height);
+      // iOS FIX: use touches[0] for touch events
+      var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      var clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      var x = clientX - rect.left - size / 2;
+      var y = clientY - rect.top - size / 2;
+      ripple.style.cssText = 'position:absolute;border-radius:50%;background:rgba(255,255,255,0.3);-webkit-transform:scale(0);transform:scale(0);-webkit-animation:ripple 0.6s linear;animation:ripple 0.6s linear;width:' + size + 'px;height:' + size + 'px;left:' + x + 'px;top:' + y + 'px;pointer-events:none;';
+      button.appendChild(ripple);
+      setTimeout(function() { if (ripple.parentNode) ripple.parentNode.removeChild(ripple); }, 600);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.page-load').forEach(function(el, index) {
+        el.style.animationDelay = (index * 0.1) + 's';
+        el.style.webkitAnimationDelay = (index * 0.1) + 's';
       });
 
-      setTimeout(() => {
+      setTimeout(function() {
         loadAnnouncements();
         loadArticles();
       }, 400);
 
-      // Ripple effect for buttons
-      document.querySelectorAll('.glow-button').forEach(button => {
-        button.addEventListener('click', function(e) {
-          const ripple = document.createElement('span');
-          const rect = this.getBoundingClientRect();
-          const size = Math.max(rect.width, rect.height);
-          const x = e.clientX - rect.left - size / 2;
-          const y = e.clientY - rect.top - size / 2;
-          
-          ripple.style.cssText = `
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            width: ${size}px;
-            height: ${size}px;
-            left: ${x}px;
-            top: ${y}px;
-            pointer-events: none;
-          `;
-          this.appendChild(ripple);
-          setTimeout(() => ripple.remove(), 600);
-        });
+      document.querySelectorAll('.glow-button').forEach(function(button) {
+        button.addEventListener('click', addRipple);
       });
-
-      const style = document.createElement('style');
-      style.textContent = `
-        @keyframes ripple {
-          to { transform: scale(4); opacity: 0; }
-        }
-      `;
-      document.head.appendChild(style);
     });
   </script>
 </body>
