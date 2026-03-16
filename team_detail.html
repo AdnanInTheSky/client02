@@ -2,19 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading... - YCI</title>
 
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
-
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -24,31 +17,20 @@
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
         
-        /* iOS Safari viewport height fix */
-        @supports (-webkit-touch-callout: none) {
-            body {
-                min-height: -webkit-fill-available;
-            }
-            html {
-                height: -webkit-fill-available;
-            }
-        }
-        
-        /* Blue to green gradient background with iOS-safe height */
         body {
             background: linear-gradient(135deg, rgba(17, 23, 87, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
+            /* FIX #5: Replace 100vh with min-height stack for iOS Safari toolbar */
             min-height: 100vh;
             min-height: -webkit-fill-available;
-            overflow-x: hidden;
-            position: relative;
+            min-height: 100dvh;
         }
         
+        /* FIX #5: Also set on html element for -webkit-fill-available to work correctly */
         html {
-            height: 100%;
+            height: -webkit-fill-available;
             scroll-behavior: smooth;
         }
         
-        /* Pure Glass Effects - with vendor prefixes */
         .pure-glass {
             background: rgba(255, 255, 255, 0.15);
             -webkit-backdrop-filter: blur(20px);
@@ -79,56 +61,40 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
-        /* Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
         
         @keyframes fadeIn {
             from { opacity: 0; }
-            to { opacity: 1; }
+            to   { opacity: 1; }
         }
         
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50%       { transform: translateY(-10px); }
         }
         
-        .animate-fadeInUp {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-        
-        .animate-fadeIn {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-        
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
+        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-fadeIn   { animation: fadeIn  0.8s ease-out forwards; }
+        .animate-float    { animation: float   6s ease-in-out infinite; }
         
         .delay-100 { animation-delay: 0.1s; }
         .delay-200 { animation-delay: 0.2s; }
         .delay-300 { animation-delay: 0.3s; }
         .delay-400 { animation-delay: 0.4s; }
         
-        /* Gradient text with fallback */
+        /* FIX #6: Add color fallback before gradient-text so text is never invisible */
         .gradient-text {
-            color: #ffffff; /* Fallback for older iOS */
+            color: white; /* fallback if clip fails */
             background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+            text-shadow: none; /* text-shadow doesn't apply when text is clipped; remove to avoid conflicts */
         }
         
-        /* Team member specific styles */
         .team-content {
             line-height: 1.7;
             font-size: 1.125rem;
@@ -163,8 +129,6 @@
             border-radius: 0.75rem;
             margin: 1.5rem 0;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            max-width: 100%;
-            height: auto;
         }
         
         .team-content blockquote {
@@ -210,7 +174,6 @@
             font-weight: 600;
         }
         
-        /* Profile image styling */
         .profile-image-wrapper {
             position: relative;
             overflow: hidden;
@@ -243,7 +206,6 @@
             transform: scale(1.1);
         }
         
-        /* Role badge */
         .role-badge {
             display: inline-block;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
@@ -266,7 +228,6 @@
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
         }
         
-        /* Contact info styling */
         .contact-info {
             background: rgba(255, 255, 255, 0.15);
             border-radius: 1.5rem;
@@ -309,17 +270,16 @@
             margin-right: 1.5rem;
             color: white;
             font-size: 1.2rem;
+            /* FIX: flex-shrink prevents icon squishing on small iOS screens */
             flex-shrink: 0;
         }
         
-        /* Improved focus states for accessibility */
         a:focus, button:focus {
             outline: 2px solid rgba(255, 255, 255, 0.5);
             outline-offset: 4px;
             border-radius: 8px;
         }
         
-        /* Back button styles */
         .back-button {
             background: rgba(255, 255, 255, 0.2);
             color: white;
@@ -335,6 +295,12 @@
             box-shadow: 
                 0 10px 20px rgba(0, 0, 0, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            /* FIX: -webkit-appearance reset needed for <a> styled as button on iOS */
+            -webkit-appearance: none;
+            appearance: none;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
         }
         
         .back-button:hover {
@@ -346,34 +312,23 @@
             letter-spacing: 1px;
         }
         
-        /* Text colors for glass theme */
-        .glass-text-primary {
-            color: white;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+        .glass-text-primary   { color: white; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
+        .glass-text-secondary { color: rgba(255, 255, 255, 0.9); }
+        .glass-text-muted     { color: rgba(255, 255, 255, 0.7); }
         
-        .glass-text-secondary {
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .glass-text-muted {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        /* Floating orbs decoration */
         .floating-orb {
             position: absolute;
             border-radius: 50%;
             background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
             filter: blur(20px);
             z-index: -1;
+            /* FIX #7: pointer-events none prevents orbs interfering with iOS tap targets */
             pointer-events: none;
         }
-        
-        /* iOS touch handling improvements */
-        a, button, .contact-item, .back-button {
-            -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
-            touch-action: manipulation;
+
+        /* FIX: Prevent tap highlight flash on iOS for interactive elements */
+        a, button {
+            -webkit-tap-highlight-color: transparent;
         }
     </style>
     
@@ -393,143 +348,148 @@
     </script>
 </head>
 
-<body class="relative overflow-x-hidden">
+<!-- FIX #7: Move overflow-x:hidden off body onto a wrapper div to avoid iOS fixed/scroll bugs -->
+<body class="relative">
 
-    <!-- Floating orbs decoration -->
-    <div class="floating-orb animate-float" style="width: 300px; height: 300px; top: 10%; left: 5%;"></div>
-    <div class="floating-orb animate-float" style="width: 200px; height: 200px; top: 70%; right: 10%; animation-delay: 1s;"></div>
-    <div class="floating-orb animate-float" style="width: 150px; height: 150px; bottom: 20%; left: 15%; animation-delay: 2s;"></div>
+    <div style="overflow-x: hidden; position: relative;">
+        <!-- Floating orbs decoration -->
+        <div class="floating-orb animate-float" style="width: 300px; height: 300px; top: 10%; left: 5%;"></div>
+        <div class="floating-orb animate-float" style="width: 200px; height: 200px; top: 70%; right: 10%; animation-delay: 1s;"></div>
+        <div class="floating-orb animate-float" style="width: 150px; height: 150px; bottom: 20%; left: 15%; animation-delay: 2s;"></div>
 
-    <!-- Main Content -->
-    <main class="pt-8 pb-16 px-4 relative z-10">
-        <div class="max-w-4xl mx-auto">
-            <div class="pure-glass-card rounded-3xl overflow-hidden animate-fadeInUp">
-                <div class="p-8 md:p-12">
-                    <!-- Team Member Header -->
-                    <div class="text-center mb-12">
-                        <div class="profile-image-wrapper mb-8">
-                            <img id="team-image" src="" alt="Team Member" class="w-full h-full object-cover" loading="lazy"
-                                 onerror="handleImageError(this)">
+        <!-- Main Content -->
+        <main class="pt-8 pb-16 px-4 relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <div class="pure-glass-card rounded-3xl overflow-hidden animate-fadeInUp">
+                    <div class="p-8 md:p-12">
+                        <!-- Team Member Header -->
+                        <div class="text-center mb-12">
+                            <div class="profile-image-wrapper mb-8">
+                                <!-- FIX #4: Guard against infinite onerror loop on iOS Safari -->
+                                <img id="team-image" src="" alt="Team Member"
+                                     class="w-full h-full object-cover" loading="lazy"
+                                     onerror="if(this.dataset.errored) return; this.dataset.errored='1'; this.src='/content/images/placeholder-team.png';">
+                            </div>
+                            
+                            <h1 id="team-name" class="text-4xl md:text-5xl font-bold glass-text-primary mb-6">
+                                Loading...
+                            </h1>
+                            
+                            <div id="team-role" class="role-badge animate-fadeIn delay-100 inline-block">
+                                <!-- Role will be populated here -->
+                            </div>
+                        </div>
+
+                        <!-- Contact Information -->
+                        <div id="contact-info" class="contact-info animate-fadeIn delay-200 hidden">
+                            <h3 class="text-xl font-bold glass-text-primary mb-6 flex items-center justify-center">
+                                <i class="fas fa-envelope mr-3 text-white"></i>
+                                Contact Information
+                            </h3>
+                            <div id="contact-details" class="max-w-2xl mx-auto">
+                                <!-- Contact details will be populated here -->
+                            </div>
+                        </div>
+
+                        <!-- Team Member Bio -->
+                        <div id="team-bio" class="team-content opacity-0 animate-fadeIn delay-300 glass-text-secondary">
+                            <div class="flex justify-center py-12">
+                                <div class="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                            </div>
                         </div>
                         
-                        <h1 id="team-name" class="text-4xl md:text-5xl font-bold glass-text-primary mb-6">
-                            Loading...
-                        </h1>
-                        
-                        <div id="team-role" class="role-badge animate-fadeIn delay-100 inline-block">
-                            <!-- Role will be populated here -->
-                        </div>
-                    </div>
-
-                    <!-- Contact Information -->
-                    <div id="contact-info" class="contact-info animate-fadeIn delay-200 hidden">
-                        <h3 class="text-xl font-bold glass-text-primary mb-6 flex items-center justify-center">
-                            <i class="fas fa-envelope mr-3 text-white"></i>
-                            Contact Information
-                        </h3>
-                        <div id="contact-details" class="max-w-2xl mx-auto">
-                            <!-- Contact details will be populated here -->
-                        </div>
-                    </div>
-
-                    <!-- Team Member Bio -->
-                    <div id="team-bio" class="team-content opacity-0 animate-fadeIn delay-300 glass-text-secondary">
-                        <div class="flex justify-center py-12">
-                            <div class="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Back Button at Bottom -->
-                    <div class="mt-16 pt-10 border-t border-white/20 animate-fadeIn delay-400">
-                        <div class="flex justify-center">
-                            <a href="team.html" class="back-button inline-flex items-center px-10 py-4">
-                                <i class="fas fa-arrow-left mr-4 text-lg"></i>
-                                Back to Team Page
-                            </a>
+                        <!-- Back Button at Bottom -->
+                        <div class="mt-16 pt-10 border-t border-white/20 animate-fadeIn delay-400">
+                            <div class="flex justify-center">
+                                <a href="team.html" class="back-button px-10 py-4">
+                                    <i class="fas fa-arrow-left mr-4 text-lg"></i>
+                                    Back to Team Page
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-                <!-- Brand -->
-                <div>
-                    <h3 class="glass-text-primary font-bold text-xl mb-4">YCI bangladesh</h3>
-                    <p class="glass-text-secondary mb-4">
-                        Building sustainable futures through innovation, equity, and community-led action.
-                    </p>
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-gray-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+                    <!-- Brand -->
+                    <div>
+                        <h3 class="glass-text-primary font-bold text-xl mb-4">YCI bangladesh</h3>
+                        <p class="glass-text-secondary mb-4">
+                            Building sustainable futures through innovation, equity, and community-led action.
+                        </p>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div>
+                        <h4 class="font-bold glass-text-primary mb-6">Quick Links</h4>
+                        <ul class="space-y-3">
+                            <li><a href="services.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>About Us</a></li>
+                            <li><a href="articles.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Publications</a></li>
+                            <li><a href="team.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Our Team</a></li>
+                            <li><a href="contact.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div>
+                        <h4 class="glass-text-primary font-semibold text-lg mb-6">Contact</h4>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-map-marker-alt mt-1 mr-4 text-white/80"></i>
+                                <span class="glass-text-secondary">Dhaka, Bangladesh</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-envelope mt-1 mr-4 text-white/80"></i>
+                                <span class="glass-text-secondary">ycibangladesh@gmail.com</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-phone mt-1 mr-4 text-white/80"></i>
+                                <span class="glass-text-secondary">01919403296 / 01980632583</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Resources -->
+                    <div>
+                        <h4 class="glass-text-primary font-semibold text-lg mb-6">Resources</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Annual Reports</a></li>
+                            <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Research Papers</a></li>
+                            <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Case Studies</a></li>
+                        </ul>
+                    </div>
                 </div>
 
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="font-bold glass-text-primary mb-6">Quick Links</h4>
-                    <ul class="space-y-3">
-                        <li><a href="services.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>About Us</a></li>
-                        <li><a href="articles.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Publications</a></li>
-                        <li><a href="team.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Our Team</a></li>
-                        <li><a href="contact.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Contact</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact -->
-                <div>
-                    <h4 class="glass-text-primary font-semibold text-lg mb-6">Contact</h4>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-4 text-white/80 flex-shrink-0"></i>
-                            <span class="glass-text-secondary">Dhaka, Bangladesh</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-envelope mt-1 mr-4 text-white/80 flex-shrink-0"></i>
-                            <span class="glass-text-secondary">ycibangladesh@gmail.com</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-phone mt-1 mr-4 text-white/80 flex-shrink-0"></i>
-                            <span class="glass-text-secondary">01919403296 / 01980632583</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Resources -->
-                <div>
-                    <h4 class="glass-text-primary font-semibold text-lg mb-6">Resources</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Annual Reports</a></li>
-                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Research Papers</a></li>
-                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Case Studies</a></li>
-                    </ul>
+                <!-- Copyright -->
+                <div class="border-t border-white/20 mt-12 pt-8 text-center">
+                    <p class="glass-text-muted">&copy; 2025 BioNova. All rights reserved.</p>
+                    <div class="mt-4 space-x-6">
+                        <a href="#" class="glass-text-muted hover:text-white transition-colors">Privacy</a>
+                        <span class="glass-text-muted">•</span>
+                        <a href="#" class="glass-text-muted hover:text-white transition-colors">Terms</a>
+                        <span class="glass-text-muted">•</span>
+                        <a href="contact.html" class="glass-text-muted hover:text-white transition-colors">Contact</a>
+                    </div>
                 </div>
             </div>
-
-            <!-- Copyright -->
-            <div class="border-t border-white/20 mt-12 pt-8 text-center">
-                <p class="glass-text-muted">&copy; 2025 BioNova. All rights reserved.</p>
-                <div class="mt-4 space-x-6">
-                    <a href="#" class="glass-text-muted hover:text-white transition-colors">Privacy</a>
-                    <span class="glass-text-muted">•</span>
-                    <a href="#" class="glass-text-muted hover:text-white transition-colors">Terms</a>
-                    <span class="glass-text-muted">•</span>
-                    <a href="contact.html" class="glass-text-muted hover:text-white transition-colors">Contact</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div><!-- end overflow-x wrapper -->
 
     <script>
         // --- YAML Parser ---
         function parseYAML(yamlStr) {
-            const result = {};
-            yamlStr.trim().split('\n').forEach(line => {
-                const idx = line.indexOf(':');
+            var result = {};
+            yamlStr.trim().split('\n').forEach(function(line) {
+                var idx = line.indexOf(':');
                 if (idx === -1) return;
-                let key = line.slice(0, idx).trim();
-                let val = line.slice(idx + 1).trim().replace(/^[\"']|[\"']$/g, '');
-                if (val === 'true') val = true;
+                var key = line.slice(0, idx).trim();
+                var val = line.slice(idx + 1).trim().replace(/^[\"']|[\"']$/g, '');
+                if (val === 'true')  val = true;
                 if (val === 'false') val = false;
                 if (!isNaN(val) && val !== '') val = Number(val);
                 result[key] = val;
@@ -537,238 +497,173 @@
             return result;
         }
 
-        // --- Safe sessionStorage access for iOS Private Mode ---
-        function safeSessionStorage() {
-            try {
-                const test = '__test__';
-                sessionStorage.setItem(test, test);
-                sessionStorage.removeItem(test);
-                return sessionStorage; // Storage is available
-            } catch (e) {
-                // iOS Private Mode or other restriction - return in-memory fallback
-                console.warn('sessionStorage not available, using in-memory fallback');
-                return {
-                    _data: {},
-                    getItem(key) { return this._data[key] || null; },
-                    setItem(key, value) { this._data[key] = String(value); },
-                    removeItem(key) { delete this._data[key]; },
-                    clear() { this._data = {}; }
-                };
-            }
-        }
-
-        // --- Create storage instance ---
-        const storage = safeSessionStorage();
-
-        // --- Safe image error handler with infinite loop protection ---
-        window.handleImageError = function(img) {
-            // Prevent infinite loop
-            if (img.dataset.errored === 'true') return;
-            img.dataset.errored = 'true';
-            
-            // Set fallback image
-            img.src = 'https://via.placeholder.com/400x400/ffffff/10b981?text=BioNova+Team';
-            
-            // If fallback also fails, hide the image container gracefully
-            img.onerror = function() {
-                this.style.display = 'none';
-                const wrapper = this.closest('.profile-image-wrapper');
-                if (wrapper) {
-                    wrapper.style.background = 'linear-gradient(135deg, #3b82f6, #10b981)';
-                    wrapper.innerHTML += '<div class="absolute inset-0 flex items-center justify-center text-white text-4xl font-bold"><i class="fas fa-user"></i></div>';
-                }
-            };
-        };
-
         // --- Markdown to HTML converter ---
         function markdownToHTML(md) {
-            let html = md;
+            var html = md;
 
-            // Headings
             html = html.replace(/^### (.*$)/gim, '<h3 class="glass-text-primary">$1</h3>');
-            html = html.replace(/^## (.*$)/gim, '<h2 class="glass-text-primary">$1</h2>');
-            html = html.replace(/^# (.*$)/gim, '<h1 class="glass-text-primary">$1</h1>');
+            html = html.replace(/^## (.*$)/gim,  '<h2 class="glass-text-primary">$1</h2>');
+            html = html.replace(/^# (.*$)/gim,   '<h1 class="glass-text-primary">$1</h1>');
 
-            // Bold, Italic
             html = html.replace(/\*\*(.*?)\*\*/gim, '<strong class="glass-text-primary">$1</strong>');
-            html = html.replace(/\*(.*?)\*/gim, '<em class="glass-text-secondary">$1</em>');
+            html = html.replace(/\*(.*?)\*/gim,     '<em class="glass-text-secondary">$1</em>');
 
-            // Links, Images
-            html = html.replace(/!\[([^\]]*)\]\((.*?)\)/gim, '<img src="$2" alt="$1" class="rounded-xl shadow-2xl my-6 w-full pure-glass-light" loading="lazy" onerror="this.style.display=\'none\'">');
+            html = html.replace(/!\[([^\]]*)\]\((.*?)\)/gim, '<img src="$2" alt="$1" class="rounded-xl shadow-2xl my-6 w-full pure-glass-light">');
             html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-white hover:underline font-medium">$1</a>');
 
-            // Lists
             html = html.replace(/^- (.*)$/gim, '<li class="glass-text-secondary">$1</li>');
             html = html.replace(/(<li>.*<\/li>)/gims, '<ul class="my-6 space-y-3">$1</ul>');
 
-            // Tables
-            html = html.replace(/^\|(.+)\|\s*\n\|([-:\s|]+)\|\s*\n((\|.*\|\s*\n)*)/gm, match => {
-                const rows = match.trim().split('\n');
-                const headers = rows[0].split('|').filter(Boolean).map(h => `<th class="px-4 py-3 glass-text-primary bg-white/20">${h.trim()}</th>`).join('');
-                const bodyRows = rows.slice(2).map(r => {
-                    const cols = r.split('|').filter(Boolean).map(c => `<td class="px-4 py-3 glass-text-secondary border-t border-white/10">${c.trim()}</td>`).join('');
-                    return `<tr>${cols}</tr>`;
+            html = html.replace(/^\|(.+)\|\s*\n\|([-:\s|]+)\|\s*\n((\|.*\|\s*\n)*)/gm, function(match) {
+                var rows = match.trim().split('\n');
+                var headers = rows[0].split('|').filter(Boolean).map(function(h) {
+                    return '<th class="px-4 py-3 glass-text-primary bg-white/20">' + h.trim() + '</th>';
                 }).join('');
-                return `<div class="overflow-x-auto my-8"><table class="min-w-full border-collapse rounded-xl overflow-hidden pure-glass-light">${headers}${bodyRows}</table></div>`;
+                var bodyRows = rows.slice(2).map(function(r) {
+                    var cols = r.split('|').filter(Boolean).map(function(c) {
+                        return '<td class="px-4 py-3 glass-text-secondary border-t border-white/10">' + c.trim() + '</td>';
+                    }).join('');
+                    return '<tr>' + cols + '</tr>';
+                }).join('');
+                return '<div class="overflow-x-auto my-8"><table class="min-w-full border-collapse rounded-xl overflow-hidden pure-glass-light">' + headers + bodyRows + '</table></div>';
             });
 
-            // Paragraphs
             html = html.replace(/\n{2,}/g, '</p><p class="my-6 glass-text-secondary">');
-            html = `<div class="space-y-6">${html}</div>`;
+            html = '<div class="space-y-6">' + html + '</div>';
             return html;
         }
 
-        // --- Load selected team member ---
-        async function loadTeamMember() {
-            // Safe storage access
-            let id = null;
+        // FIX #2: Safe sessionStorage wrapper — iOS Safari Private mode throws SecurityError
+        function safeSessionGet(key) {
             try {
-                id = storage.getItem('selectedFile');
+                return sessionStorage.getItem(key);
             } catch (e) {
-                console.warn('Could not access selectedFile:', e);
+                return null;
             }
+        }
 
-            if (!id || !id.startsWith('teams/')) {
-                document.getElementById('team-bio').innerHTML = `
-                    <div class="bg-red-500/20 border border-red-400/30 rounded-2xl p-10 text-center pure-glass">
-                        <i class="fas fa-exclamation-triangle text-5xl text-white mb-6"></i>
-                        <h3 class="text-2xl glass-text-primary mb-4">Team Member Not Found</h3>
-                        <p class="glass-text-secondary mb-8">The requested team member could not be found.</p>
-                        <a href="team.html" class="inline-flex items-center px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-red-500/30 to-pink-500/30 border border-red-400/30 hover:from-red-500/40 hover:to-pink-500/40 transition-all duration-300">
-                            Back to Team
-                        </a>
-                    </div>
-                `;
-                document.title = 'Team Member Not Found - BioNova';
+        // --- Load selected team member ---
+        // FIX #3: Properly handle the async function as a Promise with .catch()
+        function loadTeamMember() {
+            return loadTeamMemberAsync().catch(function(error) {
+                console.error('Unhandled error in loadTeamMember:', error);
+                showError('An unexpected error occurred. Please try again.');
+            });
+        }
+
+        function showError(message) {
+            document.getElementById('team-bio').innerHTML =
+                '<div class="bg-red-500/20 border border-red-400/30 rounded-2xl p-10 text-center pure-glass">' +
+                    '<i class="fas fa-exclamation-triangle text-5xl text-white mb-6"></i>' +
+                    '<h3 class="text-2xl glass-text-primary mb-4">Error Loading Team Member</h3>' +
+                    '<p class="glass-text-secondary mb-8">' + message + '</p>' +
+                    '<button class="inline-flex items-center px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-blue-500/30 to-green-500/30 border border-blue-400/30 hover:from-blue-500/40 hover:to-green-500/40 transition-all duration-300" onclick="loadTeamMember()">' +
+                        'Try Again' +
+                    '</button>' +
+                '</div>';
+            document.title = 'Error - YCI';
+        }
+
+        async function loadTeamMemberAsync() {
+            // FIX #2: Use safe wrapper instead of direct sessionStorage access
+            var id = safeSessionGet('selectedFile');
+
+            if (!id || id.indexOf('teams/') !== 0) {
+                document.getElementById('team-bio').innerHTML =
+                    '<div class="bg-red-500/20 border border-red-400/30 rounded-2xl p-10 text-center pure-glass">' +
+                        '<i class="fas fa-exclamation-triangle text-5xl text-white mb-6"></i>' +
+                        '<h3 class="text-2xl glass-text-primary mb-4">Team Member Not Found</h3>' +
+                        '<p class="glass-text-secondary mb-8">The requested team member could not be found.</p>' +
+                        '<a href="team.html" class="inline-flex items-center px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-red-500/30 to-pink-500/30 border border-red-400/30 hover:from-red-500/40 hover:to-pink-500/40 transition-all duration-300">' +
+                            'Back to Team' +
+                        '</a>' +
+                    '</div>';
+                document.title = 'Team Member Not Found - YCI';
                 return;
             }
 
             try {
-                // Add timeout to fetch
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
-                
-                const response = await fetch(`/content/${id}`, {
-                    signal: controller.signal
-                });
-                
-                clearTimeout(timeoutId);
-                
+                var response = await fetch('/content/' + id);
                 if (!response.ok) throw new Error('Network response was not ok');
-                const text = await response.text();
+                var text = await response.text();
 
-                const parts = text.split('---');
+                var parts = text.split('---');
                 if (parts.length < 3) throw new Error('Invalid Markdown format');
 
-                const frontmatter = parts[1];
-                const body = parts.slice(2).join('---');
-                const meta = parseYAML(frontmatter);
-                const htmlBody = markdownToHTML(body);
+                var frontmatter = parts[1];
+                var body = parts.slice(2).join('---');
+                var meta = parseYAML(frontmatter);
+                var htmlBody = markdownToHTML(body);
 
                 // Update page content
-                document.getElementById('team-image').src = meta.image || 'https://via.placeholder.com/400x400/ffffff/10b981?text=BioNova+Team';
+                var imgEl = document.getElementById('team-image');
+                // FIX #4: Set src only after clearing any prior errored state
+                imgEl.removeAttribute('data-errored');
+                imgEl.src = meta.image || '/content/images/placeholder-team.png';
+
                 document.getElementById('team-name').textContent = meta.title || 'Unnamed';
-                document.getElementById('team-role').textContent = meta.role || 'Team Member';
+                document.getElementById('team-role').textContent = meta.role  || 'Team Member';
                 document.getElementById('team-bio').innerHTML = htmlBody;
-                document.title = `${meta.title || 'Team Member'} - BioNova`;
+                document.title = (meta.title || 'Team Member') + ' - YCI';
 
                 // Add contact information if available
-                const contactInfo = document.getElementById('contact-info');
-                const contactDetails = document.getElementById('contact-details');
+                var contactInfo    = document.getElementById('contact-info');
+                var contactDetails = document.getElementById('contact-details');
                 
                 if (meta.email || meta.phone || meta.linkedin) {
                     contactInfo.classList.remove('hidden');
-                    let contactHTML = '';
+                    var contactHTML = '';
                     
                     if (meta.email) {
-                        contactHTML += `
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="min-w-0 flex-1">
-                                    <p class="font-semibold glass-text-primary mb-1">Email</p>
-                                    <a href="mailto:${meta.email}" class="glass-text-secondary hover:text-white transition-colors break-words">${meta.email}</a>
-                                </div>
-                            </div>
-                        `;
+                        contactHTML +=
+                            '<div class="contact-item">' +
+                                '<div class="contact-icon"><i class="fas fa-envelope"></i></div>' +
+                                '<div>' +
+                                    '<p class="font-semibold glass-text-primary mb-1">Email</p>' +
+                                    '<a href="mailto:' + meta.email + '" class="glass-text-secondary hover:text-white transition-colors">' + meta.email + '</a>' +
+                                '</div>' +
+                            '</div>';
                     }
                     
                     if (meta.phone) {
-                        contactHTML += `
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                                <div class="min-w-0 flex-1">
-                                    <p class="font-semibold glass-text-primary mb-1">Phone</p>
-                                    <a href="tel:${meta.phone}" class="glass-text-secondary hover:text-white transition-colors">${meta.phone}</a>
-                                </div>
-                            </div>
-                        `;
+                        contactHTML +=
+                            '<div class="contact-item">' +
+                                '<div class="contact-icon"><i class="fas fa-phone"></i></div>' +
+                                '<div>' +
+                                    '<p class="font-semibold glass-text-primary mb-1">Phone</p>' +
+                                    '<a href="tel:' + meta.phone + '" class="glass-text-secondary hover:text-white transition-colors">' + meta.phone + '</a>' +
+                                '</div>' +
+                            '</div>';
                     }
                     
                     if (meta.linkedin) {
-                        contactHTML += `
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fab fa-linkedin"></i>
-                                </div>
-                                <div class="min-w-0 flex-1">
-                                    <p class="font-semibold glass-text-primary mb-1">LinkedIn</p>
-                                    <a href="${meta.linkedin}" target="_blank" rel="noopener noreferrer" class="glass-text-secondary hover:text-white transition-colors break-words">View Profile</a>
-                                </div>
-                            </div>
-                        `;
+                        contactHTML +=
+                            '<div class="contact-item">' +
+                                '<div class="contact-icon"><i class="fab fa-linkedin"></i></div>' +
+                                '<div>' +
+                                    '<p class="font-semibold glass-text-primary mb-1">LinkedIn</p>' +
+                                    '<a href="' + meta.linkedin + '" target="_blank" rel="noopener noreferrer" class="glass-text-secondary hover:text-white transition-colors">View Profile</a>' +
+                                '</div>' +
+                            '</div>';
                     }
                     
                     contactDetails.innerHTML = contactHTML;
                 }
 
                 // Fade in content
-                setTimeout(() => {
+                setTimeout(function() {
                     document.getElementById('team-bio').style.opacity = '1';
                 }, 500);
 
             } catch (error) {
                 console.error('Error loading team member:', error);
-                
-                let errorMessage = 'We couldn\'t load the team member information. Please try again later.';
-                if (error.name === 'AbortError') {
-                    errorMessage = 'Request timed out. Please check your connection and try again.';
-                }
-                
-                document.getElementById('team-bio').innerHTML = `
-                    <div class="bg-red-500/20 border border-red-400/30 rounded-2xl p-10 text-center pure-glass">
-                        <i class="fas fa-exclamation-triangle text-5xl text-white mb-6"></i>
-                        <h3 class="text-2xl glass-text-primary mb-4">Error Loading Team Member</h3>
-                        <p class="glass-text-secondary mb-8">${errorMessage}</p>
-                        <button class="inline-flex items-center px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-blue-500/30 to-green-500/30 border border-blue-400/30 hover:from-blue-500/40 hover:to-green-500/40 transition-all duration-300" onclick="loadTeamMember()">
-                            Try Again
-                        </button>
-                    </div>
-                `;
-                document.title = 'Error - BioNova';
+                showError("We couldn't load the team member information. Please try again later.");
             }
         }
 
-        // --- Event Listeners with iOS optimization ---
+        // --- Event Listeners ---
         document.addEventListener('DOMContentLoaded', function() {
-            // Small delay to ensure DOM is fully ready on iOS
-            setTimeout(() => {
-                loadTeamMember().catch(e => {
-                    console.error('Failed to load team member:', e);
-                });
-            }, 50);
-        });
-
-        // Handle iOS orientation change for viewport fixes
-        window.addEventListener('orientationchange', function() {
-            // Force repaint on iOS to fix any rendering issues
-            document.body.style.display = 'none';
-            setTimeout(() => {
-                document.body.style.display = '';
-            }, 20);
+            loadTeamMember();
         });
     </script>
 </body>
