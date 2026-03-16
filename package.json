@@ -4,7 +4,10 @@
   "description": "Static NGO website managed by Pages CMS and deployed on Vercel",
   "main": "generateIndex.js",
   "scripts": {
-    "build": "node generateIndex.js",
+    "generate": "node generateIndex.js",
+    "build-site": "node build.js",
+    "build-articles": "node build-articles.js",
+    "build": "node generateIndex.js && node build.js && node build-articles.js",
     "start": "node generateIndex.js"
   },
   "keywords": [
