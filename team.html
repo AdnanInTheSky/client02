@@ -2,65 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Our Team - YCI</title>
     <meta name="description" content="Meet the leadership and experts behind BioNova — driving sustainable development and innovation.">
 
-    <!-- Favicon + Apple Touch Icon -->
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
-    <link rel="apple-touch-icon" href="/content/images/IMG_5811.png">
     
-    <!-- Tailwind CSS CDN - FIXED: no trailing spaces -->
+    <!-- Tailwind CSS CDN (FIXED: removed trailing spaces) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Font Awesome - FIXED: no trailing spaces -->
+    <!-- Font Awesome (FIXED: removed trailing spaces) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Google Fonts - FIXED: no trailing spaces, correct syntax -->
+    <!-- Google Fonts (FIXED: removed trailing spaces) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* ===== iOS SAFARI ESSENTIAL PREFIXES ===== */
-        
-        /* Prevent iOS auto-text-size adjustment */
-        html, body {
-            -webkit-text-size-adjust: 100%;
-            -moz-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-            text-size-adjust: 100%;
-        }
-
-        /* Remove blue tap highlight & disable long-press menu */
-        * {
-            -webkit-tap-highlight-color: transparent;
-            -webkit-touch-callout: none;
-        }
-
-        /* Smooth scrolling for iOS */
-        html {
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
-        }
-
         * {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
+          background-color: #111757; /* iOS fallback solid color */
           background: linear-gradient(135deg, rgba(17, 23, 87, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
           min-height: 100vh;
+          min-height: calc(var(--vh, 1vh) * 100); /* iOS 100vh fix */
+          -webkit-text-size-adjust: 100%;
+          color: white;
+          overflow-x: hidden;
         }
     
-        /* Smooth scroll */
+        /* Smooth scroll with iOS fallback */
         html {
             scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        @media (pointer: coarse) {
+            html { scroll-behavior: auto; }
         }
         
-        /* Glassmorphism utility classes */
+        /* Glassmorphism with full iOS support & fallbacks */
         .glass {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
@@ -75,14 +64,14 @@
             border: 1px solid rgba(255, 255, 255, 0.25);
             -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            will-change: transform;
         }
         
         .glass-card:hover {
             -webkit-transform: translateY(-8px);
             transform: translateY(-8px);
-            -webkit-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
             background: rgba(255, 255, 255, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.35);
@@ -93,7 +82,7 @@
             background: linear-gradient(135deg, rgba(26, 35, 126, 0.85), rgba(13, 71, 161, 0.7), rgba(0, 150, 136, 0.6));
         }
         
-        /* Animations - with -webkit- prefixes */
+        /* Animations with -webkit- prefixes for iOS */
         @-webkit-keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -106,6 +95,7 @@
                 transform: translateY(0);
             }
         }
+        
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -123,6 +113,7 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -140,6 +131,7 @@
                 transform: translateX(0);
             }
         }
+        
         @keyframes slideInRight {
             from {
                 opacity: 0;
@@ -150,47 +142,6 @@
                 opacity: 1;
                 -webkit-transform: translateX(0);
                 transform: translateX(0);
-            }
-        }
-        
-        @-webkit-keyframes pulse-ring {
-            0% {
-                -webkit-transform: scale(0.95);
-                transform: scale(0.95);
-                -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-            }
-            70% {
-                -webkit-transform: scale(1);
-                transform: scale(1);
-                -webkit-box-shadow: 0 0 0 12px rgba(255, 255, 255, 0);
-                box-shadow: 0 0 0 12px rgba(255, 255, 255, 0);
-            }
-            100% {
-                -webkit-transform: scale(0.95);
-                transform: scale(0.95);
-                -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-            }
-        }
-        @keyframes pulse-ring {
-            0% {
-                -webkit-transform: scale(0.95);
-                transform: scale(0.95);
-                -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-            }
-            70% {
-                -webkit-transform: scale(1);
-                transform: scale(1);
-                -webkit-box-shadow: 0 0 0 12px rgba(255, 255, 255, 0);
-                box-shadow: 0 0 0 12px rgba(255, 255, 255, 0);
-            }
-            100% {
-                -webkit-transform: scale(0.95);
-                transform: scale(0.95);
-                -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
             }
         }
         
@@ -220,52 +171,55 @@
             background: rgba(255, 255, 255, 0.25) !important;
             backdrop-filter: blur(25px) !important;
             -webkit-backdrop-filter: blur(25px) !important;
-            -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
         
-        /* ===== FIXED: Gradient Text - iOS Compatible ===== */
+        /* Gradient text with full prefix support */
         .gradient-text {
-            /* Fallback solid color for iOS */
-            color: #ffffff;
-            /* Gradient background */
             background: linear-gradient(135deg, #ffffff, #e0f7fa);
-            background-size: 200% 200%;
-            /* Clip gradient to text */
             -webkit-background-clip: text;
-            background-clip: text;
-            /* Make text transparent to show gradient */
             -webkit-text-fill-color: transparent;
-            text-fill-color: transparent;
-            /* Prevent box rendering on iOS */
-            display: inline;
-            -webkit-box-decoration-break: clone;
-            box-decoration-break: clone;
+            background-clip: text;
+            color: transparent;
         }
         
-        /* iOS 15+ specific fix */
-        @supports (-webkit-touch-callout: none) {
-            .gradient-text {
-                -webkit-text-fill-color: transparent;
-                -webkit-background-clip: text;
-                background-clip: text;
-                display: inline;
-                -webkit-box-decoration-break: clone;
-                box-decoration-break: clone;
+        /* Floating button pulse with prefixes */
+        @-webkit-keyframes pulse-ring {
+            0% {
+                -webkit-transform: scale(0.95);
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+            }
+            70% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                box-shadow: 0 0 0 12px rgba(255, 255, 255, 0);
+            }
+            100% {
+                -webkit-transform: scale(0.95);
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
             }
         }
         
-        /* Fallback for older iOS */
-        @supports not (-webkit-background-clip: text) {
-            .gradient-text {
-                color: #ffffff;
-                background: none;
-                -webkit-text-fill-color: initial;
-                text-fill-color: initial;
+        @keyframes pulse-ring {
+            0% {
+                -webkit-transform: scale(0.95);
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+            }
+            70% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                box-shadow: 0 0 0 12px rgba(255, 255, 255, 0);
+            }
+            100% {
+                -webkit-transform: scale(0.95);
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
             }
         }
         
-        /* Floating button pulse */
         .floating-btn {
             -webkit-animation: pulse-ring 2s infinite;
             animation: pulse-ring 2s infinite;
@@ -296,8 +250,13 @@
         
         .card-image-wrapper img {
             -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            -webkit-transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
         }
         
         .glass-card:hover .card-image-wrapper img {
@@ -305,7 +264,7 @@
             transform: scale(1.08);
         }
         
-        /* Search Box */
+        /* Search Box with iOS fixes */
         .search-box {
             border-radius: 50px;
             padding: 0.75rem 1.5rem 0.75rem 3rem;
@@ -316,14 +275,17 @@
             color: white;
             -webkit-transition: all 0.3s ease;
             transition: all 0.3s ease;
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
         }
         
         .search-box:focus {
             background-color: rgba(255, 255, 255, 0.25);
             border-color: rgba(255, 255, 255, 0.6);
-            -webkit-box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
             box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
             color: white;
+            outline: none;
         }
         
         .search-box::placeholder {
@@ -333,6 +295,11 @@
         .search-icon {
             color: rgba(255, 255, 255, 0.8);
             z-index: 5;
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
         }
         
         /* Filter Buttons */
@@ -345,6 +312,9 @@
             -webkit-transition: all 0.3s ease;
             transition: all 0.3s ease;
             margin: 0 5px 10px;
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
         }
         
         .filter-btn:hover, .filter-btn.active {
@@ -380,7 +350,11 @@
         
         /* Navbar brand container */
         .nav-brand {
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
             align-items: center;
             gap: 12px;
         }
@@ -393,7 +367,6 @@
         .team-card-content h3 {
             color: white;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            -webkit-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         
         .team-card-content p {
@@ -410,7 +383,6 @@
         .nav-link:hover {
             color: white;
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-            -webkit-text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
         }
         
         /* Contact button in navbar */
@@ -425,6 +397,7 @@
             background: rgba(255, 255, 255, 0.3);
             border-color: rgba(255, 255, 255, 0.5);
         }
+        
         #mobileMenu {
             background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(12px);
@@ -433,34 +406,31 @@
             border-radius: 12px;
             margin-top: 0.5rem;
             padding: 0.75rem 0;
-            -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
+
+        /* Utility classes for flexbox fallbacks */
+        .d-flex { display: -webkit-box; display: -ms-flexbox; display: flex; }
+        .flex-wrap { -ms-flex-wrap: wrap; flex-wrap: wrap; }
+        .justify-center { -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+        .items-center { -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+        .flex-grow { -webkit-box-flex: 1; -ms-flex-positive: 1; flex-grow: 1; }
+        .flex-col { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
         
-        /* Mobile optimizations */
-        @media (max-width: 767px) {
-            .glass, .glass-card, .nav-glass, #mobileMenu {
-                -webkit-backdrop-filter: none !important;
-                backdrop-filter: none !important;
-                background: rgba(255, 255, 255, 0.2) !important;
-            }
-            
-            /* Simplify gradient text on mobile */
-            .gradient-text {
-                color: #ffffff !important;
-                background: none !important;
-                -webkit-text-fill-color: #ffffff !important;
-                text-fill-color: #ffffff !important;
-            }
+        /* Loading spinner */
+        .animate-spin {
+            -webkit-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
         }
-        
-        /* iOS fallback for backdrop-filter */
-        @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-            .glass, .glass-card, .nav-glass, #mobileMenu {
-                background: rgba(255, 255, 255, 0.25) !important;
-                -webkit-backdrop-filter: none !important;
-                backdrop-filter: none !important;
-            }
+        @-webkit-keyframes spin {
+            from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+            to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+        }
+        @keyframes spin {
+            from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+            to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
         }
     </style>
     
@@ -483,40 +453,39 @@
 <body>
 
     <!-- Glass Navbar -->
-  <nav id="mainNav" class="fixed w-full top-0 z-50 nav-glass" style="background: rgba(255, 255, 255, 0.08); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16 md:h-20">
-        <a href="index.html" class="flex items-center">
-          <img src="content/images/IMG_5811.png" alt="YCI Logo"
-               class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20"
-               onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>YCI</span>';">
-        </a>
+    <nav id="mainNav" class="fixed w-full top-0 z-50 nav-glass">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <a href="index.html" class="flex items-center page-load">
+                    <img src="content/images/IMG_5811.png" alt="BioNova Logo"
+                         class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20"
+                         onerror="this.src=''; this.parentElement.innerHTML='BioNova';">
+                </a>
 
-        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl glass">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-        <div class="hidden md:flex space-x-2">
-          <a href="index.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110">Home</a>
-          <a href="services.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110">Blogs</a>
-          <a href="articles.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110">Events</a>
-          <a href="team.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110">Team</a>
-          <a href="contact.html" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium hover:scale-105 transition">
-            Contact
-          </a>
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass page-load delay-1" aria-label="Toggle menu">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <div class="hidden md:flex space-x-2">
+                    <a href="index.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-1">Home</a>
+                    <a href="services.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-2">Blogs</a>
+                    <a href="articles.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-3">Events</a>
+                    <a href="team.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-4">Team</a>
+                    <a href="contact.html" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full font-medium hover:scale-105 transition glow-button page-load delay-5">
+                        Contact
+                    </a>
+                </div>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 space-y-2">
+                <a href="index.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Home</a>
+                <a href="services.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Blogs</a>
+                <a href="articles.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Events</a>
+                <a href="team.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Team</a>
+                <a href="contact.html" class="mt-2 block px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full text-center glow-button">Contact</a>
+            </div>
         </div>
-      </div>
-      <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 space-y-2">
-        <a href="index.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Home</a>
-        <a href="services.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Blogs</a>
-        <a href="articles.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Events</a>
-        <a href="team.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Team</a>
-        <a href="contact.html" class="mt-2 block px-6 py-2.5 bg-gradient-to-r from-blue-800 to-teal-600 text-white rounded-full text-center">Contact</a>
-      </div>
-    </div>
-  </nav>
-
+    </nav>
 
     <!-- Hero Section -->
     <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden mt-16">
@@ -528,7 +497,7 @@
         
         <!-- Content -->
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 opacity-0 animate-fadeInUp gradient-text">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 opacity-0 animate-fadeInUp">
                 Meet Our Team
             </h1>
             <p class="text-lg sm:text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-0 animate-fadeInUp delay-200 font-light">
@@ -539,7 +508,7 @@
             <div class="search-container max-w-2xl mx-auto mb-4 relative">
                 <i class="fas fa-search absolute top-1/2 left-4 transform -translate-y-1/2 search-icon"></i>
                 <input type="text" class="w-full search-box py-3 px-12" 
-                       id="team-search-input" placeholder="Search team members by name, role, or expertise...">
+                       id="team-search-input" placeholder="Search team members by name, role, or expertise..." autocomplete="off">
             </div>
 
             <!-- Filters -->
@@ -591,104 +560,149 @@
         </div>
     </main>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-        <!-- Brand -->
-        <div>
-          <h3 class="text-white font-bold mb-2">YCI Bangladesh</h3>
-          <p class="text-white mb-2">
-             To build a climate resilient Bangladesh where youth leads toward sustainable Change
-          </p>
-          <div class="flex space-x-3">
-            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Twitter">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="LinkedIn">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-          </div>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+                <!-- Brand -->
+                <div>
+                    <h3 class="text-white font-bold mb-2">YCI Bangladesh</h3>
+                    <p class="text-white mb-2">
+                        To build a climate resilient Bangladesh where youth leads toward sustainable Change
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-bold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="services.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
+                        <li><a href="articles.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
+                        <li><a href="team.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Our Team</a></li>
+                        <li><a href="contact.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Contact</a></li>
+                        <li><a href="contact.html" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Careers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
+                            <span class="text-white mb-2">Dhaka, Bangladesh</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
+                            <span class="text-white mb-2">ycibangladesh@gmail.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
+                            <span class="text-white mb-2">01919403296 / 01980632583</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Annual Reports</a></li>
+                        <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Research Papers</a></li>
+                        <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Case Studies</a></li>
+                        <li><a href="#" class="text-white mb-2"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Partnerships</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
+                <p>&copy; 2025 YCI. All rights reserved.</p>
+                <div class="mt-3 space-x-4">
+                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                    <span class="text-gray-600">•</span>
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                    <span class="text-gray-600">•</span>
+                    <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+                </div>
+            </div>
         </div>
+    </footer>
 
-        <!-- Quick Links -->
-        <div>
-          <h4 class="font-bold text-white mb-4">Quick Links</h4>
-          <ul class="space-y-2.5 text-sm">
-            <li><a href="services.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
-            <li><a href="articles.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
-            <li><a href="team.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Our Team</a></li>
-            <li><a href="contact.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Contact</a></li>
-            <li><a href="contact.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Careers</a></li>
-          </ul>
-        </div>
+    <!-- Floating Action Buttons -->
+    <a href="contact.html" 
+       class="floating-btn fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
+       aria-label="Join Our Mission">
+        Join Us
+    </a>
 
-        <!-- Contact -->
-        <div>
-          <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
-          <ul class="space-y-3 text-sm">
-            <li class="flex items-start">
-              <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
-              <span class="text-white mb-2">Dhaka, Bangladesh</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
-              <span class="text-white mb-2">ycibangladesh@gmail.com</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
-              <span class="text-white mb-2">01919403296 / 01980632583</span>
-            </li>
-          </ul>
-        </div>
+    <a href="articles.html" 
+       class="floating-btn fixed bottom-6 left-6 md:bottom-8 md:left-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
+       aria-label="View Our Events">
+        Our Events
+    </a>
 
-        <!-- Resources -->
-        <div>
-          <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
-          <ul class="space-y-2.5 text-sm">
-            <li><a href="#" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Annual Reports</a></li>
-            <li><a href="#" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Research Papers</a></li>
-            <li><a href="#" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Case Studies</a></li>
-            <li><a href="#" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Partnerships</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Copyright -->
-      <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
-        <p>&copy; 2025 YCI Bangladesh. All rights reserved.</p>
-        <div class="mt-3 space-x-4">
-          <a href="#" class="hover:text-white transition-colors">Privacy</a>
-          <span class="text-gray-600">•</span>
-          <a href="#" class="hover:text-white transition-colors">Terms</a>
-          <span class="text-gray-600">•</span>
-          <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Floating Action Button -->
-  <a href="contact.html" 
-     class="floating-btn fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
-     aria-label="Join Our Mission">
-    Join Us
-  </a>
-
-    <!-- Floating Action Button -->
-  <a href="articles.html" 
-     class="floating-btn fixed bottom-6 left-6 md:bottom-8 md:left-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
-     aria-label="View Events">
-    Our Events
-  </a>
-
+    <!-- iOS Compatibility & Feature Detection Script -->
     <script>
+        // iOS viewport height fix
+        (function() {
+            const setVh = () => {
+                document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+            };
+            setVh();
+            window.addEventListener('resize', setVh);
+            window.addEventListener('orientationchange', setVh);
+        })();
+
+        // Backdrop-filter fallback detection
+        (function() {
+            const supportsBackdrop = CSS.supports('backdrop-filter', 'blur(10px)') || 
+                                     CSS.supports('-webkit-backdrop-filter', 'blur(10px)');
+            if (!supportsBackdrop) {
+                document.querySelectorAll('.glass, .glass-card, .search-box, #mobileMenu, .navbar-scrolled').forEach(el => {
+                    el.style.background = 'rgba(26, 35, 126, 0.92)';
+                    el.style.border = '1px solid rgba(255, 255, 255, 0.3)';
+                });
+            }
+        })();
+
+        // Prevent iOS zoom on input focus
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                        const viewport = document.querySelector('meta[name="viewport"]');
+                        if (viewport) {
+                            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+                        }
+                    }
+                });
+                input.addEventListener('blur', function() {
+                    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                        const viewport = document.querySelector('meta[name="viewport"]');
+                        if (viewport) {
+                            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
+                        }
+                    }
+                });
+            });
+        });
+
         // --- YAML Parser ---
         function parseYAML(yamlStr) {
             const result = {};
@@ -696,7 +710,7 @@
                 const idx = line.indexOf(':');
                 if (idx === -1) return;
                 let key = line.slice(0, idx).trim();
-                let val = line.slice(idx + 1).trim().replace(/^[\"']|[\"']$/g, '');
+                let val = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
                 if (val === 'true') val = true;
                 if (val === 'false') val = false;
                 if (!isNaN(val) && val !== '') val = Number(val);
@@ -749,7 +763,6 @@
                             excerpt 
                         });
                         
-                        // Extract tags
                         if (meta.tags) {
                             if (Array.isArray(meta.tags)) {
                                 meta.tags.forEach(tag => allTags.add(tag));
@@ -771,6 +784,7 @@
 
         function renderTeamTags(tags) {
             const container = document.getElementById('team-tags-container');
+            if (!container) return;
             let html = `<button class="filter-btn ${teamCurrentFilter === 'all' ? 'active' : ''}" onclick="setFilter('all', event)">All Team</button>`;
             tags.forEach(tag => {
                 const isActive = teamCurrentFilter === tag;
@@ -784,7 +798,7 @@
         function setFilter(tag, e) {
             teamCurrentFilter = tag;
             document.querySelectorAll('#team-tags-container .filter-btn').forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
+            if (e && e.target) e.target.classList.add('active');
             teamCurrentPage = 1;
             applyFilters();
         }
@@ -798,12 +812,16 @@
         function applyFilters() {
             let filtered = allTeamMembers;
 
-            // Tag filter
             if (teamCurrentFilter !== 'all') {
-                filtered = filtered.filter(m => m.meta.tags?.includes(teamCurrentFilter));
+                filtered = filtered.filter(m => {
+                    if (!m.meta.tags) return false;
+                    if (Array.isArray(m.meta.tags)) {
+                        return m.meta.tags.includes(teamCurrentFilter);
+                    }
+                    return m.meta.tags === teamCurrentFilter;
+                });
             }
 
-            // Search filter
             if (teamCurrentSearch) {
                 filtered = filtered.filter(m => {
                     const name = (m.meta.title || '').toLowerCase();
@@ -814,26 +832,30 @@
                 });
             }
 
-            document.getElementById('team-count').textContent = filtered.length;
+            const countEl = document.getElementById('team-count');
+            if (countEl) countEl.textContent = filtered.length;
             renderTeam(filtered);
         }
 
         function renderTeam(members) {
+            const container = document.getElementById('team-container');
+            if (!container) return;
+            
             const end = teamCurrentPage * teamItemsPerPage;
             const page = members.slice(0, end);
 
             const html = page.map((m, index) => {
-                const imageUrl = m.meta.image || 'https://via.placeholder.com/400x400/ffffff/1a237e?text=Team+Member';
+                const imageUrl = m.meta.image && m.meta.image.trim() ? m.meta.image : 'https://via.placeholder.com/400x400/ffffff/1a237e?text=Team+Member';
                 
                 return `
                     <div class="team-card opacity-0">
                         <div class="glass-card rounded-2xl overflow-hidden shadow-lg h-full flex flex-col">
                             <div class="card-image-wrapper h-64 overflow-hidden">
-                                <img src="${imageUrl}" class="w-full h-full object-cover" alt="${m.meta.title}" loading="lazy"
+                                <img src="${imageUrl}" class="w-full h-full object-cover" alt="${m.meta.title || 'Team Member'}" loading="lazy"
                                      onerror="this.onerror=null;this.src='https://via.placeholder.com/400x400/ffffff/0d47a1?text=Team+Member'">
                             </div>
                             <div class="p-6 flex flex-col flex-grow team-card-content">
-                                <h3 class="text-xl font-bold mb-2">${m.meta.title}</h3>
+                                <h3 class="text-xl font-bold mb-2">${m.meta.title || 'Team Member'}</h3>
                                 <p class="text-accent font-semibold mb-3">${m.meta.role || 'Team Member'}</p>
                                 <p class="mb-4 flex-grow leading-relaxed">${m.excerpt}</p>
                                 <a href="team_detail.html" 
@@ -848,27 +870,24 @@
                 `;
             }).join('');
 
-            document.getElementById('team-container').innerHTML = html;
+            container.innerHTML = html || '<p class="text-center text-white/80 col-span-full">No team members found.</p>';
             
-            // Show/hide load more button
             const loadMoreContainer = document.getElementById('team-load-more-container');
-            if (members.length > end) {
-                loadMoreContainer.style.display = 'block';
-            } else {
-                loadMoreContainer.style.display = 'none';
+            if (loadMoreContainer) {
+                loadMoreContainer.style.display = members.length > end ? 'block' : 'none';
             }
             
-            // Animate cards
             animateTeamCards();
         }
 
         function animateTeamCards() {
             const container = document.getElementById('team-container');
+            if (!container) return;
             container.querySelectorAll('.team-card').forEach((c, i) => {
                 c.classList.add('animate-fadeInUp');
-                c.style.animationDelay = `${i * 120}ms`;
+                c.style.animationDelay = (i * 120) + 'ms';
                 c.style.opacity = '0';
-                setTimeout(() => c.style.opacity = '1', i * 120);
+                setTimeout(() => { c.style.opacity = '1'; }, i * 120);
             });
         }
 
@@ -879,6 +898,7 @@
 
         function renderError() {
             const container = document.getElementById('team-container');
+            if (!container) return;
             container.innerHTML = `
                 <div class="col-span-full">
                     <div class="glass border border-red-300/30 rounded-2xl p-12 text-center">
@@ -896,7 +916,6 @@
             window.location.href = 'team_detail.html';
         }
 
-        // Debounce helper
         function debounce(func, wait) {
             let timeout;
             return (...args) => {
@@ -905,31 +924,46 @@
             };
         }
 
-        // Search
-        document.getElementById('team-search-input').addEventListener('input', debounce(e => {
-            setSearch(e.target.value);
-        }, 300));
-
-        // Load more button
-        document.getElementById('team-load-more-btn').addEventListener('click', loadMore);
-
-        // Mobile menu toggle
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('mainNav');
-            if (window.scrollY > 50) {
-                nav.classList.add('navbar-scrolled');
-            } else {
-                nav.classList.remove('navbar-scrolled');
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search listener
+            const searchInput = document.getElementById('team-search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', debounce(e => {
+                    setSearch(e.target.value);
+                }, 300));
             }
-        });
 
-        // Init
-        document.addEventListener('DOMContentLoaded', loadAllTeamMembers);
+            // Load more button
+            const loadMoreBtn = document.getElementById('team-load-more-btn');
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', loadMore);
+            }
+
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const nav = document.getElementById('mainNav');
+                if (nav) {
+                    if (window.scrollY > 50) {
+                        nav.classList.add('navbar-scrolled');
+                    } else {
+                        nav.classList.remove('navbar-scrolled');
+                    }
+                }
+            });
+
+            // Load team members
+            loadAllTeamMembers();
+        });
     </script>
 </body>
 </html>
