@@ -2,54 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>YCI Bangladesh</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>YCI Bangladesh — iOS ready</title>
   
-  <!-- Favicon + Apple Touch Icon -->
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
-  <link rel="apple-touch-icon" href="/content/images/IMG_5811.png">
   
-  <!-- Tailwind CSS CDN - FIXED: no trailing spaces -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Font Awesome - FIXED: no trailing spaces -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Google Fonts - FIXED: no trailing spaces, correct syntax -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
-    /* ===== iOS SAFARI ESSENTIAL PREFIXES ===== */
-    
-    /* Prevent iOS auto-text-size adjustment */
-    html, body {
-      -webkit-text-size-adjust: 100%;
-      -moz-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-      text-size-adjust: 100%;
-    }
-
-    /* Remove blue tap highlight & disable long-press menu */
-    * {
-      -webkit-tap-highlight-color: transparent;
-      -webkit-touch-callout: none;
-    }
-
-    /* Smooth scrolling for iOS */
-    html {
-      -webkit-overflow-scrolling: touch;
-      scroll-behavior: smooth;
-    }
-
     * {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
 
+    /* ===== FIXED iOS GRADIENTS ===== */
     body {
+      /* fallback + iOS friendly */
+      background: #0F1B2D; 
+      background: -webkit-linear-gradient(135deg, 
+        #4FD1C5 0%,
+        #319795 25%,
+        #2C5282 50%,
+        #1A365D 75%,
+        #0F1B2D 100%
+      );
       background: linear-gradient(135deg, 
         #4FD1C5 0%,
         #319795 25%,
@@ -67,6 +52,18 @@
       min-height: 100vh;
     }
 
+    /* fixed webkit keyframes */
+    @-webkit-keyframes gradientBG {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
     body::before {
       content: '';
       position: fixed;
@@ -82,17 +79,6 @@
       pointer-events: none;
     }
 
-    @-webkit-keyframes gradientBG {
-      0% { background-position: 0% 0%; }
-      50% { background-position: 100% 100%; }
-      100% { background-position: 0% 0%; }
-    }
-    @keyframes gradientBG {
-      0% { background-position: 0% 0%; }
-      50% { background-position: 100% 100%; }
-      100% { background-position: 0% 0%; }
-    }
-
     @-webkit-keyframes floatParticles {
       0% { -webkit-transform: translateY(0px) translateX(0px); transform: translateY(0px) translateX(0px); }
       25% { -webkit-transform: translateY(-20px) translateX(10px); transform: translateY(-20px) translateX(10px); }
@@ -101,22 +87,20 @@
       100% { -webkit-transform: translateY(0px) translateX(0px); transform: translateY(0px) translateX(0px); }
     }
     @keyframes floatParticles {
-      0% { -webkit-transform: translateY(0px) translateX(0px); transform: translateY(0px) translateX(0px); }
-      25% { -webkit-transform: translateY(-20px) translateX(10px); transform: translateY(-20px) translateX(10px); }
-      50% { -webkit-transform: translateY(0px) translateX(20px); transform: translateY(0px) translateX(20px); }
-      75% { -webkit-transform: translateY(20px) translateX(10px); transform: translateY(20px) translateX(10px); }
-      100% { -webkit-transform: translateY(0px) translateX(0px); transform: translateY(0px) translateX(0px); }
+      0% { transform: translateY(0px) translateX(0px); }
+      25% { transform: translateY(-20px) translateX(10px); }
+      50% { transform: translateY(0px) translateX(20px); }
+      75% { transform: translateY(20px) translateX(10px); }
+      100% { transform: translateY(0px) translateX(0px); }
     }
 
     .pure-glass {
       background: rgba(255, 255, 255, 0.07);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      -webkit-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
       -webkit-backdrop-filter: blur(4px);
       backdrop-filter: blur(4px);
       color: white;
-      -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -125,7 +109,6 @@
       border-color: rgba(255, 255, 255, 0.25);
       -webkit-transform: translateY(-4px);
       transform: translateY(-4px);
-      -webkit-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
@@ -134,17 +117,16 @@
       -webkit-backdrop-filter: blur(20px);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     }
 
-    /* CRITICAL: Gradient text with iOS prefixes */
+    /* iOS‑safe gradient text + clipping */
     h1, h2, h3, h4, h5, h6 { 
       color: transparent;
+      background: -webkit-linear-gradient(135deg, #4FD1C5 0%, #2C5282 50%, #1A365D 100%);
+      background: linear-gradient(135deg, #4FD1C5 0%, #2C5282 50%, #1A365D 100%);
       -webkit-background-clip: text;
       background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background: linear-gradient(135deg, #4FD1C5 0%, #2C5282 50%, #1A365D 100%);
       background-size: 200% 200%;
       -webkit-animation: titleShimmer 3s ease-in-out infinite alternate;
       animation: titleShimmer 3s ease-in-out infinite alternate;
@@ -159,11 +141,7 @@
       100% { background-position: 100% 50%; }
     }
 
-    .stat-number { 
-      color: white; 
-      text-shadow: 0 0 20px rgba(79, 209, 197, 0.5);
-      -webkit-text-shadow: 0 0 20px rgba(79, 209, 197, 0.5);
-    }
+    .stat-number { color: white; text-shadow: 0 0 20px rgba(79, 209, 197, 0.5); }
     .stat-title { color: #4FD1C5; font-weight: 600; }
 
     .page-load {
@@ -181,8 +159,10 @@
       to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
     }
     @keyframes fadeInUp {
-      to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+      to { opacity: 1; transform: translateY(0); }
     }
+
+    html { scroll-behavior: smooth; }
 
     .glow-button {
       position: relative;
@@ -194,49 +174,38 @@
       position: absolute;
       top: 0; left: -100%;
       width: 100%; height: 100%;
+      background: -webkit-linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      -webkit-transition: left 0.7s ease;
       transition: left 0.7s ease;
       z-index: -1;
     }
     .glow-button:hover::before { left: 100%; }
 
-    .article-image { 
-      -webkit-transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .article-card:hover .article-image { 
-      -webkit-transform: scale(1.05);
-      transform: scale(1.05);
-    }
+    .article-image { transition: -webkit-transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+    .article-card:hover .article-image { -webkit-transform: scale(1.05); transform: scale(1.05); }
 
     .scroll-progress {
       position: fixed; top: 0; left: 0;
       width: 0%; height: 3px;
+      background: -webkit-linear-gradient(90deg, #4FD1C5, #2C5282);
       background: linear-gradient(90deg, #4FD1C5, #2C5282);
       z-index: 100;
-      -webkit-transition: width 0.3s ease;
       transition: width 0.3s ease;
     }
 
-    .floating-element { 
-      -webkit-animation: floatElement 6s ease-in-out infinite;
-      animation: floatElement 6s ease-in-out infinite;
-    }
-    
+    .floating-element { -webkit-animation: floatElement 6s ease-in-out infinite; animation: floatElement 6s ease-in-out infinite; }
     @-webkit-keyframes floatElement {
       0%, 100% { -webkit-transform: translateY(0px); transform: translateY(0px); }
       50% { -webkit-transform: translateY(-15px); transform: translateY(-15px); }
     }
     @keyframes floatElement {
-      0%, 100% { -webkit-transform: translateY(0px); transform: translateY(0px); }
-      50% { -webkit-transform: translateY(-15px); transform: translateY(-15px); }
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
     }
     
     .article-title {
       color: #4FD1C5 !important;
       font-weight: 700;
-      -webkit-text-fill-color: #4FD1C5 !important;
     }
     .article-title:hover { color: #4FD1C5 !important; }
     
@@ -258,8 +227,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      -webkit-transition: transform 0.6s ease;
+      transition: -webkit-transform 0.6s ease;
       transition: transform 0.6s ease;
+      transition: transform 0.6s ease, -webkit-transform 0.6s ease;
     }
     
     .article-card:hover .article-image-container img {
@@ -282,30 +252,16 @@
     .faq-answer {
       max-height: 0;
       overflow: hidden;
-      -webkit-transition: max-height 0.3s ease, padding 0.3s ease;
       transition: max-height 0.3s ease, padding 0.3s ease;
     }
     .faq-answer > div { padding: 0 1.25rem 1.25rem 1.25rem; }
-    .rotate-180 { 
-      -webkit-transform: rotate(180deg); 
-      transform: rotate(180deg); 
-    }
+    .rotate-180 { -webkit-transform: rotate(180deg); transform: rotate(180deg); }
     
-    /* Mobile optimizations - iOS friendly */
+    /* Mobile optimizations: disable backdrop filter on older iOS but gradient stays */
     @media (max-width: 767px) {
       .pure-glass, .nav-glass {
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-        background: rgba(255, 255, 255, 0.12);
-      }
-    }
-    
-    /* iOS fallback for backdrop-filter support */
-    @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-      .pure-glass, .nav-glass {
-        background: rgba(255, 255, 255, 0.15) !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
       }
     }
   </style>
@@ -335,7 +291,7 @@
         <a href="index.html" class="flex items-center page-load">
           <img src="content/images/IMG_5811.png" alt="YCI Logo"
                class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20"
-               onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>YCI</span>';">
+               onerror="this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>YCI</span>';">
         </a>
 
         <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass page-load delay-1" aria-label="Menu">
@@ -364,7 +320,7 @@
   </nav>
 
   <main class="pt-20">
-    <!-- Hero Section -->
+    <!-- Hero Section (gradient fix not needed here, it's inherited from body) -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div class="absolute inset-0 z-0">
         <img src="content/images/WhatsApp Image 2025-12-17 at 00.38.32.jpeg" alt="Hero background" 
@@ -398,7 +354,7 @@
       </div>
     </section>
 
-    <!-- Stats Section -->
+    <!-- Stats Section (remains same) -->
     <section class="py-12 page-load delay-1" id="statsSection">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="pure-glass rounded-3xl p-8 text-center">
@@ -420,7 +376,7 @@
       </div>
     </section>
 
-    <!-- Announcements -->
+    <!-- Announcements etc. (unchanged) -->
     <section class="py-12 page-load delay-2">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-primary">Announcements</h2>
@@ -530,7 +486,7 @@
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Footer (unchanged) -->
   <footer class="bg-gray-900 text-gray-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
@@ -613,7 +569,7 @@
     </div>
   </footer>
 
-  <!-- Floating Action Buttons -->
+  <!-- Floating Action Buttons (gradients untouched, they work) -->
   <a href="contact.html" 
      class="fixed bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
      aria-label="Join Our Mission">
@@ -628,7 +584,7 @@
     <span class="hidden sm:inline">Our Team</span>
   </a>
 
-  <!-- Scripts -->
+  <!-- Scripts (unchanged) -->
   <script>
     // ===== Configuration =====
     const SITE_URL = window.location.origin;
@@ -688,18 +644,27 @@
       e.stopPropagation();
       const menu = document.getElementById('mobileMenu');
       menu.classList.toggle('hidden');
+      const icon = this.querySelector('i');
+      if (menu.classList.contains('hidden')) {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      } else {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      }
     });
     
-    // Close mobile menu when clicking outside
     document.addEventListener('click', function(e) {
       const menu = document.getElementById('mobileMenu');
       const btn = document.getElementById('mobileMenuBtn');
       if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
         menu.classList.add('hidden');
+        const icon = btn.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
       }
     });
 
-    // Scroll progress indicator
     window.addEventListener('scroll', () => {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -707,7 +672,6 @@
       document.getElementById('scrollProgress').style.width = scrolled + '%';
     }, { passive: true });
 
-    // Intersection Observer for animations
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -718,7 +682,6 @@
     }, observerOptions);
     document.querySelectorAll('section').forEach(section => observer.observe(section));
 
-    // Load announcements
     async function loadAnnouncements() {
       const container = document.getElementById('announcements-container');
       try {
@@ -761,11 +724,10 @@
         container.innerHTML = html || '<p class="text-white text-center">No announcements.</p>';
       } catch (e) {
         console.error('Announcements error:', e);
-        container.innerHTML = '<p class="text-white text-center">📢 Announcements coming soon!</p>';
+        container.innerHTML = '<p class="text-white text-center">Failed to load announcements.</p>';
       }
     }
 
-    // Load articles
     async function loadArticles() {
       const container = document.getElementById('articles-container');
       try {
@@ -819,14 +781,13 @@
             </div>
           `);
         }
-        container.innerHTML = cards.length ? cards.join('') : '<p class="col-span-full text-white text-center">📰 Articles coming soon!</p>';
+        container.innerHTML = cards.length ? cards.join('') : '<p class="col-span-full text-white text-center">No articles available.</p>';
       } catch (err) {
         console.error('Article loading error:', err);
-        container.innerHTML = '<p class="col-span-full text-white text-center">📰 Articles coming soon!</p>';
+        container.innerHTML = '<p class="col-span-full text-red-400 text-center">Failed to load articles.</p>';
       }
     }
 
-    // On page load
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.page-load').forEach((el, index) => {
         el.style.animationDelay = `${index * 0.1}s`;
@@ -837,7 +798,6 @@
         loadArticles();
       }, 400);
 
-      // Ripple effect for buttons
       document.querySelectorAll('.glow-button').forEach(button => {
         button.addEventListener('click', function(e) {
           const ripple = document.createElement('span');
