@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Loading... - YCI</title>
 
     <!-- Favicon -->
@@ -24,30 +24,43 @@
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
         
-        /* Blue to green gradient background */
-        body {
-          background: linear-gradient(135deg, rgba(17, 23, 87, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
-          min-height: 100vh;
+        /* iOS Safari viewport height fix */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                min-height: -webkit-fill-available;
+            }
+            html {
+                height: -webkit-fill-available;
+            }
         }
         
-        /* Smooth scroll */
+        /* Blue to green gradient background with iOS-safe height */
+        body {
+            background: linear-gradient(135deg, rgba(17, 23, 87, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
         html {
+            height: 100%;
             scroll-behavior: smooth;
         }
         
-        /* Pure Glass Effects */
+        /* Pure Glass Effects - with vendor prefixes */
         .pure-glass {
             background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
         
         .pure-glass-card {
             background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
+            backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -61,8 +74,8 @@
         
         .pure-glass-light {
             background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
@@ -105,12 +118,13 @@
         .delay-300 { animation-delay: 0.3s; }
         .delay-400 { animation-delay: 0.4s; }
         
-        /* Gradient text */
+        /* Gradient text with fallback */
         .gradient-text {
+            color: #ffffff; /* Fallback for older iOS */
             background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
         }
         
@@ -149,6 +163,8 @@
             border-radius: 0.75rem;
             margin: 1.5rem 0;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            height: auto;
         }
         
         .team-content blockquote {
@@ -237,6 +253,7 @@
             font-weight: 600;
             font-size: 1.1rem;
             margin: 1rem 0;
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
@@ -255,6 +272,7 @@
             border-radius: 1.5rem;
             padding: 2rem;
             margin: 2.5rem 0;
+            -webkit-backdrop-filter: blur(15px);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.25);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -291,6 +309,7 @@
             margin-right: 1.5rem;
             color: white;
             font-size: 1.2rem;
+            flex-shrink: 0;
         }
         
         /* Improved focus states for accessibility */
@@ -308,6 +327,7 @@
             border-radius: 50px;
             border: 1px solid rgba(255, 255, 255, 0.4);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            -webkit-backdrop-filter: blur(15px);
             backdrop-filter: blur(15px);
             font-size: 1.1rem;
             font-weight: 600;
@@ -347,6 +367,13 @@
             background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
             filter: blur(20px);
             z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* iOS touch handling improvements */
+        a, button, .contact-item, .back-button {
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+            touch-action: manipulation;
         }
     </style>
     
@@ -382,7 +409,7 @@
                     <div class="text-center mb-12">
                         <div class="profile-image-wrapper mb-8">
                             <img id="team-image" src="" alt="Team Member" class="w-full h-full object-cover" loading="lazy"
-                                 onerror="this.src='https://via.placeholder.com/400x400/ffffff/10b981?text=BioNova+Team'">
+                                 onerror="handleImageError(this)">
                         </div>
                         
                         <h1 id="team-name" class="text-4xl md:text-5xl font-bold glass-text-primary mb-6">
@@ -426,8 +453,8 @@
         </div>
     </main>
 
- <!-- Footer -->
-   <footer class="bg-gray-900 text-gray-300">
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
                 <!-- Brand -->
@@ -454,15 +481,15 @@
                     <h4 class="glass-text-primary font-semibold text-lg mb-6">Contact</h4>
                     <ul class="space-y-4">
                         <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-4 text-white/80"></i>
+                            <i class="fas fa-map-marker-alt mt-1 mr-4 text-white/80 flex-shrink-0"></i>
                             <span class="glass-text-secondary">Dhaka, Bangladesh</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-envelope mt-1 mr-4 text-white/80"></i>
+                            <i class="fas fa-envelope mt-1 mr-4 text-white/80 flex-shrink-0"></i>
                             <span class="glass-text-secondary">ycibangladesh@gmail.com</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-phone mt-1 mr-4 text-white/80"></i>
+                            <i class="fas fa-phone mt-1 mr-4 text-white/80 flex-shrink-0"></i>
                             <span class="glass-text-secondary">01919403296 / 01980632583</span>
                         </li>
                     </ul>
@@ -493,8 +520,6 @@
         </div>
     </footer>
 
- 
- 
     <script>
         // --- YAML Parser ---
         function parseYAML(yamlStr) {
@@ -512,6 +537,49 @@
             return result;
         }
 
+        // --- Safe sessionStorage access for iOS Private Mode ---
+        function safeSessionStorage() {
+            try {
+                const test = '__test__';
+                sessionStorage.setItem(test, test);
+                sessionStorage.removeItem(test);
+                return sessionStorage; // Storage is available
+            } catch (e) {
+                // iOS Private Mode or other restriction - return in-memory fallback
+                console.warn('sessionStorage not available, using in-memory fallback');
+                return {
+                    _data: {},
+                    getItem(key) { return this._data[key] || null; },
+                    setItem(key, value) { this._data[key] = String(value); },
+                    removeItem(key) { delete this._data[key]; },
+                    clear() { this._data = {}; }
+                };
+            }
+        }
+
+        // --- Create storage instance ---
+        const storage = safeSessionStorage();
+
+        // --- Safe image error handler with infinite loop protection ---
+        window.handleImageError = function(img) {
+            // Prevent infinite loop
+            if (img.dataset.errored === 'true') return;
+            img.dataset.errored = 'true';
+            
+            // Set fallback image
+            img.src = 'https://via.placeholder.com/400x400/ffffff/10b981?text=BioNova+Team';
+            
+            // If fallback also fails, hide the image container gracefully
+            img.onerror = function() {
+                this.style.display = 'none';
+                const wrapper = this.closest('.profile-image-wrapper');
+                if (wrapper) {
+                    wrapper.style.background = 'linear-gradient(135deg, #3b82f6, #10b981)';
+                    wrapper.innerHTML += '<div class="absolute inset-0 flex items-center justify-center text-white text-4xl font-bold"><i class="fas fa-user"></i></div>';
+                }
+            };
+        };
+
         // --- Markdown to HTML converter ---
         function markdownToHTML(md) {
             let html = md;
@@ -526,8 +594,8 @@
             html = html.replace(/\*(.*?)\*/gim, '<em class="glass-text-secondary">$1</em>');
 
             // Links, Images
-            html = html.replace(/!\[([^\]]*)\]\((.*?)\)/gim, '<img src="$2" alt="$1" class="rounded-xl shadow-2xl my-6 w-full pure-glass-light">');
-            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank" class="text-white hover:underline font-medium">$1</a>');
+            html = html.replace(/!\[([^\]]*)\]\((.*?)\)/gim, '<img src="$2" alt="$1" class="rounded-xl shadow-2xl my-6 w-full pure-glass-light" loading="lazy" onerror="this.style.display=\'none\'">');
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-white hover:underline font-medium">$1</a>');
 
             // Lists
             html = html.replace(/^- (.*)$/gim, '<li class="glass-text-secondary">$1</li>');
@@ -552,7 +620,13 @@
 
         // --- Load selected team member ---
         async function loadTeamMember() {
-            const id = sessionStorage.getItem('selectedFile');
+            // Safe storage access
+            let id = null;
+            try {
+                id = storage.getItem('selectedFile');
+            } catch (e) {
+                console.warn('Could not access selectedFile:', e);
+            }
 
             if (!id || !id.startsWith('teams/')) {
                 document.getElementById('team-bio').innerHTML = `
@@ -570,7 +644,16 @@
             }
 
             try {
-                const response = await fetch(`/content/${id}`);
+                // Add timeout to fetch
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+                
+                const response = await fetch(`/content/${id}`, {
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeoutId);
+                
                 if (!response.ok) throw new Error('Network response was not ok');
                 const text = await response.text();
 
@@ -603,9 +686,9 @@
                                 <div class="contact-icon">
                                     <i class="fas fa-envelope"></i>
                                 </div>
-                                <div>
+                                <div class="min-w-0 flex-1">
                                     <p class="font-semibold glass-text-primary mb-1">Email</p>
-                                    <a href="mailto:${meta.email}" class="glass-text-secondary hover:text-white transition-colors">${meta.email}</a>
+                                    <a href="mailto:${meta.email}" class="glass-text-secondary hover:text-white transition-colors break-words">${meta.email}</a>
                                 </div>
                             </div>
                         `;
@@ -617,7 +700,7 @@
                                 <div class="contact-icon">
                                     <i class="fas fa-phone"></i>
                                 </div>
-                                <div>
+                                <div class="min-w-0 flex-1">
                                     <p class="font-semibold glass-text-primary mb-1">Phone</p>
                                     <a href="tel:${meta.phone}" class="glass-text-secondary hover:text-white transition-colors">${meta.phone}</a>
                                 </div>
@@ -631,9 +714,9 @@
                                 <div class="contact-icon">
                                     <i class="fab fa-linkedin"></i>
                                 </div>
-                                <div>
+                                <div class="min-w-0 flex-1">
                                     <p class="font-semibold glass-text-primary mb-1">LinkedIn</p>
-                                    <a href="${meta.linkedin}" target="_blank" class="glass-text-secondary hover:text-white transition-colors">View Profile</a>
+                                    <a href="${meta.linkedin}" target="_blank" rel="noopener noreferrer" class="glass-text-secondary hover:text-white transition-colors break-words">View Profile</a>
                                 </div>
                             </div>
                         `;
@@ -649,11 +732,17 @@
 
             } catch (error) {
                 console.error('Error loading team member:', error);
+                
+                let errorMessage = 'We couldn\'t load the team member information. Please try again later.';
+                if (error.name === 'AbortError') {
+                    errorMessage = 'Request timed out. Please check your connection and try again.';
+                }
+                
                 document.getElementById('team-bio').innerHTML = `
                     <div class="bg-red-500/20 border border-red-400/30 rounded-2xl p-10 text-center pure-glass">
                         <i class="fas fa-exclamation-triangle text-5xl text-white mb-6"></i>
                         <h3 class="text-2xl glass-text-primary mb-4">Error Loading Team Member</h3>
-                        <p class="glass-text-secondary mb-8">We couldn't load the team member information. Please try again later.</p>
+                        <p class="glass-text-secondary mb-8">${errorMessage}</p>
                         <button class="inline-flex items-center px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-blue-500/30 to-green-500/30 border border-blue-400/30 hover:from-blue-500/40 hover:to-green-500/40 transition-all duration-300" onclick="loadTeamMember()">
                             Try Again
                         </button>
@@ -663,9 +752,23 @@
             }
         }
 
-        // --- Event Listeners ---
+        // --- Event Listeners with iOS optimization ---
         document.addEventListener('DOMContentLoaded', function() {
-            loadTeamMember();
+            // Small delay to ensure DOM is fully ready on iOS
+            setTimeout(() => {
+                loadTeamMember().catch(e => {
+                    console.error('Failed to load team member:', e);
+                });
+            }, 50);
+        });
+
+        // Handle iOS orientation change for viewport fixes
+        window.addEventListener('orientationchange', function() {
+            // Force repaint on iOS to fix any rendering issues
+            document.body.style.display = 'none';
+            setTimeout(() => {
+                document.body.style.display = '';
+            }, 20);
         });
     </script>
 </body>
