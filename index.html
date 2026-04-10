@@ -367,7 +367,7 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('section').forEach(s => observer.observe(s));
 
-    // ✅ UPDATED: Load announcements WITH INLINE EXPAND/COLLAPSE
+    // ✅ UPDATED: Load announcements WITHOUT preview, direct expand/collapse
     async function loadAnnouncements() {
       const container = document.getElementById('announcements-container');
       try {
@@ -389,17 +389,13 @@
             : '';
           
           const cleanedBody = rawBody.replace(/[#*_\-[\]()`>]/g, '').trim();
-          const hasMore = cleanedBody.length > 150;
-          const excerpt = hasMore ? cleanedBody.substring(0, 150) + '…' : cleanedBody;
           const fullBodyFormatted = cleanedBody.replace(/\n/g, '<br>');
           
           announcements.push({
             title: meta.title || 'Untitled',
             date: formattedDate,
             image: meta.image || null,
-            excerpt: excerpt,
-            fullBody: fullBodyFormatted,
-            hasMore: hasMore
+            fullBody: fullBodyFormatted
           });
         }
 
@@ -416,30 +412,24 @@
                      onerror="this.style.display='none'">
               </div>
             ` : ''}
-            <div class="flex justify-between items-start mb-2">
+            <div class="flex justify-between items-start mb-3">
               <h3 class="text-xl font-bold text-primary">${a.title}</h3>
-              ${a.date ? `<span class="text-gray-400 text-sm">${a.date}</span>` : ''}
+              ${a.date ? `<span class="text-gray-400 text-sm ml-2 whitespace-nowrap">${a.date}</span>` : ''}
             </div>
-            <p class="text-white">${a.excerpt}</p>
             
             <div class="announcement-full overflow-hidden transition-all duration-400 ease-in-out" style="max-height: 0; opacity: 0;">
-              <div class="pt-2">
-                <p class="text-white">${a.fullBody}</p>
-              </div>
+              <p class="text-white">${a.fullBody}</p>
             </div>
             
-            ${a.hasMore ? `
-              <button class="read-more-btn mt-3 inline-flex items-center text-teal-300 hover:text-teal-400 font-medium transition-colors cursor-pointer">
-                <span class="btn-text">Read More</span>
-                <i class="fas fa-chevron-down ml-2 transition-transform duration-300"></i>
-              </button>
-            ` : ''}
+            <button class="read-more-btn mt-3 inline-flex items-center text-teal-300 hover:text-teal-400 font-medium transition-colors cursor-pointer">
+              <span class="btn-text">Read More</span>
+              <i class="fas fa-chevron-down ml-2 transition-transform duration-300"></i>
+            </button>
           </div>
         `).join('');
 
         container.innerHTML = html || '<p class="text-white text-center">No announcements.</p>';
 
-        // 🔘 Attach toggle functionality to all Read More buttons
         document.querySelectorAll('.read-more-btn').forEach(btn => {
           btn.addEventListener('click', function() {
             const card = this.closest('.announcement-card');
