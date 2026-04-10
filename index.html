@@ -20,69 +20,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
-    * {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    }
-
-    /* =====================================================
-       iOS FIX 1: background-attachment:fixed is broken on
-       iOS Safari. Use a fixed pseudo-element on a wrapper
-       instead so the gradient always renders correctly.
-    ====================================================== */
-    html {
-      height: 100%;
-    }
-
+    * { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    html { height: 100%; }
     body {
-      /* iOS FIX 2: 100vh is taller than the visible area
-         on iOS Safari due to the address bar. Use the
-         -webkit-fill-available fallback. */
-      min-height: 100vh;
-      min-height: -webkit-fill-available;
-      overflow-x: hidden;
-      color: #ffffff;
-      position: relative;
-      /* No background on body — handled by #bg-layer below */
+      min-height: 100vh; min-height: -webkit-fill-available;
+      overflow-x: hidden; color: #ffffff; position: relative;
     }
-
-    /* Fixed gradient background layer — avoids the
-       background-attachment:fixed iOS bug entirely */
     #bg-layer {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -2;
-      background: linear-gradient(135deg,
-        #4FD1C5 0%,
-        #319795 25%,
-        #2C5282 50%,
-        #1A365D 75%,
-        #0F1B2D 100%
-      );
-      background-size: 100% 300%;
-      animation: gradientBG 20s ease infinite;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
+      background: linear-gradient(135deg, #4FD1C5 0%, #319795 25%, #2C5282 50%, #1A365D 75%, #0F1B2D 100%);
+      background-size: 100% 300%; animation: gradientBG 20s ease infinite;
     }
-
-    /* Floating particle dots layer */
     #particle-layer {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background-image:
         radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 1px, transparent 1px),
         radial-gradient(circle at 60% 70%, rgba(255,255,255,0.08) 1px, transparent 1px),
         radial-gradient(circle at 80% 40%, rgba(255,255,255,0.06) 1px, transparent 1px);
-      background-size: 150px 150px, 200px 200px, 180px 180px;
-      z-index: -1;
-      animation: floatParticles 60s linear infinite;
-      pointer-events: none;
+      background-size: 150px 150px, 200px 200px, 180px 180px; z-index: -1;
+      animation: floatParticles 60s linear infinite; pointer-events: none;
     }
-
     @keyframes gradientBG {
       0%   { background-position: 0% 0%; }
       50%  { background-position: 100% 100%; }
       100% { background-position: 0% 0%; }
     }
-
     @keyframes floatParticles {
       0%   { transform: translateY(0px)   translateX(0px); }
       25%  { transform: translateY(-20px) translateX(10px); }
@@ -90,228 +52,82 @@
       75%  { transform: translateY(20px)  translateX(10px); }
       100% { transform: translateY(0px)   translateX(0px); }
     }
-
-    /* =====================================================
-       iOS FIX 3: backdrop-filter requires -webkit- prefix
-       on iOS Safari. Always include both.
-    ====================================================== */
     .pure-glass {
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.15);
       box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
-      -webkit-backdrop-filter: blur(4px); /* iOS Safari */
-      backdrop-filter: blur(4px);
-      color: white;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+      color: white; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
     .pure-glass:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.25);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
     }
-
     .nav-glass {
-      background: rgba(255, 255, 255, 0.08);
-      -webkit-backdrop-filter: blur(20px); /* iOS Safari */
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08); -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 4px 30px rgba(0,0,0,0.1);
     }
-
-    /* =====================================================
-       iOS FIX 4: -webkit-background-clip:text needs BOTH
-       the prefixed and unprefixed versions, and color must
-       be set to transparent (not inherit).
-    ====================================================== */
     h1, h2, h3, h4, h5, h6 {
-      color: transparent;
-      background: linear-gradient(135deg, #4FD1C5 0%, #2C5282 50%, #1A365D 100%);
-      -webkit-background-clip: text; /* iOS Safari */
-      background-clip: text;
-      background-size: 200% 200%;
+      color: transparent; background: linear-gradient(135deg, #4FD1C5 0%, #2C5282 50%, #1A365D 100%);
+      -webkit-background-clip: text; background-clip: text; background-size: 200% 200%;
       animation: titleShimmer 3s ease-in-out infinite alternate;
     }
-
     @keyframes titleShimmer {
       0%   { background-position: 0% 50%; }
       100% { background-position: 100% 50%; }
     }
-
     .stat-number { color: white; text-shadow: 0 0 20px rgba(79,209,197,0.5); }
     .stat-title  { color: #4FD1C5; font-weight: 600; }
-
-    .page-load {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
-
-    @keyframes fadeInUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
+    .page-load { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+    .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; } .delay-3 { animation-delay: 0.3s; }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
     html { scroll-behavior: smooth; }
-
-    .glow-button {
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
+    .glow-button { position: relative; overflow: hidden; z-index: 1; }
     .glow-button::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.7s ease;
-      z-index: -1;
+      transition: left 0.7s ease; z-index: -1;
     }
     .glow-button:hover::before { left: 100%; }
-
     .article-image { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
     .article-card:hover .article-image { transform: scale(1.05); }
-
     .scroll-progress {
-      position: fixed; top: 0; left: 0;
-      width: 0%; height: 3px;
-      background: linear-gradient(90deg, #4FD1C5, #2C5282);
-      z-index: 100;
-      transition: width 0.3s ease;
+      position: fixed; top: 0; left: 0; width: 0%; height: 3px;
+      background: linear-gradient(90deg, #4FD1C5, #2C5282); z-index: 100; transition: width 0.3s ease;
     }
-
     .floating-element { animation: floatElement 6s ease-in-out infinite; }
     @keyframes floatElement {
       0%, 100% { transform: translateY(0px); }
       50%       { transform: translateY(-15px); }
     }
-
-    .article-title {
-      color: #4FD1C5 !important;
-      font-weight: 700;
-    }
+    .article-title { color: #4FD1C5 !important; font-weight: 700; }
     .article-title:hover { color: #4FD1C5 !important; }
-
-    .article-card {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-
-    .article-image-container {
-      position: relative;
-      width: 100%;
-      height: 200px;
-      overflow: hidden;
-      border-radius: 12px 12px 0 0;
-    }
-
-    .article-image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-
-    .article-card:hover .article-image-container img {
-      transform: scale(1.08);
-    }
-
-    .article-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      padding: 1.5rem;
-    }
-
-    .article-excerpt {
-      flex: 1;
-      margin-bottom: 1rem;
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-    }
-    .faq-answer > div { padding: 0 1.25rem 1.25rem 1.25rem; }
-    .rotate-180 { transform: rotate(180deg); }
-
-    /* =====================================================
-       iOS FIX 5: On older iOS, backdrop-filter with heavy
-       blur can cause white-flash. Reduce blur on mobile
-       and remove the -webkit-backdrop-filter fallback on
-       very old devices via @supports guard.
-    ====================================================== */
+    .article-card { display: flex; flex-direction: column; height: 100%; }
+    .article-image-container { position: relative; width: 100%; height: 200px; overflow: hidden; border-radius: 12px 12px 0 0; }
+    .article-image-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .article-card:hover .article-image-container img { transform: scale(1.08); }
+    .article-content { flex: 1; display: flex; flex-direction: column; padding: 1.5rem; }
+    .article-excerpt { flex: 1; margin-bottom: 1rem; }
     @media (max-width: 767px) {
-      /* Keep -webkit-backdrop-filter but reduce intensity */
-      .pure-glass {
-        -webkit-backdrop-filter: blur(8px);
-        backdrop-filter: blur(8px);
-        background: rgba(255, 255, 255, 0.10);
-      }
-      .nav-glass {
-        -webkit-backdrop-filter: blur(12px);
-        backdrop-filter: blur(12px);
-      }
+      .pure-glass { -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); background: rgba(255, 255, 255, 0.10); }
+      .nav-glass { -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
     }
-
-    /* =====================================================
-       iOS FIX 6: Safe area insets for notch / home bar
-       (iPhone X and later). Prevents content being hidden
-       behind the home indicator at the bottom.
-    ====================================================== */
-    footer {
-      padding-bottom: calc(1rem + env(safe-area-inset-bottom));
-    }
-
-    .fixed-bottom-btn {
-      bottom: calc(1.5rem + env(safe-area-inset-bottom));
-    }
-
-    /* =====================================================
-       iOS FIX 7: -webkit-tap-highlight-color removes the
-       grey flash on tap for links/buttons on iOS Safari.
-    ====================================================== */
-    a, button {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    /* =====================================================
-       iOS FIX 8: Prevent text size adjust after orientation
-       change on iOS Safari.
-    ====================================================== */
-    body {
-      -webkit-text-size-adjust: 100%;
-      text-size-adjust: 100%;
-    }
+    footer { padding-bottom: calc(1rem + env(safe-area-inset-bottom)); }
+    .fixed-bottom-btn { bottom: calc(1.5rem + env(safe-area-inset-bottom)); }
+    a, button { -webkit-tap-highlight-color: transparent; }
+    body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   </style>
   
   <script>
     tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#4FD1C5',
-            secondary: '#2C5282',
-            accent: '#ff9800',
-          }
-        }
-      }
+      theme: { extend: { colors: { primary: '#4FD1C5', secondary: '#2C5282', accent: '#ff9800' } } }
     }
   </script>
 </head>
 <body class="min-h-screen">
 
-  <!-- iOS FIX: Separate fixed layers replace background-attachment:fixed on body -->
   <div id="bg-layer" aria-hidden="true"></div>
   <div id="particle-layer" aria-hidden="true"></div>
-
-  <!-- Scroll Progress -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- Glass Navbar -->
@@ -323,7 +139,6 @@
                class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20"
                onerror="this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>YCI</span>';">
         </a>
-
         <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass page-load delay-1" aria-label="Menu">
           <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -334,9 +149,7 @@
           <a href="services.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-2">Blogs</a>
           <a href="articles.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-3">Events</a>
           <a href="team.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-4">Team</a>
-          <a href="contact.html" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:scale-105 transition glow-button page-load delay-5">
-            Contact
-          </a>
+          <a href="contact.html" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:scale-105 transition glow-button page-load delay-5">Contact</a>
         </div>
       </div>
       <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 space-y-2">
@@ -352,33 +165,20 @@
   <main class="pt-20">
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <!-- iOS FIX 9: Hero background image uses position:absolute (not fixed)
-           so it scrolls normally and doesn't break on iOS Safari -->
       <div class="absolute inset-0 z-0">
-        <img src="content/images/WhatsApp Image 2025-12-17 at 00.38.32.jpeg" alt="Hero background"
-             class="w-full h-full object-cover opacity-60"
-             onerror="this.style.display='none'">
+        <img src="content/images/WhatsApp Image 2025-12-17 at 00.38.32.jpeg" alt="Hero background" class="w-full h-full object-cover opacity-60" onerror="this.style.display='none'">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40"></div>
       </div>
-
       <div class="absolute top-1/4 left-10 w-4 h-4 bg-teal-400 rounded-full opacity-20 floating-element"></div>
       <div class="absolute top-1/3 right-20 w-6 h-6 bg-primary rounded-full opacity-15 floating-element" style="animation-delay: -2s;"></div>
       <div class="absolute bottom-1/4 left-1/4 w-8 h-8 bg-secondary rounded-full opacity-10 floating-element" style="animation-delay: -4s;"></div>
-
       <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-        <h2 class="text-white text-3xl sm:text-4xl md:text-5xl font-bold mb-6 page-load px-2">
-          TO BUILD A CLIMATE RESILIENT BANGLADESH WHERE YOUTH LEADS TOWARD
-        </h2>
+        <h2 class="text-white text-3xl sm:text-4xl md:text-5xl font-bold mb-6 page-load px-2">TO BUILD A CLIMATE RESILIENT BANGLADESH WHERE YOUTH LEADS TOWARD</h2>
         <div class="flex flex-col sm:flex-row gap-4 justify-center px-4">
-          <a href="contact.html" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition glow-button page-load delay-2">
-            Join Our Mission
-          </a>
-          <a href="articles.html" class="px-8 py-4 pure-glass text-white rounded-full font-semibold hover:scale-105 transition page-load delay-3">
-            Learn More
-          </a>
+          <a href="contact.html" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition glow-button page-load delay-2">Join Our Mission</a>
+          <a href="articles.html" class="px-8 py-4 pure-glass text-white rounded-full font-semibold hover:scale-105 transition page-load delay-3">Learn More</a>
         </div>
       </div>
-
       <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
         <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
           <div class="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
@@ -391,18 +191,9 @@
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="pure-glass rounded-3xl p-8 text-center">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <div class="text-4xl md:text-5xl font-bold stat-number">120+</div>
-              <div class="text-lg md:text-xl stat-title">Team Members</div>
-            </div>
-            <div>
-              <div class="text-4xl md:text-5xl font-bold stat-number">15+</div>
-              <div class="text-lg md:text-xl stat-title">Events</div>
-            </div>
-            <div>
-              <div class="text-3xl md:text-4xl font-bold stat-number">20+</div>
-              <div class="text-lg md:text-xl stat-title">Campus Reached</div>
-            </div>
+            <div><div class="text-4xl md:text-5xl font-bold stat-number">120+</div><div class="text-lg md:text-xl stat-title">Team Members</div></div>
+            <div><div class="text-4xl md:text-5xl font-bold stat-number">15+</div><div class="text-lg md:text-xl stat-title">Events</div></div>
+            <div><div class="text-3xl md:text-4xl font-bold stat-number">20+</div><div class="text-lg md:text-xl stat-title">Campus Reached</div></div>
           </div>
         </div>
       </div>
@@ -423,19 +214,10 @@
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="pure-glass rounded-3xl overflow-hidden group">
           <div class="p-6 md:p-8">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-              Our Commitment to Bring Change
-            </h2>
-            <p class="text-white mb-4">
-              We envision a climate-resilient Bangladesh where youth-led innovation, inclusive community participation, and sustainable solutions create a greener, healthier, and more just future for all.
-            </p>
-            <p class="text-white mb-4">
-              Our mission is to empower young people with knowledge, leadership skills, and resources to address climate challenges, uplift vulnerable communities, and promote sustainable development across Bangladesh.
-            </p>
-            <a href="articles.html"
-               class="mt-6 inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition-transform duration-300 glow-button">
-              Explore Our Impact
-            </a>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Our Commitment to Bring Change</h2>
+            <p class="text-white mb-4">We envision a climate-resilient Bangladesh where youth-led innovation, inclusive community participation, and sustainable solutions create a greener, healthier, and more just future for all.</p>
+            <p class="text-white mb-4">Our mission is to empower young people with knowledge, leadership skills, and resources to address climate challenges, uplift vulnerable communities, and promote sustainable development across Bangladesh.</p>
+            <a href="articles.html" class="mt-6 inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition-transform duration-300 glow-button">Explore Our Impact</a>
           </div>
         </div>
       </div>
@@ -445,43 +227,10 @@
     <section class="py-16 page-load delay-4">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-white text-3xl md:text-4xl font-bold text-center mb-8">Frequently Asked Questions</h2>
-
         <div class="space-y-4">
-          <div class="pure-glass rounded-xl overflow-hidden">
-            <details class="group" open>
-              <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none">
-                <span>What is YCI Bangladesh?</span>
-                <i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i>
-              </summary>
-              <div class="p-5 pt-0 text-white border-t border-white/10">
-                YCI Bangladesh is a youth-led initiative working to strengthen climate resilience, environmental awareness, and sustainable development across Bangladesh through education, advocacy, and community-based action.
-              </div>
-            </details>
-          </div>
-
-          <div class="pure-glass rounded-xl overflow-hidden">
-            <details class="group">
-              <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none">
-                <span>How can I volunteer with YCI?</span>
-                <i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i>
-              </summary>
-              <div class="p-5 pt-0 text-white border-t border-white/10">
-                Join our volunteer network by filling out the form on our Contact page. We welcome students, professionals, and community leaders passionate about climate action.
-              </div>
-            </details>
-          </div>
-
-          <div class="pure-glass rounded-xl overflow-hidden">
-            <details class="group">
-              <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none">
-                <span>Do you work only in Dhaka?</span>
-                <i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i>
-              </summary>
-              <div class="p-5 pt-0 text-white border-t border-white/10">
-                No—we operate nationwide with active chapters in Chittagong, Sylhet, Khulna, and Rajshahi, focusing on locally relevant climate challenges.
-              </div>
-            </details>
-          </div>
+          <div class="pure-glass rounded-xl overflow-hidden"><details class="group" open><summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none"><span>What is YCI Bangladesh?</span><i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i></summary><div class="p-5 pt-0 text-white border-t border-white/10">YCI Bangladesh is a youth-led initiative working to strengthen climate resilience, environmental awareness, and sustainable development across Bangladesh through education, advocacy, and community-based action.</div></details></div>
+          <div class="pure-glass rounded-xl overflow-hidden"><details class="group"><summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none"><span>How can I volunteer with YCI?</span><i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i></summary><div class="p-5 pt-0 text-white border-t border-white/10">Join our volunteer network by filling out the form on our Contact page. We welcome students, professionals, and community leaders passionate about climate action.</div></details></div>
+          <div class="pure-glass rounded-xl overflow-hidden"><details class="group"><summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none"><span>Do you work only in Dhaka?</span><i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i></summary><div class="p-5 pt-0 text-white border-t border-white/10">No—we operate nationwide with active chapters in Chittagong, Sylhet, Khulna, and Rajshahi, focusing on locally relevant climate challenges.</div></details></div>
         </div>
       </div>
     </section>
@@ -489,18 +238,9 @@
     <!-- Articles (Events) -->
     <section class="py-16 page-load delay-5">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-white text-4xl md:text-5xl font-bold mb-4">Our Events</h2>
-          <p class="text-white max-w-2xl mx-auto">Bringing change</p>
-        </div>
-        <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="text-center py-8 text-white">Loading articles...</div>
-        </div>
-        <div class="text-center mt-12">
-          <a href="articles.html" class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition glow-button inline-block">
-            More Articles
-          </a>
-        </div>
+        <div class="text-center mb-12"><h2 class="text-white text-4xl md:text-5xl font-bold mb-4">Our Events</h2><p class="text-white max-w-2xl mx-auto">Bringing change</p></div>
+        <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 gap-8"><div class="text-center py-8 text-white">Loading articles...</div></div>
+        <div class="text-center mt-12"><a href="articles.html" class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition glow-button inline-block">More Articles</a></div>
       </div>
     </section>
 
@@ -510,9 +250,7 @@
         <div class="pure-glass rounded-3xl p-12 text-center text-white group hover:scale-[1.02] transition-all duration-500">
           <h2 class="text-white text-4xl md:text-5xl font-bold mb-4">Meet Our entire Team</h2>
           <p class="text-xl mb-8">Bringing change</p>
-          <a href="team.html" class="px-8 py-4 bg-white text-primary rounded-full font-bold text-lg hover:bg-opacity-90 hover:scale-105 transition glow-button inline-block">
-            View Full Team
-          </a>
+          <a href="team.html" class="px-8 py-4 bg-white text-primary rounded-full font-bold text-lg hover:bg-opacity-90 hover:scale-105 transition glow-button inline-block">View Full Team</a>
         </div>
       </div>
     </section>
@@ -522,31 +260,15 @@
   <footer class="bg-gray-900 text-gray-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-        <!-- Brand -->
-        <div>
-          <h3 class="text-white font-bold mb-2">YCI Bangladesh</h3>
-          <p class="text-white mb-2">
-            To build a climate resilient Bangladesh where youth leads toward sustainable Change
-          </p>
+        <div><h3 class="text-white font-bold mb-2">YCI Bangladesh</h3><p class="text-white mb-2">To build a climate resilient Bangladesh where youth leads toward sustainable Change</p>
           <div class="flex space-x-3">
-            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Twitter">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="LinkedIn">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
-
-        <!-- Quick Links -->
-        <div>
-          <h4 class="font-bold text-white mb-4">Quick Links</h4>
+        <div><h4 class="font-bold text-white mb-4">Quick Links</h4>
           <ul class="space-y-2.5 text-sm">
             <li><a href="services.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
             <li><a href="articles.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
@@ -555,29 +277,14 @@
             <li><a href="contact.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Careers</a></li>
           </ul>
         </div>
-
-        <!-- Contact -->
-        <div>
-          <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
+        <div><h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
           <ul class="space-y-3 text-sm">
-            <li class="flex items-start">
-              <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
-              <span class="text-white mb-2">Dhaka, Bangladesh</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
-              <span class="text-white mb-2">ycibangladesh@gmail.com</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
-              <span class="text-white mb-2">01919403296 / 01980632583</span>
-            </li>
+            <li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i><span class="text-white mb-2">Dhaka, Bangladesh</span></li>
+            <li class="flex items-start"><i class="fas fa-envelope mt-1 mr-3 text-accent"></i><span class="text-white mb-2">ycibangladesh@gmail.com</span></li>
+            <li class="flex items-start"><i class="fas fa-phone mt-1 mr-3 text-accent"></i><span class="text-white mb-2">01919403296 / 01980632583</span></li>
           </ul>
         </div>
-
-        <!-- Resources -->
-        <div>
-          <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
+        <div><h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
           <ul class="space-y-2.5 text-sm">
             <li><a href="#" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Annual Reports</a></li>
             <li><a href="#" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Research Papers</a></li>
@@ -586,37 +293,16 @@
           </ul>
         </div>
       </div>
-
-      <!-- Copyright -->
       <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
         <p>&copy; 2025 YCI Bangladesh. All rights reserved.</p>
-        <div class="mt-3 space-x-4">
-          <a href="#" class="hover:text-white transition-colors">Privacy</a>
-          <span class="text-gray-600">•</span>
-          <a href="#" class="hover:text-white transition-colors">Terms</a>
-          <span class="text-gray-600">•</span>
-          <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
-        </div>
+        <div class="mt-3 space-x-4"><a href="#" class="hover:text-white transition-colors">Privacy</a><span class="text-gray-600">•</span><a href="#" class="hover:text-white transition-colors">Terms</a><span class="text-gray-600">•</span><a href="contact.html" class="hover:text-white transition-colors">Contact</a></div>
       </div>
     </div>
   </footer>
 
-  <!-- Floating Action Buttons — iOS FIX 6: safe area insets -->
-  <a href="contact.html"
-     style="bottom: calc(1.5rem + env(safe-area-inset-bottom));"
-     class="fixed right-6 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
-     aria-label="Join Our Mission">
-    <i class="fas fa-handshake mr-2"></i>
-    <span class="hidden sm:inline">Join Us</span>
-  </a>
-
-  <a href="team.html"
-     style="bottom: calc(1.5rem + env(safe-area-inset-bottom));"
-     class="fixed left-6 md:left-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
-     aria-label="View Our Team">
-    <i class="fas fa-users mr-2"></i>
-    <span class="hidden sm:inline">Our Team</span>
-  </a>
+  <!-- Floating Action Buttons -->
+  <a href="contact.html" style="bottom: calc(1.5rem + env(safe-area-inset-bottom));" class="fixed right-6 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30" aria-label="Join Our Mission"><i class="fas fa-handshake mr-2"></i><span class="hidden sm:inline">Join Us</span></a>
+  <a href="team.html" style="bottom: calc(1.5rem + env(safe-area-inset-bottom));" class="fixed left-6 md:left-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30" aria-label="View Our Team"><i class="fas fa-users mr-2"></i><span class="hidden sm:inline">Our Team</span></a>
 
   <!-- Scripts -->
   <script>
@@ -638,10 +324,7 @@
     }
 
     function generateSlug(title) {
-      return title.toLowerCase()
-        .replace(/[^\w\s-]/g, '')
-        .replace(/\s+/g, '-')
-        .substring(0, 60);
+      return title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').substring(0, 60);
     }
 
     function resolveImageURL(imagePath) {
@@ -651,27 +334,14 @@
       return `${SITE_URL}/content/images/${imagePath}`;
     }
 
-    function formatDate(dateStr) {
-      if (!dateStr) return '';
-      try {
-        return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-      } catch (e) { return dateStr; }
-    }
-
-    // Mobile menu
     document.getElementById('mobileMenuBtn')?.addEventListener('click', function(e) {
       e.stopPropagation();
       const menu = document.getElementById('mobileMenu');
       menu.classList.toggle('hidden');
       const icon = this.querySelector('i');
       if (icon) {
-        if (menu.classList.contains('hidden')) {
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
-        } else {
-          icon.classList.remove('fa-bars');
-          icon.classList.add('fa-times');
-        }
+        if (menu.classList.contains('hidden')) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); } 
+        else { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
       }
     });
 
@@ -685,7 +355,6 @@
       }
     });
 
-    // Scroll progress
     window.addEventListener('scroll', () => {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height    = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -693,15 +362,12 @@
       document.getElementById('scrollProgress').style.width = scrolled + '%';
     }, { passive: true });
 
-    // Intersection observer for animations
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('page-load');
-      });
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('page-load'); });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('section').forEach(s => observer.observe(s));
 
-    // Load announcements WITH FULL IMAGE SUPPORT
+    // ✅ UPDATED: Load announcements WITH INLINE EXPAND/COLLAPSE
     async function loadAnnouncements() {
       const container = document.getElementById('announcements-container');
       try {
@@ -716,24 +382,31 @@
           const parts = text.split('---');
           if (parts.length < 3) continue;
           const meta = parseYAML(parts[1]);
-          const body = parts.slice(2).join('---');
+          const rawBody = parts.slice(2).join('---');
           
           const formattedDate = meta.date
             ? new Date(meta.date).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' })
             : '';
           
+          const cleanedBody = rawBody.replace(/[#*_\-[\]()`>]/g, '').trim();
+          const hasMore = cleanedBody.length > 150;
+          const excerpt = hasMore ? cleanedBody.substring(0, 150) + '…' : cleanedBody;
+          const fullBodyFormatted = cleanedBody.replace(/\n/g, '<br>');
+          
           announcements.push({
             title: meta.title || 'Untitled',
             date: formattedDate,
             image: meta.image || null,
-            body: body.replace(/[#*_\-[\]()`>]/g, '').substring(0, 150) + '…'
+            excerpt: excerpt,
+            fullBody: fullBodyFormatted,
+            hasMore: hasMore
           });
         }
 
         announcements.sort((a, b) => new Date(b.date) - new Date(a.date));
 
         const html = announcements.slice(0, 3).map(a => `
-          <div class="pure-glass p-6 rounded-xl hover:scale-[1.02] transition-transform">
+          <div class="pure-glass p-6 rounded-xl hover:scale-[1.02] transition-transform announcement-card">
             ${a.image ? `
               <div class="mb-4 rounded-lg overflow-hidden">
                 <img src="${resolveImageURL(a.image)}" 
@@ -747,18 +420,55 @@
               <h3 class="text-xl font-bold text-primary">${a.title}</h3>
               ${a.date ? `<span class="text-gray-400 text-sm">${a.date}</span>` : ''}
             </div>
-            <p class="text-white">${a.body}</p>
+            <p class="text-white">${a.excerpt}</p>
+            
+            <div class="announcement-full overflow-hidden transition-all duration-400 ease-in-out" style="max-height: 0; opacity: 0;">
+              <div class="pt-2">
+                <p class="text-white">${a.fullBody}</p>
+              </div>
+            </div>
+            
+            ${a.hasMore ? `
+              <button class="read-more-btn mt-3 inline-flex items-center text-teal-300 hover:text-teal-400 font-medium transition-colors cursor-pointer">
+                <span class="btn-text">Read More</span>
+                <i class="fas fa-chevron-down ml-2 transition-transform duration-300"></i>
+              </button>
+            ` : ''}
           </div>
         `).join('');
 
         container.innerHTML = html || '<p class="text-white text-center">No announcements.</p>';
+
+        // 🔘 Attach toggle functionality to all Read More buttons
+        document.querySelectorAll('.read-more-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const card = this.closest('.announcement-card');
+            const fullContent = card.querySelector('.announcement-full');
+            const btnText = this.querySelector('.btn-text');
+            const icon = this.querySelector('i');
+            
+            const isExpanded = fullContent.style.maxHeight && fullContent.style.maxHeight !== '0px';
+
+            if (isExpanded) {
+              fullContent.style.maxHeight = '0px';
+              fullContent.style.opacity = '0';
+              btnText.textContent = 'Read More';
+              icon.style.transform = 'rotate(0deg)';
+            } else {
+              fullContent.style.maxHeight = fullContent.scrollHeight + 'px';
+              fullContent.style.opacity = '1';
+              btnText.textContent = 'Show Less';
+              icon.style.transform = 'rotate(180deg)';
+            }
+          });
+        });
+
       } catch (e) {
         console.error('Announcements error:', e);
         container.innerHTML = '<p class="text-white text-center">Failed to load announcements.</p>';
       }
     }
 
-    // Load articles
     async function loadArticles() {
       const container = document.getElementById('articles-container');
       try {
@@ -814,18 +524,11 @@
       }
     }
 
-    // On page load
     document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.page-load').forEach((el, index) => {
-        el.style.animationDelay = `${index * 0.1}s`;
-      });
+      document.querySelectorAll('.page-load').forEach((el, index) => { el.style.animationDelay = `${index * 0.1}s`; });
 
-      setTimeout(() => {
-        loadAnnouncements();
-        loadArticles();
-      }, 400);
+      setTimeout(() => { loadAnnouncements(); loadArticles(); }, 400);
 
-      // Ripple effect
       document.querySelectorAll('.glow-button').forEach(button => {
         button.addEventListener('click', function(e) {
           const ripple = document.createElement('span');
@@ -834,13 +537,9 @@
           const x      = e.clientX - rect.left - size / 2;
           const y      = e.clientY - rect.top  - size / 2;
           ripple.style.cssText = `
-            position: absolute; border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            width: ${size}px; height: ${size}px;
-            left: ${x}px; top: ${y}px;
-            pointer-events: none;
+            position: absolute; border-radius: 50%; background: rgba(255,255,255,0.3);
+            transform: scale(0); animation: ripple 0.6s linear;
+            width: ${size}px; height: ${size}px; left: ${x}px; top: ${y}px; pointer-events: none;
           `;
           this.appendChild(ripple);
           setTimeout(() => ripple.remove(), 600);
