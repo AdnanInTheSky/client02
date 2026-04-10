@@ -701,7 +701,7 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('section').forEach(s => observer.observe(s));
 
-    // Load announcements
+    // Load announcements WITH FULL IMAGE SUPPORT
     async function loadAnnouncements() {
       const container = document.getElementById('announcements-container');
       try {
@@ -717,12 +717,15 @@
           if (parts.length < 3) continue;
           const meta = parseYAML(parts[1]);
           const body = parts.slice(2).join('---');
+          
           const formattedDate = meta.date
             ? new Date(meta.date).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' })
             : '';
+          
           announcements.push({
             title: meta.title || 'Untitled',
             date: formattedDate,
+            image: meta.image || null,
             body: body.replace(/[#*_\-[\]()`>]/g, '').substring(0, 150) + '…'
           });
         }
@@ -731,6 +734,15 @@
 
         const html = announcements.slice(0, 3).map(a => `
           <div class="pure-glass p-6 rounded-xl hover:scale-[1.02] transition-transform">
+            ${a.image ? `
+              <div class="mb-4 rounded-lg overflow-hidden">
+                <img src="${resolveImageURL(a.image)}" 
+                     alt="${a.title}" 
+                     class="w-full h-auto object-contain"
+                     loading="lazy"
+                     onerror="this.style.display='none'">
+              </div>
+            ` : ''}
             <div class="flex justify-between items-start mb-2">
               <h3 class="text-xl font-bold text-primary">${a.title}</h3>
               ${a.date ? `<span class="text-gray-400 text-sm">${a.date}</span>` : ''}

@@ -1,775 +1,844 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Loading... - YCI</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>YCI Bangladesh</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
+    /* =====================================================
+       iOS FIX 1: background-attachment:fixed is broken on
+       iOS Safari. Use a fixed pseudo-element on a wrapper
+       instead so the gradient always renders correctly.
+    ====================================================== */
+    html {
+      height: 100%;
+    }
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        * {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    body {
+      /* iOS FIX 2: 100vh is taller than the visible area
+         on iOS Safari due to the address bar. Use the
+         -webkit-fill-available fallback. */
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      overflow-x: hidden;
+      color: #ffffff;
+      position: relative;
+      /* No background on body — handled by #bg-layer below */
+    }
+
+    /* Fixed gradient background layer — avoids the
+       background-attachment:fixed iOS bug entirely */
+    #bg-layer {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -2;
+      background: linear-gradient(135deg,
+        #4FD1C5 0%,
+        #319795 25%,
+        #2C5282 50%,
+        #1A365D 75%,
+        #0F1B2D 100%
+      );
+      background-size: 100% 300%;
+      animation: gradientBG 20s ease infinite;
+    }
+
+    /* Floating particle dots layer */
+    #particle-layer {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 1px, transparent 1px),
+        radial-gradient(circle at 60% 70%, rgba(255,255,255,0.08) 1px, transparent 1px),
+        radial-gradient(circle at 80% 40%, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 150px 150px, 200px 200px, 180px 180px;
+      z-index: -1;
+      animation: floatParticles 60s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes gradientBG {
+      0%   { background-position: 0% 0%; }
+      50%  { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    @keyframes floatParticles {
+      0%   { transform: translateY(0px)   translateX(0px); }
+      25%  { transform: translateY(-20px) translateX(10px); }
+      50%  { transform: translateY(0px)   translateX(20px); }
+      75%  { transform: translateY(20px)  translateX(10px); }
+      100% { transform: translateY(0px)   translateX(0px); }
+    }
+
+    /* =====================================================
+       iOS FIX 3: backdrop-filter requires -webkit- prefix
+       on iOS Safari. Always include both.
+    ====================================================== */
+    .pure-glass {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+      -webkit-backdrop-filter: blur(4px); /* iOS Safari */
+      backdrop-filter: blur(4px);
+      color: white;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .pure-glass:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+
+    .nav-glass {
+      background: rgba(255, 255, 255, 0.08);
+      -webkit-backdrop-filter: blur(20px); /* iOS Safari */
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+    }
+
+    /* =====================================================
+       iOS FIX 4: -webkit-background-clip:text needs BOTH
+       the prefixed and unprefixed versions, and color must
+       be set to transparent (not inherit).
+    ====================================================== */
+    h1, h2, h3, h4, h5, h6 {
+      color: transparent;
+      background: linear-gradient(135deg, #4FD1C5 0%, #2C5282 50%, #1A365D 100%);
+      -webkit-background-clip: text; /* iOS Safari */
+      background-clip: text;
+      background-size: 200% 200%;
+      animation: titleShimmer 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleShimmer {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .stat-number { color: white; text-shadow: 0 0 20px rgba(79,209,197,0.5); }
+    .stat-title  { color: #4FD1C5; font-weight: 600; }
+
+    .page-load {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    .glow-button {
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .glow-button::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.7s ease;
+      z-index: -1;
+    }
+    .glow-button:hover::before { left: 100%; }
+
+    .article-image { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+    .article-card:hover .article-image { transform: scale(1.05); }
+
+    .scroll-progress {
+      position: fixed; top: 0; left: 0;
+      width: 0%; height: 3px;
+      background: linear-gradient(90deg, #4FD1C5, #2C5282);
+      z-index: 100;
+      transition: width 0.3s ease;
+    }
+
+    .floating-element { animation: floatElement 6s ease-in-out infinite; }
+    @keyframes floatElement {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-15px); }
+    }
+
+    .article-title {
+      color: #4FD1C5 !important;
+      font-weight: 700;
+    }
+    .article-title:hover { color: #4FD1C5 !important; }
+
+    .article-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .article-image-container {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .article-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .article-card:hover .article-image-container img {
+      transform: scale(1.08);
+    }
+
+    .article-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+    }
+
+    .article-excerpt {
+      flex: 1;
+      margin-bottom: 1rem;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-answer > div { padding: 0 1.25rem 1.25rem 1.25rem; }
+    .rotate-180 { transform: rotate(180deg); }
+
+    /* =====================================================
+       iOS FIX 5: On older iOS, backdrop-filter with heavy
+       blur can cause white-flash. Reduce blur on mobile
+       and remove the -webkit-backdrop-filter fallback on
+       very old devices via @supports guard.
+    ====================================================== */
+    @media (max-width: 767px) {
+      /* Keep -webkit-backdrop-filter but reduce intensity */
+      .pure-glass {
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        background: rgba(255, 255, 255, 0.10);
+      }
+      .nav-glass {
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+      }
+    }
+
+    /* =====================================================
+       iOS FIX 6: Safe area insets for notch / home bar
+       (iPhone X and later). Prevents content being hidden
+       behind the home indicator at the bottom.
+    ====================================================== */
+    footer {
+      padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+    }
+
+    .fixed-bottom-btn {
+      bottom: calc(1.5rem + env(safe-area-inset-bottom));
+    }
+
+    /* =====================================================
+       iOS FIX 7: -webkit-tap-highlight-color removes the
+       grey flash on tap for links/buttons on iOS Safari.
+    ====================================================== */
+    a, button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* =====================================================
+       iOS FIX 8: Prevent text size adjust after orientation
+       change on iOS Safari.
+    ====================================================== */
+    body {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+  </style>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4FD1C5',
+            secondary: '#2C5282',
+            accent: '#ff9800',
+          }
         }
-        
-        /* iOS Safari viewport height fix */
-        @supports (-webkit-touch-callout: none) {
-            body {
-                min-height: -webkit-fill-available;
-            }
-            html {
-                height: -webkit-fill-available;
-            }
-        }
-        
-        /* Blue to green gradient background with iOS-safe height */
-        body {
-            background: linear-gradient(135deg, rgba(17, 23, 87, 0.85), rgba(13, 71, 161, 0.7), rgba(37, 170, 33, 0.6));
-            min-height: 100vh;
-            min-height: -webkit-fill-available;
-            overflow-x: hidden;
-            position: relative;
-        }
-        
-        html {
-            height: 100%;
-            scroll-behavior: smooth;
-        }
-        
-        /* Pure Glass Effects - with vendor prefixes */
-        .pure-glass {
-            background: rgba(255, 255, 255, 0.15);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-        
-        .pure-glass-card {
-            background: rgba(255, 255, 255, 0.2);
-            -webkit-backdrop-filter: blur(25px);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .pure-glass-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-            background: rgba(255, 255, 255, 0.25);
-        }
-        
-        .pure-glass-light {
-            background: rgba(255, 255, 255, 0.25);
-            -webkit-backdrop-filter: blur(15px);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .animate-fadeInUp {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-        
-        .animate-fadeIn {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-        
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
-        
-        /* Gradient text with fallback */
-        .gradient-text {
-            color: #ffffff; /* Fallback for older iOS */
-            background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
-        }
-        
-        /* Team member specific styles */
-        .team-content {
-            line-height: 1.7;
-            font-size: 1.125rem;
-        }
-        
-        .team-content h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-        
-        .team-content h2 {
-            font-size: 1.875rem;
-            font-weight: 700;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .team-content h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        .team-content p {
-            margin-bottom: 1.5rem;
-        }
-        
-        .team-content img {
-            border-radius: 0.75rem;
-            margin: 1.5rem 0;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            max-width: 100%;
-            height: auto;
-        }
-        
-        .team-content blockquote {
-            border-left: 4px solid rgba(255, 255, 255, 0.5);
-            padding-left: 1.5rem;
-            margin: 1.5rem 0;
-            font-style: italic;
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .team-content code {
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 0.125rem 0.375rem;
-            border-radius: 0.25rem;
-            font-size: 0.875rem;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-        }
-        
-        .team-content ul, .team-content ol {
-            margin: 1.5rem 0;
-            padding-left: 1.5rem;
-        }
-        
-        .team-content li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .team-content table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-        
-        .team-content th, .team-content td {
-            padding: 0.75rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .team-content th {
-            background-color: rgba(255, 255, 255, 0.3);
-            font-weight: 600;
-        }
-        
-        /* Profile image styling */
-        .profile-image-wrapper {
-            position: relative;
-            overflow: hidden;
-            border-radius: 50%;
-            width: 220px;
-            height: 220px;
-            margin: 0 auto;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.1),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .profile-image-wrapper:hover {
-            transform: scale(1.08) rotate(5deg);
-            box-shadow: 
-                0 30px 60px rgba(0, 0, 0, 0.2),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.7);
-        }
-        
-        .profile-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .profile-image-wrapper:hover img {
-            transform: scale(1.1);
-        }
-        
-        /* Role badge */
-        .role-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
-            color: white;
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin: 1rem 0;
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .role-badge:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        }
-        
-        /* Contact info styling */
-        .contact-info {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            margin: 2.5rem 0;
-            -webkit-backdrop-filter: blur(15px);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.3s ease;
-        }
-        
-        .contact-item:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateX(10px);
-        }
-        
-        .contact-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(16, 185, 129, 0.8) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1.5rem;
-            color: white;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-        
-        /* Improved focus states for accessibility */
-        a:focus, button:focus {
-            outline: 2px solid rgba(255, 255, 255, 0.5);
-            outline-offset: 4px;
-            border-radius: 8px;
-        }
-        
-        /* Back button styles */
-        .back-button {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 1.25rem 2.5rem;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            -webkit-backdrop-filter: blur(15px);
-            backdrop-filter: blur(15px);
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            box-shadow: 
-                0 10px 20px rgba(0, 0, 0, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-        }
-        
-        .back-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4);
-            letter-spacing: 1px;
-        }
-        
-        /* Text colors for glass theme */
-        .glass-text-primary {
-            color: white;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .glass-text-secondary {
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .glass-text-muted {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        /* Floating orbs decoration */
-        .floating-orb {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
-            filter: blur(20px);
-            z-index: -1;
-            pointer-events: none;
-        }
-        
-        /* iOS touch handling improvements */
-        a, button, .contact-item, .back-button {
-            -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
-            touch-action: manipulation;
-        }
-    </style>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1a237e',
-                        secondary: '#0d47a1',
-                        accent: '#ef6c00',
-                        success: '#00897b',
-                    }
-                }
-            }
-        }
-    </script>
+      }
+    }
+  </script>
 </head>
+<body class="min-h-screen">
 
-<body class="relative overflow-x-hidden">
+  <!-- iOS FIX: Separate fixed layers replace background-attachment:fixed on body -->
+  <div id="bg-layer" aria-hidden="true"></div>
+  <div id="particle-layer" aria-hidden="true"></div>
 
-    <!-- Floating orbs decoration -->
-    <div class="floating-orb animate-float" style="width: 300px; height: 300px; top: 10%; left: 5%;"></div>
-    <div class="floating-orb animate-float" style="width: 200px; height: 200px; top: 70%; right: 10%; animation-delay: 1s;"></div>
-    <div class="floating-orb animate-float" style="width: 150px; height: 150px; bottom: 20%; left: 15%; animation-delay: 2s;"></div>
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- Main Content -->
-    <main class="pt-8 pb-16 px-4 relative z-10">
-        <div class="max-w-4xl mx-auto">
-            <div class="pure-glass-card rounded-3xl overflow-hidden animate-fadeInUp">
-                <div class="p-8 md:p-12">
-                    <!-- Team Member Header -->
-                    <div class="text-center mb-12">
-                        <div class="profile-image-wrapper mb-8">
-                            <img id="team-image" src="" alt="Team Member" class="w-full h-full object-cover" loading="lazy"
-                                 onerror="handleImageError(this)">
-                        </div>
-                        
-                        <h1 id="team-name" class="text-4xl md:text-5xl font-bold glass-text-primary mb-6">
-                            Loading...
-                        </h1>
-                        
-                        <div id="team-role" class="role-badge animate-fadeIn delay-100 inline-block">
-                            <!-- Role will be populated here -->
-                        </div>
-                    </div>
+  <!-- Glass Navbar -->
+  <nav id="mainNav" class="fixed w-full top-0 z-50 nav-glass">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16 md:h-20">
+        <a href="index.html" class="flex items-center page-load">
+          <img src="content/images/IMG_5811.png" alt="YCI Logo"
+               class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-white/20"
+               onerror="this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>YCI</span>';">
+        </a>
 
-                    <!-- Contact Information -->
-                    <div id="contact-info" class="contact-info animate-fadeIn delay-200 hidden">
-                        <h3 class="text-xl font-bold glass-text-primary mb-6 flex items-center justify-center">
-                            <i class="fas fa-envelope mr-3 text-white"></i>
-                            Contact Information
-                        </h3>
-                        <div id="contact-details" class="max-w-2xl mx-auto">
-                            <!-- Contact details will be populated here -->
-                        </div>
-                    </div>
-
-                    <!-- Team Member Bio -->
-                    <div id="team-bio" class="team-content opacity-0 animate-fadeIn delay-300 glass-text-secondary">
-                        <div class="flex justify-center py-12">
-                            <div class="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Back Button at Bottom -->
-                    <div class="mt-16 pt-10 border-t border-white/20 animate-fadeIn delay-400">
-                        <div class="flex justify-center">
-                            <a href="team.html" class="back-button inline-flex items-center px-10 py-4">
-                                <i class="fas fa-arrow-left mr-4 text-lg"></i>
-                                Back to Team Page
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl pure-glass page-load delay-1" aria-label="Menu">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+        <div class="hidden md:flex space-x-2">
+          <a href="index.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-1">Home</a>
+          <a href="services.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-2">Blogs</a>
+          <a href="articles.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-3">Events</a>
+          <a href="team.html" class="px-4 py-2 text-white hover:text-teal-300 transition hover:scale-110 page-load delay-4">Team</a>
+          <a href="contact.html" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:scale-105 transition glow-button page-load delay-5">
+            Contact
+          </a>
         </div>
-    </main>
+      </div>
+      <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 space-y-2">
+        <a href="index.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Home</a>
+        <a href="services.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Blogs</a>
+        <a href="articles.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Events</a>
+        <a href="team.html" class="block px-4 py-2 text-white hover:text-teal-300 hover:translate-x-2 transition">Team</a>
+        <a href="contact.html" class="mt-2 block px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full text-center glow-button">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-                <!-- Brand -->
-                <div>
-                    <h3 class="glass-text-primary font-bold text-xl mb-4">YCI bangladesh</h3>
-                    <p class="glass-text-secondary mb-4">
-                        Building sustainable futures through innovation, equity, and community-led action.
-                    </p>
-                </div>
+  <main class="pt-20">
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <!-- iOS FIX 9: Hero background image uses position:absolute (not fixed)
+           so it scrolls normally and doesn't break on iOS Safari -->
+      <div class="absolute inset-0 z-0">
+        <img src="content/images/WhatsApp Image 2025-12-17 at 00.38.32.jpeg" alt="Hero background"
+             class="w-full h-full object-cover opacity-60"
+             onerror="this.style.display='none'">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40"></div>
+      </div>
 
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="font-bold glass-text-primary mb-6">Quick Links</h4>
-                    <ul class="space-y-3">
-                        <li><a href="services.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>About Us</a></li>
-                        <li><a href="articles.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Publications</a></li>
-                        <li><a href="team.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Our Team</a></li>
-                        <li><a href="contact.html" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Contact</a></li>
-                    </ul>
-                </div>
+      <div class="absolute top-1/4 left-10 w-4 h-4 bg-teal-400 rounded-full opacity-20 floating-element"></div>
+      <div class="absolute top-1/3 right-20 w-6 h-6 bg-primary rounded-full opacity-15 floating-element" style="animation-delay: -2s;"></div>
+      <div class="absolute bottom-1/4 left-1/4 w-8 h-8 bg-secondary rounded-full opacity-10 floating-element" style="animation-delay: -4s;"></div>
 
-                <!-- Contact -->
-                <div>
-                    <h4 class="glass-text-primary font-semibold text-lg mb-6">Contact</h4>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-4 text-white/80 flex-shrink-0"></i>
-                            <span class="glass-text-secondary">Dhaka, Bangladesh</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-envelope mt-1 mr-4 text-white/80 flex-shrink-0"></i>
-                            <span class="glass-text-secondary">ycibangladesh@gmail.com</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-phone mt-1 mr-4 text-white/80 flex-shrink-0"></i>
-                            <span class="glass-text-secondary">01919403296 / 01980632583</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Resources -->
-                <div>
-                    <h4 class="glass-text-primary font-semibold text-lg mb-6">Resources</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Annual Reports</a></li>
-                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Research Papers</a></li>
-                        <li><a href="#" class="glass-text-secondary hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-3 text-white/70"></i>Case Studies</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Copyright -->
-            <div class="border-t border-white/20 mt-12 pt-8 text-center">
-                <p class="glass-text-muted">&copy; 2025 BioNova. All rights reserved.</p>
-                <div class="mt-4 space-x-6">
-                    <a href="#" class="glass-text-muted hover:text-white transition-colors">Privacy</a>
-                    <span class="glass-text-muted">•</span>
-                    <a href="#" class="glass-text-muted hover:text-white transition-colors">Terms</a>
-                    <span class="glass-text-muted">•</span>
-                    <a href="contact.html" class="glass-text-muted hover:text-white transition-colors">Contact</a>
-                </div>
-            </div>
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        <h2 class="text-white text-3xl sm:text-4xl md:text-5xl font-bold mb-6 page-load px-2">
+          TO BUILD A CLIMATE RESILIENT BANGLADESH WHERE YOUTH LEADS TOWARD
+        </h2>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center px-4">
+          <a href="contact.html" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition glow-button page-load delay-2">
+            Join Our Mission
+          </a>
+          <a href="articles.html" class="px-8 py-4 pure-glass text-white rounded-full font-semibold hover:scale-105 transition page-load delay-3">
+            Learn More
+          </a>
         </div>
-    </footer>
+      </div>
 
-    <script>
-        // --- YAML Parser ---
-        function parseYAML(yamlStr) {
-            const result = {};
-            yamlStr.trim().split('\n').forEach(line => {
-                const idx = line.indexOf(':');
-                if (idx === -1) return;
-                let key = line.slice(0, idx).trim();
-                let val = line.slice(idx + 1).trim().replace(/^[\"']|[\"']$/g, '');
-                if (val === 'true') val = true;
-                if (val === 'false') val = false;
-                if (!isNaN(val) && val !== '') val = Number(val);
-                result[key] = val;
-            });
-            return result;
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+          <div class="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 page-load delay-1" id="statsSection">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="pure-glass rounded-3xl p-8 text-center">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <div class="text-4xl md:text-5xl font-bold stat-number">120+</div>
+              <div class="text-lg md:text-xl stat-title">Team Members</div>
+            </div>
+            <div>
+              <div class="text-4xl md:text-5xl font-bold stat-number">15+</div>
+              <div class="text-lg md:text-xl stat-title">Events</div>
+            </div>
+            <div>
+              <div class="text-3xl md:text-4xl font-bold stat-number">20+</div>
+              <div class="text-lg md:text-xl stat-title">Campus Reached</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Announcements -->
+    <section class="py-12 page-load delay-2">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-primary">Announcements</h2>
+        <div id="announcements-container" class="space-y-6">
+          <div class="text-center py-6 text-white">Loading announcements...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us -->
+    <section class="py-16 page-load delay-3">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="pure-glass rounded-3xl overflow-hidden group">
+          <div class="p-6 md:p-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+              Our Commitment to Bring Change
+            </h2>
+            <p class="text-white mb-4">
+              We envision a climate-resilient Bangladesh where youth-led innovation, inclusive community participation, and sustainable solutions create a greener, healthier, and more just future for all.
+            </p>
+            <p class="text-white mb-4">
+              Our mission is to empower young people with knowledge, leadership skills, and resources to address climate challenges, uplift vulnerable communities, and promote sustainable development across Bangladesh.
+            </p>
+            <a href="articles.html"
+               class="mt-6 inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition-transform duration-300 glow-button">
+              Explore Our Impact
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 page-load delay-4">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-white text-3xl md:text-4xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+
+        <div class="space-y-4">
+          <div class="pure-glass rounded-xl overflow-hidden">
+            <details class="group" open>
+              <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none">
+                <span>What is YCI Bangladesh?</span>
+                <i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i>
+              </summary>
+              <div class="p-5 pt-0 text-white border-t border-white/10">
+                YCI Bangladesh is a youth-led initiative working to strengthen climate resilience, environmental awareness, and sustainable development across Bangladesh through education, advocacy, and community-based action.
+              </div>
+            </details>
+          </div>
+
+          <div class="pure-glass rounded-xl overflow-hidden">
+            <details class="group">
+              <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none">
+                <span>How can I volunteer with YCI?</span>
+                <i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i>
+              </summary>
+              <div class="p-5 pt-0 text-white border-t border-white/10">
+                Join our volunteer network by filling out the form on our Contact page. We welcome students, professionals, and community leaders passionate about climate action.
+              </div>
+            </details>
+          </div>
+
+          <div class="pure-glass rounded-xl overflow-hidden">
+            <details class="group">
+              <summary class="flex justify-between items-center p-5 text-left font-semibold text-white hover:text-teal-300 transition cursor-pointer list-none">
+                <span>Do you work only in Dhaka?</span>
+                <i class="fas fa-chevron-down transition-transform group-open:rotate-180"></i>
+              </summary>
+              <div class="p-5 pt-0 text-white border-t border-white/10">
+                No—we operate nationwide with active chapters in Chittagong, Sylhet, Khulna, and Rajshahi, focusing on locally relevant climate challenges.
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Articles (Events) -->
+    <section class="py-16 page-load delay-5">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-white text-4xl md:text-5xl font-bold mb-4">Our Events</h2>
+          <p class="text-white max-w-2xl mx-auto">Bringing change</p>
+        </div>
+        <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="text-center py-8 text-white">Loading articles...</div>
+        </div>
+        <div class="text-center mt-12">
+          <a href="articles.html" class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:scale-105 transition glow-button inline-block">
+            More Articles
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Meet the Team -->
+    <section class="py-16 page-load delay-6">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="pure-glass rounded-3xl p-12 text-center text-white group hover:scale-[1.02] transition-all duration-500">
+          <h2 class="text-white text-4xl md:text-5xl font-bold mb-4">Meet Our entire Team</h2>
+          <p class="text-xl mb-8">Bringing change</p>
+          <a href="team.html" class="px-8 py-4 bg-white text-primary rounded-full font-bold text-lg hover:bg-opacity-90 hover:scale-105 transition glow-button inline-block">
+            View Full Team
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+        <!-- Brand -->
+        <div>
+          <h3 class="text-white font-bold mb-2">YCI Bangladesh</h3>
+          <p class="text-white mb-2">
+            To build a climate resilient Bangladesh where youth leads toward sustainable Change
+          </p>
+          <div class="flex space-x-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.facebook.com/p/YCI-Bangladesh-61576373540871/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/yci-bangladesh/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all duration-300 hover:scale-110" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-bold text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="services.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>About Us</a></li>
+            <li><a href="articles.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Publications</a></li>
+            <li><a href="team.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Our Team</a></li>
+            <li><a href="contact.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Contact</a></li>
+            <li><a href="contact.html" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Careers</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="text-white font-semibold text-lg mb-4">Contact</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
+              <span class="text-white mb-2">Dhaka, Bangladesh</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
+              <span class="text-white mb-2">ycibangladesh@gmail.com</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-phone mt-1 mr-3 text-accent"></i>
+              <span class="text-white mb-2">01919403296 / 01980632583</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="text-white font-semibold text-lg mb-4">Resources</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Annual Reports</a></li>
+            <li><a href="#" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Research Papers</a></li>
+            <li><a href="#" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Case Studies</a></li>
+            <li><a href="#" class="text-white mb-2 inline-flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-accent"></i>Partnerships</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm">
+        <p>&copy; 2025 YCI Bangladesh. All rights reserved.</p>
+        <div class="mt-3 space-x-4">
+          <a href="#" class="hover:text-white transition-colors">Privacy</a>
+          <span class="text-gray-600">•</span>
+          <a href="#" class="hover:text-white transition-colors">Terms</a>
+          <span class="text-gray-600">•</span>
+          <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Action Buttons — iOS FIX 6: safe area insets -->
+  <a href="contact.html"
+     style="bottom: calc(1.5rem + env(safe-area-inset-bottom));"
+     class="fixed right-6 md:right-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
+     aria-label="Join Our Mission">
+    <i class="fas fa-handshake mr-2"></i>
+    <span class="hidden sm:inline">Join Us</span>
+  </a>
+
+  <a href="team.html"
+     style="bottom: calc(1.5rem + env(safe-area-inset-bottom));"
+     class="fixed left-6 md:left-8 px-6 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 text-white flex items-center justify-center font-semibold text-lg shadow-2xl hover:scale-105 transition-all duration-300 z-40 border border-white/30"
+     aria-label="View Our Team">
+    <i class="fas fa-users mr-2"></i>
+    <span class="hidden sm:inline">Our Team</span>
+  </a>
+
+  <!-- Scripts -->
+  <script>
+    const SITE_URL = window.location.origin;
+
+    function parseYAML(yamlStr) {
+      const result = {};
+      yamlStr.trim().split('\n').forEach(line => {
+        const idx = line.indexOf(':');
+        if (idx === -1) return;
+        let key = line.slice(0, idx).trim();
+        let val = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
+        if (val === 'true') val = true;
+        if (val === 'false') val = false;
+        if (!isNaN(val) && val !== '') val = Number(val);
+        result[key] = val;
+      });
+      return result;
+    }
+
+    function generateSlug(title) {
+      return title.toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .substring(0, 60);
+    }
+
+    function resolveImageURL(imagePath) {
+      if (!imagePath) return `${SITE_URL}/content/images/IMG_5811.png`;
+      if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) return imagePath;
+      if (imagePath.startsWith('/')) return `${SITE_URL}${imagePath}`;
+      return `${SITE_URL}/content/images/${imagePath}`;
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      try {
+        return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      } catch (e) { return dateStr; }
+    }
+
+    // Mobile menu
+    document.getElementById('mobileMenuBtn')?.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+      const icon = this.querySelector('i');
+      if (icon) {
+        if (menu.classList.contains('hidden')) {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        } else {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        }
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      const menu = document.getElementById('mobileMenu');
+      const btn  = document.getElementById('mobileMenuBtn');
+      if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.classList.add('hidden');
+        const icon = btn.querySelector('i');
+        if (icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
+      }
+    });
+
+    // Scroll progress
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height    = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled  = (winScroll / height) * 100;
+      document.getElementById('scrollProgress').style.width = scrolled + '%';
+    }, { passive: true });
+
+    // Intersection observer for animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('page-load');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('section').forEach(s => observer.observe(s));
+
+    // Load announcements
+    async function loadAnnouncements() {
+      const container = document.getElementById('announcements-container');
+      try {
+        const res  = await fetch('/content/index.json');
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        const paths = data.announcement || [];
+        const announcements = [];
+
+        for (const path of paths) {
+          const text  = await fetch(`/content/${path}`).then(r => r.text());
+          const parts = text.split('---');
+          if (parts.length < 3) continue;
+          const meta = parseYAML(parts[1]);
+          const body = parts.slice(2).join('---');
+          const formattedDate = meta.date
+            ? new Date(meta.date).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' })
+            : '';
+          announcements.push({
+            title: meta.title || 'Untitled',
+            date: formattedDate,
+            body: body.replace(/[#*_\-[\]()`>]/g, '').substring(0, 150) + '…'
+          });
         }
 
-        // --- Safe sessionStorage access for iOS Private Mode ---
-        function safeSessionStorage() {
-            try {
-                const test = '__test__';
-                sessionStorage.setItem(test, test);
-                sessionStorage.removeItem(test);
-                return sessionStorage; // Storage is available
-            } catch (e) {
-                // iOS Private Mode or other restriction - return in-memory fallback
-                console.warn('sessionStorage not available, using in-memory fallback');
-                return {
-                    _data: {},
-                    getItem(key) { return this._data[key] || null; },
-                    setItem(key, value) { this._data[key] = String(value); },
-                    removeItem(key) { delete this._data[key]; },
-                    clear() { this._data = {}; }
-                };
-            }
-        }
+        announcements.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        // --- Create storage instance ---
-        const storage = safeSessionStorage();
+        const html = announcements.slice(0, 3).map(a => `
+          <div class="pure-glass p-6 rounded-xl hover:scale-[1.02] transition-transform">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-bold text-primary">${a.title}</h3>
+              ${a.date ? `<span class="text-gray-400 text-sm">${a.date}</span>` : ''}
+            </div>
+            <p class="text-white">${a.body}</p>
+          </div>
+        `).join('');
 
-        // --- Safe image error handler with infinite loop protection ---
-        window.handleImageError = function(img) {
-            // Prevent infinite loop
-            if (img.dataset.errored === 'true') return;
-            img.dataset.errored = 'true';
-            
-            // Set fallback image
-            img.src = 'https://via.placeholder.com/400x400/ffffff/10b981?text=BioNova+Team';
-            
-            // If fallback also fails, hide the image container gracefully
-            img.onerror = function() {
-                this.style.display = 'none';
-                const wrapper = this.closest('.profile-image-wrapper');
-                if (wrapper) {
-                    wrapper.style.background = 'linear-gradient(135deg, #3b82f6, #10b981)';
-                    wrapper.innerHTML += '<div class="absolute inset-0 flex items-center justify-center text-white text-4xl font-bold"><i class="fas fa-user"></i></div>';
-                }
-            };
-        };
+        container.innerHTML = html || '<p class="text-white text-center">No announcements.</p>';
+      } catch (e) {
+        console.error('Announcements error:', e);
+        container.innerHTML = '<p class="text-white text-center">Failed to load announcements.</p>';
+      }
+    }
 
-        // --- Markdown to HTML converter ---
-        function markdownToHTML(md) {
-            let html = md;
+    // Load articles
+    async function loadArticles() {
+      const container = document.getElementById('articles-container');
+      try {
+        const res  = await fetch('/content/index.json');
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        const cards = [];
 
-            // Headings
-            html = html.replace(/^### (.*$)/gim, '<h3 class="glass-text-primary">$1</h3>');
-            html = html.replace(/^## (.*$)/gim, '<h2 class="glass-text-primary">$1</h2>');
-            html = html.replace(/^# (.*$)/gim, '<h1 class="glass-text-primary">$1</h1>');
+        for (const fullPath of (data.articles || []).slice(0, 6)) {
+          const txt   = await fetch(`/content/${fullPath}`).then(r => r.text());
+          const parts = txt.split('---');
+          if (parts.length < 3) continue;
 
-            // Bold, Italic
-            html = html.replace(/\*\*(.*?)\*\*/gim, '<strong class="glass-text-primary">$1</strong>');
-            html = html.replace(/\*(.*?)\*/gim, '<em class="glass-text-secondary">$1</em>');
+          const meta    = parseYAML(parts[1]);
+          const excerpt = parts.slice(2).join('---').replace(/[#*_\-[\]()`>]/g, ' ')
+            .split(/\s+/).slice(0, 20).join(' ') + '…';
+          const tags = Array.isArray(meta.tags) ? meta.tags : (meta.tags ? [meta.tags] : []);
+          const slug = meta.slug || generateSlug(meta.title);
+          const articleUrl = `/article-posts/${slug}.html`;
 
-            // Links, Images
-            html = html.replace(/!\[([^\]]*)\]\((.*?)\)/gim, '<img src="$2" alt="$1" class="rounded-xl shadow-2xl my-6 w-full pure-glass-light" loading="lazy" onerror="this.style.display=\'none\'">');
-            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-white hover:underline font-medium">$1</a>');
-
-            // Lists
-            html = html.replace(/^- (.*)$/gim, '<li class="glass-text-secondary">$1</li>');
-            html = html.replace(/(<li>.*<\/li>)/gims, '<ul class="my-6 space-y-3">$1</ul>');
-
-            // Tables
-            html = html.replace(/^\|(.+)\|\s*\n\|([-:\s|]+)\|\s*\n((\|.*\|\s*\n)*)/gm, match => {
-                const rows = match.trim().split('\n');
-                const headers = rows[0].split('|').filter(Boolean).map(h => `<th class="px-4 py-3 glass-text-primary bg-white/20">${h.trim()}</th>`).join('');
-                const bodyRows = rows.slice(2).map(r => {
-                    const cols = r.split('|').filter(Boolean).map(c => `<td class="px-4 py-3 glass-text-secondary border-t border-white/10">${c.trim()}</td>`).join('');
-                    return `<tr>${cols}</tr>`;
-                }).join('');
-                return `<div class="overflow-x-auto my-8"><table class="min-w-full border-collapse rounded-xl overflow-hidden pure-glass-light">${headers}${bodyRows}</table></div>`;
-            });
-
-            // Paragraphs
-            html = html.replace(/\n{2,}/g, '</p><p class="my-6 glass-text-secondary">');
-            html = `<div class="space-y-6">${html}</div>`;
-            return html;
-        }
-
-        // --- Load selected team member ---
-        async function loadTeamMember() {
-            // Safe storage access
-            let id = null;
-            try {
-                id = storage.getItem('selectedFile');
-            } catch (e) {
-                console.warn('Could not access selectedFile:', e);
-            }
-
-            if (!id || !id.startsWith('teams/')) {
-                document.getElementById('team-bio').innerHTML = `
-                    <div class="bg-red-500/20 border border-red-400/30 rounded-2xl p-10 text-center pure-glass">
-                        <i class="fas fa-exclamation-triangle text-5xl text-white mb-6"></i>
-                        <h3 class="text-2xl glass-text-primary mb-4">Team Member Not Found</h3>
-                        <p class="glass-text-secondary mb-8">The requested team member could not be found.</p>
-                        <a href="team.html" class="inline-flex items-center px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-red-500/30 to-pink-500/30 border border-red-400/30 hover:from-red-500/40 hover:to-pink-500/40 transition-all duration-300">
-                            Back to Team
-                        </a>
+          cards.push(`
+            <div class="article-card pure-glass rounded-xl overflow-hidden group">
+              <a href="${articleUrl}" class="block">
+                <div class="article-image-container">
+                  <img src="${resolveImageURL(meta.image)}"
+                       alt="${meta.title || 'Article'}"
+                       class="article-image"
+                       loading="lazy"
+                       onerror="this.src='https://via.placeholder.com/800x500/1e3a8a/ffffff?text=No+Image'">
+                </div>
+                <div class="article-content">
+                  ${tags.length > 0 ? `
+                    <div class="flex flex-wrap gap-2 mb-3">
+                      ${tags.slice(0, 3).map(tag => `
+                        <span class="px-3 py-1 bg-teal-500/20 text-teal-300 text-xs font-medium rounded-full">${tag}</span>
+                      `).join('')}
                     </div>
-                `;
-                document.title = 'Team Member Not Found - BioNova';
-                return;
-            }
-
-            try {
-                // Add timeout to fetch
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
-                
-                const response = await fetch(`/content/${id}`, {
-                    signal: controller.signal
-                });
-                
-                clearTimeout(timeoutId);
-                
-                if (!response.ok) throw new Error('Network response was not ok');
-                const text = await response.text();
-
-                const parts = text.split('---');
-                if (parts.length < 3) throw new Error('Invalid Markdown format');
-
-                const frontmatter = parts[1];
-                const body = parts.slice(2).join('---');
-                const meta = parseYAML(frontmatter);
-                const htmlBody = markdownToHTML(body);
-
-                // Update page content
-                document.getElementById('team-image').src = meta.image || 'https://via.placeholder.com/400x400/ffffff/10b981?text=BioNova+Team';
-                document.getElementById('team-name').textContent = meta.title || 'Unnamed';
-                document.getElementById('team-role').textContent = meta.role || 'Team Member';
-                document.getElementById('team-bio').innerHTML = htmlBody;
-                document.title = `${meta.title || 'Team Member'} - BioNova`;
-
-                // Add contact information if available
-                const contactInfo = document.getElementById('contact-info');
-                const contactDetails = document.getElementById('contact-details');
-                
-                if (meta.email || meta.phone || meta.linkedin) {
-                    contactInfo.classList.remove('hidden');
-                    let contactHTML = '';
-                    
-                    if (meta.email) {
-                        contactHTML += `
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="min-w-0 flex-1">
-                                    <p class="font-semibold glass-text-primary mb-1">Email</p>
-                                    <a href="mailto:${meta.email}" class="glass-text-secondary hover:text-white transition-colors break-words">${meta.email}</a>
-                                </div>
-                            </div>
-                        `;
-                    }
-                    
-                    if (meta.phone) {
-                        contactHTML += `
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                                <div class="min-w-0 flex-1">
-                                    <p class="font-semibold glass-text-primary mb-1">Phone</p>
-                                    <a href="tel:${meta.phone}" class="glass-text-secondary hover:text-white transition-colors">${meta.phone}</a>
-                                </div>
-                            </div>
-                        `;
-                    }
-                    
-                    if (meta.linkedin) {
-                        contactHTML += `
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fab fa-linkedin"></i>
-                                </div>
-                                <div class="min-w-0 flex-1">
-                                    <p class="font-semibold glass-text-primary mb-1">LinkedIn</p>
-                                    <a href="${meta.linkedin}" target="_blank" rel="noopener noreferrer" class="glass-text-secondary hover:text-white transition-colors break-words">View Profile</a>
-                                </div>
-                            </div>
-                        `;
-                    }
-                    
-                    contactDetails.innerHTML = contactHTML;
-                }
-
-                // Fade in content
-                setTimeout(() => {
-                    document.getElementById('team-bio').style.opacity = '1';
-                }, 500);
-
-            } catch (error) {
-                console.error('Error loading team member:', error);
-                
-                let errorMessage = 'We couldn\'t load the team member information. Please try again later.';
-                if (error.name === 'AbortError') {
-                    errorMessage = 'Request timed out. Please check your connection and try again.';
-                }
-                
-                document.getElementById('team-bio').innerHTML = `
-                    <div class="bg-red-500/20 border border-red-400/30 rounded-2xl p-10 text-center pure-glass">
-                        <i class="fas fa-exclamation-triangle text-5xl text-white mb-6"></i>
-                        <h3 class="text-2xl glass-text-primary mb-4">Error Loading Team Member</h3>
-                        <p class="glass-text-secondary mb-8">${errorMessage}</p>
-                        <button class="inline-flex items-center px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-blue-500/30 to-green-500/30 border border-blue-400/30 hover:from-blue-500/40 hover:to-green-500/40 transition-all duration-300" onclick="loadTeamMember()">
-                            Try Again
-                        </button>
-                    </div>
-                `;
-                document.title = 'Error - BioNova';
-            }
+                  ` : ''}
+                  <h3 class="article-title text-xl font-bold mb-3 group-hover:text-400 transition-colors">${meta.title || 'Untitled'}</h3>
+                  <p class="article-excerpt text-white text-opacity-90">${excerpt}</p>
+                  <span class="mt-auto text-teal-300 hover:text-teal-400 flex items-center gap-2 font-medium">
+                    Read More <i class="fas fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                  </span>
+                </div>
+              </a>
+            </div>
+          `);
         }
+        container.innerHTML = cards.length ? cards.join('') : '<p class="col-span-full text-white text-center">No articles available.</p>';
+      } catch (err) {
+        console.error('Article loading error:', err);
+        container.innerHTML = '<p class="col-span-full text-red-400 text-center">Failed to load articles.</p>';
+      }
+    }
 
-        // --- Event Listeners with iOS optimization ---
-        document.addEventListener('DOMContentLoaded', function() {
-            // Small delay to ensure DOM is fully ready on iOS
-            setTimeout(() => {
-                loadTeamMember().catch(e => {
-                    console.error('Failed to load team member:', e);
-                });
-            }, 50);
-        });
+    // On page load
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.page-load').forEach((el, index) => {
+        el.style.animationDelay = `${index * 0.1}s`;
+      });
 
-        // Handle iOS orientation change for viewport fixes
-        window.addEventListener('orientationchange', function() {
-            // Force repaint on iOS to fix any rendering issues
-            document.body.style.display = 'none';
-            setTimeout(() => {
-                document.body.style.display = '';
-            }, 20);
+      setTimeout(() => {
+        loadAnnouncements();
+        loadArticles();
+      }, 400);
+
+      // Ripple effect
+      document.querySelectorAll('.glow-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+          const ripple = document.createElement('span');
+          const rect   = this.getBoundingClientRect();
+          const size   = Math.max(rect.width, rect.height);
+          const x      = e.clientX - rect.left - size / 2;
+          const y      = e.clientY - rect.top  - size / 2;
+          ripple.style.cssText = `
+            position: absolute; border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            width: ${size}px; height: ${size}px;
+            left: ${x}px; top: ${y}px;
+            pointer-events: none;
+          `;
+          this.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 600);
         });
-    </script>
+      });
+
+      const style = document.createElement('style');
+      style.textContent = `@keyframes ripple { to { transform: scale(4); opacity: 0; } }`;
+      document.head.appendChild(style);
+    });
+  </script>
 </body>
 </html>
