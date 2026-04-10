@@ -45,6 +45,10 @@ content:
       - name: date
         type: date
         required: true
+      - name: image
+        type: image
+        required: false
+        description: "Featured image"
       - name: body
         type: rich-text
         required: true
