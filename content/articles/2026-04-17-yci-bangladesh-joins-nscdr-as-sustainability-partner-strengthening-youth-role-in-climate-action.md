@@ -1,6 +1,5 @@
 ---
-title: YCI Bangladesh Joins NSCDR as Sustainability Partner, Strengthening Youth
-  Role in Climate Action
+title: YCI Bangladesh Joins NSCDR as Sustainability Partner
 date: 2026-04-17
 author: Ahmed Irtiza Rafid
 image: /content/images/669447524_122171353256879118_2631140277616553179_n-1.jpg
