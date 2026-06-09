@@ -1,5 +1,5 @@
 ---
-title: "When the Pacific Sneezes, Bangladesh Catches a Fever: The Effect of El Niño"
+title: '"When the Pacific Sneezes, Bangladesh Catches a Fever: The Effect of El Niño"'
 image: /content/images/WhatsApp Image 2026-06-09 at 14.16.48.jpeg
 date: 2026-06-09
 author: Syed Yaseen Abdullah
@@ -27,17 +27,11 @@ Even though this process begins thousands of miles away, it significantly disrup
 Our concrete cities trap heat because of what is known as the "urban heat island effect," which turns up the temperature for city dwellers. We can manage this urban heat problem adopting these: 
 
 1. Beat the heat: Limit strenuous outdoor activity during peak hours, typically between 11:00 AM and 3:00 PM. Move to the coolest room in your home and wear loose, light-colored, breathable cotton clothing to help your body cool itself down naturally.
-
 2. ⁠Smart hydration: Stay properly hydrated by drinking 2.5 to 3 liters of clean, safe water daily to replace what you lose from sweat.
-
 3. ⁠The Night Paradox: While we usually worry about daytime heat, concrete walls and asphalt soak up heat during the day and radiate it back out at night. This keeps nighttime urban temperatures uncomfortably high and gives our bodies little time to recover.
-
 4. Preparation for rain: Clear out neighborhood drains before the heavy monsoons hit so that you can reduce sudden, crippling waterlogging on local streets.
-
 5. ⁠Preventing dengue: As the erratic rain-and-drought cycles create isolated pockets of stagnant water, communities must aggressively clear standing water from flowerpots, discarded tires, and open containers every few days to disrupt mosquito breeding.
-
 6. ⁠Water safety: All drinking water must be brought to a rolling boil for at least 10 minutes or treated with water purification tablets before consumption to prevent diseases like diarrhea and cholera.
-
 7. ⁠Emergency storage: Keep a basic supply of dry food rations, essential medicines, and oral rehydration salts (ORS) on hand in case waterlogging traps you indoors.
 
 Last but not the least, a temperature fluctuation in the Pacific Ocean can disrupt an entire year of economic progress half a world away. Because individual preparedness can only do so much, tackling structural vulnerabilities requires shifting from reactive crisis management to long-term climate resilience. Bangladesh must prioritize drought-resilient crops to protect food security, upgrade urban drainage to prevent catastrophic waterlogging, and scale tree-planting initiatives to break up concrete heat sinks.
