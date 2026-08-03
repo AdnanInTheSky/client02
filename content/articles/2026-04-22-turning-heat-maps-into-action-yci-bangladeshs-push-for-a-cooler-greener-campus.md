@@ -1,5 +1,6 @@
 ---
 title: "“Turning Heat Maps into Action: Push for a Cooler, Greener Campus”"
+rank: 6
 date: 2026-04-22
 author: YCI Team
 image: /content/images/WhatsApp Image 2026-04-22 at 19.46.29.jpeg

@@ -5,26 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   
   <!-- ✅ PAGE TITLE -->
-  <title>"Green Roots" Event Spurs Community Climate Action in Dhaka  - YCI Bangladesh</title>
+  <title>"The Winter Mist of Poison: Bangladesh’s Alarming AQI Crisis." - YCI Bangladesh</title>
   
-  <!-- ✅ FACEBOOK OPEN GRAPH TAGS (Critical for preview) -->
+  <!-- ✅ FACEBOOK OPEN GRAPH TAGS -->
   <meta property="og:type" content="article">
-  <meta property="og:title" content=""Green Roots" Event Spurs Community Climate Action in Dhaka ">
-  <meta property="og:description" content="The "Green Roots: Community Climate Action" event was a meaningful and impactful community initiative held on Sunday, June 22, 2025, at the Jaago Foundation School in Karail, Dhaka. The event was su…">
-  <meta property="og:image" content="https://ycibangladesh.org/content/images/WhatsApp Image 2025-12-16 at 23.58.58.jpeg">
+  <meta property="og:title" content=""The Winter Mist of Poison: Bangladesh’s Alarming AQI Crisis."">
+  <meta property="og:description" content="As winter descends upon Bangladesh, a thick, grey veil blankets its cities. To the naked eye, it may appear as natural morning fog, but in reality, it is a deadly cocktail of fine particulate matter…">
+  <meta property="og:image" content="https://ycibangladesh.org/content/images/616152644_122158328462879118_8272681673776430787_n.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://ycibangladesh.org/article-posts/green-roots-event-spurs-community-climate-action-in-dhaka-.html">
+  <meta property="og:url" content="https://ycibangladesh.org/blog-posts/the-winter-mist-of-poison-bangladeshs-alarming-aqi-crisis.html">
   <meta property="og:site_name" content="YCI Bangladesh">
   
   <!-- ✅ TWITTER CARD TAGS -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content=""Green Roots" Event Spurs Community Climate Action in Dhaka ">
-  <meta name="twitter:description" content="The "Green Roots: Community Climate Action" event was a meaningful and impactful community initiative held on Sunday, June 22, 2025, at the Jaago Foundation School in Karail, Dhaka. The event was su…">
-  <meta name="twitter:image" content="https://ycibangladesh.org/content/images/WhatsApp Image 2025-12-16 at 23.58.58.jpeg">
+  <meta name="twitter:title" content=""The Winter Mist of Poison: Bangladesh’s Alarming AQI Crisis."">
+  <meta name="twitter:description" content="As winter descends upon Bangladesh, a thick, grey veil blankets its cities. To the naked eye, it may appear as natural morning fog, but in reality, it is a deadly cocktail of fine particulate matter…">
+  <meta name="twitter:image" content="https://ycibangladesh.org/content/images/616152644_122158328462879118_8272681673776430787_n.jpg">
   
   <!-- ✅ STANDARD META -->
-  <meta name="description" content="The "Green Roots: Community Climate Action" event was a meaningful and impactful community initiative held on Sunday, June 22, 2025, at the Jaago Foundation School in Karail, Dhaka. The event was su…">
+  <meta name="description" content="As winter descends upon Bangladesh, a thick, grey veil blankets its cities. To the naked eye, it may appear as natural morning fog, but in reality, it is a deadly cocktail of fine particulate matter…">
   
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
@@ -39,7 +39,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
-    /* ✅ Base Reset & Mobile Fixes */
+    /* ✅ Base Reset */
     * {
       font-family: 'Inter', sans-serif;
       margin: 0;
@@ -51,11 +51,14 @@
     html {
       font-size: 16px;
       -webkit-text-size-adjust: 100%;
+      /* ✅ Remove smooth scroll on mobile - causes vibration */
       scroll-behavior: auto;
     }
     
     @media (min-width: 768px) {
-      html { scroll-behavior: smooth; }
+      html {
+        scroll-behavior: smooth; /* ✅ Keep smooth scroll on desktop */
+      }
     }
     
     body {
@@ -64,25 +67,29 @@
       width: 100%;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      /* ✅ Enable smooth scrolling without vibration */
       -webkit-overflow-scrolling: touch;
     }
     
     /* ✅ Glass Effect - Disabled on mobile for performance */
     .pure-glass {
       background: rgba(255, 255, 255, 0.15);
+      /* ✅ Only apply blur on desktop */
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 1rem;
+      /* ✅ Performance hint */
       will-change: transform;
       contain: layout style paint;
     }
     
+    /* ✅ Disable heavy effects on mobile */
     @media (max-width: 767px) {
       .pure-glass {
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.1); /* Simpler background */
       }
     }
     
@@ -91,6 +98,7 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      /* ✅ Prevent navbar from causing scroll jitter */
       transform: translateZ(0);
       will-change: transform;
     }
@@ -99,21 +107,22 @@
       .nav-glass {
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.8); /* Solid background on mobile */
       }
     }
     
-    /* ✅ Article Content - Mobile Typography */
-    .article-content {
+    /* ✅ Blog Content - Optimized Typography */
+    .blog-content {
       line-height: 1.8;
       color: rgba(255,255,255,0.95);
       font-size: clamp(0.95rem, 2.5vw, 1.05rem);
       word-wrap: break-word;
       overflow-wrap: break-word;
+      /* ✅ Prevent layout shift during scroll */
       contain: content;
     }
     
-    .article-content h1 {
+    .blog-content h1 {
       font-size: clamp(1.5rem, 5vw, 2rem);
       font-weight: 700;
       margin: 2rem 0 1rem;
@@ -122,7 +131,7 @@
       word-break: break-word;
     }
     
-    .article-content h2 {
+    .blog-content h2 {
       font-size: clamp(1.25rem, 4vw, 1.5rem);
       font-weight: 600;
       margin: 1.5rem 0 0.75rem;
@@ -130,19 +139,19 @@
       line-height: 1.3;
     }
     
-    .article-content h3 {
+    .blog-content h3 {
       font-size: clamp(1.1rem, 3.5vw, 1.25rem);
       font-weight: 600;
       margin: 1.25rem 0 0.5rem;
       color: white;
     }
     
-    .article-content p {
+    .blog-content p {
       margin: 1rem 0;
       color: rgba(255,255,255,0.95);
     }
     
-    .article-content a {
+    .blog-content a {
       color: #60A5FA;
       text-decoration: none;
       border-bottom: 2px solid rgba(96, 165, 250, 0.4);
@@ -150,23 +159,24 @@
       word-break: break-word;
     }
     
-    .article-content a:hover {
+    .blog-content a:hover {
       color: #93C5FD;
       border-color: #93C5FD;
     }
     
-    .article-content img {
+    .blog-content img {
       max-width: 100%;
       height: auto;
       border-radius: 0.5rem;
       margin: 1.5rem 0;
       display: block;
+      /* ✅ Prevent image load from causing layout shift */
       aspect-ratio: 16/9;
       object-fit: cover;
       background: rgba(255,255,255,0.1);
     }
     
-    .article-content blockquote {
+    .blog-content blockquote {
       border-left: 4px solid #4FD1C5;
       padding: 1rem 1.25rem;
       margin: 1.5rem 0;
@@ -175,17 +185,17 @@
       border-radius: 0 0.5rem 0.5rem 0;
     }
     
-    .article-content ul,
-    .article-content ol {
+    .blog-content ul,
+    .blog-content ol {
       margin: 1rem 0;
       padding-left: 1.5rem;
     }
     
-    .article-content li {
+    .blog-content li {
       margin: 0.5rem 0;
     }
     
-    /* ✅ Touch-Friendly Buttons */
+    /* ✅ Touch-Friendly Buttons - No heavy transitions on mobile */
     .action-btn {
       display: inline-flex;
       align-items: center;
@@ -200,15 +210,22 @@
       min-height: 44px;
       min-width: 44px;
       -webkit-tap-highlight-color: transparent;
+      /* ✅ Simplified transition for mobile */
       transition: background-color 0.2s ease;
     }
     
     @media (min-width: 768px) {
-      .action-btn { transition: all 0.3s ease; }
-      .action-btn:hover { transform: translateY(-2px); }
+      .action-btn {
+        transition: all 0.3s ease;
+      }
+      .action-btn:hover {
+        transform: translateY(-2px);
+      }
     }
     
-    .action-btn:active { transform: scale(0.98); }
+    .action-btn:active {
+      transform: scale(0.98);
+    }
     
     .action-btn.primary {
       background: rgba(255, 255, 255, 0.2);
@@ -216,8 +233,15 @@
       color: white;
     }
     
-    .action-btn.whatsapp { background: #25D366; color: white; }
-    .action-btn.facebook { background: #1877F2; color: white; }
+    .action-btn.whatsapp {
+      background: #25D366;
+      color: white;
+    }
+    
+    .action-btn.facebook {
+      background: #1877F2;
+      color: white;
+    }
     
     .button-group {
       display: flex;
@@ -227,23 +251,47 @@
     }
     
     @media (max-width: 640px) {
-      .pure-glass { padding: 1rem; border-radius: 0.75rem; }
-      .article-content { font-size: 1rem; padding: 0 0.25rem; }
-      .button-group { flex-direction: column; align-items: stretch; }
-      .action-btn { width: 100%; justify-content: center; }
+      .pure-glass {
+        padding: 1rem;
+        border-radius: 0.75rem;
+      }
+      
+      .blog-content {
+        font-size: 1rem;
+        padding: 0 0.25rem;
+      }
+      
+      .button-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .action-btn {
+        width: 100%;
+        justify-content: center;
+      }
     }
     
+    /* ✅ iOS Safari Fixes */
     @supports (-webkit-touch-callout: none) {
-      .pure-glass, .nav-glass { -webkit-backdrop-filter: blur(12px); }
+      .pure-glass,
+      .nav-glass {
+        -webkit-backdrop-filter: blur(12px);
+      }
     }
     
+    /* ✅ Disable blur on low-end devices via prefers-reduced-motion */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
       }
-      .pure-glass, .nav-glass {
+      .pure-glass,
+      .nav-glass {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
       }
@@ -265,7 +313,7 @@
 </head>
 <body class="flex flex-col">
 
-  <!-- Navbar -->
+  <!-- Navbar - Performance Optimized -->
   <nav class="fixed w-full top-0 z-50 nav-glass">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
       <a href="/index.html" class="text-white font-bold text-lg flex items-center gap-2">
@@ -273,8 +321,8 @@
         <span class="hidden sm:inline">YCI Bangladesh</span>
         <span class="sm:hidden">Back</span>
       </a>
-      <a href="/articles.html" class="text-white/80 hover:text-white transition text-sm">
-        All Events →
+      <a href="/services.html" class="text-white/80 hover:text-white transition text-sm">
+        All Blogs →
       </a>
     </div>
   </nav>
@@ -285,14 +333,14 @@
       
       <div class="pure-glass p-4 md:p-8 mb-6">
         
-        <!-- Article Title -->
+        <!-- Blog Title -->
         <h1 class="text-2xl md:text-4xl font-bold text-white mb-4 md:mb-6 leading-tight">
-          "Green Roots" Event Spurs Community Climate Action in Dhaka 
+          "The Winter Mist of Poison: Bangladesh’s Alarming AQI Crisis."
         </h1>
         
-        <!-- Article Image -->
+        <!-- Blog Image - With aspect ratio to prevent layout shift -->
         <div class="mb-6 md:mb-8 rounded-xl overflow-hidden">
-          <img src="https://ycibangladesh.org/content/images/WhatsApp Image 2025-12-16 at 23.58.58.jpeg" alt=""Green Roots" Event Spurs Community Climate Action in Dhaka " 
+          <img src="https://ycibangladesh.org/content/images/616152644_122158328462879118_8272681673776430787_n.jpg" alt=""The Winter Mist of Poison: Bangladesh’s Alarming AQI Crisis."" 
                class="w-full h-auto"
                loading="lazy"
                onerror="this.style.display='none'">
@@ -302,11 +350,11 @@
         <div class="flex flex-wrap gap-3 text-white/70 text-sm mb-6 md:mb-8 pb-4 md:pb-6 border-b border-white/20">
           <span class="flex items-center gap-2">
             <i class="far fa-calendar"></i>
-            Sunday, June 22, 2025
+            Thursday, January 15, 2026
           </span>
           <span class="flex items-center gap-2">
             <i class="far fa-user"></i>
-            YCI
+            Mahfuza Amir Ela
           </span>
         </div>
         
@@ -326,9 +374,15 @@
           </button>
         </div>
         
-        <!-- Article Content -->
-        <div class="article-content">
-          <p>The &quot;Green Roots: Community Climate Action&quot; event was a meaningful and impactful community initiative held on Sunday, June 22, 2025, at the Jaago Foundation School in Karail, Dhaka. The event was supported by VSO Bangladesh and organized by the Institute of Disaster Management and Vulnerability Studies (IDMVS), in association with YCI Bangladesh. The formal activities began with a Tree Exchange Program. Each participant brought a non-usable plastic item from home and, in exchange, received a sapling of native species like mango, jackfruit, guava, lemon, and black plum (jam). This initiative aimed to emphasize tree plantation and discourage the use of plastic materials. Following this, a community seminar on Climate Awareness was conducted. The speakers included Ms. Raisa Imran Chowdhury, a Lecturer at IDMVS; Mr. Munir Chowdhury, Senior Admin Officer at JAAGO Foundation School; and several students from IDMVS. They discussed various aspects of climate change and urged the community to adopt sustainable practices. Ms. Raisa Imran stressed the importance of individual action, stating, &quot;If we want to survive on this planet, we must learn to live with climate change. We should all ensure that none of our activities contribute to worsening the climate crisis. Every household should have at least one tree. Change must begin today-if not now, then when?&quot;. The event concluded following the seminar with a symbolic Tree Plantation Program. Community members participated in the planting activity within the area, followed by the distribution of light refreshments among all attendees. The initiative successfully raised awareness on climate change, encouraged practical steps like recycling and planting trees, and reached over 50 families with essential knowledge. It also generated enthusiasm for tree plantation and collected community feedback on climate-induced challenges. The enthusiastic community participation reflected the relevance of the issues addressed, and similar initiatives were highly recommended for other urban vulnerable communities.</p>
+        <!-- Blog Content -->
+        <div class="blog-content">
+          <p>As winter descends upon Bangladesh, a thick, grey veil blankets its cities. To the naked eye, it may appear as natural morning fog, but in reality, it is a deadly cocktail of fine particulate matter and toxic gases. This seasonal &quot;fog&quot;, more accurately termed smog has pushed Bangladesh, particularly Dhaka, to the top of the global Air Quality Index (AQI) rankings, turning the simple act of breathing into a health hazard.  </p>
+<p>Bangladesh’s air quality reaches &quot;hazardous&quot; levels every winter, with AQI scores frequently crossing 300 or even 400. According to the World Health Organization (WHO), the concentration of PM_{2.5} (particulate matter with a diameter of less than 2.5 micrometers) in Dhaka often exceeds the safety limit by more than 30 to 40 times. These microscopic particles are small enough to enter the bloodstream, causing chronic respiratory diseases, heart ailments, and lung cancer.  </p>
+<p>The sources of this pollution are both local and transboundary. Unregulated brick kilns, massive infrastructure projects with inadequate dust suppression, and aging vehicles emitting black smoke are the primary culprits. Furthermore, during winter, the lack of wind and rain creates a &quot;temperature inversion,&quot; where a layer of cool air traps pollutants near the ground, preventing them from dispersing and creating the persistent, toxic haze we see.  </p>
+<p>Experts argue that a multi-sectoral approach is necessary to clear the skies. Transitioning to green brick-making technology and enforcing strict emission standards for industries are critical steps. In cities like Beijing, aggressive &quot;Clean Air Action Plans&quot; have successfully reduced pollution levels by over 30% within a few years. Bangladesh must adopt similar rigorous monitoring and penalize polluters to protect its citizens.  </p>
+<p>At the community level, increasing urban greenery and ending the open burning of plastic and municipal waste can provide immediate relief. While the government has distributed masks and issued health alerts, these are temporary bandages on a systemic wound. The transition to renewable energy and the expansion of mass transit systems, like the Dhaka Metro Rail, are essential for long-term air quality improvement.  </p>
+<p>The impact on the younger generation is particularly devastating. Studies show that children in high-pollution areas of Dhaka have significantly lower lung capacity compared to those in cleaner regions. Moreover, the link between air pollution and climate change is undeniable. Black carbon, a major component of soot, is a powerful climate forcer that absorbs sunlight and accelerates the melting of Himalayan glaciers, which eventually leads to flooding in Bangladesh.  </p>
+<p>International cooperation is vital, as a significant portion of the pollutants travels across borders within the Indo-Gangetic Plain. Treaties focusing on regional air quality management are as important as global climate pacts. If we continue to ignore the &quot;grey fog&quot; of winter, we are not just losing our view of the horizon; we are losing the very air that sustains our lives.</p>
 
         </div>
       </div>
@@ -427,7 +481,7 @@
     }
     
     function shareToWhatsApp() {
-      const title = encodeURIComponent('"Green Roots" Event Spurs Community Climate Action in Dhaka ');
+      const title = encodeURIComponent('"The Winter Mist of Poison: Bangladesh’s Alarming AQI Crisis."');
       const url = encodeURIComponent(window.location.href);
       window.open(`https://wa.me/?text=*${title}*%0A%0A${url}`, '_blank');
     }
@@ -461,8 +515,9 @@
       }
     }
     
-    // Disable heavy effects on low-end devices
+    /* ✅ Optional: Further optimize scroll performance */
     document.addEventListener('DOMContentLoaded', function() {
+      // Remove heavy effects if device is low-end
       if (navigator.deviceMemory && navigator.deviceMemory < 4) {
         document.querySelectorAll('.pure-glass, .nav-glass').forEach(el => {
           el.style.backdropFilter = 'none';

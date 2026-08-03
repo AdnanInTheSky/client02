@@ -1,5 +1,6 @@
 ---
 title: "Monsoon in Dhaka: Is Rain a Blessing or Just an Annual Disaster? "
+rank: 8
 image: /content/images/WhatsApp Image 2026-07-31 at 02.04.17.jpeg
 date: 2026-07-31
 author: "Mahfuza Amir Ela "

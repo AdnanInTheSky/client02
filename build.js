@@ -67,8 +67,28 @@ function build() {
   
   const index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
   const blogFiles = index.services || [];  // ← Get services array
+
+  // Sort blog files by rank (rank: 1 will be 1st)
+  const blogFilesWithRank = blogFiles.map(file => {
+    const filePath = path.join(CONTENT_DIR, file);
+    let rank = 999999;
+    if (fs.existsSync(filePath)) {
+      const content = fs.readFileSync(filePath, 'utf8');
+      const parts = content.split('---');
+      if (parts.length >= 3) {
+        const meta = parseYAML(parts[1]);
+        if (meta.rank !== undefined && meta.rank !== null && !isNaN(meta.rank)) {
+          rank = Number(meta.rank);
+        }
+      }
+    }
+    return { file, rank };
+  });
+
+  blogFilesWithRank.sort((a, b) => a.rank - b.rank);
+  const sortedBlogFiles = blogFilesWithRank.map(item => item.file);
   
-  console.log(`📚 Found ${blogFiles.length} blog file(s) in services\n`);
+  console.log(`📚 Found ${sortedBlogFiles.length} blog file(s) in services\n`);
   
   // Read template
   if (!fs.existsSync(TEMPLATE_FILE)) {
@@ -81,7 +101,7 @@ function build() {
   let successCount = 0;
   let errorCount = 0;
   
-  blogFiles.forEach((file, index) => {
+  sortedBlogFiles.forEach((file, index) => {
     try {
       // File path is relative to content/ folder
       const filePath = path.join(CONTENT_DIR, file);

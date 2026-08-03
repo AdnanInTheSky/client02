@@ -1,5 +1,6 @@
 ---
 title: '"When the Pacific Sneezes, Bangladesh Catches a Fever: The Effect of El Niño"'
+rank: 4
 image: /content/images/WhatsApp Image 2026-06-09 at 14.16.48.jpeg
 date: 2026-06-09
 author: Syed Yaseen Abdullah

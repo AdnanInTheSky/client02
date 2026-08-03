@@ -1,6 +1,7 @@
 ---
 title: "Climate Action Now: Dhaka Communities Embrace Tree Planting and Plastic
   Reduction"
+rank: 2
 date: 2025-06-26
 author: YCI
 image: /content/images/Picture1.jpg

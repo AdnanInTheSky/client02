@@ -395,11 +395,12 @@
             title: meta.title || 'Untitled',
             date: formattedDate,
             image: meta.image || null,
-            fullBody: fullBodyFormatted
+            fullBody: fullBodyFormatted,
+            rank: meta.rank !== undefined ? Number(meta.rank) : 999999
           });
         }
 
-        announcements.sort((a, b) => new Date(b.date) - new Date(a.date));
+        announcements.sort((a, b) => a.rank - b.rank);
 
         const html = announcements.slice(0, 3).map(a => `
           <div class="pure-glass p-6 rounded-xl hover:scale-[1.02] transition-transform announcement-card">

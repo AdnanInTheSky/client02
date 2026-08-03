@@ -1,5 +1,6 @@
 ---
 title: '"Green Campus, Clean Future" Sparks Youth Climate Leadership”'
+rank: 3
 date: 2025-07-27
 author: YCI
 image: /content/images/Picture2.jpg

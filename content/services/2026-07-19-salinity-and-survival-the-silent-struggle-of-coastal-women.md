@@ -1,5 +1,6 @@
 ---
 title: "Salinity & Survival: The Silent Struggle of Coastal Women"
+rank: 7
 image: /content/images/WhatsApp Image 2026-07-19 at 13.43.18.jpeg
 date: 2026-07-19
 author: Labonna Das & Suha Masnun Hossain

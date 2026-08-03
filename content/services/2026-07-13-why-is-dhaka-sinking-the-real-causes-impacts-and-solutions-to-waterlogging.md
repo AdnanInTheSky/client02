@@ -1,5 +1,6 @@
 ---
 title: Why is Dhaka Sinking? The Real Causes, Impacts, and Solutions to Waterlogging
+rank: 6
 image: /content/images/WhatsApp Image 2026-07-13 at 17.16.56.jpeg
 date: 2026-07-13
 author: Abdullah-Al-Noman

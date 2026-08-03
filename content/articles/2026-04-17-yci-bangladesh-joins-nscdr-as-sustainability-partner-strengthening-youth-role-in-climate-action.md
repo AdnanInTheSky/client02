@@ -1,5 +1,6 @@
 ---
 title: YCI Bangladesh Joins NSCDR as Sustainability Partner
+rank: 5
 date: 2026-04-17
 author: Ahmed Irtiza Rafid
 image: /content/images/669447524_122171353256879118_2631140277616553179_n-1.jpg

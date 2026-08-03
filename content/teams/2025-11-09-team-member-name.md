@@ -1,5 +1,6 @@
 ---
 title: Ahmed Irtiza Rafid
+rank: 4
 role: "Co-Founder, Head of Technology & Innovation "
 image: /content/images/Screenshot 2025-12-18 113139.png
 ---

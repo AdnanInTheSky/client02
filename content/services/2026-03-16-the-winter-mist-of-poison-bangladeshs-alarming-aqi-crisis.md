@@ -1,5 +1,6 @@
 ---
 title: '"The Winter Mist of Poison: Bangladesh’s Alarming AQI Crisis."'
+rank: 3
 image: /content/images/616152644_122158328462879118_8272681673776430787_n.jpg
 date: 2026-01-15
 author: Mahfuza Amir Ela

@@ -1,8 +1,8 @@
 /**
  * generateIndex.js
  * -----------------
- * Scans content folders (articles, teams, services)
- * and creates content/index.json for your static site.
+ * Scans content folders (articles, teams, services, announcement)
+ * and creates content/index.json for your static site, ordered by rank.
  *
  * Safe for Pages CMS + random filenames.
  */
@@ -27,6 +27,37 @@ async function scanFolder(folderPath) {
   }
 }
 
+// Helper: parse YAML frontmatter
+function parseYAML(yamlStr) {
+  const result = {};
+  yamlStr.trim().split('\n').forEach(line => {
+    const idx = line.indexOf(':');
+    if (idx === -1) return;
+    let key = line.slice(0, idx).trim();
+    let val = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
+    if (val === 'true') val = true;
+    if (val === 'false') val = false;
+    if (!isNaN(val) && val !== '') val = Number(val);
+    result[key] = val;
+  });
+  return result;
+}
+
+// Helper: get rank of a markdown file
+async function getFileRank(filePath) {
+  try {
+    const content = await fs.readFile(filePath, 'utf8');
+    const parts = content.split('---');
+    if (parts.length >= 3) {
+      const meta = parseYAML(parts[1]);
+      if (meta.rank !== undefined && meta.rank !== null && !isNaN(meta.rank)) {
+        return Number(meta.rank);
+      }
+    }
+  } catch {}
+  return 999999;
+}
+
 async function generateIndex() {
   console.log(" Generating content index...");
 
@@ -36,7 +67,18 @@ async function generateIndex() {
   for (const name of collections) {
     const folderPath = path.join(CONTENT_DIR, name);
     const files = await scanFolder(folderPath);
-    indexData[name] = files.map((f) => `${name}/${f}`);
+
+    const items = await Promise.all(
+      files.map(async (f) => {
+        const filePath = path.join(folderPath, f);
+        const rank = await getFileRank(filePath);
+        return { filename: f, rank };
+      })
+    );
+
+    items.sort((a, b) => a.rank - b.rank);
+
+    indexData[name] = items.map((item) => `${name}/${item.filename}`);
   }
 
   // Ensure content folder exists

@@ -71,8 +71,28 @@ function build() {
   
   const index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
   const articleFiles = index.articles || [];  // ← Get articles array
+
+  // Sort article files by rank (rank: 1 will be 1st)
+  const articleFilesWithRank = articleFiles.map(file => {
+    const filePath = path.join(CONTENT_DIR, file);
+    let rank = 999999;
+    if (fs.existsSync(filePath)) {
+      const content = fs.readFileSync(filePath, 'utf8');
+      const parts = content.split('---');
+      if (parts.length >= 3) {
+        const meta = parseYAML(parts[1]);
+        if (meta.rank !== undefined && meta.rank !== null && !isNaN(meta.rank)) {
+          rank = Number(meta.rank);
+        }
+      }
+    }
+    return { file, rank };
+  });
+
+  articleFilesWithRank.sort((a, b) => a.rank - b.rank);
+  const sortedArticleFiles = articleFilesWithRank.map(item => item.file);
   
-  console.log(`📚 Found ${articleFiles.length} article file(s)\n`);
+  console.log(`📚 Found ${sortedArticleFiles.length} article file(s)\n`);
   
   // Read template
   if (!fs.existsSync(TEMPLATE_FILE)) {
@@ -85,7 +105,7 @@ function build() {
   let successCount = 0;
   let errorCount = 0;
   
-  articleFiles.forEach((file) => {
+  sortedArticleFiles.forEach((file) => {
     try {
       // File path is relative to content/ folder
       const filePath = path.join(CONTENT_DIR, file);

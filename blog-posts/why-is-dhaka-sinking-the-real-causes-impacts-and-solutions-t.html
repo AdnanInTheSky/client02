@@ -5,26 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   
   <!-- ✅ PAGE TITLE -->
-  <title>"Green Roots" Event Spurs Community Climate Action in Dhaka  - YCI Bangladesh</title>
+  <title>Why is Dhaka Sinking? The Real Causes, Impacts, and Solutions to Waterlogging - YCI Bangladesh</title>
   
-  <!-- ✅ FACEBOOK OPEN GRAPH TAGS (Critical for preview) -->
+  <!-- ✅ FACEBOOK OPEN GRAPH TAGS -->
   <meta property="og:type" content="article">
-  <meta property="og:title" content=""Green Roots" Event Spurs Community Climate Action in Dhaka ">
-  <meta property="og:description" content="The "Green Roots: Community Climate Action" event was a meaningful and impactful community initiative held on Sunday, June 22, 2025, at the Jaago Foundation School in Karail, Dhaka. The event was su…">
-  <meta property="og:image" content="https://ycibangladesh.org/content/images/WhatsApp Image 2025-12-16 at 23.58.58.jpeg">
+  <meta property="og:title" content="Why is Dhaka Sinking? The Real Causes, Impacts, and Solutions to Waterlogging">
+  <meta property="og:description" content="Just a brief spell of heavy rain is enough to bring Dhaka to a standstill. Waterlogging is no longer just a temporary nuisance on the streets. It is exacting a heavy toll on our economy and daily li…">
+  <meta property="og:image" content="https://ycibangladesh.org/content/images/WhatsApp Image 2026-07-13 at 17.16.56.jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://ycibangladesh.org/article-posts/green-roots-event-spurs-community-climate-action-in-dhaka-.html">
+  <meta property="og:url" content="https://ycibangladesh.org/blog-posts/why-is-dhaka-sinking-the-real-causes-impacts-and-solutions-t.html">
   <meta property="og:site_name" content="YCI Bangladesh">
   
   <!-- ✅ TWITTER CARD TAGS -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content=""Green Roots" Event Spurs Community Climate Action in Dhaka ">
-  <meta name="twitter:description" content="The "Green Roots: Community Climate Action" event was a meaningful and impactful community initiative held on Sunday, June 22, 2025, at the Jaago Foundation School in Karail, Dhaka. The event was su…">
-  <meta name="twitter:image" content="https://ycibangladesh.org/content/images/WhatsApp Image 2025-12-16 at 23.58.58.jpeg">
+  <meta name="twitter:title" content="Why is Dhaka Sinking? The Real Causes, Impacts, and Solutions to Waterlogging">
+  <meta name="twitter:description" content="Just a brief spell of heavy rain is enough to bring Dhaka to a standstill. Waterlogging is no longer just a temporary nuisance on the streets. It is exacting a heavy toll on our economy and daily li…">
+  <meta name="twitter:image" content="https://ycibangladesh.org/content/images/WhatsApp Image 2026-07-13 at 17.16.56.jpeg">
   
   <!-- ✅ STANDARD META -->
-  <meta name="description" content="The "Green Roots: Community Climate Action" event was a meaningful and impactful community initiative held on Sunday, June 22, 2025, at the Jaago Foundation School in Karail, Dhaka. The event was su…">
+  <meta name="description" content="Just a brief spell of heavy rain is enough to bring Dhaka to a standstill. Waterlogging is no longer just a temporary nuisance on the streets. It is exacting a heavy toll on our economy and daily li…">
   
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/content/images/IMG_5811.png">
@@ -39,7 +39,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
-    /* ✅ Base Reset & Mobile Fixes */
+    /* ✅ Base Reset */
     * {
       font-family: 'Inter', sans-serif;
       margin: 0;
@@ -51,11 +51,14 @@
     html {
       font-size: 16px;
       -webkit-text-size-adjust: 100%;
+      /* ✅ Remove smooth scroll on mobile - causes vibration */
       scroll-behavior: auto;
     }
     
     @media (min-width: 768px) {
-      html { scroll-behavior: smooth; }
+      html {
+        scroll-behavior: smooth; /* ✅ Keep smooth scroll on desktop */
+      }
     }
     
     body {
@@ -64,25 +67,29 @@
       width: 100%;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      /* ✅ Enable smooth scrolling without vibration */
       -webkit-overflow-scrolling: touch;
     }
     
     /* ✅ Glass Effect - Disabled on mobile for performance */
     .pure-glass {
       background: rgba(255, 255, 255, 0.15);
+      /* ✅ Only apply blur on desktop */
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 1rem;
+      /* ✅ Performance hint */
       will-change: transform;
       contain: layout style paint;
     }
     
+    /* ✅ Disable heavy effects on mobile */
     @media (max-width: 767px) {
       .pure-glass {
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.1); /* Simpler background */
       }
     }
     
@@ -91,6 +98,7 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      /* ✅ Prevent navbar from causing scroll jitter */
       transform: translateZ(0);
       will-change: transform;
     }
@@ -99,21 +107,22 @@
       .nav-glass {
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.8); /* Solid background on mobile */
       }
     }
     
-    /* ✅ Article Content - Mobile Typography */
-    .article-content {
+    /* ✅ Blog Content - Optimized Typography */
+    .blog-content {
       line-height: 1.8;
       color: rgba(255,255,255,0.95);
       font-size: clamp(0.95rem, 2.5vw, 1.05rem);
       word-wrap: break-word;
       overflow-wrap: break-word;
+      /* ✅ Prevent layout shift during scroll */
       contain: content;
     }
     
-    .article-content h1 {
+    .blog-content h1 {
       font-size: clamp(1.5rem, 5vw, 2rem);
       font-weight: 700;
       margin: 2rem 0 1rem;
@@ -122,7 +131,7 @@
       word-break: break-word;
     }
     
-    .article-content h2 {
+    .blog-content h2 {
       font-size: clamp(1.25rem, 4vw, 1.5rem);
       font-weight: 600;
       margin: 1.5rem 0 0.75rem;
@@ -130,19 +139,19 @@
       line-height: 1.3;
     }
     
-    .article-content h3 {
+    .blog-content h3 {
       font-size: clamp(1.1rem, 3.5vw, 1.25rem);
       font-weight: 600;
       margin: 1.25rem 0 0.5rem;
       color: white;
     }
     
-    .article-content p {
+    .blog-content p {
       margin: 1rem 0;
       color: rgba(255,255,255,0.95);
     }
     
-    .article-content a {
+    .blog-content a {
       color: #60A5FA;
       text-decoration: none;
       border-bottom: 2px solid rgba(96, 165, 250, 0.4);
@@ -150,23 +159,24 @@
       word-break: break-word;
     }
     
-    .article-content a:hover {
+    .blog-content a:hover {
       color: #93C5FD;
       border-color: #93C5FD;
     }
     
-    .article-content img {
+    .blog-content img {
       max-width: 100%;
       height: auto;
       border-radius: 0.5rem;
       margin: 1.5rem 0;
       display: block;
+      /* ✅ Prevent image load from causing layout shift */
       aspect-ratio: 16/9;
       object-fit: cover;
       background: rgba(255,255,255,0.1);
     }
     
-    .article-content blockquote {
+    .blog-content blockquote {
       border-left: 4px solid #4FD1C5;
       padding: 1rem 1.25rem;
       margin: 1.5rem 0;
@@ -175,17 +185,17 @@
       border-radius: 0 0.5rem 0.5rem 0;
     }
     
-    .article-content ul,
-    .article-content ol {
+    .blog-content ul,
+    .blog-content ol {
       margin: 1rem 0;
       padding-left: 1.5rem;
     }
     
-    .article-content li {
+    .blog-content li {
       margin: 0.5rem 0;
     }
     
-    /* ✅ Touch-Friendly Buttons */
+    /* ✅ Touch-Friendly Buttons - No heavy transitions on mobile */
     .action-btn {
       display: inline-flex;
       align-items: center;
@@ -200,15 +210,22 @@
       min-height: 44px;
       min-width: 44px;
       -webkit-tap-highlight-color: transparent;
+      /* ✅ Simplified transition for mobile */
       transition: background-color 0.2s ease;
     }
     
     @media (min-width: 768px) {
-      .action-btn { transition: all 0.3s ease; }
-      .action-btn:hover { transform: translateY(-2px); }
+      .action-btn {
+        transition: all 0.3s ease;
+      }
+      .action-btn:hover {
+        transform: translateY(-2px);
+      }
     }
     
-    .action-btn:active { transform: scale(0.98); }
+    .action-btn:active {
+      transform: scale(0.98);
+    }
     
     .action-btn.primary {
       background: rgba(255, 255, 255, 0.2);
@@ -216,8 +233,15 @@
       color: white;
     }
     
-    .action-btn.whatsapp { background: #25D366; color: white; }
-    .action-btn.facebook { background: #1877F2; color: white; }
+    .action-btn.whatsapp {
+      background: #25D366;
+      color: white;
+    }
+    
+    .action-btn.facebook {
+      background: #1877F2;
+      color: white;
+    }
     
     .button-group {
       display: flex;
@@ -227,23 +251,47 @@
     }
     
     @media (max-width: 640px) {
-      .pure-glass { padding: 1rem; border-radius: 0.75rem; }
-      .article-content { font-size: 1rem; padding: 0 0.25rem; }
-      .button-group { flex-direction: column; align-items: stretch; }
-      .action-btn { width: 100%; justify-content: center; }
+      .pure-glass {
+        padding: 1rem;
+        border-radius: 0.75rem;
+      }
+      
+      .blog-content {
+        font-size: 1rem;
+        padding: 0 0.25rem;
+      }
+      
+      .button-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .action-btn {
+        width: 100%;
+        justify-content: center;
+      }
     }
     
+    /* ✅ iOS Safari Fixes */
     @supports (-webkit-touch-callout: none) {
-      .pure-glass, .nav-glass { -webkit-backdrop-filter: blur(12px); }
+      .pure-glass,
+      .nav-glass {
+        -webkit-backdrop-filter: blur(12px);
+      }
     }
     
+    /* ✅ Disable blur on low-end devices via prefers-reduced-motion */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
       }
-      .pure-glass, .nav-glass {
+      .pure-glass,
+      .nav-glass {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
       }
@@ -265,7 +313,7 @@
 </head>
 <body class="flex flex-col">
 
-  <!-- Navbar -->
+  <!-- Navbar - Performance Optimized -->
   <nav class="fixed w-full top-0 z-50 nav-glass">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
       <a href="/index.html" class="text-white font-bold text-lg flex items-center gap-2">
@@ -273,8 +321,8 @@
         <span class="hidden sm:inline">YCI Bangladesh</span>
         <span class="sm:hidden">Back</span>
       </a>
-      <a href="/articles.html" class="text-white/80 hover:text-white transition text-sm">
-        All Events →
+      <a href="/services.html" class="text-white/80 hover:text-white transition text-sm">
+        All Blogs →
       </a>
     </div>
   </nav>
@@ -285,14 +333,14 @@
       
       <div class="pure-glass p-4 md:p-8 mb-6">
         
-        <!-- Article Title -->
+        <!-- Blog Title -->
         <h1 class="text-2xl md:text-4xl font-bold text-white mb-4 md:mb-6 leading-tight">
-          "Green Roots" Event Spurs Community Climate Action in Dhaka 
+          Why is Dhaka Sinking? The Real Causes, Impacts, and Solutions to Waterlogging
         </h1>
         
-        <!-- Article Image -->
+        <!-- Blog Image - With aspect ratio to prevent layout shift -->
         <div class="mb-6 md:mb-8 rounded-xl overflow-hidden">
-          <img src="https://ycibangladesh.org/content/images/WhatsApp Image 2025-12-16 at 23.58.58.jpeg" alt=""Green Roots" Event Spurs Community Climate Action in Dhaka " 
+          <img src="https://ycibangladesh.org/content/images/WhatsApp Image 2026-07-13 at 17.16.56.jpeg" alt="Why is Dhaka Sinking? The Real Causes, Impacts, and Solutions to Waterlogging" 
                class="w-full h-auto"
                loading="lazy"
                onerror="this.style.display='none'">
@@ -302,11 +350,11 @@
         <div class="flex flex-wrap gap-3 text-white/70 text-sm mb-6 md:mb-8 pb-4 md:pb-6 border-b border-white/20">
           <span class="flex items-center gap-2">
             <i class="far fa-calendar"></i>
-            Sunday, June 22, 2025
+            Monday, July 13, 2026
           </span>
           <span class="flex items-center gap-2">
             <i class="far fa-user"></i>
-            YCI
+            Abdullah-Al-Noman
           </span>
         </div>
         
@@ -326,9 +374,32 @@
           </button>
         </div>
         
-        <!-- Article Content -->
-        <div class="article-content">
-          <p>The &quot;Green Roots: Community Climate Action&quot; event was a meaningful and impactful community initiative held on Sunday, June 22, 2025, at the Jaago Foundation School in Karail, Dhaka. The event was supported by VSO Bangladesh and organized by the Institute of Disaster Management and Vulnerability Studies (IDMVS), in association with YCI Bangladesh. The formal activities began with a Tree Exchange Program. Each participant brought a non-usable plastic item from home and, in exchange, received a sapling of native species like mango, jackfruit, guava, lemon, and black plum (jam). This initiative aimed to emphasize tree plantation and discourage the use of plastic materials. Following this, a community seminar on Climate Awareness was conducted. The speakers included Ms. Raisa Imran Chowdhury, a Lecturer at IDMVS; Mr. Munir Chowdhury, Senior Admin Officer at JAAGO Foundation School; and several students from IDMVS. They discussed various aspects of climate change and urged the community to adopt sustainable practices. Ms. Raisa Imran stressed the importance of individual action, stating, &quot;If we want to survive on this planet, we must learn to live with climate change. We should all ensure that none of our activities contribute to worsening the climate crisis. Every household should have at least one tree. Change must begin today-if not now, then when?&quot;. The event concluded following the seminar with a symbolic Tree Plantation Program. Community members participated in the planting activity within the area, followed by the distribution of light refreshments among all attendees. The initiative successfully raised awareness on climate change, encouraged practical steps like recycling and planting trees, and reached over 50 families with essential knowledge. It also generated enthusiasm for tree plantation and collected community feedback on climate-induced challenges. The enthusiastic community participation reflected the relevance of the issues addressed, and similar initiatives were highly recommended for other urban vulnerable communities.</p>
+        <!-- Blog Content -->
+        <div class="blog-content">
+          <p>Just a brief spell of heavy rain is enough to bring Dhaka to a standstill. Waterlogging is no longer just a temporary nuisance on the streets. It is exacting a heavy toll on our economy and daily lives. Submerged roads lead to severe traffic congestion, wasting millions in fuel and countless work hours. Meanwhile, floodwaters inundate low lying shops and warehouses, destroying millions of takas worth of goods year after year.</p>
+<p>Commuters face severe transport shortages, often forced to pay double or triple the usual fare for rickshaws and CNGs. Worse still, toxic sewage overflows onto the streets, driving up waterborne diseases like diarrhea, typhoid, and skin infections. This stagnant water also turns into an ideal breeding ground for Aedes mosquitoes, drastically escalating the city&#39;s dengue crisis.</p>
+<p>But what is truly dragging this megacity underwater? Why does a little rain paralyze a city of millions?</p>
+<h3>Why Does Dhaka Keep Sinking?</h3>
+<p><strong>1. Rainfall Beyond Capacity and Drainage Failure</strong></p>
+<p>Recent data from the Bangladesh Meteorological Department (BMD) shows Dhaka experiencing an average of 50 to 100 millimeters of rainfall per hour, with record peaks hitting 176 mm. In stark contrast, the city’s drainage system is designed to handle only 20 to 25 mm of rain per hour. With rainfall vastly exceeding capacity, the drainage network simply collapses. However, heavy rain is only a catalyst. Extreme mismanagement is the underlying cause.</p>
+<p><strong>2. The Box Culvert Trap and the Death of Canals</strong></p>
+<p>Areas like Panthapath and Segunbagicha once featured flowing canals navigated by boats. Covering them with box culverts to pave roads permanently destroyed their natural drainage capacity. Sealed off from light and air, these culverts trap toxic gases, making it nearly impossible for cleaners to enter safely. Everyday waste, such as polythene, plastic bottles, and even discarded mattresses, accumulates inside, hardening into blockages as solid as concrete. Cleaning them requires specialized, heavy machinery, which is rarely utilized.</p>
+<p><strong>3. Encroachment on Canals and Wetlands</strong></p>
+<p>In 1995, water bodies made up 20.57% of Dhaka. Today, that figure has plummeted below 3%. While the two city corporations officially list around 65 canals, most exist only on paper. According to cadastral (CS) surveys, Dhaka once boasted a 340 kilometer canal network. Today, 120 kilometers are buried under roads and buildings, while the remnants have been encroached upon and reduced to narrow, polluted drains. For instance, the historic 7 kilometer Dholaikhal is now a mere 900 meter stagnant trench. Surviving canals in Kalyanpur, Rupnagar, and Kutubkhali have effectively become garbage dumps.</p>
+<p><strong>4. The Dismal State of Surrounding Rivers</strong></p>
+<p>Dhaka&#39;s runoff is meant to drain into the Buriganga, Turag, Balu, and Shitalakshya rivers. Instead, industrial chemicals and raw municipal sewage are dumped directly into these rivers through approximately 1,200 identified pollution points. Silt and plastic waste have heavily accumulated on the riverbeds, drastically reducing their depth and navigability. Illegal encroachment continues to shrink their banks. Furthermore, the flood protection embankments and poorly planned sluice gates built after the 1988 floods have severed the natural flow between the city’s internal canals and the surrounding rivers.</p>
+<p><strong>5. Unplanned Excavation and Lack of Coordination</strong></p>
+<p>Beneath Dhaka&#39;s streets lies a chaotic web of utility lines from WASA, electricity providers, Titas Gas, and internet cables. One agency repairs a road and fixes a drain, only for another to immediately dig it up again, inadvertently destroying the newly repaired infrastructure. The absence of a central utility duct severely undermines the integrity and effectiveness of the drainage systems.</p>
+<p><strong>6. The Concrete Jungle and Lack of Permeable Land</strong></p>
+<p>Geographically, Dhaka resembles a bowl. During the monsoon, the water levels of the surrounding rivers rise higher than the city itself, preventing water from draining naturally via gravity. Compounding this is the rampant spread of concrete. Urban planners state that an environmentally friendly city needs at least 10% to 15% permeable, open green spaces to allow rainwater to infiltrate the soil. Due to unplanned urbanization, such spaces in central Dhaka have shrunk to a mere 1% to 5%. Because the city is blanketed in concrete, the soil&#39;s natural capacity to absorb water has practically vanished.</p>
+<h3>The Way Out: How Can We Save Dhaka?</h3>
+<p>Urban planners argue that reclaiming just 15 primary canals and reconnecting them to the rivers could eliminate 80% of the city’s waterlogging. The Ministry of Local Government has recently formed a special committee to officially demarcate canal boundaries. However, achieving long term relief requires the following definitive steps:</p>
+<p>·         <strong>Integrated Master Plan and Utility Ducts:</strong> All civic agencies must collaborate to build a well planned drainage network utilizing proper hydraulic slopes. To stop the cycle of endless road excavations, a central underground utility duct must be adopted.</p>
+<p>·         <strong>Canal Reclamation and Opening Culverts:</strong> The city must reclaim its 65 canals and natural wetlands based on historical CS maps, ensuring they reconnect to the rivers. The box culverts must be dismantled and reverted into open canals to facilitate smooth water flow and easier maintenance.</p>
+<p>·         <strong>Strict Enforcement of the DAP:</strong> Rajuk’s Detailed Area Plan (DAP) must be rigorously enforced to halt the filling of reservoirs and flood flow zones. Regulations mandating unpaved open spaces in new building constructions must be strictly upheld.</p>
+<p>·         <strong>Adopting the Sponge City Concept:</strong> Dhaka needs to be reengineered as a Sponge City. This involves replacing solid concrete on sidewalks and open areas with water permeable blocks. Additionally, underground water retention ponds should be built across different neighborhoods to rapidly absorb and temporarily store heavy rainwater.</p>
+<p>·         <strong>Civic Awareness and Responsibility:</strong> Citizens cannot rely solely on the government, personal responsibility is crucial. Throwing polythene, bottles, and household bulk waste into drains must stop entirely. Furthermore, initiatives like rooftop gardening can help intercept and absorb a significant portion of rainwater before it overwhelms the streets.</p>
+<p>Saving Dhaka requires far more than launching temporary, multimillion taka projects. It demands strict accountability from all agencies, the rigorous enforcement of urban planning laws, and a collective awakening of civic responsibility.</p>
 
         </div>
       </div>
@@ -427,7 +498,7 @@
     }
     
     function shareToWhatsApp() {
-      const title = encodeURIComponent('"Green Roots" Event Spurs Community Climate Action in Dhaka ');
+      const title = encodeURIComponent('Why is Dhaka Sinking? The Real Causes, Impacts, and Solutions to Waterlogging');
       const url = encodeURIComponent(window.location.href);
       window.open(`https://wa.me/?text=*${title}*%0A%0A${url}`, '_blank');
     }
@@ -461,8 +532,9 @@
       }
     }
     
-    // Disable heavy effects on low-end devices
+    /* ✅ Optional: Further optimize scroll performance */
     document.addEventListener('DOMContentLoaded', function() {
+      // Remove heavy effects if device is low-end
       if (navigator.deviceMemory && navigator.deviceMemory < 4) {
         document.querySelectorAll('.pure-glass, .nav-glass').forEach(el => {
           el.style.backdropFilter = 'none';

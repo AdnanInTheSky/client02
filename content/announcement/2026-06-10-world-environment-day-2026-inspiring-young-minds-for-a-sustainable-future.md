@@ -1,6 +1,7 @@
 ---
 title: "🌍 World Environment Day 2026: Inspiring Young Minds for a Sustainable
   Future 🌱"
+rank: 2
 date: 2026-06-10
 image: /content/images/WhatsApp Image 2026-06-10 at 20.34.49.jpeg
 ---

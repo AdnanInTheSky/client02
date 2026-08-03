@@ -1,5 +1,6 @@
 ---
 title: '"How Our Digital Habits Deepen Water Insecurity in Coastal Bangladesh"'
+rank: 5
 image: /content/images/1000020024.jpg
 date: 2026-06-13
 author: "Mahfuza Amir Ela "
