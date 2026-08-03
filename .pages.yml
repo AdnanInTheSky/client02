@@ -1,5 +1,3 @@
- 
-
 media:
   input: content/images
   output: /content/images
@@ -16,18 +14,29 @@ content:
       - name: title
         type: string
         required: true
+
+      - name: rank
+        type: number
+        required: false
+        default: 0
+        description: "Sorting order (lower numbers appear first)"
+
       - name: date
         type: date
         required: true
+
       - name: author
         type: string
+
       - name: image
         type: image
         required: false
         description: "Featured image for the article"
+
       - name: tags
         type: string
         list: true
+
       - name: body
         type: rich-text
         required: true
@@ -42,13 +51,16 @@ content:
       - name: title
         type: string
         required: true
+        
       - name: date
         type: date
         required: true
+
       - name: image
         type: image
         required: false
         description: "Featured image"
+
       - name: body
         type: rich-text
         required: true
@@ -63,21 +75,31 @@ content:
       - name: title
         type: string
         required: true
+
+      - name: rank
+        type: number
+        required: false
+        default: 0
+        description: "Sorting order (lower numbers appear first)"
+
       - name: role
         type: string
         required: true
+
       - name: image
         type: image
         required: false
         description: "Photo of the team member"
+
       - name: tags
         type: string
         list: true
+
       - name: body
         type: rich-text
         required: true
 
-  #  Services/Blogs Collection
+  # Services/Blogs Collection
   - name: services
     label: Blog
     type: collection
@@ -89,26 +111,33 @@ content:
         label: Title
         required: true
         description: "Blog post title"
-      
+
+      - name: rank
+        type: number
+        label: Rank
+        required: false
+        default: 0
+        description: "Sorting order (lower numbers appear first)"
+
       - name: image
         type: image
         label: Featured Image
         required: false
         description: "Upload a featured image (recommended: 1200x675px, 16:9 ratio)"
         upload: /content/images/
-      
+
       - name: date
         type: date
         label: Published Date
         required: false
         default: "{{now}}"
-      
+
       - name: author
         type: string
         label: Author
         required: false
         default: "YCI Team"
-      
+
       - name: body
         type: rich-text
         label: Content
