@@ -396,11 +396,11 @@
             date: formattedDate,
             image: meta.image || null,
             fullBody: fullBodyFormatted,
-            rank: meta.rank !== undefined ? Number(meta.rank) : 999999
+            rank: meta.rank !== undefined ? Number(meta.rank) : -999999
           });
         }
 
-        announcements.sort((a, b) => a.rank - b.rank);
+        announcements.sort((a, b) => b.rank - a.rank);
 
         const html = announcements.slice(0, 3).map(a => `
           <div class="pure-glass p-6 rounded-xl hover:scale-[1.02] transition-transform announcement-card">

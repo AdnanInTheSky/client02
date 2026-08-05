@@ -19,7 +19,7 @@ content:
         type: number
         required: false
         default: 0
-        description: "Sorting order (lower numbers appear first)"
+        description: "Sorting order (higher numbers appear first)"
 
       - name: date
         type: date
@@ -80,7 +80,7 @@ content:
         type: number
         required: false
         default: 0
-        description: "Sorting order (lower numbers appear first)"
+        description: "Sorting order (higher numbers appear first)"
 
       - name: role
         type: string
@@ -117,7 +117,7 @@ content:
         label: Rank
         required: false
         default: 0
-        description: "Sorting order (lower numbers appear first)"
+        description: "Sorting order (higher numbers appear first)"
 
       - name: image
         type: image

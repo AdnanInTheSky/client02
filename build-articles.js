@@ -72,10 +72,10 @@ function build() {
   const index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
   const articleFiles = index.articles || [];  // ← Get articles array
 
-  // Sort article files by rank (rank: 1 will be 1st)
+  // Sort article files by rank (highest rank first)
   const articleFilesWithRank = articleFiles.map(file => {
     const filePath = path.join(CONTENT_DIR, file);
-    let rank = 999999;
+    let rank = -999999;
     if (fs.existsSync(filePath)) {
       const content = fs.readFileSync(filePath, 'utf8');
       const parts = content.split('---');
@@ -89,7 +89,7 @@ function build() {
     return { file, rank };
   });
 
-  articleFilesWithRank.sort((a, b) => a.rank - b.rank);
+  articleFilesWithRank.sort((a, b) => b.rank - a.rank);
   const sortedArticleFiles = articleFilesWithRank.map(item => item.file);
   
   console.log(`📚 Found ${sortedArticleFiles.length} article file(s)\n`);

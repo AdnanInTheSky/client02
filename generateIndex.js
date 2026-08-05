@@ -55,7 +55,7 @@ async function getFileRank(filePath) {
       }
     }
   } catch {}
-  return 999999;
+  return -999999;
 }
 
 async function generateIndex() {
@@ -76,7 +76,7 @@ async function generateIndex() {
       })
     );
 
-    items.sort((a, b) => a.rank - b.rank);
+    items.sort((a, b) => b.rank - a.rank);
 
     indexData[name] = items.map((item) => `${name}/${item.filename}`);
   }

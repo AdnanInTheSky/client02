@@ -1,34 +1,34 @@
 {
   "articles": [
-    "articles/2025-12-10-placeholder03.md",
-    "articles/2025-12-20-climate-action-now-dhaka-communities-embrace-tree-planting-and-plastic-reduction.md",
-    "articles/2025-12-20-green-campus-clean-future-sparks-youth-climate-leadership.md",
-    "articles/2025-12-20-green-eid-initiative-honors-youth-for-planting-trees-nationwide.md",
-    "articles/2026-04-17-yci-bangladesh-joins-nscdr-as-sustainability-partner-strengthening-youth-role-in-climate-action.md",
+    "articles/2026-06-11-.md",
     "articles/2026-04-22-turning-heat-maps-into-action-yci-bangladeshs-push-for-a-cooler-greener-campus.md",
-    "articles/2026-06-11-.md"
+    "articles/2026-04-17-yci-bangladesh-joins-nscdr-as-sustainability-partner-strengthening-youth-role-in-climate-action.md",
+    "articles/2025-12-20-green-eid-initiative-honors-youth-for-planting-trees-nationwide.md",
+    "articles/2025-12-20-green-campus-clean-future-sparks-youth-climate-leadership.md",
+    "articles/2025-12-20-climate-action-now-dhaka-communities-embrace-tree-planting-and-plastic-reduction.md",
+    "articles/2025-12-10-placeholder03.md"
   ],
   "teams": [
-    "teams/2025-10-28-adiat.md",
-    "teams/2025-10-28-tafsirul-sarif-shuvo.md",
-    "teams/2025-11-03-akib.md",
-    "teams/2025-11-09-team-member-name.md",
-    "teams/2025-12-18-abdullah-al-noman.md",
+    "teams/2025-12-18-maishuri-islam-prova.md",
     "teams/2025-12-18-ahmed-irtiza-rafid.md",
-    "teams/2025-12-18-maishuri-islam-prova.md"
+    "teams/2025-12-18-abdullah-al-noman.md",
+    "teams/2025-11-09-team-member-name.md",
+    "teams/2025-11-03-akib.md",
+    "teams/2025-10-28-tafsirul-sarif-shuvo.md",
+    "teams/2025-10-28-adiat.md"
   ],
   "services": [
-    "services/2025-10-27-student.md",
-    "services/2025-10-28-lecturer.md",
-    "services/2026-03-16-the-winter-mist-of-poison-bangladeshs-alarming-aqi-crisis.md",
-    "services/2026-06-09-when-the-pacific-sneezes-bangladesh-catches-a-fever-the-effect-of-el-nino.md",
-    "services/2026-06-13-how-our-digital-habits-deepen-water-insecurity-in-coastal-bangladesh.md",
-    "services/2026-07-13-why-is-dhaka-sinking-the-real-causes-impacts-and-solutions-to-waterlogging.md",
+    "services/2026-07-31-monsoon-in-dhaka-is-rain-a-blessing-or-just-an-annual-disaster.md",
     "services/2026-07-19-salinity-and-survival-the-silent-struggle-of-coastal-women.md",
-    "services/2026-07-31-monsoon-in-dhaka-is-rain-a-blessing-or-just-an-annual-disaster.md"
+    "services/2026-07-13-why-is-dhaka-sinking-the-real-causes-impacts-and-solutions-to-waterlogging.md",
+    "services/2026-06-13-how-our-digital-habits-deepen-water-insecurity-in-coastal-bangladesh.md",
+    "services/2026-06-09-when-the-pacific-sneezes-bangladesh-catches-a-fever-the-effect-of-el-nino.md",
+    "services/2026-03-16-the-winter-mist-of-poison-bangladeshs-alarming-aqi-crisis.md",
+    "services/2025-10-28-lecturer.md",
+    "services/2025-10-27-student.md"
   ],
   "announcement": [
-    "announcement/2026-05-01-.md",
-    "announcement/2026-06-10-world-environment-day-2026-inspiring-young-minds-for-a-sustainable-future.md"
+    "announcement/2026-06-10-world-environment-day-2026-inspiring-young-minds-for-a-sustainable-future.md",
+    "announcement/2026-05-01-.md"
   ]
 }
