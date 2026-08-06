@@ -1,7 +1,7 @@
 ---
 title: The Termite We Hate Might Be Quietly Protecting Our Climate
 rank: 9
-image: /content/images/f1aa6762-0cd9-449d-9029-bebc3cd4f382.jpeg
+image: /content/images/WhatsApp Image 2026-08-06 at 20.39.36.jpeg
 date: 2026-08-06
 author: Maishuri Islam Prova
 ---
