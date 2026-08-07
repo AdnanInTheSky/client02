@@ -1,6 +1,6 @@
 ---
 title: Maishuri Islam Prova
-rank: 6
+rank: 2
 role: Co-Founder, Head of Funding & Partnership
 image: /content/images/Screenshot 2025-12-18 113641.png
 ---

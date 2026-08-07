@@ -1,6 +1,6 @@
 ---
 title: Ahnaf Amir Aunabil
-rank: 2
+rank: 6
 role: Founder and Head of Policy & Advocacy
 image: /content/images/Screenshot 2025-12-18 112756.png
 ---

@@ -1,6 +1,6 @@
 ---
 title: Abdullah Al Noman
-rank: 5
+rank: 3
 role: Co-Founder. Head of Events & Volunteer Coordination
 image: /content/images/Screenshot 2025-12-18 113442.png
 ---

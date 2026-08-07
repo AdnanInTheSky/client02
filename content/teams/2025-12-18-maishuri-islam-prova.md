@@ -1,6 +1,6 @@
 ---
 title: Jeba Maliha 
-rank: 7
+rank: 1
 role: Co-Founder, Head of Communication & Outreach
 image: /content/images/WhatsApp Image 2025-12-17 at 00.01.13.jpeg
 ---
