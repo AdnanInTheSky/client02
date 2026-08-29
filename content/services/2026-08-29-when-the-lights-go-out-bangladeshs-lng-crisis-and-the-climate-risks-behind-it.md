@@ -36,7 +36,7 @@ However, the central question is **whether that infrastructure can withstand cli
 The International Energy Agency (IEA) warns that increasingly intense tropical cyclones can directly threaten coastal and offshore energy infrastructure through severe winds, heavy rainfall and storm surges, with sea-level rise adding further risks.  
 This creates a critical question for Bangladesh: If several important LNG facilities remain exposed to similar weather conditions in the same coastal region, does additional capacity automatically create resilience? The answer is quite achievable. While more LNG capacity can increase supply, true resilience requires geographical diversification, stronger emergency planning and the ability to keep going when part of the system is taken out.   
 
-**The fix: Resilience building Beyond LNG **  
+**The fix: Resilience building Beyond LNG**   
 Bangladesh does not have to give up natural gas overnight. The country still needs reliable power for homes, industry and economic growth. But what the current crisis proves is that energy security cannot be dependent on one fuel, one supply route or one vulnerable piece of infrastructure.   
 
 The International Energy Agency (IEA) says building resilience to climate change in the energy sector is about identifying climate hazards, making infrastructure more resilient to shocks and preparing energy systems to absorb and recover from disruption.    
