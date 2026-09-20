@@ -3,7 +3,7 @@ title: When the Glue Melts, It Turns into a Disaster
 rank: 12
 image: /content/images/1000076162.jpg
 date: 2026-09-20
-author: YCI Team
+author: Anka Pondit Zoyee
 ---
 Often described as the roof of the world, the Himalayas sit at the very center of Nepal, shaping its landscape, culture, and economy in ways few other geographic features do anywhere on earth. Snow covered peaks draw millions of visitors each year, rivers born from glaciers sustain entire valleys, and generations of communities have built their lives in the shadow of these mountains. Yet the same peaks that make Nepal so extraordinary also make it deeply vulnerable, and that vulnerability turned catastrophic on the morning a massive glacial collapse struck the Langtang region.
 
