@@ -1,0 +1,22 @@
+---
+title: When the Glue Melts, It Turns into a Disaster  Often
+rank: 12
+image: /content/images/1000076162.jpg
+date: 2026-09-20
+author: YCI Team
+---
+Often described as the roof of the world, the Himalayas sit at the very center of Nepal, shaping its landscape, culture, and economy in ways few other geographic features do anywhere on earth. Snow covered peaks draw millions of visitors each year, rivers born from glaciers sustain entire valleys, and generations of communities have built their lives in the shadow of these mountains. Yet the same peaks that make Nepal so extraordinary also make it deeply vulnerable, and that vulnerability turned catastrophic on the morning a massive glacial collapse struck the Langtang region.
+
+At 8:37 in the morning, roughly a fifth of a square kilometre of ice and rock that had remained frozen solid for decades broke away from Mount Langtang Lirung and plunged nearly 1,200 meters down the slope. The force of the impact transformed this enormous mass into a churning torrent of mud and water, which surged through the Lende Khola and into the Trishuli River, widening its banks and choking it with silt and debris. It was this violent downstream surge, rather than the initial collapse itself, that ultimately devastated the villages below.
+
+The true origin of the failure lay not in the ice but beneath it. The bedrock underneath the glacier gave way first, and it was this deeper structural collapse that loosened the ice sitting above it. In effect, the mountain's rock foundation failed, and everything resting upon it followed soon after. Scientists trace this weakening to a slower and less visible process known as permafrost loss. The permafrost found throughout the Himalayas, a frozen mixture of soil, rock, and organic matter, has bound mountain bedrock together for thousands of years, functioning almost like a natural adhesive. As global temperatures rise, this adhesive is steadily melting, leaving bedrock weaker and increasingly prone to collapse.
+
+Some researchers view the connection between this disaster and climate change as direct and undeniable, with one geologist describing it as an extremely strong link between a warming planet and events of this kind. The geomorphologists who first examined the Langtang collapse, however, urge greater caution and stop short of attributing this specific event to climate change alone. They note instead that such collapses are becoming increasingly unsurprising within a warming climate system. A subsequent study identified six possible contributing factors, including rapid glacier movement, cracking within the ice, and meltwater infiltrating those cracks, though no single cause could be confirmed with full certainty.
+
+The human cost of this disaster has been staggering. The flood claimed the lives of over 1,300 people within Nepal alone, with nearly 4,900 individuals still unaccounted for, alongside 16 confirmed deaths across the border in China's Gyirong County. The destruction extended far beyond loss of life, as entire villages across Rasuwa, Nuwakot, Dhading, and Gorkha were buried beneath the debris. The Gyirong border checkpoint was destroyed, and critical bridges connecting isolated mountain communities were swept away, severing the very routes that rescue teams and essential supplies depended upon.
+
+Perhaps the most painful aspect of this tragedy is the prolonged uncertainty it has created. With thousands of individuals still classified as missing rather than confirmed dead, entire communities remain suspended in limbo, unable to properly grieve, rebuild their homes, or plan meaningfully for the future.
+
+The environmental consequences of the disaster have proven equally severe and far reaching. The debris surge permanently altered the course and structure of the Trishuli River, widening its banks and burying it under heavy sediment, a transformation expected to persist for years rather than days. This sedimentation now threatens aquatic life, degrades water quality, and endangers the farming communities that had long depended on the river's natural flow for their livelihoods.
+
+What unfolded at Langtang was not an isolated tragedy but rather a single chapter within a recurring pattern shaped by a warming Himalaya. Until the underlying instability of these slopes is thoroughly understood and meaningfully addressed, similar disasters can no longer be treated as a distant possibility. They must instead be recognized as a genuine likelihood.
