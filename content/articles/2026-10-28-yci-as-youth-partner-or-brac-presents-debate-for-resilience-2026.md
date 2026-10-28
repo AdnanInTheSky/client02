@@ -3,6 +3,7 @@ title: YCI as Youth Partner | BRAC Presents Debate for Resilience 2026
 rank: 8
 date: 2026-10-28
 author: Ahmed Irtiza Rafid
+image: /content/images/1000080550.jpg
 ---
 Youth Climate Insights (YCI) is proud to have served as a Youth Partner of BRAC Presents Debate for Resilience 2026, a national inter-university debate competition organised by the Debating Wing of the Institute of Disaster Management and Vulnerability Studies (IDMVS), University of Dhaka, in collaboration with BRAC’s Disaster Risk Management Programme.
 
